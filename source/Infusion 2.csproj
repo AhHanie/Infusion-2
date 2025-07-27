@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{25CF6515-33B1-4431-B0FB-BDFBFEF440CB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Infufsion_2</RootNamespace>
+    <AssemblyName>Infufsion 2</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\1.6\Base\Assemblies\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>..\..\..\0Harmony.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="LessUI">
+      <HintPath>..\..\LessUI\1.6\Assemblies\LessUI.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CompInfusion.cs" />
+    <Compile Include="DebugActions.cs" />
+    <Compile Include="DefFields.cs" />
+    <Compile Include="DefGenerator.cs" />
+    <Compile Include="DefsForReading.cs" />
+    <Compile Include="Extractor.cs" />
+    <Compile Include="Harmonize\Bullet.cs" />
+    <Compile Include="Harmonize\CompQuality.cs" />
+    <Compile Include="Harmonize\MemoryUtility.cs" />
+    <Compile Include="Harmonize\PawnGenerator.cs" />
+    <Compile Include="Harmonize\Pawn_EquipmentTracker.cs" />
+    <Compile Include="Harmonize\Pawn_HealthTracker.cs" />
+    <Compile Include="Harmonize\StatWorker.cs" />
+    <Compile Include="Harmonize\Verb.cs" />
+    <Compile Include="Harmonize\VerbMeleeAttackDamage.cs" />
+    <Compile Include="Harmonize\VerbProperties.cs" />
+    <Compile Include="HashEqualDef.cs" />
+    <Compile Include="Infuser.cs" />
+    <Compile Include="InfusionDef.cs" />
+    <Compile Include="ITab.cs" />
+    <Compile Include="JobDriver.cs" />
+    <Compile Include="Matcher.cs" />
+    <Compile Include="Matchers\EquipmentType.cs" />
+    <Compile Include="Matchers\HasVerb_LaunchProjectile.cs" />
+    <Compile Include="Matchers\Negate.cs" />
+    <Compile Include="Matchers\NotUtility.cs" />
+    <Compile Include="Matchers\ProjectileBullet.cs" />
+    <Compile Include="Matchers\ShieldBelt.cs" />
+    <Compile Include="Matchers\WeaponClasses.cs" />
+    <Compile Include="Mod.cs" />
+    <Compile Include="ModSettingsWindow.cs" />
+    <Compile Include="OnHitWorker.cs" />
+    <Compile Include="OnHitWorkers\ApplyDamage.cs" />
+    <Compile Include="OnHitWorkers\ApplyHediff.cs" />
+    <Compile Include="OnHitWorkers\CreateExplosion.cs" />
+    <Compile Include="OnHitWorkers\DamageBase.cs" />
+    <Compile Include="OnHitWorkers\HealCaster.cs" />
+    <Compile Include="OnHitWorkers\IfBioTargetHit.cs" />
+    <Compile Include="OnHitWorkers\PlaySound.cs" />
+    <Compile Include="OnHitWorkers\Preservation.cs" />
+    <Compile Include="OnHitWorkers\ReduceSeverity.cs" />
+    <Compile Include="OnHitWorkers\ResetCooldown.cs" />
+    <Compile Include="OnHitWorkers\Sequence.cs" />
+    <Compile Include="OnHitWorkers\SpawnBlood.cs" />
+    <Compile Include="OnHitWorkers\SpawnFilth.cs" />
+    <Compile Include="OnHitWorkers\ThrowFleck.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResourceBank.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="SpecialThingFilterWorkers\Everything.cs" />
+    <Compile Include="StatMod.cs" />
+    <Compile Include="StatPart.cs" />
+    <Compile Include="StockGenerator.cs" />
+    <Compile Include="ThingSetMaker.cs" />
+    <Compile Include="TierDef.cs" />
+    <Compile Include="Utils.cs" />
+    <Compile Include="VerseTools.cs" />
+    <Compile Include="WorkGiver.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Defs>
+  <ThingDef>
+    <defName>Infusion_Infuser_Common</defName>
+    <description>A single-use canister containing mechanites programmed to enhance an equipment.</description>
+    <label>Common infuser</label>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <comps>
+      <li Class="CompProperties_Forbiddable" />
+      <!-- <li Class="Infusion.CompInfusion" /> -->
+      <li>
+        <compClass>Infusion.CompInfusion</compClass>
+      </li>
+    </comps>
+    <alwaysHaulable>true</alwaysHaulable>
+    <category>Item</category>
+    <graphicData>
+      <texPath>Things/Infuser</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <pathCost>15</pathCost>
+    <statBases>
+      <MaxHitPoints>80</MaxHitPoints>
+      <Mass>0.5</Mass>
+      <MarketValue>200</MarketValue>
+      <SellPriceFactor>0.2</SellPriceFactor>
+    </statBases>
+    <rotatable>false</rotatable>
+    <selectable>true</selectable>
+    <techLevel>Ultra</techLevel>
+    <thingCategories>
+      <li>Infusion_Infusers</li>
+    </thingCategories>
+    <tradeability>Buyable</tradeability>
+    <tradeTags>
+      <li>Infusion_Infuser</li>
+    </tradeTags>
+    <thingClass>Infusion.Infuser</thingClass>
+  </ThingDef>
+
+  <ThingDef>
+    <defName>Infusion_Infuser_Uncommon</defName>
+    <description>A single-use canister containing mechanites programmed to enhance an equipment.</description>
+    <label>Uncommon infuser</label>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <comps>
+      <li Class="CompProperties_Forbiddable" />
+      <!-- <li Class="Infusion.CompInfusion" /> -->
+      <li>
+        <compClass>Infusion.CompInfusion</compClass>
+      </li>
+    </comps>
+    <alwaysHaulable>true</alwaysHaulable>
+    <category>Item</category>
+    <graphicData>
+      <texPath>Things/Infuser</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <pathCost>15</pathCost>
+    <statBases>
+      <MaxHitPoints>80</MaxHitPoints>
+      <Mass>0.5</Mass>
+      <MarketValue>500</MarketValue>
+      <SellPriceFactor>0.2</SellPriceFactor>
+    </statBases>
+    <rotatable>false</rotatable>
+    <selectable>true</selectable>
+    <techLevel>Ultra</techLevel>
+    <thingCategories>
+      <li>Infusion_Infusers</li>
+    </thingCategories>
+    <tradeability>Buyable</tradeability>
+    <tradeTags>
+      <li>Infusion_Infuser</li>
+    </tradeTags>
+    <thingClass>Infusion.Infuser</thingClass>
+  </ThingDef>
+
+  <ThingDef>
+    <defName>Infusion_Infuser_Rare</defName>
+    <description>A single-use canister containing mechanites programmed to enhance an equipment.</description>
+    <label>Rare infuser</label>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <comps>
+      <li Class="CompProperties_Forbiddable" />
+      <!-- <li Class="Infusion.CompInfusion" /> -->
+      <li>
+        <compClass>Infusion.CompInfusion</compClass>
+      </li>
+    </comps>
+    <alwaysHaulable>true</alwaysHaulable>
+    <category>Item</category>
+    <graphicData>
+      <texPath>Things/Infuser</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <pathCost>15</pathCost>
+    <statBases>
+      <MaxHitPoints>80</MaxHitPoints>
+      <Mass>0.5</Mass>
+      <MarketValue>1000</MarketValue>
+      <SellPriceFactor>0.2</SellPriceFactor>
+    </statBases>
+    <rotatable>false</rotatable>
+    <selectable>true</selectable>
+    <techLevel>Ultra</techLevel>
+    <thingCategories>
+      <li>Infusion_Infusers</li>
+    </thingCategories>
+    <tradeability>Buyable</tradeability>
+    <tradeTags>
+      <li>Infusion_Infuser</li>
+    </tradeTags>
+    <thingClass>Infusion.Infuser</thingClass>
+  </ThingDef>
+
+  <ThingDef>
+    <defName>Infusion_Infuser_Legendary</defName>
+    <description>A single-use canister containing mechanites programmed to enhance an equipment.</description>
+    <label>Legendary infuser</label>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <comps>
+      <li Class="CompProperties_Forbiddable" />
+      <!-- <li Class="Infusion.CompInfusion" /> -->
+      <li>
+        <compClass>Infusion.CompInfusion</compClass>
+      </li>
+    </comps>
+    <alwaysHaulable>true</alwaysHaulable>
+    <category>Item</category>
+    <graphicData>
+      <texPath>Things/Infuser</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <pathCost>15</pathCost>
+    <statBases>
+      <MaxHitPoints>80</MaxHitPoints>
+      <Mass>0.5</Mass>
+      <MarketValue>2000</MarketValue>
+      <SellPriceFactor>0.2</SellPriceFactor>
+    </statBases>
+    <rotatable>false</rotatable>
+    <selectable>true</selectable>
+    <techLevel>Ultra</techLevel>
+    <thingCategories>
+      <li>Infusion_Infusers</li>
+    </thingCategories>
+    <tradeability>Buyable</tradeability>
+    <tradeTags>
+      <li>Infusion_Infuser</li>
+    </tradeTags>
+    <thingClass>Infusion.Infuser</thingClass>
+  </ThingDef>
+</Defs>
