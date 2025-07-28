@@ -16,7 +16,6 @@ namespace Infusion.Harmonize
         }
     }
 
-    // Optional: Also clear when returning to main menu
     [HarmonyPatch(typeof(Root_Entry), "Start")]
     public static class RootEntryStart
     {
@@ -26,7 +25,6 @@ namespace Infusion.Harmonize
         }
     }
 
-    // Covers loading saved games - targets all LoadGame methods
     [HarmonyPatch]
     public static class GameDataSaveLoaderLoadGame
     {

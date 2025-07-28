@@ -3,9 +3,6 @@ using Verse;
 
 namespace Infusion.OnHitWorkers
 {
-    /// <summary>
-    /// On-hit worker that resets the cooldown of the attacker's current stance.
-    /// </summary>
     public class ResetCooldown : OnHitWorker
     {
         public bool onMeleeCast = true;

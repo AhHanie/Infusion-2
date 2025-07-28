@@ -9,9 +9,6 @@ namespace Infusion.Harmonize
         [HarmonyPatch(typeof(CompQuality), "SetQuality")]
         public static class SetQuality
         {
-            /// <summary>
-            /// Main flow for infusing
-            /// </summary>
             public static void Postfix(CompQuality __instance)
             {
                 var compInfusion = __instance.parent.TryGetComp<CompInfusion>();

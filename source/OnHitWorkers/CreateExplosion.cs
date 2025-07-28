@@ -4,10 +4,6 @@ using Verse;
 
 namespace Infusion.OnHitWorkers
 {
-    /// <summary>
-    /// On-hit worker that creates explosions at impact locations.
-    /// [todo] Associate with battle logs
-    /// </summary>
     public class CreateExplosion : DamageBase
     {
         public GasType? postExplosionGasType;

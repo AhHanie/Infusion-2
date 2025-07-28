@@ -55,4 +55,7 @@ Applied after the body part limit, i.e. an apparel which protects arms and torso
   <Infusion.Settings.Tiers.CloseSettings>Close tier availabilities</Infusion.Settings.Tiers.CloseSettings>
 
   <Infusion.Settings.Tier.Description>{0} infusions found</Infusion.Settings.Tier.Description>
+
+  <Infusion.Settings.Slots.Title>Infusion Slots per Quality</Infusion.Settings.Slots.Title>
+  <Infusion.Settings.Tiers.Title>Enable/Disable Tiers</Infusion.Settings.Tiers.Title>
 </LanguageData>

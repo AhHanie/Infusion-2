@@ -21,15 +21,31 @@ namespace Infusion
         public static StrongBox<string> sigmaLabelRef = new StrongBox<string>("Infusion.Settings.Sigma".Translate());
         public static StrongBox<string> bodyPartLimitLabelRef = new StrongBox<string>("Infusion.Settings.BodyPartLimit".Translate());
         public static StrongBox<string> morePerLayerLabelRef = new StrongBox<string>("Infusion.Settings.LayerBonuses".Translate());
+        public static StrongBox<string> awfulLabelRef = new StrongBox<string>("Awful");
+        public static StrongBox<string> poorLabelRef = new StrongBox<string>("Poor");
+        public static StrongBox<string> normalLabelRef = new StrongBox<string>("Normal");
+        public static StrongBox<string> goodLabelRef = new StrongBox<string>("Good");
+        public static StrongBox<string> excellentLabelRef = new StrongBox<string>("Excellent");
+        public static StrongBox<string> masterworkLabelRef = new StrongBox<string>("Masterwork");
+        public static StrongBox<string> legendaryLabelRef = new StrongBox<string>("Legendary");
+        public static StrongBox<string> infusionSlotsSettingsLabelRef = new StrongBox<string>("Infusion.Settings.Slots.Title".Translate());
+        public static StrongBox<string> commonLabelRef = new StrongBox<string>("Common");
+        public static StrongBox<string> uncommonLabelRef = new StrongBox<string>("Uncommon");
+        public static StrongBox<string> rareLabelRef = new StrongBox<string>("Rare");
+        public static StrongBox<string> tiersTitleLabelRef = new StrongBox<string>("Infusion.Settings.Tiers.Title".Translate());
+        public static StrongBox<Vector2> scrollPosition = new StrongBox<Vector2>(Vector2.zero);
         public static void Draw(Rect parent)
         {
-            Canvas canvas = new Canvas(parent);
-            FillGrid grid = new FillGrid(2, 20)
+            ScrollCanvas canvas = new ScrollCanvas(parent, () => scrollPosition.Value, (vec2) => scrollPosition.Value = vec2);
+            Stack stack = new Stack();
+            stack.WidthMode = SizeMode.Fill;
+            stack.VerticalSpacing = 5f;
+
+            FillGrid grid = new FillGrid(2, 9)
             {
                 Padding = 10f
             };
-            grid.HeightMode = SizeMode.Fixed;
-            grid.Height = 25f;
+            grid.HeightMode = SizeMode.Content;
             Text.Font = GameFont.Small;
 
             Label accuracyOvercappingLabel = new Label(accuracyOvercappingLabelRef);
@@ -139,7 +155,170 @@ namespace Infusion
 
             grid.AddChild(morePerLayerCheckbox);
 
-            canvas.AddChild(grid);
+            stack.AddChild(grid);
+
+            Line line = new Line(LineType.Horizontal);
+            line.WidthMode = SizeMode.Fill;
+            stack.AddChild(line);
+
+            FillGrid grid1 = new FillGrid(2, 8)
+            {
+                Padding = 10f
+            };
+            grid1.HeightMode = SizeMode.Content;
+
+            Label infusionSlotSettingsLabel = new Label(infusionSlotsSettingsLabelRef);
+            infusionSlotSettingsLabel.Alignment = Align.MiddleLeft;
+
+            grid1.AddChild(infusionSlotSettingsLabel);
+            grid1.AddChild(new Empty());
+
+            Label awfulSlotsLabel = new Label(awfulLabelRef);
+            awfulSlotsLabel.Alignment = Align.MiddleLeft;
+
+            grid1.AddChild(awfulSlotsLabel);
+
+            LabeledSlider awfulSlotsSlider = new LabeledSlider(Settings.slotAwful.Value.ToString(), Settings.slotAwful.Value, 0f, 20f, (val) => Settings.slotAwful.Value = (int)val);
+            awfulSlotsSlider.RoundTo = 1f;
+            awfulSlotsSlider.Alignment = Align.MiddleLeft;
+            awfulSlotsSlider.WidthMode = SizeMode.Fill;
+
+            grid1.AddChild(awfulSlotsSlider);
+
+            Label poorSlotsLabel = new Label(poorLabelRef);
+            poorSlotsLabel.Alignment = Align.MiddleLeft;
+
+            grid1.AddChild(poorSlotsLabel);
+
+            LabeledSlider poorSlotsSlider = new LabeledSlider(Settings.slotPoor.Value.ToString(), Settings.slotPoor.Value, 0f, 20f, (val) => Settings.slotPoor.Value = (int)val);
+            poorSlotsSlider.RoundTo = 1f;
+            poorSlotsSlider.Alignment = Align.MiddleLeft;
+            poorSlotsSlider.WidthMode = SizeMode.Fill;
+
+            grid1.AddChild(poorSlotsSlider);
+
+            Label normalSlotsLabel = new Label(normalLabelRef);
+            normalSlotsLabel.Alignment = Align.MiddleLeft;
+
+            grid1.AddChild(normalSlotsLabel);
+
+            LabeledSlider normalSlotsSlider = new LabeledSlider(Settings.slotNormal.Value.ToString(), Settings.slotNormal.Value, 0f, 20f, (val) => Settings.slotNormal.Value = (int)val);
+            normalSlotsSlider.RoundTo = 1f;
+            normalSlotsSlider.Alignment = Align.MiddleLeft;
+            normalSlotsSlider.WidthMode = SizeMode.Fill;
+
+            grid1.AddChild(normalSlotsSlider);
+
+            Label goodSlotsLabel = new Label(goodLabelRef);
+            goodSlotsLabel.Alignment = Align.MiddleLeft;
+
+            grid1.AddChild(goodSlotsLabel);
+
+            LabeledSlider goodSlotsSlider = new LabeledSlider(Settings.slotGood.Value.ToString(), Settings.slotGood.Value, 0f, 20f, (val) => Settings.slotGood.Value = (int)val);
+            goodSlotsSlider.RoundTo = 1f;
+            goodSlotsSlider.Alignment = Align.MiddleLeft;
+            goodSlotsSlider.WidthMode = SizeMode.Fill;
+
+            grid1.AddChild(goodSlotsSlider);
+
+            Label excellentSlotsLabel = new Label(excellentLabelRef);
+            excellentSlotsLabel.Alignment = Align.MiddleLeft;
+
+            grid1.AddChild(excellentSlotsLabel);
+
+            LabeledSlider excellentSlotsSlider = new LabeledSlider(Settings.slotExcellent.Value.ToString(), Settings.slotExcellent.Value, 0f, 20f, (val) => Settings.slotExcellent.Value = (int)val);
+            excellentSlotsSlider.RoundTo = 1f;
+            excellentSlotsSlider.Alignment = Align.MiddleLeft;
+            excellentSlotsSlider.WidthMode = SizeMode.Fill;
+
+            grid1.AddChild(excellentSlotsSlider);
+
+            Label masterworkSlotsLabel = new Label(masterworkLabelRef);
+            masterworkSlotsLabel.Alignment = Align.MiddleLeft;
+
+            grid1.AddChild(masterworkSlotsLabel);
+
+            LabeledSlider masterworkSlotsSlider = new LabeledSlider(Settings.slotMasterwork.Value.ToString(), Settings.slotMasterwork.Value, 0f, 20f, (val) => Settings.slotMasterwork.Value = (int)val);
+            masterworkSlotsSlider.RoundTo = 1f;
+            masterworkSlotsSlider.Alignment = Align.MiddleLeft;
+            masterworkSlotsSlider.WidthMode = SizeMode.Fill;
+
+            grid1.AddChild(masterworkSlotsSlider);
+
+            Label legendarySlotsLabel = new Label(legendaryLabelRef);
+            legendarySlotsLabel.Alignment = Align.MiddleLeft;
+
+            grid1.AddChild(legendarySlotsLabel);
+
+            LabeledSlider legendarySlotsSlider = new LabeledSlider(Settings.slotLegendary.Value.ToString(), Settings.slotLegendary.Value, 0f, 20f, (val) => Settings.slotLegendary.Value = (int)val);
+            legendarySlotsSlider.RoundTo = 1f;
+            legendarySlotsSlider.Alignment = Align.MiddleLeft;
+            legendarySlotsSlider.WidthMode = SizeMode.Fill;
+
+            grid1.AddChild(legendarySlotsSlider);
+
+            stack.AddChild(grid1);
+
+            Line line1 = new Line(LineType.Horizontal);
+            line1.WidthMode = SizeMode.Fill;
+            stack.AddChild(line1);
+
+            FillGrid grid2 = new FillGrid(2, 5)
+            {
+                Padding = 10f
+            };
+            grid2.HeightMode = SizeMode.Content;
+
+            Label tiersTitleLabel = new Label(tiersTitleLabelRef);
+            tiersTitleLabel.Alignment = Align.MiddleLeft;
+
+            grid2.AddChild(tiersTitleLabel);
+            grid2.AddChild(new Empty());
+
+            Label commonTierLabel = new Label(commonLabelRef);
+            commonTierLabel.Alignment = Align.MiddleLeft;
+
+            grid2.AddChild(commonTierLabel);
+
+            Checkbox commonTierCheckbox = new Checkbox(Settings.commonTierEnabled);
+            commonTierCheckbox.Alignment = Align.MiddleLeft;
+
+            grid2.AddChild(commonTierCheckbox);
+
+            Label uncommonTierLabel = new Label(uncommonLabelRef);
+            uncommonTierLabel.Alignment = Align.MiddleLeft;
+
+            grid2.AddChild(uncommonTierLabel);
+
+            Checkbox uncommonTierCheckbox = new Checkbox(Settings.uncommonTierEnabled);
+            uncommonTierCheckbox.Alignment = Align.MiddleLeft;
+
+            grid2.AddChild(uncommonTierCheckbox);
+
+            Label rareTierLabel = new Label(rareLabelRef);
+            rareTierLabel.Alignment = Align.MiddleLeft;
+
+            grid2.AddChild(rareTierLabel);
+
+            Checkbox rareTierCheckbox = new Checkbox(Settings.rareTierEnabled);
+            rareTierCheckbox.Alignment = Align.MiddleLeft;
+
+            grid2.AddChild(rareTierCheckbox);
+
+            Label legendaryTierLabel = new Label(legendaryLabelRef);
+            legendaryTierLabel.Alignment = Align.MiddleLeft;
+
+            grid2.AddChild(legendaryTierLabel);
+
+            Checkbox legendaryTierCheckbox = new Checkbox(Settings.legendaryTierEnabled);
+            legendaryTierCheckbox.Alignment = Align.MiddleLeft;
+
+            grid2.AddChild(legendaryTierCheckbox);
+
+            stack.AddChild(grid2);
+
+            canvas.AddChild(stack);
+
             canvas.Render();
         }
     }

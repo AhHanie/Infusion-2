@@ -1,5 +1,4 @@
 ﻿using HarmonyLib;
-using Infusion.Utils;
 using RimWorld;
 using System;
 using System.Collections.Generic;
@@ -10,62 +9,6 @@ using Verse;
 
 namespace Infusion.Mod
 {
-    [StaticConstructorOnStartup]
-    public class StartupConstructor
-    {
-        static StartupConstructor()
-        {
-            // Initialize the def hasher
-            InjectedDefHasher.Initialize();
-
-            //var infuserDefs = DefGenerator.makeInfuserDefs();
-
-            //foreach (var def in infuserDefs)
-            //{
-            //    def.ResolveReferences();
-            //    //DefGenerator.AddImpliedDef<ThingDef>(def);
-
-            //    if (def.thingCategories != null)
-            //    {
-            //        foreach (var cat in def.thingCategories)
-            //        {
-            //            cat.childThingDefs.Add(def);
-            //        }
-            //    }
-
-            //    InjectedDefHasher.GiveShortHashToDef(def, typeof(ThingDef));
-            //}
-
-            //// Resolve references for filters
-            //// ThingCategory itself (for stockpiles)
-            //var infusionCategory = ThingCategoryDef.Named("Infusion_Infusers");
-            //if (infusionCategory != null)
-            //{
-            //    infusionCategory.ResolveReferences();
-            //}
-
-            //// Storable buildings require separate calls
-            //var storageSettings = DefsForReading.allBuildings
-            //    .Where(def => def.building != null)
-            //    .SelectMany(def =>
-            //    {
-            //        var building = def.building;
-            //        var settings = new List<StorageSettings>();
-
-            //        if (building.defaultStorageSettings != null)
-            //            settings.Add(building.defaultStorageSettings);
-            //        if (building.fixedStorageSettings != null)
-            //            settings.Add(building.fixedStorageSettings);
-
-            //        return settings;
-            //    });
-
-            //foreach (var storage in storageSettings)
-            //{
-            //    storage.filter.ResolveReferences();
-            //}
-        }
-    }
 
     public class ModBase : Verse.Mod
     {

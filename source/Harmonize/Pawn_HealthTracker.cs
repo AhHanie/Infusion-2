@@ -12,10 +12,6 @@ namespace Infusion.Harmonize
     {
         private static readonly FieldInfo pawnField = AccessTools.Field(typeof(Pawn_HealthTracker), "pawn");
 
-        /// <summary>
-        /// Handles WearerDowned effects when a pawn is downed by damage.
-        /// Can't use Notify_Downed, need dinfo.
-        /// </summary>
         public static void Postfix(DamageInfo? dinfo, Hediff hediff, Pawn_HealthTracker __instance)
         {
             // Only for downs from damages

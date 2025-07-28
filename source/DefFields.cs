@@ -4,9 +4,6 @@ using Verse;
 
 namespace Infusion
 {
-    /// <summary>
-    /// Quality -> Value map.
-    /// </summary>
     public class QualityMap
     {
         public float awful;
@@ -31,13 +28,6 @@ namespace Infusion
 
     public static class DefFields
     {
-        /// <summary>
-        /// Retrieves a value for the quality from a QualityMap.
-        /// </summary>
-        /// <param name="quality">The quality category to retrieve</param>
-        /// <param name="qmap">The quality map to retrieve from</param>
-        /// <returns>The value associated with the given quality</returns>
-        /// <exception cref="ArgumentException">Thrown when an unknown quality is provided</exception>
         public static float ValueFor(QualityCategory quality, QualityMap qmap)
         {
             switch (quality)
@@ -79,14 +69,8 @@ namespace Infusion
             replace = null;
         }
 
-        /// <summary>
-        /// Gets the replace value. In F#, this was wrapped in an Option type.
-        /// </summary>
         public T Replace => replace;
 
-        /// <summary>
-        /// Indicates whether a replacement value is available.
-        /// </summary>
         public bool HasReplace => replace != null;
     }
 }

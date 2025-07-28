@@ -15,14 +15,8 @@ namespace Infusion
         /// </summary>
         public int priority;
 
-        /// <summary>
-        /// Market value of its generated infuser.
-        /// </summary>
         public float infuserValue;
 
-        /// <summary>
-        /// Extraction success chance.
-        /// </summary>
         public float extractionChance;
 
         public ThingDef infuser;

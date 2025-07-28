@@ -5,9 +5,6 @@ using Verse;
 
 namespace Infusion.Matchers
 {
-    /// <summary>
-    /// Matcher that filters infusions based on weapon class definitions.
-    /// </summary>
     public class WeaponClasses : Matcher<InfusionDef>
     {
         public List<WeaponClassDef> defs = new List<WeaponClassDef>();

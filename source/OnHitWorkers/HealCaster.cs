@@ -4,10 +4,6 @@ using Verse;
 
 namespace Infusion.OnHitWorkers
 {
-    /// <summary>
-    /// On-hit worker that heals random injuries on the caster.
-    /// [todo] Associate with battle logs
-    /// </summary>
     public class HealCaster : OnHitWorker
     {
         public bool onMeleeCast = true;

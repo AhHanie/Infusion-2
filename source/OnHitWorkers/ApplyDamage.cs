@@ -4,9 +4,6 @@ using Verse;
 
 namespace Infusion.OnHitWorkers
 {
-    /// <summary>
-    /// On-hit worker that applies damage to targets.
-    /// </summary>
     public class ApplyDamage : DamageBase
     {
         public bool onMeleeCast = true;
@@ -86,26 +83,17 @@ namespace Infusion.OnHitWorkers
             );
         }
 
-        /// <summary>
-        /// Sets the angle for the damage info based on direction.
-        /// </summary>
         private static void SetDamageInfoAngle(ref DamageInfo damageInfo, Vector3 direction)
         {
             damageInfo.SetAngle(direction);
         }
 
-        /// <summary>
-        /// Sets the body region for the damage info.
-        /// </summary>
         private static void SetDamageInfoBodyRegion(ref DamageInfo damageInfo,
             BodyPartHeight height, BodyPartDepth depth)
         {
             damageInfo.SetBodyRegion(height, depth);
         }
 
-        /// <summary>
-        /// Sets the weapon body part group for the damage info.
-        /// </summary>
         private static void SetDamageInfoWeaponBodyPartGroup(ref DamageInfo damageInfo,
             BodyPartGroupDef bodyPartGroup)
         {

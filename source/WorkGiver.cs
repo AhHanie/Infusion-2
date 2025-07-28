@@ -6,9 +6,6 @@ using Verse.AI;
 
 namespace Infusion
 {
-    /// <summary>
-    /// Utility methods for WorkGiver classes.
-    /// </summary>
     public static class WorkGiverUtilities
     {
         /// <summary>

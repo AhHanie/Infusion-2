@@ -12,14 +12,12 @@ namespace Infusion.Harmonize
             var compInfusion = thing.TryGetComp<CompInfusion>();
             var compBiocodable = thing.TryGetComp<CompBiocodable>();
 
-            // Filter biocodable component - only proceed if it's biocodable and biocoded
             if (compBiocodable?.Biocodable == true && compBiocodable.Biocoded)
             {
                 if (compInfusion != null)
                 {
                     var qualityInt = (byte)compInfusion.Quality + 2;
 
-                    // Clamp the quality to legendary maximum
                     QualityCategory quality;
                     if (qualityInt > (byte)QualityCategory.Legendary)
                     {
@@ -40,14 +38,10 @@ namespace Infusion.Harmonize
         [HarmonyPatch(typeof(PawnGenerator), "GenerateGearFor")]
         public static class GenerateGearFor
         {
-            /// <summary>
-            /// Postprocess biocoded equipments
-            /// </summary>
             public static void Postfix(Pawn pawn, PawnGenerationRequest request)
             {
                 if (Settings.biocodeBonus.Value)
                 {
-                    // Handle worn apparel
                     if (pawn.apparel?.WornApparel != null)
                     {
                         foreach (var apparel in pawn.apparel.WornApparel)
@@ -56,7 +50,6 @@ namespace Infusion.Harmonize
                         }
                     }
 
-                    // Handle primary equipment
                     if (pawn.equipment?.Primary != null)
                     {
                         HandleGear(pawn.equipment.Primary);

@@ -4,9 +4,6 @@ using Verse;
 
 namespace Infusion.Matchers
 {
-    /// <summary>
-    /// Matcher that filters infusions based on equipment type (apparel, melee weapon, or ranged weapon).
-    /// </summary>
     public class EquipmentType : Matcher<InfusionDef>
     {
         public bool apparel = false;

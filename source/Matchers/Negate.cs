@@ -4,9 +4,6 @@ using Verse;
 
 namespace Infusion.Matchers
 {
-    /// <summary>
-    /// Matcher that negates the result of another matcher.
-    /// </summary>
     public class Negate : Matcher<InfusionDef>
     {
         public Matcher<InfusionDef> value = null;

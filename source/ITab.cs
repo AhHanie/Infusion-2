@@ -34,11 +34,9 @@ namespace Infusion
         {
             var container = new Rect(0.0f, 0.0f, size.x, size.y).ContractedBy(16.0f);
 
-            // label
             var labelView = new Rect(container.xMin, container.yMin, container.xMax * 0.85f, container.yMax);
             var labelHeight = DrawLabel(labelView) + 4.0f;
 
-            // subLabel
             var subLabelView = new Rect(
                 container.xMin,
                 labelView.yMin + labelHeight,
@@ -47,7 +45,6 @@ namespace Infusion
             );
             var subLabelHeight = DrawSubLabel(subLabelView) + 12.0f;
 
-            // body
             var bodyView = new Rect(
                 container.xMin,
                 subLabelView.yMin + subLabelHeight,
@@ -67,7 +64,6 @@ namespace Infusion
                 GUI.color = Color.white;
             }
 
-            // infuser button
             var infuserView = new Rect(
                 new Vector2(container.center.x - 100.0f, container.yMax - 40.0f),
                 new Vector2(200.0f, 36.0f)
@@ -169,7 +165,6 @@ namespace Infusion
 
             var hovered = Mouse.IsOver(container);
 
-            // hover highlight
             if (hovered)
             {
                 GUI.DrawTexture(container, TexUI.HighlightTex);
@@ -185,7 +180,6 @@ namespace Infusion
             var comp = CompInf;
             var container = DrawBaseInfusion(parentRect, yOffset, infDef);
 
-            // extraction/removal highlight
             var markedForExtraction = comp.ExtractionSet.Contains(infDef);
             var markedForRemoval = comp.RemovalSet.Contains(infDef);
 
@@ -254,7 +248,6 @@ namespace Infusion
             var compInf = CompInf;
             var container = DrawBaseInfusion(parentRect, yOffset, infDef);
 
-            // pending highlight
             GUI.color = new Color(0.0f, 1.0f, 0.0f, 0.85f);
             GUI.DrawTexture(container, TexUI.HighlightTex);
             GUI.color = Color.white;
@@ -290,14 +283,12 @@ namespace Infusion
 
             var currentY = scroller.y;
 
-            // Draw existing infusions
             foreach (var infusion in comp.Infusions)
             {
                 var drawnRect = DrawInfusion(scroller, currentY, infusion);
                 currentY += drawnRect.height + 8.0f;
             }
 
-            // Draw pending infusions
             foreach (var pendingInfusion in comp.WantingSet)
             {
                 var drawnRect = DrawPendingInfusion(scroller, currentY, pendingInfusion);

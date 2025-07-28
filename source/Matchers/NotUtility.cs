@@ -2,9 +2,6 @@
 
 namespace Infusion.Matchers
 {
-    /// <summary>
-    /// Matcher that filters out utility apparel (items that only cover the waist body part group).
-    /// </summary>
     public class NotUtility : Matcher<InfusionDef>
     {
         public override string BuildRequirementString()

@@ -4,10 +4,6 @@ using Verse;
 
 namespace Infusion.OnHitWorkers
 {
-    /// <summary>
-    /// On-hit worker that preserves the wearer from death by sacrificing the apparel item.
-    /// When the wearer would be downed, this effect destroys the apparel and applies a preservation hediff instead.
-    /// </summary>
     public class Preservation : OnHitWorker
     {
         private static HediffDef hediff = null;
@@ -15,7 +11,6 @@ namespace Infusion.OnHitWorkers
 
         public override bool WearerDowned(Pawn pawn, Apparel apparel)
         {
-            // Lazy initialization of static defs
             if (hediff == null)
             {
                 hediff = DefDatabase<HediffDef>.GetNamed("Infusion_Preservation");
@@ -33,14 +28,12 @@ namespace Infusion.OnHitWorkers
 
                 if (prevHediff == null)
                 {
-                    // Create new preservation hediff
                     var newHediff = HediffMaker.MakeHediff(hediff, pawn);
                     pawn.health.AddHediff(newHediff);
                     currentHediff = newHediff;
                 }
                 else
                 {
-                    // Extend existing hediff duration
                     var disappearsComp = prevHediff.TryGetComp<HediffComp_Disappears>();
                     if (disappearsComp != null)
                     {
@@ -53,13 +46,11 @@ namespace Infusion.OnHitWorkers
                     currentHediff = prevHediff;
                 }
 
-                // Create battle log entry
                 var logEntry = new BattleLogEntry_ItemUsed(pawn, pawn, apparel.def, rulePack);
                 currentHediff.combatLogEntry = new WeakReference<LogEntry>(logEntry);
                 currentHediff.combatLogText = logEntry.ToGameStringFromPOV(null);
                 Find.BattleLog.Add(logEntry);
 
-                // Show text mote indicating the sacrifice
                 MoteMaker.ThrowText(
                     new Vector3((float)pawn.Position.x + 1f, (float)pawn.Position.y, (float)pawn.Position.z + 1f),
                     pawn.Map,
@@ -67,15 +58,12 @@ namespace Infusion.OnHitWorkers
                     new Color(1.0f, 0.5f, 0.0f)
                 );
 
-                // Destroy the apparel to complete the sacrifice
                 apparel.Destroy();
 
-                // Return false to prevent the pawn from being downed
                 return false;
             }
             else
             {
-                // Pawn is not alive and well, allow normal downing
                 return true;
             }
         }

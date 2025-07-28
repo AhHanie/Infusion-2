@@ -3,9 +3,6 @@ using Verse;
 
 namespace Infusion.OnHitWorkers
 {
-    /// <summary>
-    /// On-hit worker that only executes its wrapped worker if the target is a living Pawn (biological target).
-    /// </summary>
     public class IfBioTargetHit : OnHitWorker
     {
         public OnHitWorker value = null;

@@ -3,7 +3,6 @@ using Verse;
 
 namespace Infusion
 {
-    // Private record data structure equivalent to F# anonymous record
     public struct VerbRecordData
     {
         public float baseDamage;
@@ -20,9 +19,6 @@ namespace Infusion
         }
     }
 
-    /// <summary>
-    /// Records for verb finished. Used in AfterAttacks.
-    /// </summary>
     public abstract class VerbCastedRecord
     {
     }
@@ -53,7 +49,7 @@ namespace Infusion
         public Map map;
         public Bullet projectile;
         public ThingWithComps source;
-        public Thing target; // F# option type becomes nullable reference
+        public Thing target;
 
         public ProjectileRecord(float baseDamage, Map map, Bullet projectile, ThingWithComps source, Thing target = null)
         {
@@ -65,9 +61,6 @@ namespace Infusion
         }
     }
 
-    /// <summary>
-    /// Records for every OnHitWorkers. Used in utilities.
-    /// </summary>
     public abstract class OnHitRecord
     {
     }
@@ -212,9 +205,6 @@ namespace Infusion
             return (MapOf(record), PosOf(record));
         }
 
-        /// <summary>
-        /// Static method equivalent to the F# module function
-        /// </summary>
         public static bool CheckChance(OnHitWorker worker)
         {
             return Rand.Chance(worker.Chance);

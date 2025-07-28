@@ -6,9 +6,6 @@ using Verse;
 
 namespace Infusion
 {
-    /// <summary>
-    /// Handles stat transformation for infusions.
-    /// </summary>
     public class InfusionStatPart : StatPart
     {
         public bool IsPawnStat { get; }

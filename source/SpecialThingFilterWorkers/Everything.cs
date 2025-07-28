@@ -2,9 +2,6 @@
 
 namespace Infusion.SpecialThingFilterWorkers
 {
-    /// <summary>
-    /// Base class for special thing filter workers that filter based on infusion status.
-    /// </summary>
     public abstract class BaseFilterWorker : SpecialThingFilterWorker
     {
         private readonly bool flag;
@@ -14,12 +11,6 @@ namespace Infusion.SpecialThingFilterWorkers
             this.flag = flag;
         }
 
-        /// <summary>
-        /// Checks if the flag matches whether the thing has infusions.
-        /// </summary>
-        /// <param name="flag">The flag to match against</param>
-        /// <param name="thing">The thing to check</param>
-        /// <returns>True if the flag matches the infusion status</returns>
         private bool MatchAgainst(bool flag, Thing thing)
         {
             var comp = thing.TryGetComp<CompInfusion>();
@@ -32,10 +23,6 @@ namespace Infusion.SpecialThingFilterWorkers
             return this.CanEverMatch(thing.def) && MatchAgainst(flag, thing);
         }
     }
-
-    /// <summary>
-    /// Filter worker for infused apparels.
-    /// </summary>
     public class InfusedApparels : BaseFilterWorker
     {
         public InfusedApparels() : base(true)
@@ -47,10 +34,6 @@ namespace Infusion.SpecialThingFilterWorkers
             return thingDef.IsApparel;
         }
     }
-
-    /// <summary>
-    /// Filter worker for non-infused apparels.
-    /// </summary>
     public class NonInfusedApparels : BaseFilterWorker
     {
         public NonInfusedApparels() : base(false)
@@ -62,10 +45,6 @@ namespace Infusion.SpecialThingFilterWorkers
             return thingDef.IsApparel;
         }
     }
-
-    /// <summary>
-    /// Filter worker for infused weapons.
-    /// </summary>
     public class InfusedWeapons : BaseFilterWorker
     {
         public InfusedWeapons() : base(true)
@@ -77,10 +56,6 @@ namespace Infusion.SpecialThingFilterWorkers
             return thingDef.IsWeapon;
         }
     }
-
-    /// <summary>
-    /// Filter worker for non-infused weapons.
-    /// </summary>
     public class NonInfusedWeapons : BaseFilterWorker
     {
         public NonInfusedWeapons() : base(false)

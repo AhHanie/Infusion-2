@@ -4,9 +4,6 @@ using Verse;
 
 namespace Infusion.Matchers
 {
-    /// <summary>
-    /// Matcher that filters for weapons that use Bullet projectiles.
-    /// </summary>
     public class ProjectileBullet : Matcher<InfusionDef>
     {
         public override bool Match(ThingWithComps thing, InfusionDef _)

@@ -5,10 +5,6 @@ using Verse;
 
 namespace Infusion.OnHitWorkers
 {
-    /// <summary>
-    /// On-hit worker that executes a sequence of other on-hit workers.
-    /// Each worker in the sequence is executed based on its individual chance.
-    /// </summary>
     public class Sequence : OnHitWorker
     {
         public List<OnHitWorker> value = null;

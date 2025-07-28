@@ -15,10 +15,6 @@ namespace Infusion.Harmonize
             public static readonly FieldInfo burstShotsLeftField = AccessTools.Field(typeof(Verb), "burstShotsLeft");
             public static readonly FieldInfo currentTargetField = AccessTools.Field(typeof(Verb), "currentTarget");
         }
-
-        /// <summary>
-        /// Gets the adjusted melee damage for a verb.
-        /// </summary>
         private static float GetAdjustedMeleeDamage(Verb verb)
         {
             // This would need to be implemented based on your mod's damage calculation logic
@@ -33,20 +29,14 @@ namespace Infusion.Harmonize
         [HarmonyPatch(typeof(Verb), "TryCastNextBurstShot")]
         public static class TryCastNextBurstShot
         {
-            /// <summary>
-            /// Handles on-hit effects when a burst is completed (last shot fired).
-            /// </summary>
             public static void Postfix(Verb __instance)
             {
-                // Check if this was the last shot in the burst
                 var burstShotsLeft = (int)VerbReflection.burstShotsLeftField.GetValue(__instance);
                 if (burstShotsLeft != 0)
                     return;
 
-                // Get the current target
                 var currentTarget = (LocalTargetInfo)VerbReflection.currentTargetField.GetValue(__instance);
 
-                // Get the equipment comp source and check for on-hit workers
                 var equipmentCompSource = __instance.EquipmentCompSource;
                 if (equipmentCompSource?.parent == null)
                     return;
@@ -59,10 +49,8 @@ namespace Infusion.Harmonize
 
                 foreach (var onHit in workers)
                 {
-                    // Determine if this is a melee attack
                     bool isMelee = __instance.GetType().IsSubclassOf(typeof(Verb_MeleeAttack));
 
-                    // Calculate base damage
                     float baseDamage;
                     if (isMelee)
                     {
@@ -70,7 +58,6 @@ namespace Infusion.Harmonize
                     }
                     else
                     {
-                        // Ranged damage calculation
                         var defaultProjectile = __instance.verbProps?.defaultProjectile;
                         if (defaultProjectile?.projectile != null)
                         {
@@ -85,7 +72,6 @@ namespace Infusion.Harmonize
                         }
                     }
 
-                    // Only proceed if there's actual damage
                     if (baseDamage > 0f)
                     {
                         var verbData = new VerbRecordData(
@@ -95,7 +81,6 @@ namespace Infusion.Harmonize
                             verb: __instance
                         );
 
-                        // Create the appropriate record type and call AfterAttack
                         VerbCastedRecord record = null;
 
                         if (isMelee) 

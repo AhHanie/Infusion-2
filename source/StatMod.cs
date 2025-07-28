@@ -5,9 +5,6 @@ using Verse;
 
 namespace Infusion
 {
-    /// <summary>
-    /// Represents a stat modification with offset and multiplier values.
-    /// </summary>
     public struct StatMod : IEquatable<StatMod>
     {
         public float offset;
@@ -19,22 +16,13 @@ namespace Infusion
             this.multiplier = multiplier;
         }
 
-        /// <summary>
-        /// Gets an empty StatMod with zero offset and multiplier.
-        /// </summary>
         public static StatMod Empty => new StatMod();
 
-        /// <summary>
-        /// Checks if a float is approximately equal to zero.
-        /// </summary>
         private static bool IsNotZero(float value)
         {
             return Math.Abs(value) > float.Epsilon;
         }
 
-        /// <summary>
-        /// Checks if two floats are approximately equal.
-        /// </summary>
         private static bool FloatEquals(float a, float b)
         {
             return Math.Abs(a - b) <= float.Epsilon;
@@ -78,9 +66,6 @@ namespace Infusion
             return sb.ToString();
         }
 
-        /// <summary>
-        /// Adds two StatMod instances together.
-        /// </summary>
         public static StatMod operator +(StatMod a, StatMod b)
         {
             return new StatMod(a.offset + b.offset, a.multiplier + b.multiplier);
@@ -96,22 +81,11 @@ namespace Infusion
             return !left.Equals(right);
         }
 
-        /// <summary>
-        /// Applies a StatMod to a float value.
-        /// Formula: (value * (1 + multiplier)) + offset
-        /// </summary>
-        /// <param name="value">The base value to modify</param>
-        /// <returns>The modified value</returns>
         public float ApplyTo(float value)
         {
             return value * (1.0f + multiplier) + offset;
         }
 
-        /// <summary>
-        /// Formats StatMod for display in the info window.
-        /// </summary>
-        /// <param name="stat">The stat definition for formatting context</param>
-        /// <returns>A formatted string representation</returns>
         public string StringForStat(StatDef stat)
         {
             var sb = new StringBuilder();
@@ -152,28 +126,13 @@ namespace Infusion
         }
     }
 
-    /// <summary>
-    /// Extension methods for StatMod and related types.
-    /// </summary>
     public static class StatModExtensions
     {
-        /// <summary>
-        /// Applies a StatMod to a float value.
-        /// </summary>
-        /// <param name="value">The base value to modify</param>
-        /// <param name="statMod">The StatMod to apply</param>
-        /// <returns>The modified value</returns>
         public static float ApplyStatMod(this float value, StatMod statMod)
         {
             return statMod.ApplyTo(value);
         }
 
-        /// <summary>
-        /// Formats StatMod for display in the info window.
-        /// </summary>
-        /// <param name="statMod">The StatMod to format</param>
-        /// <param name="stat">The stat definition for formatting context</param>
-        /// <returns>A formatted string representation</returns>
         public static string StringForStat(this StatMod statMod, StatDef stat)
         {
             return statMod.StringForStat(stat);

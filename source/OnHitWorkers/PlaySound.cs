@@ -4,9 +4,6 @@ using Verse.Sound;
 
 namespace Infusion.OnHitWorkers
 {
-    /// <summary>
-    /// On-hit worker that plays sound effects at impact locations.
-    /// </summary>
     public class PlaySound : OnHitWorker
     {
         public SoundDef def = null;

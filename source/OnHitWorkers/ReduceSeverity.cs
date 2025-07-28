@@ -3,10 +3,6 @@ using Verse;
 
 namespace Infusion.OnHitWorkers
 {
-    /// <summary>
-    /// On-hit worker that reduces the severity of a specified hediff on the caster.
-    /// [todo] Group as HediffBase
-    /// </summary>
     public class ReduceSeverity : OnHitWorker
     {
         public bool bodySizeMatters = true;

@@ -13,7 +13,6 @@ namespace Infusion
         Short
     }
 
-    // Holds an equipment's infusions.
     public class CompInfusion : ThingComp, IComparable
     {
         private static HashSet<CompInfusion> wantingCandidates = new HashSet<CompInfusion>();
@@ -560,9 +559,6 @@ namespace Infusion
         }
     }
 
-    /// <summary>
-    /// Extension methods for CompInfusion to replicate the module functions from F#
-    /// </summary>
     public static class CompInfusionExtensions
     {
         public static void AddInfusion(this CompInfusion comp, InfusionDef infDef)
@@ -572,9 +568,6 @@ namespace Infusion
             comp.SetInfusions(newInfusions, false);
         }
 
-        /// <summary>
-        /// Picks eligible InfusionDef for the Thing.
-        /// </summary>
         public static List<InfusionDef> PickInfusions(this CompInfusion comp, QualityCategory quality)
         {
             bool CheckChance(InfusionDef infDef)
@@ -610,7 +603,7 @@ namespace Infusion
         {
             var newInfusions = comp.InfusionsRaw.Except(comp.RemovalSet);
             comp.SetInfusions(newInfusions, false);
-            comp.RemovalSet = new HashSet<InfusionDef>(); // Clear removal set
+            comp.RemovalSet = new HashSet<InfusionDef>();
         }
 
         public static void RemoveInfusion(this CompInfusion comp, InfusionDef def)

@@ -3,9 +3,6 @@ using Verse;
 
 namespace Infusion.OnHitWorkers
 {
-    /// <summary>
-    /// On-hit worker that throws fleck effects at impact locations.
-    /// </summary>
     public class ThrowFleck : OnHitWorker
     {
         public FleckDef def = null;

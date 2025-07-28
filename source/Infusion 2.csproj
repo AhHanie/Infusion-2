@@ -67,7 +67,6 @@
     <Compile Include="CompInfusion.cs" />
     <Compile Include="DebugActions.cs" />
     <Compile Include="DefFields.cs" />
-    <Compile Include="DefGenerator.cs" />
     <Compile Include="DefsForReading.cs" />
     <Compile Include="Extractor.cs" />
     <Compile Include="Harmonize\Bullet.cs" />
@@ -119,7 +118,6 @@
     <Compile Include="StockGenerator.cs" />
     <Compile Include="ThingSetMaker.cs" />
     <Compile Include="TierDef.cs" />
-    <Compile Include="Utils.cs" />
     <Compile Include="VerseTools.cs" />
     <Compile Include="WorkGiver.cs" />
   </ItemGroup>

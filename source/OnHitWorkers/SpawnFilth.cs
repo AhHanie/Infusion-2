@@ -3,9 +3,6 @@ using Verse;
 
 namespace Infusion.OnHitWorkers
 {
-    /// <summary>
-    /// On-hit worker that spawns filth at impact locations.
-    /// </summary>
     public class SpawnFilth : OnHitWorker
     {
         public ThingDef def = null;

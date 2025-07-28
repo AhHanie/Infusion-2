@@ -12,9 +12,6 @@ namespace Infusion.Harmonize
         [HarmonyPatch(typeof(VerbProperties), "GetHitChanceFactor")]
         public static class GetHitChanceFactor
         {
-            /// <summary>
-            /// Changes max accuracy to 200%.
-            /// </summary>
             public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
             {
                 var insts = instructions.ToArray();

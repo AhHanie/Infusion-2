@@ -10,9 +10,6 @@ namespace Infusion
         private static IEnumerable<ThingDef> _allBuildings;
         private static List<ThingDef> _allThingsInfusable;
 
-        /// <summary>
-        /// Predicate for determining whether given ThingDef is an apparel, a weapon, or not.
-        /// </summary>
         private static bool ApparelOrWeapon(ThingDef def)
         {
             return ThingCategoryDefOf.Apparel.ContainedInThisOrDescendant(def) ||

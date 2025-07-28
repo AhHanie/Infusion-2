@@ -90,10 +90,6 @@ namespace Infusion.Harmonize
         [HarmonyPatch(typeof(RimWorld.StatWorker), "RelevantGear")]
         public static class RelevantGear
         {
-            /// <summary>
-            /// Adds hyperlink entries in the pawn's inspection window.
-            /// Why not the "GearAffectsStat"? Because it uses a ThingDef, not a Thing.
-            /// </summary>
             public static IEnumerable<Thing> Postfix(IEnumerable<Thing> __result, Pawn pawn, StatDef stat)
             {
                 // Just skip animals
@@ -154,10 +150,6 @@ namespace Infusion.Harmonize
         [HarmonyPatch(typeof(RimWorld.StatWorker), "StatOffsetFromGear")]
         public static class StatOffsetFromGear
         {
-            /// <summary>
-            /// Adds infusions to Core stat calculation.
-            /// Note that we can only use StatMod.offset because it is "stat _offset_ from gear."
-            /// </summary>
             public static float Postfix(float __result, Thing gear, StatDef stat)
             {
                 if (!statsEligibilityMap.TryGetValue(stat, out var statType) ||
@@ -215,9 +207,6 @@ namespace Infusion.Harmonize
                 return comp?.HasInfusionForStat(stat) ?? false;
             }
 
-            /// <summary>
-            /// Replace gear stat predicate to use customized version.
-            /// </summary>
             public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
             {
                 var instructionsList = instructions.ToList();
