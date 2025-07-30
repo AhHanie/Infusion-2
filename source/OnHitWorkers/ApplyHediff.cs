@@ -62,7 +62,6 @@ namespace Infusion.OnHitWorkers
 
         public override void BulletHit(ProjectileRecord record)
         {
-            Log.Message("HIT WITH BULLET BITCH");
             if (selfCast)
             {
                 var launcherPawn = record.projectile.Launcher as Pawn;
