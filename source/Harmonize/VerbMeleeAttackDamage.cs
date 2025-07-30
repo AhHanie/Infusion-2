@@ -5,33 +5,30 @@ using Verse;
 namespace Infusion.Harmonize
 {
     [HarmonyPatch(typeof(Verb_MeleeAttackDamage), "ApplyMeleeDamageToTarget")]
-    public static class VerbMeleeAttackDamagePatches
+    public static class ApplyMeleeDamageToTarget
     {
-        public static class ApplyMeleeDamageToTarget
+        public static void Postfix(LocalTargetInfo target, Verb_MeleeAttackDamage __instance)
         {
-            public static void Postfix(LocalTargetInfo target, Verb_MeleeAttackDamage __instance)
+            var equipmentSource = __instance.EquipmentSource;
+            if (equipmentSource?.def?.IsMeleeWeapon != true)
+                return;
+
+            var onHitData = CompInfusionExtensions.ForOnHitWorkers(equipmentSource);
+            if (!onHitData.HasValue)
+                return;
+
+            var (workers, comp) = onHitData.Value;
+
+            foreach (var onHit in workers)
             {
-                var equipmentSource = __instance.EquipmentSource;
-                if (equipmentSource?.def?.IsMeleeWeapon != true)
-                    return;
+                var verbData = new VerbRecordData(
+                    baseDamage: GetAdjustedMeleeDamage(__instance),
+                    source: comp.parent,
+                    target: target.Thing,
+                    verb: __instance
+                );
 
-                var onHitData = CompInfusionExtensions.ForOnHitWorkers(equipmentSource);
-                if (!onHitData.HasValue)
-                    return;
-
-                var (workers, comp) = onHitData.Value;
-
-                foreach (var onHit in workers)
-                {
-                    var verbData = new VerbRecordData(
-                        baseDamage: GetAdjustedMeleeDamage(__instance),
-                        source: comp.parent,
-                        target: target.Thing,
-                        verb: __instance
-                    );
-
-                    onHit.MeleeHit(verbData);
-                }
+                onHit.MeleeHit(verbData);
             }
         }
         private static float GetAdjustedMeleeDamage(Verb_MeleeAttackDamage verb)
