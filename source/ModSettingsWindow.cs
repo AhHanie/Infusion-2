@@ -87,8 +87,8 @@ namespace Infusion
 
             grid.AddChild(extractionSuccessFactorLabel);
 
-            LabeledSlider extractionSuccessFactorSlider = new LabeledSlider(Settings.extractionChanceFactor.Value.ToStringPercent(), Settings.extractionChanceFactor.Value, 0.01f, 1f, (val) => Settings.extractionChanceFactor.Value = val);
-            extractionSuccessFactorSlider.RoundTo = 0.01f;
+            LabeledSlider extractionSuccessFactorSlider = new LabeledSlider($"{Settings.extractionChanceFactor.Value.ToString()}x", Settings.extractionChanceFactor.Value, 1f, 100f, (val) => Settings.extractionChanceFactor.Value = val);
+            extractionSuccessFactorSlider.RoundTo = 0.5f;
             extractionSuccessFactorSlider.Alignment = Align.MiddleLeft;
             extractionSuccessFactorSlider.WidthMode = SizeMode.Fill;
 
