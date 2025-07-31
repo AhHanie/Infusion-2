@@ -47,7 +47,7 @@ namespace Infusion.OnHitWorkers
 
         private DamageInfo CreateMeleeDamageInfo(VerbRecordData record)
         {
-            var amount = record.baseDamage * this.amount;
+            var amount = record.baseDamage * this.Amount;
             var direction = (record.target.Position - record.verb.caster.Position).ToVector3();
 
             var damageInfo = new DamageInfo(
@@ -70,7 +70,7 @@ namespace Infusion.OnHitWorkers
 
         private DamageInfo CreateRangedDamageInfo(ProjectileRecord record)
         {
-            var amount = record.baseDamage * this.amount;
+            var amount = record.baseDamage * this.Amount;
 
             return new DamageInfo(
                 this.def,

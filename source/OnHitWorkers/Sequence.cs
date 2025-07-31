@@ -107,7 +107,7 @@ namespace Infusion.OnHitWorkers
         /// </summary>
         private static bool ShouldExecuteWorker(OnHitWorker worker)
         {
-            return worker.chance >= 1.0f || Rand.Chance(worker.chance);
+            return Rand.Chance(worker.Chance);
         }
     }
 }

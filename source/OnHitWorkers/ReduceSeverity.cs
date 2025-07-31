@@ -71,7 +71,7 @@ namespace Infusion.OnHitWorkers
             var pawn = VerseTools.TryCast<Pawn>(caster);
             if (pawn != null && PawnUtils.IsAliveAndWell(pawn))
             {
-                float amount = baseDamage * this.amount;
+                float amount = baseDamage * this.Amount;
                 var hediff = pawn.health.hediffSet.GetFirstHediffOfDef(this.def);
                 if (hediff != null)
                 {

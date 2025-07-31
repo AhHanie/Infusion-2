@@ -58,4 +58,12 @@ Applied after the body part limit, i.e. an apparel which protects arms and torso
 
   <Infusion.Settings.Slots.Title>Infusion Slots per Quality</Infusion.Settings.Slots.Title>
   <Infusion.Settings.Tiers.Title>Enable/Disable Tiers</Infusion.Settings.Tiers.Title>
+  <Infusion.Settings.General.Title>General Settings</Infusion.Settings.General.Title>
+
+  <Infusion.Settings.StatsGlobalMultiplier>Stats global multiplier</Infusion.Settings.StatsGlobalMultiplier>
+  <Infusion.Settings.ChanceGlobalMultiplier>Chance global multiplier</Infusion.Settings.ChanceGlobalMultiplier>
+  <Infusion.Settings.AmountGlobalMultiplier>Amount global multiplier</Infusion.Settings.AmountGlobalMultiplier>
+  <Infusion.Settings.StatsGlobalMultiplier.Description>A global multiplier that affects all infusions' stats bonuses. 2x = twice the stats, 0.5x = half the stats.</Infusion.Settings.StatsGlobalMultiplier.Description>
+  <Infusion.Settings.ChanceGlobalMultiplier.Description>A global multiplier that affects all the chance for special on hit effects to proc such as explosions or flames. 2x = more procs, 0.5x = less procs</Infusion.Settings.ChanceGlobalMultiplier.Description>
+  <Infusion.Settings.AmountGlobalMultiplier.Description>A global multiplier that affects all the magnitude of special on hit effects such as explosions or flames. 2x = more power, 0.5x = less power</Infusion.Settings.AmountGlobalMultiplier.Description>
 </LanguageData>

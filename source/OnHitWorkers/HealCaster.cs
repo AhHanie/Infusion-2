@@ -53,7 +53,7 @@ namespace Infusion.OnHitWorkers
             var pawn = caster as Pawn;
             if (pawn != null && PawnUtils.IsAliveAndWell(pawn))
             {
-                var amount = baseDamage * this.amount;
+                var amount = baseDamage * this.Amount;
                 var hediffSet = pawn.health.hediffSet;
 
                 if (hediffSet.HasNaturallyHealingInjury())

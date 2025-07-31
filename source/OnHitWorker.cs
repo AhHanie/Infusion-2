@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using System.Collections.Generic;
 using Verse;
 
 namespace Infusion
@@ -9,13 +10,15 @@ namespace Infusion
         public ThingWithComps source;
         public Thing target;
         public Verb verb;
+        public DamageWorker.DamageResult damageResult;
 
-        public VerbRecordData(float baseDamage, ThingWithComps source, Thing target, Verb verb)
+        public VerbRecordData(float baseDamage, ThingWithComps source, Thing target, Verb verb, DamageWorker.DamageResult damageResult = null)
         {
             this.baseDamage = baseDamage;
             this.source = source;
             this.target = target;
             this.verb = verb;
+            this.damageResult = damageResult;
         }
     }
 
@@ -118,7 +121,8 @@ namespace Infusion
             selfCast = false;
         }
 
-        public virtual float Chance => chance;
+        public virtual float Amount => amount * Settings.amountGlobalMultiplier.Value;
+        public virtual float Chance => chance * Settings.chanceGlobalMultiplier.Value;
 
         public virtual void AfterAttack(VerbCastedRecord record) { }
 

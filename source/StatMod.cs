@@ -10,6 +10,16 @@ namespace Infusion
         public float offset;
         public float multiplier;
 
+        private float Offset
+        {
+            get => offset * Settings.statsGlobalMultiplier.Value;
+        }
+
+        private float Multiplier
+        {
+            get => multiplier * Settings.statsGlobalMultiplier.Value;
+        }
+
         public StatMod(float offset = 0.0f, float multiplier = 0.0f)
         {
             this.offset = offset;
@@ -83,7 +93,7 @@ namespace Infusion
 
         public float ApplyTo(float value)
         {
-            return value * (1.0f + multiplier) + offset;
+            return value * (1.0f + Multiplier) + Offset;
         }
 
         public string StringForStat(StatDef stat)
@@ -91,19 +101,19 @@ namespace Infusion
             var sb = new StringBuilder();
 
             // Add multiplier
-            if (IsNotZero(multiplier))
+            if (IsNotZero(Multiplier))
             {
-                sb.Append(multiplier.ToString("x+0.##%;x-0.##%"));
+                sb.Append(Multiplier.ToString("x+0.##%;x-0.##%"));
 
                 // Add separator if we also have an offset
-                if (IsNotZero(offset))
+                if (IsNotZero(Offset))
                 {
                     sb.Append(", ");
                 }
             }
 
             // Add offset
-            if (IsNotZero(offset))
+            if (IsNotZero(Offset))
             {
                 string styled = offset.ToStringByStyle(stat.ToStringStyleUnfinalized);
 
@@ -114,7 +124,7 @@ namespace Infusion
                 }
 
                 // Force add plus sign for positive values (StatDef formatString doesn't include it)
-                if (offset > 0.0f)
+                if (Offset > 0.0f)
                 {
                     sb.Append("+");
                 }
@@ -128,11 +138,6 @@ namespace Infusion
 
     public static class StatModExtensions
     {
-        public static float ApplyStatMod(this float value, StatMod statMod)
-        {
-            return statMod.ApplyTo(value);
-        }
-
         public static string StringForStat(this StatMod statMod, StatDef stat)
         {
             return statMod.StringForStat(stat);

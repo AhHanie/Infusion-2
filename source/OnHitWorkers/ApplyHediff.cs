@@ -103,7 +103,7 @@ namespace Infusion.OnHitWorkers
         {
             if (PawnUtils.IsAliveAndWell(pawn))
             {
-                var amount = baseDamage * this.amount;
+                var amount = baseDamage * this.Amount;
                 var hediff = HediffMaker.MakeHediff(this.def, pawn);
 
                 var disappearsComp = hediff.TryGetComp<HediffComp_Disappears>();

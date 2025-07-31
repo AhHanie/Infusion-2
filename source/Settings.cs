@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using RimWorld;
-using UnityEngine;
 using Verse;
 
 namespace Infusion
 {
     public class Settings : ModSettings
     {
+        public static StrongBox<float> statsGlobalMultiplier = new StrongBox<float>(1.5f);
+        public static StrongBox<float> amountGlobalMultiplier = new StrongBox<float>(1.5f);
+        public static StrongBox<float> chanceGlobalMultiplier = new StrongBox<float>(1.5f);
         public static StrongBox<bool> accuracyOvercap = new StrongBox<bool>(true);
         public static StrongBox<bool> biocodeBonus = new StrongBox<bool>(true);
         public static StrongBox<float> extractionChanceFactor = new StrongBox<float>(1.0f);
@@ -54,6 +53,9 @@ namespace Infusion
             Scribe_Values.Look(ref uncommonTierEnabled.Value, "uncommonTierEnabled", true);
             Scribe_Values.Look(ref rareTierEnabled.Value, "rareTierEnabled", true);
             Scribe_Values.Look(ref legendaryTierEnabled.Value, "legendaryTierEnabled", true);
+            Scribe_Values.Look(ref statsGlobalMultiplier.Value, "statsGlobalMultiplier", 1.0f);
+            Scribe_Values.Look(ref chanceGlobalMultiplier.Value, "chanceGlobalMultiplier", 1.0f);
+            Scribe_Values.Look(ref amountGlobalMultiplier.Value, "amountGlobalMultiplier", 1.0f);
         }
 
         public static int GetBaseSlotsFor(QualityCategory category)

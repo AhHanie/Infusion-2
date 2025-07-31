@@ -7,8 +7,8 @@
     <ProjectGuid>{25CF6515-33B1-4431-B0FB-BDFBFEF440CB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Infufsion_2</RootNamespace>
-    <AssemblyName>Infufsion 2</AssemblyName>
+    <RootNamespace>Infusion</RootNamespace>
+    <AssemblyName>Infusion 2</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

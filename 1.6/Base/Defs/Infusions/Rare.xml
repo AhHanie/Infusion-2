@@ -378,15 +378,18 @@
             <li Class="Infusion.OnHitWorkers.ApplyHediff">
               <def>BloodLoss</def>
               <amount>0.1</amount>
+              <onMeleeCast>false</onMeleeCast>
             </li>
             <li Class="Infusion.OnHitWorkers.ReduceSeverity">
               <def>BloodLoss</def>
               <amount>0.1</amount>
               <selfCast>true</selfCast>
+              <onMeleeCast>false</onMeleeCast>
             </li>
             <li Class="Infusion.OnHitWorkers.ThrowFleck">
               <def>HealingCross</def>
               <selfCast>true</selfCast>
+              <onMeleeCast>false</onMeleeCast>
             </li>
           </value>
         </value>
@@ -517,7 +520,7 @@
         <def>Stun</def>
         <amount>0.1</amount>
         <chance>0.25</chance>
-        <onMeleeImpact>false</onMeleeImpact>
+        <onMeleeCast>false</onMeleeCast>
       </li>
     </onHits>
     <extraDescriptions>
@@ -710,6 +713,7 @@
         <def>Flame</def>
         <amount>0.5</amount>
         <chance>0.1</chance>
+        <onMeleeCast>false</onMeleeCast>
       </li>
     </onHits>
     <extraDescriptions>

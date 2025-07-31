@@ -33,6 +33,10 @@ namespace Infusion
         public static StrongBox<string> uncommonLabelRef = new StrongBox<string>("Uncommon");
         public static StrongBox<string> rareLabelRef = new StrongBox<string>("Rare");
         public static StrongBox<string> tiersTitleLabelRef = new StrongBox<string>("Infusion.Settings.Tiers.Title".Translate());
+        public static StrongBox<string> generalSettingsTitleLabelRef = new StrongBox<string>("Infusion.Settings.Tiers.Title".Translate());
+        public static StrongBox<string> statsGlobalMultiplierLabelRef = new StrongBox<string>("Infusion.Settings.StatsGlobalMultiplier".Translate());
+        public static StrongBox<string> chanceGlobalMultiplierLabelRef = new StrongBox<string>("Infusion.Settings.ChanceGlobalMultiplier".Translate());
+        public static StrongBox<string> amountGlobalMultiplierLabelRef = new StrongBox<string>("Infusion.Settings.AmountGlobalMultiplier".Translate());
         public static StrongBox<Vector2> scrollPosition = new StrongBox<Vector2>(Vector2.zero);
         public static void Draw(Rect parent)
         {
@@ -41,12 +45,19 @@ namespace Infusion
             stack.WidthMode = SizeMode.Fill;
             stack.VerticalSpacing = 5f;
 
-            FillGrid grid = new FillGrid(2, 9)
+            FillGrid grid = new FillGrid(2, 13)
             {
                 Padding = 10f
             };
             grid.HeightMode = SizeMode.Content;
             Text.Font = GameFont.Small;
+
+            Label generalSettingsTitleLabel = new Label(generalSettingsTitleLabelRef);
+            generalSettingsTitleLabel.Alignment = Align.MiddleLeft;
+            generalSettingsTitleLabel.Tooltip = "Infusion.Settings.General.Title".Translate();
+
+            grid.AddChild(generalSettingsTitleLabel);
+            grid.AddChild(new Empty());
 
             Label accuracyOvercappingLabel = new Label(accuracyOvercappingLabelRef);
             accuracyOvercappingLabel.Alignment = Align.MiddleLeft;
@@ -154,6 +165,45 @@ namespace Infusion
             morePerLayerCheckbox.Alignment = Align.MiddleLeft;
 
             grid.AddChild(morePerLayerCheckbox);
+
+            Label statsGlobalMultiplierLabel = new Label(statsGlobalMultiplierLabelRef);
+            statsGlobalMultiplierLabel.Alignment = Align.MiddleLeft;
+            statsGlobalMultiplierLabel.Tooltip = "Infusion.Settings.StatsGlobalMultiplier.Description".Translate();
+
+            grid.AddChild(statsGlobalMultiplierLabel);
+
+            LabeledSlider statsGlobalMultiplierSlider = new LabeledSlider(Settings.statsGlobalMultiplier.Value.ToString(), Settings.statsGlobalMultiplier.Value, 0.1f, 5f, (val) => Settings.statsGlobalMultiplier.Value = val);
+            statsGlobalMultiplierSlider.RoundTo = 0.1f;
+            statsGlobalMultiplierSlider.Alignment = Align.MiddleLeft;
+            statsGlobalMultiplierSlider.WidthMode = SizeMode.Fill;
+
+            grid.AddChild(statsGlobalMultiplierSlider);
+
+            Label chanceGlobalMultiplierLabel = new Label(chanceGlobalMultiplierLabelRef);
+            chanceGlobalMultiplierLabel.Alignment = Align.MiddleLeft;
+            chanceGlobalMultiplierLabel.Tooltip = "Infusion.Settings.ChanceGlobalMultiplier.Description".Translate();
+
+            grid.AddChild(chanceGlobalMultiplierLabel);
+
+            LabeledSlider chanceGlobalMultiplierSlider = new LabeledSlider(Settings.chanceGlobalMultiplier.Value.ToString(), Settings.chanceGlobalMultiplier.Value, 0.1f, 5f, (val) => Settings.chanceGlobalMultiplier.Value = val);
+            chanceGlobalMultiplierSlider.RoundTo = 0.1f;
+            chanceGlobalMultiplierSlider.Alignment = Align.MiddleLeft;
+            chanceGlobalMultiplierSlider.WidthMode = SizeMode.Fill;
+
+            grid.AddChild(chanceGlobalMultiplierSlider);
+
+            Label amountGlobalMultiplierLabel = new Label(amountGlobalMultiplierLabelRef);
+            amountGlobalMultiplierLabel.Alignment = Align.MiddleLeft;
+            amountGlobalMultiplierLabel.Tooltip = "Infusion.Settings.AmountGlobalMultiplier.Description".Translate();
+
+            grid.AddChild(amountGlobalMultiplierLabel);
+
+            LabeledSlider amountGlobalMultiplierSlider = new LabeledSlider(Settings.amountGlobalMultiplier.Value.ToString(), Settings.amountGlobalMultiplier.Value, 0.1f, 5f, (val) => Settings.amountGlobalMultiplier.Value = val);
+            amountGlobalMultiplierSlider.RoundTo = 0.1f;
+            amountGlobalMultiplierSlider.Alignment = Align.MiddleLeft;
+            amountGlobalMultiplierSlider.WidthMode = SizeMode.Fill;
+
+            grid.AddChild(amountGlobalMultiplierSlider);
 
             stack.AddChild(grid);
 
