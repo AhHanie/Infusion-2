@@ -35,7 +35,7 @@ namespace Infusion
                 Dictionary<InfusionDef, Infuser> dict = new Dictionary<InfusionDef, Infuser>();
                 foreach (Infuser infuser in AllInfusers)
                 {
-                    if (!dict.ContainsKey(infuser.Content))
+                    if (infuser.Content != null && !dict.ContainsKey(infuser.Content))
                     {
                         dict[infuser.Content] = infuser;
                     }
