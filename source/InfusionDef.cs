@@ -119,7 +119,7 @@ namespace Infusion
 
         public static bool ActiveForUse(InfusionDef infDef)
         {
-            return !infDef.disabled && infDef.migration == null;
+            return !infDef.disabled && infDef.migration == null && !Settings.infusionDefsDisabledMap.ContainsKey(infDef);
         }
 
         public static string MakeRequirementString(InfusionDef infDef)

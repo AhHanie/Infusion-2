@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
 using Verse;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Infusion
 {
     [StaticConstructorOnStartup]
     public static class ResourceBank
     {
+        public static List<InfusionDef> allInfusionDefs = DefDatabase<InfusionDef>.AllDefs.ToList();
         public static class Textures
         {
             private static readonly Texture2D flame = ContentFinder<Texture2D>.Get("Things/Special/Fire/FireA");

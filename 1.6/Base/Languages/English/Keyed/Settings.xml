@@ -56,9 +56,16 @@ Applied after the body part limit, i.e. an apparel which protects arms and torso
 
   <Infusion.Settings.Tier.Description>{0} infusions found</Infusion.Settings.Tier.Description>
 
-  <Infusion.Settings.Slots.Title>Infusion Slots per Quality</Infusion.Settings.Slots.Title>
+  <Infusion.Settings.Infusions.Slots.Title>Infusion Slots per Quality</Infusion.Settings.Infusions.Slots.Title>
   <Infusion.Settings.Tiers.Title>Enable/Disable Tiers</Infusion.Settings.Tiers.Title>
   <Infusion.Settings.General.Title>General Settings</Infusion.Settings.General.Title>
+  <Infusion.Settings.Infusions.Title>Infusions Settings</Infusion.Settings.Infusions.Title>
+
+  <Infusion.Settings.Infusions.Defs.Title>Enable/Disable Infusions</Infusion.Settings.Infusions.Defs.Title>
+  <Infusion.Settings.Infusions.Defs.EnableButton>Enable</Infusion.Settings.Infusions.Defs.EnableButton>
+  <Infusion.Settings.Infusions.Defs.DisableButton>Disable</Infusion.Settings.Infusions.Defs.DisableButton>
+  <Infusion.Settings.Infusions.Defs.EnableMessage>{0} was enabled</Infusion.Settings.Infusions.Defs.EnableMessage>
+  <Infusion.Settings.Infusions.Defs.DisableMessage>{0} was disabled</Infusion.Settings.Infusions.Defs.DisableMessage>
 
   <Infusion.Settings.StatsGlobalMultiplier>Stats global multiplier</Infusion.Settings.StatsGlobalMultiplier>
   <Infusion.Settings.ChanceGlobalMultiplier>Chance global multiplier</Infusion.Settings.ChanceGlobalMultiplier>

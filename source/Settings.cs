@@ -1,5 +1,7 @@
-﻿using System.Runtime.CompilerServices;
-using RimWorld;
+﻿using RimWorld;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using Verse;
 
 namespace Infusion
@@ -29,6 +31,9 @@ namespace Infusion
         public static StrongBox<bool> uncommonTierEnabled = new StrongBox<bool>(true);
         public static StrongBox<bool> rareTierEnabled = new StrongBox<bool>(true);
         public static StrongBox<bool> legendaryTierEnabled = new StrongBox<bool>(true);
+        public static Dictionary<InfusionDef, StrongBox<bool>> infusionDefsDisabledMap = new Dictionary<InfusionDef, StrongBox<bool>>();
+        public static List<InfusionDef> infusionDefsDisabledList = new List<InfusionDef>();
+        public static List<bool> infusionDefsDisabledList1 = new List<bool>();
 
         public override void ExposeData()
         {
@@ -56,6 +61,28 @@ namespace Infusion
             Scribe_Values.Look(ref statsGlobalMultiplier.Value, "statsGlobalMultiplier", 1.0f);
             Scribe_Values.Look(ref chanceGlobalMultiplier.Value, "chanceGlobalMultiplier", 1.0f);
             Scribe_Values.Look(ref amountGlobalMultiplier.Value, "amountGlobalMultiplier", 1.0f);
+
+            if (Scribe.mode == LoadSaveMode.Saving)
+            {
+                infusionDefsDisabledList = infusionDefsDisabledMap.Keys.ToList();
+                infusionDefsDisabledList1 = infusionDefsDisabledMap.Values.Select(value => value.Value).ToList();
+            }
+
+            Scribe_Collections.Look(ref infusionDefsDisabledList, "infusionDefsEnabledList", LookMode.Def);
+            Scribe_Collections.Look(ref infusionDefsDisabledList1, "infusionDefsEnabledList1", LookMode.Value);
+
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                infusionDefsDisabledMap.Clear();
+
+                if (infusionDefsDisabledList != null && infusionDefsDisabledList1 != null)
+                {
+                    foreach (var pair in infusionDefsDisabledList.Zip(infusionDefsDisabledList1, (key, value) => (key, value)))
+                    {
+                        infusionDefsDisabledMap.Add(pair.key, new StrongBox<bool>(pair.value));
+                    }
+                }
+            }
         }
 
         public static int GetBaseSlotsFor(QualityCategory category)

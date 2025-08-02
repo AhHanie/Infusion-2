@@ -1,4 +1,5 @@
 ﻿using LessUI;
+using RimWorld;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,16 +29,20 @@ namespace Infusion
         public static StrongBox<string> excellentLabelRef = new StrongBox<string>("Excellent");
         public static StrongBox<string> masterworkLabelRef = new StrongBox<string>("Masterwork");
         public static StrongBox<string> legendaryLabelRef = new StrongBox<string>("Legendary");
-        public static StrongBox<string> infusionSlotsSettingsLabelRef = new StrongBox<string>("Infusion.Settings.Slots.Title".Translate());
+        public static StrongBox<string> infusionSlotsSettingsLabelRef = new StrongBox<string>("Infusion.Settings.Infusions.Slots.Title".Translate());
         public static StrongBox<string> commonLabelRef = new StrongBox<string>("Common");
         public static StrongBox<string> uncommonLabelRef = new StrongBox<string>("Uncommon");
         public static StrongBox<string> rareLabelRef = new StrongBox<string>("Rare");
         public static StrongBox<string> tiersTitleLabelRef = new StrongBox<string>("Infusion.Settings.Tiers.Title".Translate());
-        public static StrongBox<string> generalSettingsTitleLabelRef = new StrongBox<string>("Infusion.Settings.Tiers.Title".Translate());
+        public static StrongBox<string> generalSettingsTitleLabelRef = new StrongBox<string>("Infusion.Settings.General.Title".Translate());
         public static StrongBox<string> statsGlobalMultiplierLabelRef = new StrongBox<string>("Infusion.Settings.StatsGlobalMultiplier".Translate());
         public static StrongBox<string> chanceGlobalMultiplierLabelRef = new StrongBox<string>("Infusion.Settings.ChanceGlobalMultiplier".Translate());
         public static StrongBox<string> amountGlobalMultiplierLabelRef = new StrongBox<string>("Infusion.Settings.AmountGlobalMultiplier".Translate());
+        public static StrongBox<string> infusionSettingsLabelRef = new StrongBox<string>("Infusion.Settings.Infusions.Title".Translate());
+        public static StrongBox<string> infusionDefsControlLabelRef = new StrongBox<string>("Infusion.Settings.Infusions.Defs.Title".Translate());
         public static StrongBox<Vector2> scrollPosition = new StrongBox<Vector2>(Vector2.zero);
+        public static StrongBox<InfusionDef> selectedInfusionDef = new StrongBox<InfusionDef>(ResourceBank.allInfusionDefs.First());
+        public static StrongBox<bool> infusionDefsEnableDisableButtonClicked = new StrongBox<bool>(false);
         public static void Draw(Rect parent)
         {
             ScrollCanvas canvas = new ScrollCanvas(parent, () => scrollPosition.Value, (vec2) => scrollPosition.Value = vec2);
@@ -54,7 +59,6 @@ namespace Infusion
 
             Label generalSettingsTitleLabel = new Label(generalSettingsTitleLabelRef);
             generalSettingsTitleLabel.Alignment = Align.MiddleLeft;
-            generalSettingsTitleLabel.Tooltip = "Infusion.Settings.General.Title".Translate();
 
             grid.AddChild(generalSettingsTitleLabel);
             grid.AddChild(new Empty());
@@ -211,11 +215,17 @@ namespace Infusion
             line.WidthMode = SizeMode.Fill;
             stack.AddChild(line);
 
-            FillGrid grid1 = new FillGrid(2, 8)
+            FillGrid grid1 = new FillGrid(2, 11)
             {
                 Padding = 10f
             };
             grid1.HeightMode = SizeMode.Content;
+
+            Label infusionSettingsLabel = new Label(infusionSettingsLabelRef);
+            infusionSettingsLabel.Alignment = Align.MiddleLeft;
+
+            grid1.AddChild(infusionSettingsLabel);
+            grid1.AddChild(new Empty());
 
             Label infusionSlotSettingsLabel = new Label(infusionSlotsSettingsLabelRef);
             infusionSlotSettingsLabel.Alignment = Align.MiddleLeft;
@@ -306,6 +316,43 @@ namespace Infusion
             legendarySlotsSlider.WidthMode = SizeMode.Fill;
 
             grid1.AddChild(legendarySlotsSlider);
+
+            Label infusionDefsControlLabel = new Label(infusionDefsControlLabelRef);
+            infusionDefsControlLabel.Alignment = Align.MiddleLeft;
+
+            grid1.AddChild(infusionDefsControlLabel);
+            grid1.AddChild(new Empty());
+
+            Dropdown<InfusionDef> infusionDefsDropdown = new Dropdown<InfusionDef>(ResourceBank.allInfusionDefs, selectedInfusionDef, (def) => def.defName);
+            infusionDefsDropdown.Alignment = Align.MiddleLeft;
+
+            grid1.AddChild(infusionDefsDropdown);
+
+            Button infusionDefsEnableDisableButton;
+            if (Settings.infusionDefsDisabledMap.ContainsKey(selectedInfusionDef.Value) && Settings.infusionDefsDisabledMap[selectedInfusionDef.Value].Value)
+            {
+                infusionDefsEnableDisableButton = new Button("Infusion.Settings.Infusions.Defs.EnableButton".Translate(), infusionDefsEnableDisableButtonClicked);
+            }
+            else
+            {
+                infusionDefsEnableDisableButton = new Button("Infusion.Settings.Infusions.Defs.DisableButton".Translate(), infusionDefsEnableDisableButtonClicked);
+            }
+
+            if (infusionDefsEnableDisableButtonClicked.Value)
+            {
+                if (Settings.infusionDefsDisabledMap.ContainsKey(selectedInfusionDef.Value) && Settings.infusionDefsDisabledMap[selectedInfusionDef.Value].Value)
+                {
+                    Settings.infusionDefsDisabledMap.Remove(selectedInfusionDef.Value);
+                    Messages.Message("Infusion.Settings.Infusions.Defs.EnableMessage".Translate(selectedInfusionDef.Value.defName), MessageTypeDefOf.NeutralEvent);
+                }
+                else
+                {
+                    Settings.infusionDefsDisabledMap[selectedInfusionDef.Value] = new StrongBox<bool>(true);
+                    Messages.Message("Infusion.Settings.Infusions.Defs.DisableMessage".Translate(selectedInfusionDef.Value.defName), MessageTypeDefOf.NeutralEvent);
+                }
+            }
+
+            grid1.AddChild(infusionDefsEnableDisableButton);
 
             stack.AddChild(grid1);
 
