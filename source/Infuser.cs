@@ -32,9 +32,15 @@ namespace Infusion
         {
             get
             {
-                return allInfusers
-                    .Where(infuser => infuser.Content != null)
-                    .ToDictionary(infuser => infuser.Content, infuser => infuser);
+                Dictionary<InfusionDef, Infuser> dict = new Dictionary<InfusionDef, Infuser>();
+                foreach (Infuser infuser in AllInfusers)
+                {
+                    if (!dict.ContainsKey(infuser.Content))
+                    {
+                        dict[infuser.Content] = infuser;
+                    }
+                }
+                return dict;
             }
         }
 
