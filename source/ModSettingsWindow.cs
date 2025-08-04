@@ -115,8 +115,8 @@ namespace Infusion
 
             grid.AddChild(infusionChanceLabel);
 
-            LabeledSlider infusionChanceSlider = new LabeledSlider(Settings.chanceHandle.Value.ToString(), Settings.chanceHandle.Value, 0f, 100f, (val) => Settings.chanceHandle.Value = val);
-            infusionChanceSlider.RoundTo = 1f;
+            LabeledSlider infusionChanceSlider = new LabeledSlider(Settings.chanceHandle.Value.ToString(), Settings.chanceHandle.Value, 0f, 10f, (val) => Settings.chanceHandle.Value = val);
+            infusionChanceSlider.RoundTo = 0.1f;
             infusionChanceSlider.Alignment = Align.MiddleLeft;
             infusionChanceSlider.WidthMode = SizeMode.Fill;
 

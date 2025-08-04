@@ -32,7 +32,7 @@ Note: Infusions must also pass probability test before infusing. Change probabil
   </Infusion.Settings.Sigma.Description>
 
   <Infusion.Settings.ChanceFactor>Infusion probability factor</Infusion.Settings.ChanceFactor>
-  <Infusion.Settings.ChanceFactor.Description>Multiplies probability of infusions. Possible values are 0.0 ~ 100.0. Default is 1.0.
+  <Infusion.Settings.ChanceFactor.Description>Multiplies probability of infusions. Possible values are 0.0 ~ 10.0. Default is 1.0.
 
 With default infusions, 100 would ensure that every selected infusions will be applied to the equipment. 0 will effectively disable new infusions.
   </Infusion.Settings.ChanceFactor.Description>
