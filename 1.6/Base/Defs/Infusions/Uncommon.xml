@@ -388,6 +388,35 @@
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="UncommonRangedBase">
+    <defName>Uncommon_Smart</defName>
+    <label>smart</label>
+    <labelShort>smrt</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <stats>
+      <li>
+        <key>AimingDelayFactor</key>
+        <value>
+          <offset>0.2</offset>
+        </value>
+      </li>
+    </stats>
+    <extraDescriptions>
+      <li>With every shot, there's a 10% chance your projectile will be a guaranteed hit. The other 90% of the time, the hit is determined by normal accuracy rules.</li>
+    </extraDescriptions>
+    <keyedFloats>
+      <li>
+        <key>chance</key>
+        <value>0.1</value>
+      </li>
+    </keyedFloats>
+    <tags>
+      <li>smart</li>
+    </tags>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="UncommonRangedBase">
     <defName>Blunt</defName>
     <label>blunt</label>
     <labelShort>blunt</labelShort>
@@ -410,6 +439,7 @@
     <extraDescriptions>
       <li>Hit: deals 500% extra blunt damage. Does not increase damage of other similar effects.</li>
     </extraDescriptions>
+    <disabled>true</disabled>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="UncommonRangedBase">
@@ -475,6 +505,24 @@
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="UncommonAnyWeaponsBase">
+    <defName>Uncommon_Quickfire</defName>
+    <label>quick fire</label>
+    <labelShort>qckfr</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.ResetCooldown">
+        <onMeleeImpact>false</onMeleeImpact>
+        <chance>0.05</chance>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 5% chance to instantly attack again.</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="UncommonAnyWeaponsBase">
     <defName>Poisonous</defName>
     <label>poisonous</label>
     <labelShort>poison</labelShort>
@@ -525,5 +573,22 @@
         </value>
       </li>
     </stats>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="UncommonDefaultBase">
+    <defName>Uncommon_Soothing</defName>
+    <label>soothing</label>
+    <labelShort>sooth</labelShort>
+    <stats>
+      <li>
+        <key>MarketValue</key>
+        <value>
+          <offset>150</offset>
+        </value>
+      </li>
+    </stats>
+    <tags>
+      <li>soothing</li>
+    </tags>
   </Infusion.InfusionDef>
 </Defs>

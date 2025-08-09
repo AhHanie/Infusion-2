@@ -1,6 +1,6 @@
 ﻿using System;
+using Infusion;
 using RimWorld;
-using UnityEngine;
 using Verse;
 
 namespace Infusion.OnHitWorkers
@@ -8,10 +8,15 @@ namespace Infusion.OnHitWorkers
     public class ApplyHediff : OnHitWorker
     {
         public bool bodySizeMatters = true;
+
         public HediffDef def = null;
+
         public bool inverseStatScaling = false;
+
         public StatDef severityScaleBy = null;
+
         public bool onMeleeCast = true;
+
         public bool onMeleeImpact = true;
 
         public ApplyHediff()
@@ -26,57 +31,34 @@ namespace Infusion.OnHitWorkers
 
         public override void AfterAttack(VerbCastedRecord record)
         {
-            switch (record)
+            Thing thing = null;
+            if (!(record is VerbCastedRecordMelee verbCastedRecordMelee))
             {
-                case VerbCastedRecordMelee meleeRecord when onMeleeCast:
-                    if (selfCast)
+                if (record is VerbCastedRecordRanged verbCastedRecordRanged)
+                {
+                    thing = Utils.SelectTarget(verbCastedRecordRanged, selfCast);
+                    if (thing != null)
                     {
-                        AddHediff(meleeRecord.Data.baseDamage, meleeRecord.Data.verb.CasterPawn);
+                        AddHediff(verbCastedRecordRanged.Data.baseDamage, thing as Pawn);
                     }
-                    else
-                    {
-                        var targetPawn = meleeRecord.Data.target as Pawn;
-                        if (targetPawn != null)
-                        {
-                            AddHediff(meleeRecord.Data.baseDamage, targetPawn);
-                        }
-                    }
-                    break;
-
-                case VerbCastedRecordRanged rangedRecord:
-                    if (selfCast)
-                    {
-                        AddHediff(rangedRecord.Data.baseDamage, rangedRecord.Data.verb.CasterPawn);
-                    }
-                    else
-                    {
-                        var targetPawn = rangedRecord.Data.target as Pawn;
-                        if (targetPawn != null)
-                        {
-                            AddHediff(rangedRecord.Data.baseDamage, targetPawn);
-                        }
-                    }
-                    break;
+                }
+            }
+            else if (onMeleeCast)
+            {
+                thing = Utils.SelectTarget(verbCastedRecordMelee, selfCast);
+                if (thing != null)
+                {
+                    AddHediff(verbCastedRecordMelee.Data.baseDamage, thing as Pawn);
+                }
             }
         }
 
         public override void BulletHit(ProjectileRecord record)
         {
-            if (selfCast)
+            Thing thing = Utils.SelectTarget(record, selfCast);
+            if (thing != null)
             {
-                var launcherPawn = record.projectile.Launcher as Pawn;
-                if (launcherPawn != null)
-                {
-                    AddHediff(record.baseDamage, launcherPawn);
-                }
-            }
-            else
-            {
-                var targetPawn = record.target as Pawn;
-                if (targetPawn != null)
-                {
-                    AddHediff(record.baseDamage, targetPawn);
-                }
+                AddHediff(record.baseDamage, thing as Pawn);
             }
         }
 
@@ -84,17 +66,10 @@ namespace Infusion.OnHitWorkers
         {
             if (onMeleeImpact)
             {
-                if (selfCast)
+                Thing thing = Utils.SelectTarget(record, selfCast);
+                if (thing != null)
                 {
-                    AddHediff(record.baseDamage, record.verb.CasterPawn);
-                }
-                else
-                {
-                    var targetPawn = record.target as Pawn;
-                    if (targetPawn != null)
-                    {
-                        AddHediff(record.baseDamage, targetPawn);
-                    }
+                    AddHediff(record.baseDamage, thing as Pawn);
                 }
             }
         }
@@ -103,17 +78,16 @@ namespace Infusion.OnHitWorkers
         {
             if (PawnUtils.IsAliveAndWell(pawn))
             {
-                var amount = baseDamage * this.Amount;
-                var hediff = HediffMaker.MakeHediff(this.def, pawn);
-
-                var disappearsComp = hediff.TryGetComp<HediffComp_Disappears>();
-                if (disappearsComp != null)
+                float numSeconds = baseDamage * Amount;
+                Hediff hediff = HediffMaker.MakeHediff(def, pawn);
+                HediffComp_Disappears hediffComp_Disappears = hediff.TryGetComp<HediffComp_Disappears>();
+                if (hediffComp_Disappears != null)
                 {
-                    disappearsComp.ticksToDisappear = GenTicks.SecondsToTicks(amount);
+                    hediffComp_Disappears.ticksToDisappear = numSeconds.SecondsToTicks();
                 }
                 else
                 {
-                    hediff.Severity = CalculateSeverity(amount, pawn);
+                    hediff.Severity = CalculateSeverity(numSeconds, pawn);
                 }
                 pawn.health.AddHediff(hediff);
             }
@@ -121,24 +95,15 @@ namespace Infusion.OnHitWorkers
 
         private float CalculateSeverity(float amount, Pawn pawn)
         {
-            float statScale = 1.0f;
-
+            float num = 1f;
             if (severityScaleBy != null)
             {
-                var stat = pawn.GetStatValue(severityScaleBy);
-                if (inverseStatScaling)
-                {
-                    statScale = Math.Max(0.0f, 1.0f - stat);
-                }
-                else
-                {
-                    statScale = stat;
-                }
+                float statValue = pawn.GetStatValue(severityScaleBy);
+                num = ((!inverseStatScaling) ? statValue : Math.Max(0f, 1f - statValue));
             }
-
-            float bodySizeScale = bodySizeMatters ? pawn.BodySize : 1.0f;
-
-            return amount * statScale / bodySizeScale / 100.0f;
+            float num2 = (bodySizeMatters ? pawn.BodySize : 1f);
+            return amount * num / num2 / 100f;
         }
     }
+
 }

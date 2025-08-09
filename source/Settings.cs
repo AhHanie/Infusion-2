@@ -31,6 +31,7 @@ namespace Infusion
         public static StrongBox<bool> uncommonTierEnabled = new StrongBox<bool>(true);
         public static StrongBox<bool> rareTierEnabled = new StrongBox<bool>(true);
         public static StrongBox<bool> legendaryTierEnabled = new StrongBox<bool>(true);
+        public static StrongBox<bool> infuseUniqueWeapons = new StrongBox<bool>(value: false);
         public static Dictionary<InfusionDef, StrongBox<bool>> infusionDefsDisabledMap = new Dictionary<InfusionDef, StrongBox<bool>>();
         public static List<InfusionDef> infusionDefsDisabledList = new List<InfusionDef>();
         public static List<bool> infusionDefsDisabledList1 = new List<bool>();
@@ -61,6 +62,7 @@ namespace Infusion
             Scribe_Values.Look(ref statsGlobalMultiplier.Value, "statsGlobalMultiplier", 1.0f);
             Scribe_Values.Look(ref chanceGlobalMultiplier.Value, "chanceGlobalMultiplier", 1.0f);
             Scribe_Values.Look(ref amountGlobalMultiplier.Value, "amountGlobalMultiplier", 1.0f);
+            Scribe_Values.Look(ref infuseUniqueWeapons.Value, "infuseUniqueWeapons", false);
 
             if (Scribe.mode == LoadSaveMode.Saving)
             {

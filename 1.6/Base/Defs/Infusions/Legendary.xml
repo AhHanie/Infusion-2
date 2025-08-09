@@ -64,6 +64,33 @@
     </stats>
   </Infusion.InfusionDef>
 
+  <Infusion.InfusionDef ParentName="LegendaryArmorBase">
+    <defName>Legendary_Aegis</defName>
+    <label>aegis</label>
+    <labelShort>aegis</labelShort>
+    <stats>
+      <li>
+        <key>MaxHitPoints</key>
+        <value>
+          <multiplier>0.15</multiplier>
+        </value>
+      </li>
+    </stats>
+    <tags>
+      <li>aegis</li>
+    </tags>
+    <keyedFloats>
+      <li>
+        <key>EnergyShieldRechargeRate</key>
+        <value>0.004</value>
+      </li>
+      <li>
+        <key>EnergyShieldEnergyMax</key>
+        <value>2.5</value>
+      </li>
+    </keyedFloats>
+  </Infusion.InfusionDef>
+
   <Infusion.InfusionDef ParentName="LegendaryApparelBase">
     <defName>Augmenting</defName>
     <label>augmenting</label>
@@ -432,8 +459,9 @@
               <selfCast>true</selfCast>
               <onMeleeCast>false</onMeleeCast>
             </li>
-            <li Class="Infusion.OnHitWorkers.HealCaster">
+            <li Class="Infusion.OnHitWorkers.Heal">
               <amount>0.075</amount>
+              <selfCast>true</selfCast>
               <onMeleeCast>false</onMeleeCast>
             </li>
             <li Class="Infusion.OnHitWorkers.ThrowFleck">
@@ -509,6 +537,35 @@
     <extraDescriptions>
       <li>Impact: 25% chance to explode in EMP explosion. Deals 100% of the damage within a radius of 1.4 cells.</li>
     </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="LegendaryRangedBase">
+    <defName>Legendary_Smart</defName>
+    <label>smart</label>
+    <labelShort>smrt</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <stats>
+      <li>
+        <key>AimingDelayFactor</key>
+        <value>
+          <offset>0.1</offset>
+        </value>
+      </li>
+    </stats>
+    <extraDescriptions>
+      <li>With every shot, there's a 75% chance your projectile will be a guaranteed hit. The other 25% of the time, the hit is determined by normal accuracy rules.</li>
+    </extraDescriptions>
+    <keyedFloats>
+      <li>
+        <key>chance</key>
+        <value>0.75</value>
+      </li>
+    </keyedFloats>
+    <tags>
+      <li>smart</li>
+    </tags>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryRangedBase">
@@ -638,6 +695,33 @@
       <li>Impact: 10% chance to explode in flame. Deals 50% of the damage within a radius of 1.4 cells.</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="LegendaryRangedBase">
+    <defName>Lightning</defName>
+    <label>lightning</label>
+    <labelShort>litn</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.IfBioTargetHit">
+        <value Class="Infusion.OnHitWorkers.SpawnLightning">
+          <chance>0.025</chance>
+        </value>
+      </li>
+    </onHits>
+    <stats>
+      <li>
+        <key>MoveSpeed</key>
+        <value>
+          <offset>0.1</offset>
+        </value>
+      </li>
+    </stats>
+    <extraDescriptions>
+      <li>Impact: 2.5% for lightning to strike on the target</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
   <!-- #endregion -->
 
   <!-- #region weapons -->
@@ -675,6 +759,237 @@
         </value>
       </li>
     </stats>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
+    <defName>Legendary_Quickfire</defName>
+    <label>quick fire</label>
+    <labelShort>qckfr</labelShort>
+    <stats>
+      <li>
+        <key>AimingDelayFactor</key>
+        <value>
+          <offset>-0.1</offset>
+        </value>
+      </li>
+    </stats>
+    <matches>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.ResetCooldown">
+        <onMeleeImpact>false</onMeleeImpact>
+        <chance>0.15</chance>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 15% chance to instantly attack again.</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
+    <defName>Gilding</defName>
+    <label>gilding</label>
+    <labelShort>gild</labelShort>
+    <stats>
+      <li>
+        <key>RangedWeapon_DamageMultiplier</key>
+        <value>
+          <offset>-0.05</offset>
+        </value>
+      </li>
+      <li>
+        <key>MeleeWeapon_DamageMultiplier</key>
+        <value>
+          <offset>-0.05</offset>
+        </value>
+      </li>
+    </stats>
+    <matches>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.IfBioTargetHit">
+        <value Class="Infusion.OnHitWorkers.NotColonistHit">
+          <value Class="Infusion.OnHitWorkers.Sequence">
+            <value>
+              <li Class="Infusion.OnHitWorkers.MakeThingOnTarget">
+                <thingStuff>Gold</thingStuff>
+                <thingToMake>SculptureSmall</thingToMake>
+              </li>
+              <li Class="Infusion.OnHitWorkers.DestroyTarget" />
+            </value>
+            <chance>0.01</chance>
+          </value>
+        </value>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 1% chance to convert target into a golden sculpture</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
+    <defName>Polymorph</defName>
+    <label>polymorph</label>
+    <labelShort>mrph</labelShort>
+    <stats>
+      <li>
+        <key>RangedWeapon_DamageMultiplier</key>
+        <value>
+          <offset>-0.05</offset>
+        </value>
+      </li>
+      <li>
+        <key>MeleeWeapon_DamageMultiplier</key>
+        <value>
+          <offset>-0.05</offset>
+        </value>
+      </li>
+    </stats>
+    <matches>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <preHits>
+      <li Class="Infusion.PreHitWorkers.AudioLock" />
+    </preHits>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.IfBioTargetHit">
+        <value Class="Infusion.OnHitWorkers.NotColonistHit">
+          <value Class="Infusion.OnHitWorkers.Sequence">
+            <chance>0.02</chance>
+            <value>
+              <li Class="Infusion.OnHitWorkers.PlaySound">
+                <def>Infusion_Chicken_Polymorph</def>
+              </li>
+              <li Class="Infusion.OnHitWorkers.DestroyTarget" />
+              <li Class="Infusion.OnHitWorkers.AudioUnlock" />
+              <li Class="Infusion.OnHitWorkers.SpawnPawn">
+                <pawnKind>Chicken</pawnKind>
+              </li>
+            </value>
+          </value>
+        </value>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 2% chance to convert target into a chicken</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
+    <defName>Apefist</defName>
+    <label>apefist</label>
+    <labelShort>monke</labelShort>
+    <stats>
+      <li>
+        <key>RangedWeapon_DamageMultiplier</key>
+        <value>
+          <offset>-0.05</offset>
+        </value>
+      </li>
+      <li>
+        <key>MeleeWeapon_DamageMultiplier</key>
+        <value>
+          <offset>-0.05</offset>
+        </value>
+      </li>
+    </stats>
+    <matches>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <preHits>
+      <li Class="Infusion.PreHitWorkers.AudioLock" />
+    </preHits>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.IfBioTargetHit">
+        <value Class="Infusion.OnHitWorkers.NotColonistHit">
+          <value Class="Infusion.OnHitWorkers.Sequence">
+            <chance>0.02</chance>
+            <value>
+              <li Class="Infusion.OnHitWorkers.PlaySound">
+                <def>Infusion_Monkey_Polymorph</def>
+              </li>
+              <li Class="Infusion.OnHitWorkers.DestroyTarget" />
+              <li Class="Infusion.OnHitWorkers.AudioUnlock" />
+              <li Class="Infusion.OnHitWorkers.SpawnPawn">
+                <pawnKind>Monkey</pawnKind>
+              </li>
+            </value>
+          </value>
+        </value>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 2% chance to convert target into a monkey</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
+    <defName>Legendary_Mending</defName>
+    <label>mending</label>
+    <labelShort>mend</labelShort>
+    <stats>
+      <li>
+        <key>MaxHitPoints</key>
+        <value>
+          <multiplier>0.1</multiplier>
+        </value>
+      </li>
+    </stats>
+    <matches>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <preHits>
+      <li Class="Infusion.PreHitWorkers.ColonistHit">
+        <value Class="Infusion.PreHitWorkers.ApplyHediff">
+          <def>SK_Infusion_DamageImmunity</def>
+        </value>
+      </li>
+    </preHits>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.ColonistHit">
+        <value Class="Infusion.OnHitWorkers.Sequence">
+          <value>
+            <li Class="Infusion.OnHitWorkers.Heal">
+              <amount>10</amount>
+              <onRangedImpact>true</onRangedImpact>
+              <healBasedOnDamage>false</healBasedOnDamage>
+            </li>
+            <li Class="Infusion.OnHitWorkers.ThrowFleck">
+              <def>HealingCross</def>
+              <onRangedImpact>true</onRangedImpact>
+            </li>
+            <li Class="Infusion.OnHitWorkers.RemoveHediff">
+              <def>SK_Infusion_DamageImmunity</def>
+            </li>
+            <li Class="Infusion.OnHitWorkers.DamageWeapon">
+              <amount>0.05</amount>
+            </li>
+          </value>
+        </value>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: Damages your enemies, heals your colonists at the cost 5% of the weapon's maximum hitpoints per heal when used for healing. Weapon is automatically destroyed once durability reaches 0.</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="LegendaryDefaultBase">
+    <defName>Legendary_Soothing</defName>
+    <label>soothing</label>
+    <labelShort>sooth</labelShort>
+    <stats>
+      <li>
+        <key>MentalBreakThreshold</key>
+        <value>
+          <offset>-0.06</offset>
+        </value>
+      </li>
+    </stats>
+    <tags>
+      <li>soothing</li>
+    </tags>
   </Infusion.InfusionDef>
   <!-- #endregion -->
 

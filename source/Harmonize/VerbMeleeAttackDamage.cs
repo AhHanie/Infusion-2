@@ -8,29 +8,43 @@ namespace Infusion.Harmonize
     [HarmonyPatch(typeof(Verb_MeleeAttackDamage), "ApplyMeleeDamageToTarget")]
     public static class ApplyMeleeDamageToTarget
     {
+        public static void Prefix(LocalTargetInfo target, Verb_MeleeAttackDamage __instance)
+        {
+            ThingWithComps equipmentSource = __instance.EquipmentSource;
+            if (equipmentSource == null || equipmentSource.def?.IsMeleeWeapon != true)
+            {
+                return;
+            }
+            (List<PreHitWorker>, CompInfusion)? tuple = CompInfusionExtensions.ForPreHitWorkers(equipmentSource);
+            if (!tuple.HasValue)
+            {
+                return;
+            }
+            var (list, compInfusion) = tuple.Value;
+            foreach (PreHitWorker item in list)
+            {
+                VerbRecordData record = new VerbRecordData(0f, compInfusion.parent, target.Thing, __instance);
+                item.PreMeleeHit(record);
+            }
+        }
+
         public static void Postfix(LocalTargetInfo target, Verb_MeleeAttackDamage __instance, DamageWorker.DamageResult __result)
         {
-            var equipmentSource = __instance.EquipmentSource;
-            if (equipmentSource?.def?.IsMeleeWeapon != true)
-                return;
-
-            var onHitData = CompInfusionExtensions.ForOnHitWorkers(equipmentSource);
-            if (!onHitData.HasValue)
-                return;
-
-            var (workers, comp) = onHitData.Value;
-
-            foreach (var onHit in workers)
+            ThingWithComps equipmentSource = __instance.EquipmentSource;
+            if (equipmentSource == null || equipmentSource.def?.IsMeleeWeapon != true)
             {
-                var verbData = new VerbRecordData(
-                    baseDamage: __result.totalDamageDealt,
-                    source: comp.parent,
-                    target: target.Thing,
-                    verb: __instance,
-                    damageResult: __result
-                );
-
-                onHit.MeleeHit(verbData);
+                return;
+            }
+            (List<OnHitWorker>, CompInfusion)? tuple = CompInfusionExtensions.ForOnHitWorkers(equipmentSource);
+            if (!tuple.HasValue)
+            {
+                return;
+            }
+            var (list, compInfusion) = tuple.Value;
+            foreach (OnHitWorker item in list)
+            {
+                VerbRecordData record = new VerbRecordData(__result.totalDamageDealt, compInfusion.parent, target.Thing, __instance, __result);
+                item.MeleeHit(record);
             }
         }
     }

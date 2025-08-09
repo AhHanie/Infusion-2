@@ -1,4 +1,4 @@
-﻿using RimWorld;
+﻿using Infusion;
 using Verse;
 
 namespace Infusion.OnHitWorkers
@@ -6,6 +6,7 @@ namespace Infusion.OnHitWorkers
     public class ResetCooldown : OnHitWorker
     {
         public bool onMeleeCast = true;
+
         public bool onMeleeImpact = true;
 
         public ResetCooldown()
@@ -16,14 +17,16 @@ namespace Infusion.OnHitWorkers
 
         public override void AfterAttack(VerbCastedRecord record)
         {
-            switch (record)
+            if (!(record is VerbCastedRecordMelee verbCastedRecordMelee))
             {
-                case VerbCastedRecordMelee meleeRecord when onMeleeCast:
-                    ResetCooldownFor(meleeRecord.Data.verb.Caster);
-                    break;
-                case VerbCastedRecordRanged rangedRecord:
-                    ResetCooldownFor(rangedRecord.Data.verb.Caster);
-                    break;
+                if (record is VerbCastedRecordRanged verbCastedRecordRanged)
+                {
+                    ResetCooldownFor(verbCastedRecordRanged.Data.verb.Caster, verbCastedRecordRanged.Data.verb, verbCastedRecordRanged.Data.target, isMelee: false);
+                }
+            }
+            else if (onMeleeCast)
+            {
+                ResetCooldownFor(verbCastedRecordMelee.Data.verb.Caster, verbCastedRecordMelee.Data.verb, verbCastedRecordMelee.Data.target, isMelee: true);
             }
         }
 
@@ -31,16 +34,29 @@ namespace Infusion.OnHitWorkers
         {
             if (onMeleeImpact)
             {
-                ResetCooldownFor(record.verb.Caster);
+                ResetCooldownFor(record.verb.Caster, record.verb, record.target, isMelee: true);
             }
         }
 
-        private void ResetCooldownFor(Thing caster)
+        private void ResetCooldownFor(Thing caster, Verb verb, LocalTargetInfo target, bool isMelee)
         {
-            var pawn = caster as Pawn;
-            if (pawn?.stances?.curStance is Stance_Cooldown cooldownStance)
+            Pawn pawn = caster as Pawn;
+            if (!isMelee)
             {
-                cooldownStance.ticksLeft = 0;
+                if (pawn?.stances?.curStance is Stance_Cooldown stance_Cooldown)
+                {
+                    stance_Cooldown.ticksLeft = 1;
+                }
+                verb.TryStartCastOn(target);
+                if (pawn?.stances?.curStance is Stance_Warmup stance_Warmup)
+                {
+                    stance_Warmup.ticksLeft = 1;
+                }
+            }
+            else if (pawn?.stances?.curStance is Stance_Cooldown stance_Cooldown2)
+            {
+                Log.Message("Fired twice");
+                stance_Cooldown2.ticksLeft = 10;
             }
         }
     }

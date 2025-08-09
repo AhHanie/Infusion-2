@@ -36,23 +36,6 @@
     </rulePack>
   </RulePackDef>
 
-  <SoundDef>
-    <defName>Infusion_Preservation</defName>
-    <context>MapOnly</context>
-    <maxSimultaneous>1</maxSimultaneous>
-    <subSounds>
-      <li>
-        <grains>
-          <li Class="AudioGrain_Folder">
-            <clipFolderPath>Infusion/Preservation</clipFolderPath>
-          </li>
-        </grains>
-        <volumeRange>30~35</volumeRange>
-        <pitchRange>0.9152174~1.169566</pitchRange>
-      </li>
-    </subSounds>
-  </SoundDef>
-
   <Infusion.InfusionDef ParentName="LegendaryApparelBase">
     <defName>Preservation</defName>
     <label>preservation</label>

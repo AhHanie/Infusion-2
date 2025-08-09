@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Defs>
+	<Infusion.InfusionDef ParentName="RareWeaponsBase">
+		<defName>Rare_Mortis</defName>
+		<label>mortis</label>
+		<labelShort>mort</labelShort>
+		<stats>
+			<li>
+				<key>ActivitySuppressionRate</key>
+				<value>
+					<offset>0.01</offset>
+				</value>
+			</li>
+			<li>
+				<key>EntityStudyRate</key>
+				<value>
+					<offset>0.02</offset>
+				</value>
+			</li>
+		</stats>
+		<matches>
+			<li Class="Infusion.Matchers.ProjectileBullet" />
+		</matches>
+		<onHits>
+			<li Class="Infusion.OnHitWorkers.Sequence">
+				<value>
+					<li Class="Infusion.OnHitWorkers.SpawnAlly">
+						<ally>Ghoul</ally>
+						<totalTicksToLive>600</totalTicksToLive>
+					</li>
+					<li Class="Infusion.OnHitWorkers.PlaySound">
+						<def>Pawn_Ghoul_Call</def>
+					</li>
+				</value>
+				<chance>0.03</chance>
+			</li>
+		</onHits>
+		<extraDescriptions>
+			<li>Impact: 3% chance to spawn a ghoul to fight for you for 10 seconds.</li>
+		</extraDescriptions>
+	</Infusion.InfusionDef>
+
+	<Infusion.InfusionDef ParentName="RareApparelBase">
+		<defName>Rare_Tenebrous</defName>
+		<label>tenebrous</label>
+		<labelShort>tenebr</labelShort>
+		<stats>
+			<li>
+				<key>ActivitySuppressionRate</key>
+				<value>
+					<offset>0.05</offset>
+				</value>
+			</li>
+			<li>
+				<key>EntityStudyRate</key>
+				<value>
+					<offset>0.75</offset>
+				</value>
+			</li>
+		</stats>
+	</Infusion.InfusionDef>
+</Defs>

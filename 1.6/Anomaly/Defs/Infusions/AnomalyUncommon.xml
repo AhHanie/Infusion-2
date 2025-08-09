@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Defs>
+    <Infusion.InfusionDef ParentName="UncommonApparelBase">
+        <defName>Uncommon_Tenebrous</defName>
+        <label>tenebrous</label>
+        <labelShort>tenebr</labelShort>
+        <stats>
+            <li>
+                <key>ActivitySuppressionRate</key>
+                <value>
+                    <offset>0.025</offset>
+                </value>
+            </li>
+            <li>
+                <key>EntityStudyRate</key>
+                <value>
+                    <offset>0.05</offset>
+                </value>
+            </li>
+        </stats>
+    </Infusion.InfusionDef>
+</Defs>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Defs>
+    <Infusion.InfusionDef ParentName="LegendaryApparelBase">
+        <defName>Legendary_Aqueous</defName>
+        <label>aqueous</label>
+        <labelShort>aqua</labelShort>
+        <stats>
+            <li>
+                <key>FishingSpeed</key>
+                <value>
+                    <offset>0.08</offset>
+                </value>
+            </li>
+            <li>
+                <key>FishingYield</key>
+                <value>
+                    <offset>0.04</offset>
+                </value>
+            </li>
+        </stats>
+    </Infusion.InfusionDef>
+</Defs>

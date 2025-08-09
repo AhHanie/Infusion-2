@@ -31,6 +31,7 @@ namespace Infusion
 
         private InfusionDef bestInfusionCache = null;
         private List<OnHitWorker> onHitsCache = null;
+        private List<PreHitWorker> preHitsCache = null;
         private Dictionary<StatDef, StatMod?> infusionsStatModCache = new Dictionary<StatDef, StatMod?>();
         public static HashSet<CompInfusion> WantingCandidates
         {
@@ -223,6 +224,8 @@ namespace Infusion
         }
 
         public List<OnHitWorker> OnHits => onHitsCache ?? new List<OnHitWorker>();
+        public List<PreHitWorker> PreHits => preHitsCache ?? new List<PreHitWorker>();
+
 
         public HashSet<InfusionDef> RemovalSet
         {
@@ -318,6 +321,8 @@ namespace Infusion
             onHitsCache = infusions
                 .SelectMany(inf => inf.OnHits)
                 .ToList();
+
+            preHitsCache = infusions.SelectMany(inf => inf.PreHits).ToList();
         }
 
         public void MarkForInfuser(InfusionDef infDef)
@@ -567,6 +572,30 @@ namespace Infusion
             }
             return 0;
         }
+
+        public InfusionDef TryGetInfusionDefWithTag(InfusionTags tag)
+        {
+            foreach (InfusionDef infusion in infusions)
+            {
+                if (infusion.tags.Contains(InfusionTagsHelper.ConvertToString(tag)))
+                {
+                    return infusion;
+                }
+            }
+            return null;
+        }
+
+        public bool ContainsTag(InfusionTags tag)
+        {
+            foreach (InfusionDef infusion in infusions)
+            {
+                if (infusion.tags.Contains(InfusionTagsHelper.ConvertToString(tag)))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 
     public static class CompInfusionExtensions
@@ -631,6 +660,20 @@ namespace Infusion
                 if (onHits.Count > 0)
                 {
                     return (onHits, comp);
+                }
+            }
+            return null;
+        }
+
+        public static (List<PreHitWorker>, CompInfusion Comp)? ForPreHitWorkers(ThingWithComps thing)
+        {
+            CompInfusion comp = thing.GetComp<CompInfusion>();
+            if (comp != null && comp.EffectsEnabled)
+            {
+                List<PreHitWorker> list = comp.PreHits.Where(PreHitWorker.CheckChance).ToList();
+                if (list.Count > 0)
+                {
+                    return (list, comp);
                 }
             }
             return null;

@@ -64,7 +64,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CompInfusion.cs" />
+    <Compile Include="Comps\CompInfusion.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="DebugActions.cs" />
     <Compile Include="DefFields.cs" />
     <Compile Include="DefsForReading.cs" />
@@ -79,11 +80,16 @@
     <Compile Include="Harmonize\Verb.cs" />
     <Compile Include="Harmonize\VerbMeleeAttackDamage.cs" />
     <Compile Include="Harmonize\VerbProperties.cs" />
+    <Compile Include="HarmonyPatcher.cs" />
     <Compile Include="HashEqualDef.cs" />
     <Compile Include="Infuser.cs" />
     <Compile Include="InfusionDef.cs" />
+    <Compile Include="Comps\InfusionMapComp.cs" />
+    <Compile Include="InfusionTags.cs" />
     <Compile Include="ITab.cs" />
     <Compile Include="JobDriver.cs" />
+    <Compile Include="KeyedData.cs" />
+    <Compile Include="Locks.cs" />
     <Compile Include="Matcher.cs" />
     <Compile Include="Matchers\EquipmentType.cs" />
     <Compile Include="Matchers\HasVerb_LaunchProjectile.cs" />
@@ -97,29 +103,57 @@
     <Compile Include="OnHitWorker.cs" />
     <Compile Include="OnHitWorkers\ApplyDamage.cs" />
     <Compile Include="OnHitWorkers\ApplyHediff.cs" />
+    <Compile Include="OnHitWorkers\AudioUnlock.cs" />
+    <Compile Include="OnHitWorkers\ColonistHit.cs" />
     <Compile Include="OnHitWorkers\CreateExplosion.cs" />
     <Compile Include="OnHitWorkers\DamageBase.cs" />
-    <Compile Include="OnHitWorkers\HealCaster.cs" />
+    <Compile Include="OnHitWorkers\DamageWeapon.cs" />
+    <Compile Include="OnHitWorkers\DestoryTarget.cs" />
+    <Compile Include="OnHitWorkers\Heal.cs" />
     <Compile Include="OnHitWorkers\IfBioTargetHit.cs" />
+    <Compile Include="OnHitWorkers\MakeThingOnTarget.cs" />
+    <Compile Include="OnHitWorkers\NotColonistHit.cs" />
     <Compile Include="OnHitWorkers\PlaySound.cs" />
     <Compile Include="OnHitWorkers\Preservation.cs" />
     <Compile Include="OnHitWorkers\ReduceSeverity.cs" />
+    <Compile Include="OnHitWorkers\RemoveHediff.cs" />
     <Compile Include="OnHitWorkers\ResetCooldown.cs" />
     <Compile Include="OnHitWorkers\Sequence.cs" />
+    <Compile Include="OnHitWorkers\SpawnAlly.cs" />
     <Compile Include="OnHitWorkers\SpawnBlood.cs" />
     <Compile Include="OnHitWorkers\SpawnFilth.cs" />
+    <Compile Include="OnHitWorkers\SpawnLightning.cs" />
     <Compile Include="OnHitWorkers\ThrowFleck.cs" />
+    <Compile Include="Patches.cs" />
+    <Compile Include="Harmonize\PlayNearestLifestageSound.cs" />
+    <Compile Include="PreHitWorker.cs" />
+    <Compile Include="PreHitWorkers\ApplyHediff.cs" />
+    <Compile Include="PreHitWorkers\AudioLock.cs" />
+    <Compile Include="PreHitWorkers\ColonistHit.cs" />
+    <Compile Include="PreHitWorkers\IfBioTargetHit.cs" />
+    <Compile Include="PreHitWorkers\Sequence.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceBank.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="SmartInfusionHelper.cs" />
+    <Compile Include="SpawnPawn.cs" />
     <Compile Include="SpecialThingFilterWorkers\Everything.cs" />
     <Compile Include="StatMod.cs" />
     <Compile Include="StatPart.cs" />
     <Compile Include="StockGenerator.cs" />
+    <Compile Include="TemporaryAlly.cs" />
+    <Compile Include="Comps\TemporaryAllyComp.cs" />
     <Compile Include="ThingSetMaker.cs" />
+    <Compile Include="ThoughtWorker_Soothed.cs" />
     <Compile Include="TierDef.cs" />
+    <Compile Include="TierDefOf.cs" />
+    <Compile Include="Utils.cs" />
+    <Compile Include="Harmonize\Verb_LaunchProjectile.cs" />
     <Compile Include="VerseTools.cs" />
     <Compile Include="WorkGiver.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy "$(TargetDir)Infusion 2.dll" "C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Infusion 2\1.6\Base\Assemblies" /D /Y</PostBuildEvent>
+  </PropertyGroup>
 </Project>

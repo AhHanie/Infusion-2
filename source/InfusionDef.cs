@@ -24,10 +24,15 @@ namespace Infusion
         public Migration<InfusionDef> migration = null;
 
         public List<OnHitWorker> onHits = null;
+        public List<PreHitWorker> preHits = null;
 
         public Position position = Position.Prefix;
 
         public Dictionary<StatDef, StatMod> stats = new Dictionary<StatDef, StatMod>();
+
+        public List<string> tags = null;
+
+        public Dictionary<string, float> keyedFloats = new Dictionary<string, float>();
 
         public TierDef tier = TierDef.Empty;
 
@@ -42,6 +47,8 @@ namespace Infusion
             position = Position.Prefix;
             stats = new Dictionary<StatDef, StatMod>();
             tier = TierDef.Empty;
+            tags = new List<string>();
+            keyedFloats = new Dictionary<string, float>();
         }
 
         public string LabelShort
@@ -55,6 +62,8 @@ namespace Infusion
         public Migration<InfusionDef> Migration => migration;
 
         public List<OnHitWorker> OnHits => onHits ?? new List<OnHitWorker>();
+
+        public List<PreHitWorker> PreHits => preHits ?? new List<PreHitWorker>();
 
         public float ChanceFor(QualityCategory quality)
         {

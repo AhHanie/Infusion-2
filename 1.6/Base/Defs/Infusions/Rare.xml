@@ -233,6 +233,33 @@
     </stats>
   </Infusion.InfusionDef>
 
+  <Infusion.InfusionDef ParentName="RareArmorBase">
+    <defName>Rare_Aegis</defName>
+    <label>aegis</label>
+    <labelShort>aegis</labelShort>
+    <stats>
+      <li>
+        <key>MaxHitPoints</key>
+        <value>
+          <multiplier>0.1</multiplier>
+        </value>
+      </li>
+    </stats>
+    <tags>
+      <li>aegis</li>
+    </tags>
+    <keyedFloats>
+      <li>
+        <key>EnergyShieldRechargeRate</key>
+        <value>0.003</value>
+      </li>
+      <li>
+        <key>EnergyShieldEnergyMax</key>
+        <value>2</value>
+      </li>
+    </keyedFloats>
+  </Infusion.InfusionDef>
+
   <Infusion.InfusionDef ParentName="RareApparelBase">
     <defName>Interfering</defName>
     <label>interfering</label>
@@ -557,6 +584,35 @@
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="RareRangedBase">
+    <defName>Rare_Smart</defName>
+    <label>smart</label>
+    <labelShort>smrt</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <stats>
+      <li>
+        <key>AimingDelayFactor</key>
+        <value>
+          <offset>0.15</offset>
+        </value>
+      </li>
+    </stats>
+    <extraDescriptions>
+      <li>With every shot, there's a 50% chance your projectile will be a guaranteed hit. The other 50% of the time, the hit is determined by normal accuracy rules.</li>
+    </extraDescriptions>
+    <keyedFloats>
+      <li>
+        <key>chance</key>
+        <value>0.5</value>
+      </li>
+    </keyedFloats>
+    <tags>
+      <li>smart</li>
+    </tags>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="RareRangedBase">
     <defName>Concussive</defName>
     <label>concussive</label>
     <labelShort>conc</labelShort>
@@ -590,6 +646,7 @@
       <li>Hit: deals 500% extra blunt damage. Does not increase damage of other similar effects.</li>
       <li>Hit: 10% chance to stun the target for 50% of the damage.</li>
     </extraDescriptions>
+    <disabled>true</disabled>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="RareRangedBase">
@@ -784,5 +841,98 @@
     <extraDescriptions>
       <li>Impact: Increases toxic buildup of the target by 7.5% of the damage.</li>
     </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="RareWeaponsBase">
+    <defName>Rare_Quickfire</defName>
+    <label>quick fire</label>
+    <labelShort>qckfr</labelShort>
+    <stats>
+      <li>
+        <key>AimingDelayFactor</key>
+        <value>
+          <offset>-0.05</offset>
+        </value>
+      </li>
+    </stats>
+    <matches>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.ResetCooldown">
+        <onMeleeImpact>false</onMeleeImpact>
+        <chance>0.1</chance>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 10% chance to instantly attack again.</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="RareWeaponsBase">
+    <defName>Rare_Mending</defName>
+    <label>mending</label>
+    <labelShort>mend</labelShort>
+    <stats>
+      <li>
+        <key>MaxHitPoints</key>
+        <value>
+          <multiplier>0.05</multiplier>
+        </value>
+      </li>
+    </stats>
+    <matches>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <preHits>
+      <li Class="Infusion.PreHitWorkers.ColonistHit">
+        <value Class="Infusion.PreHitWorkers.ApplyHediff">
+          <def>SK_Infusion_DamageImmunity</def>
+        </value>
+      </li>
+    </preHits>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.ColonistHit">
+        <value Class="Infusion.OnHitWorkers.Sequence">
+          <value>
+            <li Class="Infusion.OnHitWorkers.Heal">
+              <amount>10</amount>
+              <onRangedImpact>true</onRangedImpact>
+              <healBasedOnDamage>false</healBasedOnDamage>
+            </li>
+            <li Class="Infusion.OnHitWorkers.ThrowFleck">
+              <def>HealingCross</def>
+              <onRangedImpact>true</onRangedImpact>
+            </li>
+            <li Class="Infusion.OnHitWorkers.RemoveHediff">
+              <def>SK_Infusion_DamageImmunity</def>
+            </li>
+            <li Class="Infusion.OnHitWorkers.DamageWeapon">
+              <amount>0.05</amount>
+            </li>
+          </value>
+        </value>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: Damages your enemies, heals your colonists at the cost 10% of the weapon's maximum hitpoints per heal when used for healing. Weapon is automatically destroyed once durability reaches 0.</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="RareDefaultBase">
+    <defName>Rare_Soothing</defName>
+    <label>soothing</label>
+    <labelShort>sooth</labelShort>
+    <stats>
+      <li>
+        <key>MentalBreakThreshold</key>
+        <value>
+          <offset>-0.03</offset>
+        </value>
+      </li>
+    </stats>
+    <tags>
+      <li>soothing</li>
+    </tags>
   </Infusion.InfusionDef>
 </Defs>

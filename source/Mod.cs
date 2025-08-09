@@ -1,96 +1,79 @@
-﻿using HarmonyLib;
-using RimWorld;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime;
+using HarmonyLib;
+using Infusion;
+using RimWorld;
 using UnityEngine;
 using Verse;
 
-namespace Infusion.Mod
+public class ModBase : Mod
 {
+    public static Harmony instance;
 
-    public class ModBase : Verse.Mod
+    public ModBase(ModContentPack content)
+        : base(content)
     {
-        public static Harmony instance;
-        public ModBase(ModContentPack content) : base(content)
+        instance = new Harmony("rimworld.sk.infusion");
+        LongEventHandler.QueueLongEvent(DefsLoaded, "Sk.Infusion.Init", doAsynchronously: true, null);
+    }
+
+    public override string SettingsCategory()
+    {
+        return "Infusion 2";
+    }
+
+    public override void DoSettingsWindowContents(Rect rect)
+    {
+        ModSettingsWindow.Draw(rect);
+        base.DoSettingsWindowContents(rect);
+    }
+
+    public void DefsLoaded()
+    {
+        GetSettings<Settings>();
+        instance.PatchAll();
+        Inject();
+        Infusion.Harmonize.StatWorker.populateStatsEligibilityMap();
+        HarmonyPatcher.PatchAllVanillaMethods(instance);
+        Constants.Init();
+    }
+
+    private void Inject()
+    {
+        InjectToThings();
+        InjectToStats();
+    }
+
+    private void InjectToThings()
+    {
+        Type typeFromHandle = typeof(InfusedTab);
+        InspectTabBase sharedInstance = InspectTabManager.GetSharedInstance(typeFromHandle);
+        foreach (ThingDef item in DefsForReading.allThingsInfusable)
         {
-            instance = new Harmony("rimworld.sk.infusion");
-
-            LongEventHandler.QueueLongEvent(DefsLoaded, "Sk.Infusion.Init", true, null);
-        }
-
-        public override string SettingsCategory()
-        {
-            return "Infusion 2";
-        }
-
-        public override void DoSettingsWindowContents(Rect rect)
-        {
-            ModSettingsWindow.Draw(rect);
-            base.DoSettingsWindowContents(rect);
-        }
-
-        public void DefsLoaded()
-        {
-            GetSettings<Settings>();
-            instance.PatchAll();
-            Inject();
-            Harmonize.StatWorker.populateStatsEligibilityMap();
-        }
-
-        private void Inject()
-        {
-            InjectToThings();
-            InjectToStats();
-        }
-
-        private void InjectToThings()
-        {
-            var iTabType = typeof(InfusedTab);
-            var iTab = InspectTabManager.GetSharedInstance(iTabType);
-
-            foreach (var def in DefsForReading.allThingsInfusable)
+            item.comps.Insert(0, new CompProperties(typeof(CompInfusion)));
+            if (item.inspectorTabs.NullOrEmpty())
             {
-                // Needs to be the first one, label making is order-dependent
-                def.comps.Insert(0, new CompProperties(typeof(CompInfusion)));
-
-                if (def.inspectorTabs.NullOrEmpty())
-                {
-                    def.inspectorTabs = new List<Type>(1);
-                    def.inspectorTabsResolved = new List<InspectTabBase>(1);
-                }
-
-                def.inspectorTabs.Add(iTabType);
-                def.inspectorTabsResolved.Add(iTab);
+                item.inspectorTabs = new List<Type>(1);
+                item.inspectorTabsResolved = new List<InspectTabBase>(1);
             }
+            item.inspectorTabs.Add(typeFromHandle);
+            item.inspectorTabsResolved.Add(sharedInstance);
         }
+    }
 
-        private void InjectToStats()
+    private void InjectToStats()
+    {
+        IEnumerable<StatDef> enumerable = DefDatabase<InfusionDef>.AllDefs.SelectMany((InfusionDef def) => def.stats.Keys).Distinct();
+        foreach (StatDef item2 in enumerable)
         {
-            // Many stats are now cached at StatWorker level, and some of them with certain conditions met
-            // (e.g. No specific StatWorker, no StatParts) are considered immutable with their cache never expiring.
-            // In other words, adding a StatPart causes immutability check to break which may cause minor
-            // performance degradation. So we only add our StatPart to stats which have related infusions.
-
-            var statsWithInfusions = DefDatabase<InfusionDef>.AllDefs
-                .SelectMany(def => def.stats.Keys)
-                .Distinct();
-
-            foreach (var statDef in statsWithInfusions)
+            InfusionStatPart item = new InfusionStatPart(item2);
+            if (item2.parts == null)
             {
-                var statPart = new InfusionStatPart(statDef);
-
-                if (statDef.parts == null)
-                {
-                    statDef.parts = new List<StatPart>(1);
-                }
-
-                statDef.parts.Add(statPart);
+                item2.parts = new List<StatPart>(1);
             }
-
-            // And we have to manually update the caches
-            StatDef.SetImmutability();
+            item2.parts.Add(item);
         }
+        StatDef.SetImmutability();
     }
 }
