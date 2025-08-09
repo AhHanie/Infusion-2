@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using RimWorld;
+using System;
+using System.Collections.Generic;
 using System.Linq;
-using RimWorld;
 using Verse;
 
 namespace Infusion
@@ -48,14 +49,20 @@ namespace Infusion
             {
                 if (_allThingsInfusable == null)
                 {
-                    _allThingsInfusable = DefDatabase<ThingDef>.AllDefs
-                        .Where(def => ApparelOrWeapon(def) &&
-                                    HasQualityNoInfusion(def) &&
-                                    IsMultiUse(def))
-                        .ToList();
+                    List<Func<ThingDef, bool>> validators = new List<Func<ThingDef, bool>> { ApparelOrWeapon, IsMultiUse, HasQualityNoInfusion };
+                    if (ModsConfig.OdysseyActive)
+                    {
+                        validators.Add(IsNotUniqueWeapon);
+                    }
+                    _allThingsInfusable = DefDatabase<ThingDef>.AllDefs.Where((ThingDef def) => validators.All((Func<ThingDef, bool> validator) => validator(def))).ToList();
                 }
                 return _allThingsInfusable;
             }
+        }
+
+        public static bool IsNotUniqueWeapon(ThingDef def)
+        {
+            return !def.thingCategories.Contains(ThingCategoryDefOf.WeaponsUnique);
         }
     }
 }

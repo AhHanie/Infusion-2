@@ -40,6 +40,7 @@ namespace Infusion
         public static StrongBox<string> amountGlobalMultiplierLabelRef = new StrongBox<string>("Infusion.Settings.AmountGlobalMultiplier".Translate());
         public static StrongBox<string> infusionSettingsLabelRef = new StrongBox<string>("Infusion.Settings.Infusions.Title".Translate());
         public static StrongBox<string> infusionDefsControlLabelRef = new StrongBox<string>("Infusion.Settings.Infusions.Defs.Title".Translate());
+        public static StrongBox<string> infuseUniqueWeaponsLabelRef = new StrongBox<string>("Infusion.Settings.InfuseUniqueWeapons".Translate());
         public static StrongBox<Vector2> scrollPosition = new StrongBox<Vector2>(Vector2.zero);
         public static StrongBox<InfusionDef> selectedInfusionDef = new StrongBox<InfusionDef>(ResourceBank.allInfusionDefs.First());
         public static StrongBox<bool> infusionDefsEnableDisableButtonClicked = new StrongBox<bool>(false);
@@ -50,7 +51,12 @@ namespace Infusion
             stack.WidthMode = SizeMode.Fill;
             stack.VerticalSpacing = 5f;
 
-            FillGrid grid = new FillGrid(2, 13)
+            int gridRows = 13;
+            if (ModsConfig.OdysseyActive)
+            {
+                gridRows++;
+            }
+            FillGrid grid = new FillGrid(2, gridRows)
             {
                 Padding = 10f
             };
@@ -84,6 +90,16 @@ namespace Infusion
             bonusToBiocodeCheckbox.Alignment = Align.MiddleLeft;
 
             grid.AddChild(bonusToBiocodeCheckbox);
+
+            if (ModsConfig.OdysseyActive)
+            {
+                Label infuseUniqueWeaponsLabel = new Label(infuseUniqueWeaponsLabelRef);
+                infuseUniqueWeaponsLabel.Alignment = Align.MiddleLeft;
+                grid.AddChild(infuseUniqueWeaponsLabel);
+                Checkbox infuseUniqueWeaponsCheckbox = new Checkbox(Settings.infuseUniqueWeapons);
+                infuseUniqueWeaponsCheckbox.Alignment = Align.MiddleLeft;
+                grid.AddChild(infuseUniqueWeaponsCheckbox);
+            }
 
             Label extractionSuccessFactorLabel = new Label(extractionSuccessFactorLabelRef);
             extractionSuccessFactorLabel.Alignment = Align.MiddleLeft;

@@ -1,44 +1,70 @@
 ﻿using HarmonyLib;
 using RimWorld;
+using System.Collections.Generic;
 using Verse;
 
 namespace Infusion.Harmonize
 {
+    public class BulletImpactPatchState
+    {
+        public Map map = null;
+
+        public bool canRunOnHitWorkers = false;
+    }
+
     [HarmonyPatch(typeof(Bullet), "Impact")]
     public static class Impact
     {
-        public static void Prefix(Thing hitThing, Bullet __instance, out Map __state)
+        public static void Prefix(Thing hitThing, Bullet __instance, out BulletImpactPatchState __state)
         {
-            __state = __instance.Map;
-        }
-        public static void Postfix(Thing hitThing, Bullet __instance, Map __state)
-        {
-            var baseDamage = (float)__instance.DamageAmount;
-
-            if (__instance.Launcher is Pawn pawn)
+            __state = new BulletImpactPatchState();
+            __state.map = __instance.Map;
+            if (!(__instance.Launcher is Pawn pawn))
             {
-                var primaryEquipment = pawn.equipment?.Primary;
-                if (primaryEquipment != null)
-                {
-                    var onHitData = CompInfusionExtensions.ForOnHitWorkers(primaryEquipment);
-                    if (onHitData.HasValue)
-                    {
-                        var (workers, comp) = onHitData.Value;
+                return;
+            }
+            ThingWithComps thingWithComps = pawn.equipment?.Primary;
+            if (thingWithComps == null)
+            {
+                return;
+            }
+            __state.canRunOnHitWorkers = true;
+            (List<PreHitWorker>, CompInfusion)? tuple = CompInfusionExtensions.ForPreHitWorkers(thingWithComps);
+            if (!tuple.HasValue)
+            {
+                return;
+            }
+            (List<PreHitWorker>, CompInfusion) value = tuple.Value;
+            List<PreHitWorker> item = value.Item1;
+            CompInfusion item2 = value.Item2;
+            float baseDamage = __instance.DamageAmount;
+            ProjectileRecord record = new ProjectileRecord(baseDamage, __state.map, __instance, item2.parent, hitThing);
+            foreach (PreHitWorker item3 in item)
+            {
+                item3.PreBulletHit(record);
+            }
+        }
 
-                        var projectileRecord = new ProjectileRecord(
-                            baseDamage: baseDamage,
-                            map: __state,
-                            projectile: __instance,
-                            source: comp.parent,
-                            target: hitThing
-                        );
-
-                        foreach (var worker in workers)
-                        {
-                            worker.BulletHit(projectileRecord);
-                        }
-                    }
-                }
+        public static void Postfix(Thing hitThing, Bullet __instance, BulletImpactPatchState __state)
+        {
+            if (!__state.canRunOnHitWorkers)
+            {
+                return;
+            }
+            float baseDamage = __instance.DamageAmount;
+            ThingWithComps primary = (__instance.Launcher as Pawn).equipment.Primary;
+            (List<OnHitWorker>, CompInfusion)? tuple = CompInfusionExtensions.ForOnHitWorkers(primary);
+            if (!tuple.HasValue)
+            {
+                return;
+            }
+            (List<OnHitWorker>, CompInfusion) value = tuple.Value;
+            List<OnHitWorker> item = value.Item1;
+            CompInfusion item2 = value.Item2;
+            ProjectileRecord record = new ProjectileRecord(baseDamage, __state.map, __instance, item2.parent, hitThing);
+            foreach (OnHitWorker item3 in item)
+            {
+                item3.BulletHit(record);
             }
         }
     }
