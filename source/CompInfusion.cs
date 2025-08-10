@@ -400,9 +400,6 @@ namespace Infusion
 
         public void SetInfusions(IEnumerable<InfusionDef> value, bool respawningAfterLoad)
         {
-            var originalHitPoints = (float)parent.HitPoints;
-            var hitPointsRatio = originalHitPoints / parent.MaxHitPoints;
-
             infusions = new HashSet<InfusionDef>(value);
             wantingSet.ExceptWith(infusions);
             extractionSet.IntersectWith(infusions);
@@ -411,13 +408,9 @@ namespace Infusion
             InvalidateCache();
             FinalizeSetMutations();
 
-            // Only increase HP along with max HP when already in game
             if (!respawningAfterLoad)
             {
-                var newHitPoints = (int)Math.Ceiling(parent.MaxHitPoints * hitPointsRatio);
-                newHitPoints = Math.Max(newHitPoints, (int)Math.Round(originalHitPoints));
-                newHitPoints = Math.Min(newHitPoints, parent.MaxHitPoints);
-                parent.HitPoints = newHitPoints;
+                this.TryUpdateMaxHitpoints();
             }
         }
 
@@ -465,14 +458,31 @@ namespace Infusion
             return sb.ToString();
         }
 
+        public void TryUpdateMaxHitpoints()
+        {
+            StatMod mod = GetModForStat(StatDefOf.MaxHitPoints);
+            if (mod == null)
+            {
+                return;
+            }
+            int originalMaxHitPoints = parent.MaxHitPoints;
+            int newMaxHitPoints = (int)mod.ApplyTo(originalMaxHitPoints);
+            parent.HitPoints += newMaxHitPoints - originalMaxHitPoints;
+        }
+
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
-            if (!respawningAfterLoad && slotCount == -1 && quality >= QualityCategory.Normal)
+            if (respawningAfterLoad)
+            {
+                return;
+            }
+
+            if (slotCount == -1 && quality >= QualityCategory.Normal)
             {
                 slotCount = CalculateSlotCountFor(quality);
             }
 
-            if (!respawningAfterLoad && removalSet.Count > 0)
+            if (removalSet.Count > 0)
             {
                 RegisterRemovalCandidate(this);
             }

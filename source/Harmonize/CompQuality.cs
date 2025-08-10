@@ -17,11 +17,6 @@ namespace Infusion.Harmonize
                     compInfusion.Quality = __instance.Quality;
                     var newInfusions = compInfusion.PickInfusions(__instance.Quality);
                     compInfusion.SetInfusions(newInfusions, false);
-
-                    // All hit points of a pawn's apparels are determined *after* SetQuality() call,
-                    // see: PawnGenerator.PostProcessGeneratedGear()
-                    // We can blindly reset any Thing's HitPoints to its MaxHitPoints.
-                    __instance.parent.HitPoints = __instance.parent.MaxHitPoints;
                 }
             }
         }
