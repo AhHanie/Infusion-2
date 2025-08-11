@@ -19,4 +19,24 @@
             </li>
         </stats>
     </Infusion.InfusionDef>
+
+    <Infusion.InfusionDef ParentName="UncommonApparelBase">
+        <defName>Uncommon_Stratos</defName>
+        <label>stratos</label>
+        <labelShort>strat</labelShort>
+        <stats>
+            <li>
+                <key>MoveSpeed</key>
+                <value>
+                    <offset>0.5</offset>
+                </value>
+            </li>
+            <li>
+                <key>VacuumResistance</key>
+                <value>
+                    <offset>0.04</offset>
+                </value>
+            </li>
+        </stats>
+    </Infusion.InfusionDef>
 </Defs>

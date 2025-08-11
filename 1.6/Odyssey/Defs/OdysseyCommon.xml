@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Defs>
+    <Infusion.InfusionDef ParentName="CommonApparelBase">
+        <defName>Common_Stratos</defName>
+        <label>stratos</label>
+        <labelShort>strat</labelShort>
+        <stats>
+            <li>
+                <key>MoveSpeed</key>
+                <value>
+                    <offset>0.25</offset>
+                </value>
+            </li>
+            <li>
+                <key>VacuumResistance</key>
+                <value>
+                    <offset>0.02</offset>
+                </value>
+            </li>
+        </stats>
+    </Infusion.InfusionDef>
+</Defs>

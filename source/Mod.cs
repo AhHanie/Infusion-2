@@ -35,7 +35,6 @@ public class ModBase : Mod
         instance.PatchAll();
         Inject();
         Infusion.Harmonize.StatWorker.populateStatsEligibilityMap();
-        HarmonyPatcher.PatchAllVanillaMethods(instance);
         Constants.Init();
     }
 
