@@ -591,4 +591,37 @@
       <li>soothing</li>
     </tags>
   </Infusion.InfusionDef>
+
+
+  <Infusion.InfusionDef ParentName="UncommonAnyWeaponsBase">
+    <defName>Uncommon_Savant</defName>
+    <label>savant</label>
+    <labelShort>svnt</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <stats>
+      <li>
+        <key>ResearchSpeed</key>
+        <value>
+          <offset>4</offset>
+        </value>
+      </li>
+    </stats>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.IfBioTargetHit">
+        <value Class="Infusion.OnHitWorkers.AddResearch">
+          <chance>0.05</chance>
+          <amount>50</amount>
+        </value>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 5% chance to add 50 research points to the current project</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
 </Defs>

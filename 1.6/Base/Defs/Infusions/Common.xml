@@ -310,4 +310,36 @@
       </li>
     </stats>
   </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="CommonAnyWeaponsBase">
+    <defName>Common_Savant</defName>
+    <label>savant</label>
+    <labelShort>svnt</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <stats>
+      <li>
+        <key>ResearchSpeed</key>
+        <value>
+          <offset>2</offset>
+        </value>
+      </li>
+    </stats>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.IfBioTargetHit">
+        <value Class="Infusion.OnHitWorkers.AddResearch">
+          <chance>0.025</chance>
+          <amount>25</amount>
+        </value>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 2.5% chance to add 25 research points to the current project</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
 </Defs>
