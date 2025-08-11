@@ -28,7 +28,12 @@ namespace Infusion
                     List<ThingComp> list2 = new List<ThingComp> { thingComp };
                     dictionary.Add(compProperties_Shield.compClass, list2.ToArray());
                     thingComp.Initialize(compProperties_Shield);
-                    InfusionMapComp component = apparel.MapHeld.GetComponent<InfusionMapComp>();
+                    Map currentMap = apparel.MapHeld;
+                    if (currentMap == null)
+                    {
+                        return;
+                    }
+                    InfusionMapComp component = currentMap.GetComponent<InfusionMapComp>();
                     component.AddThingToTick(apparel);
                 }
             }

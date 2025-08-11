@@ -49,7 +49,7 @@ namespace Infusion
                 foreach (Apparel item2 in item?.apparel?.WornApparel)
                 {
                     CompInfusion compInfusion = item2.TryGetComp<CompInfusion>();
-                    if (compInfusion != null && compInfusion.ContainsTag(InfusionTags.AEGIS))
+                    if (compInfusion != null && compInfusion.ContainsTag(InfusionTags.AEGIS) && !compsToTick.Contains(item2))
                     {
                         compsToTick.Add(item2);
                     }
@@ -84,7 +84,7 @@ namespace Infusion
             List<TemporaryAlly> temporaryAlliesToRemove = new List<TemporaryAlly>();
             foreach (TemporaryAlly item in temporaryAlliesToRemove)
             {
-                if (item.pawn.Destroyed || item.source.Destroyed)
+                if (item.pawn.DestroyedOrNull() || item.source.DestroyedOrNull())
                 {
                     temporaryAlliesToRemove.Add(item);
                 }

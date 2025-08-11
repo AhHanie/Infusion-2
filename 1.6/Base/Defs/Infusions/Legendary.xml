@@ -825,7 +825,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 1% chance to convert target into a golden sculpture</li>
+      <li>Impact: 1% chance to convert target into a golden sculpture. Does not work on colonists.</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -873,7 +873,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 2% chance to convert target into a chicken</li>
+      <li>Impact: 2% chance to convert target into a chicken. Does not work on colonists.</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -921,7 +921,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 2% chance to convert target into a monkey</li>
+      <li>Impact: 2% chance to convert target into a monkey. Does not work on colonists.</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
