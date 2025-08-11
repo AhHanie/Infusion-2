@@ -255,6 +255,15 @@
     </stats>
   </Infusion.InfusionDef>
 
+  <Infusion.InfusionDef Abstract="True" Name="UncommonWeaponsBase" ParentName="UncommonAnyWeaponsBase">
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+    </matches>
+  </Infusion.InfusionDef>
+
   <!-- melee -->
   <Infusion.InfusionDef Abstract="True" Name="UncommonMeleeBase" ParentName="UncommonAnyWeaponsBase">
     <matches>
@@ -504,7 +513,7 @@
     </stats>
   </Infusion.InfusionDef>
 
-  <Infusion.InfusionDef ParentName="UncommonAnyWeaponsBase">
+  <Infusion.InfusionDef ParentName="UncommonWeaponsBase">
     <defName>Uncommon_Quickfire</defName>
     <label>quick fire</label>
     <labelShort>qckfr</labelShort>
