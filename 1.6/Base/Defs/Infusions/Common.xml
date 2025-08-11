@@ -168,6 +168,15 @@
     </stats>
   </Infusion.InfusionDef>
 
+  <Infusion.InfusionDef Abstract="True" Name="CommonWeaponsBase" ParentName="CommonAnyWeaponsBase">
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+    </matches>
+  </Infusion.InfusionDef>
+
   <!-- melee -->
   <Infusion.InfusionDef Abstract="True" Name="CommonMeleeBase" ParentName="CommonAnyWeaponsBase">
     <matches>
@@ -311,7 +320,7 @@
     </stats>
   </Infusion.InfusionDef>
 
-  <Infusion.InfusionDef ParentName="CommonAnyWeaponsBase">
+  <Infusion.InfusionDef ParentName="CommonWeaponsBase">
     <defName>Common_Savant</defName>
     <label>savant</label>
     <labelShort>svnt</labelShort>
@@ -334,12 +343,12 @@
       <li Class="Infusion.OnHitWorkers.IfBioTargetHit">
         <value Class="Infusion.OnHitWorkers.AddResearch">
           <chance>0.025</chance>
-          <amount>25</amount>
+          <amount>10</amount>
         </value>
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 2.5% chance to add 25 research points to the current project</li>
+      <li>Impact: 2.5% chance to add 10 research points to the current project</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 </Defs>

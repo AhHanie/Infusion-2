@@ -602,7 +602,7 @@
   </Infusion.InfusionDef>
 
 
-  <Infusion.InfusionDef ParentName="UncommonAnyWeaponsBase">
+  <Infusion.InfusionDef ParentName="UncommonWeaponsBase">
     <defName>Uncommon_Savant</defName>
     <label>savant</label>
     <labelShort>svnt</labelShort>
@@ -625,12 +625,12 @@
       <li Class="Infusion.OnHitWorkers.IfBioTargetHit">
         <value Class="Infusion.OnHitWorkers.AddResearch">
           <chance>0.05</chance>
-          <amount>50</amount>
+          <amount>20</amount>
         </value>
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 5% chance to add 50 research points to the current project</li>
+      <li>Impact: 5% chance to add 20 research points to the current project</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 </Defs>

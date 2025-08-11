@@ -83,6 +83,8 @@
     <Compile Include="HarmonyPatcher.cs" />
     <Compile Include="HashEqualDef.cs" />
     <Compile Include="Infuser.cs" />
+    <Compile Include="Conditions\AnomalyStudyEnabled.cs" />
+    <Compile Include="InfusionConditon.cs" />
     <Compile Include="InfusionDef.cs" />
     <Compile Include="Comps\InfusionMapComp.cs" />
     <Compile Include="InfusionTags.cs" />
@@ -101,6 +103,7 @@
     <Compile Include="Mod.cs" />
     <Compile Include="ModSettingsWindow.cs" />
     <Compile Include="OnHitWorker.cs" />
+    <Compile Include="OnHitWorkers\AddResearch.cs" />
     <Compile Include="OnHitWorkers\ApplyDamage.cs" />
     <Compile Include="OnHitWorkers\ApplyHediff.cs" />
     <Compile Include="OnHitWorkers\AudioUnlock.cs" />

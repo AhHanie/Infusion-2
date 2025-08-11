@@ -36,6 +36,8 @@ namespace Infusion
 
         public TierDef tier = TierDef.Empty;
 
+        public List<InfusionConditon> conditions = null;
+
         public InfusionDef()
         {
             disabled = false;
@@ -49,6 +51,7 @@ namespace Infusion
             tier = TierDef.Empty;
             tags = new List<string>();
             keyedFloats = new Dictionary<string, float>();
+            conditions = new List<InfusionConditon>();
         }
 
         public string LabelShort
@@ -128,7 +131,7 @@ namespace Infusion
 
         public static bool ActiveForUse(InfusionDef infDef)
         {
-            return !infDef.disabled && infDef.migration == null && !Settings.infusionDefsDisabledMap.ContainsKey(infDef);
+            return !infDef.disabled && infDef.migration == null && !Settings.infusionDefsDisabledMap.ContainsKey(infDef) && infDef.conditions.All(condition => condition.Check(infDef));
         }
 
         public static string MakeRequirementString(InfusionDef infDef)

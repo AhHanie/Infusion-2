@@ -991,6 +991,37 @@
       <li>soothing</li>
     </tags>
   </Infusion.InfusionDef>
-  <!-- #endregion -->
 
+  <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
+    <defName>Legendary_Savant</defName>
+    <label>savant</label>
+    <labelShort>svnt</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <stats>
+      <li>
+        <key>ResearchSpeed</key>
+        <value>
+          <offset>8</offset>
+        </value>
+      </li>
+    </stats>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.IfBioTargetHit">
+        <value Class="Infusion.OnHitWorkers.AddResearch">
+          <chance>0.1</chance>
+          <amount>40</amount>
+        </value>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 10% chance to add 40 research points to the current project</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+  <!-- #endregion -->
 </Defs>
