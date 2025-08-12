@@ -14,6 +14,10 @@ namespace Infusion.Harmonize
         [HarmonyPatch(typeof(Gizmo_EnergyShieldStatus), "GizmoOnGUI")]
         public static class GizmoOnGUI
         {
+            public static bool Prepare(MethodBase original)
+            {
+                return !Compat.ToggleableShields.Enabled;
+            }
             public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
             {
                 List<CodeInstruction> instructionsList = instructions.ToList();
