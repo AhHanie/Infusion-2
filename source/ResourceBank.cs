@@ -9,6 +9,7 @@ namespace Infusion
     public static class ResourceBank
     {
         public static List<InfusionDef> allInfusionDefs = DefDatabase<InfusionDef>.AllDefs.ToList();
+        [StaticConstructorOnStartup]
         public static class Textures
         {
             private static readonly Texture2D flame = ContentFinder<Texture2D>.Get("Things/Special/Fire/FireA");
