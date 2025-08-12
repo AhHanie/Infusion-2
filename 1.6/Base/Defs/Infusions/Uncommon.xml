@@ -426,6 +426,25 @@
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="UncommonRangedBase">
+    <defName>Uncommon_Foulblight</defName>
+    <label>foulblight</label>
+    <labelShort>foul</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.SpawnGas">
+        <chance>1</chance>
+        <amount>10</amount>
+        <gas>RotStink</gas>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 5% chance to spawn Rot stink gas.</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="UncommonRangedBase">
     <defName>Blunt</defName>
     <label>blunt</label>
     <labelShort>blunt</labelShort>

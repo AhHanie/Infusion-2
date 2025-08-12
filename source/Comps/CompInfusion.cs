@@ -421,7 +421,7 @@ namespace Infusion
 
         public override void DrawGUIOverlay()
         {
-            if (Find.CameraDriver.CurrentZoom <= CameraZoomRange.Close && BestInfusion != null)
+            if (Find.CameraDriver.CurrentZoom == CameraZoomRange.Closest && BestInfusion != null)
             {
                 var pos = Find.CameraDriver.CurrentZoom > CameraZoomRange.Closest
                     || parent.def.defName.StartsWith("Infusion_")

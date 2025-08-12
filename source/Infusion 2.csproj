@@ -128,6 +128,7 @@
     <Compile Include="OnHitWorkers\SpawnAlly.cs" />
     <Compile Include="OnHitWorkers\SpawnBlood.cs" />
     <Compile Include="OnHitWorkers\SpawnFilth.cs" />
+    <Compile Include="OnHitWorkers\SpawnGas.cs" />
     <Compile Include="OnHitWorkers\SpawnLightning.cs" />
     <Compile Include="OnHitWorkers\ThrowFleck.cs" />
     <Compile Include="Harmonize\PlayNearestLifestageSound.cs" />
