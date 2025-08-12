@@ -625,12 +625,12 @@
       <li Class="Infusion.OnHitWorkers.IfBioTargetHit">
         <value Class="Infusion.OnHitWorkers.AddResearch">
           <chance>0.05</chance>
-          <amount>20</amount>
+          <amount>10</amount>
         </value>
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 5% chance to add 20 research points to the current project</li>
+      <li>Impact: 5% chance to add 10 research points to the current project</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 </Defs>
