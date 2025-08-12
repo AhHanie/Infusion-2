@@ -550,12 +550,14 @@
       </li>
     </stats>
     <onHits>
-      <li Class="Infusion.OnHitWorkers.ApplyHediff">
-        <def>ToxicBuildup</def>
-        <amount>0.05</amount>
-        <severityScaleBy>ToxicResistance</severityScaleBy>
-        <inverseStatScaling>true</inverseStatScaling>
-        <onMeleeCast>false</onMeleeCast>
+      <li Class="Infusion.OnHitWorkers.IfBioTargetHit">
+        <value Class="Infusion.OnHitWorkers.ApplyHediff">
+          <def>ToxicBuildup</def>
+          <amount>0.05</amount>
+          <severityScaleBy>ToxicResistance</severityScaleBy>
+          <inverseStatScaling>true</inverseStatScaling>
+          <onMeleeCast>false</onMeleeCast>
+        </value>
       </li>
     </onHits>
     <extraDescriptions>
