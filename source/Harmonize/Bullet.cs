@@ -47,7 +47,7 @@ namespace Infusion.Harmonize
 
         public static void Postfix(Thing hitThing, Bullet __instance, BulletImpactPatchState __state)
         {
-            if (!__state.canRunOnHitWorkers)
+            if (__state == null || !__state.canRunOnHitWorkers)
             {
                 return;
             }
