@@ -55,6 +55,11 @@ namespace Infusion
     {
         public static bool IsAliveAndWell(Thing thing)
         {
+            if (thing == null)
+            {
+                return false;
+            }
+
             if (thing.Destroyed)
             {
                 return false;
