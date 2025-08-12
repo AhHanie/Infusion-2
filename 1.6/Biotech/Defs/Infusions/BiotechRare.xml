@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Defs>
+    <Infusion.InfusionDef ParentName="RareRangedBase">
+        <defName>Rare_Toxigen</defName>
+        <label>toxigen</label>
+        <labelShort>tox</labelShort>
+        <matches>
+            <li Class="Infusion.Matchers.ProjectileBullet" />
+        </matches>
+        <onHits>
+            <li Class="Infusion.OnHitWorkers.SpawnGas">
+                <chance>0.1</chance>
+                <amount>150</amount>
+                <gas>ToxGas</gas>
+            </li>
+        </onHits>
+        <extraDescriptions>
+            <li>Impact: 10% chance to spawn tox gas.</li>
+        </extraDescriptions>
+    </Infusion.InfusionDef>
+</Defs>

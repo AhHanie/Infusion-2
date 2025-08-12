@@ -613,6 +613,25 @@
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="RareRangedBase">
+    <defName>Rare_Foulblight</defName>
+    <label>foulblight</label>
+    <labelShort>foul</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.SpawnGas">
+        <chance>0.1</chance>
+        <amount>150</amount>
+        <gas>RotStink</gas>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 10% chance to spawn Rot stink gas.</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="RareRangedBase">
     <defName>Concussive</defName>
     <label>concussive</label>
     <labelShort>conc</labelShort>

@@ -569,6 +569,25 @@
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryRangedBase">
+    <defName>Legendary_Foulblight</defName>
+    <label>foulblight</label>
+    <labelShort>foul</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.SpawnGas">
+        <chance>0.15</chance>
+        <amount>150</amount>
+        <gas>RotStink</gas>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 15% chance to spawn Rot stink gas.</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="LegendaryRangedBase">
     <defName>Homing</defName>
     <label>homing</label>
     <labelShort>hom</labelShort>

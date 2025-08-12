@@ -434,8 +434,8 @@
     </matches>
     <onHits>
       <li Class="Infusion.OnHitWorkers.SpawnGas">
-        <chance>1</chance>
-        <amount>10</amount>
+        <chance>0.05</chance>
+        <amount>150</amount>
         <gas>RotStink</gas>
       </li>
     </onHits>
