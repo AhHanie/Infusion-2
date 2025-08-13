@@ -84,7 +84,7 @@
       <good>-5</good>
       <excellent>-4</excellent>
       <masterwork>-0.3</masterwork>
-      <legendary>0</legendary>
+      <legendary>1.5</legendary>
     </weights>
     <chances>
       <normal>0.01</normal>
