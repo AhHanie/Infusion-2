@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
   <!-- settings -->
+  <Infusion.Settings.Label.RestartGameInfo>Always restart the game after changing any settings</Infusion.Settings.Label.RestartGameInfo>
   <Infusion.Settings.AccuracyOvercapping>Enable accuracy overcapping</Infusion.Settings.AccuracyOvercapping>
   <Infusion.Settings.AccuracyOvercapping.Description>Ranged weapon accuracy can go over 100%, with diminishing returns.</Infusion.Settings.AccuracyOvercapping.Description>
 
@@ -8,6 +9,9 @@
   <Infusion.Settings.BiocodeBonus.Description>Treat biocoded equipments as two quality higher when giving infusing.
     
 For example, normal quality biocoded items will get infusions for excellent quality equipments.</Infusion.Settings.BiocodeBonus.Description>
+
+  <Infusion.Settings.InfusionsFromCrafting>Infusions From Crafting</Infusion.Settings.InfusionsFromCrafting>
+  <Infusion.Settings.InfusionsFromCrafting.Description>Crafted equipment will be infused</Infusion.Settings.InfusionsFromCrafting.Description>
 
   <Infusion.Settings.ExtractionChanceFactor>Extraction success chance factor</Infusion.Settings.ExtractionChanceFactor>
   <Infusion.Settings.ExtractionChanceFactor.Description>Multiplies success chance of infusion extraction. Possible values are 0.0 ~ 100.0. Default is 1.0.</Infusion.Settings.ExtractionChanceFactor.Description>

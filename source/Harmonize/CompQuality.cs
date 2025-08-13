@@ -12,6 +12,10 @@ namespace Infusion.Harmonize
             public static void Postfix(CompQuality __instance)
             {
                 var compInfusion = __instance.parent.TryGetComp<CompInfusion>();
+                if (compInfusion == null || (!Settings.infusionsFromCrafting.Value && StaticFlags.IsFinalizingBillProduct))
+                {
+                    return;
+                }
                 if (compInfusion != null)
                 {
                     compInfusion.Quality = __instance.Quality;

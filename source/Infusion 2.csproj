@@ -73,6 +73,7 @@
     <Compile Include="Extractor.cs" />
     <Compile Include="Harmonize\Bullet.cs" />
     <Compile Include="Harmonize\CompQuality.cs" />
+    <Compile Include="Harmonize\GenRecipe.cs" />
     <Compile Include="Harmonize\MemoryUtility.cs" />
     <Compile Include="Harmonize\PawnGenerator.cs" />
     <Compile Include="Harmonize\Pawn_EquipmentTracker.cs" />
@@ -139,6 +140,7 @@
     <Compile Include="SmartInfusionHelper.cs" />
     <Compile Include="SpawnPawn.cs" />
     <Compile Include="SpecialThingFilterWorkers\Everything.cs" />
+    <Compile Include="StaticFlags.cs" />
     <Compile Include="StatMod.cs" />
     <Compile Include="StatPart.cs" />
     <Compile Include="StockGenerator.cs" />
