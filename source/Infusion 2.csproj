@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="15.0"
+  xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -75,6 +76,7 @@
     <Compile Include="Harmonize\CompQuality.cs" />
     <Compile Include="Harmonize\CompShield.cs" />
     <Compile Include="Harmonize\Gizmo_EnergyShieldStatus.cs" />
+    <Compile Include="Harmonize\GenRecipe.cs" />
     <Compile Include="Harmonize\MemoryUtility.cs" />
     <Compile Include="Harmonize\PawnGenerator.cs" />
     <Compile Include="Harmonize\Pawn_ApparelTracker.cs" />
@@ -144,6 +146,7 @@
     <Compile Include="SmartInfusionHelper.cs" />
     <Compile Include="SpawnPawn.cs" />
     <Compile Include="SpecialThingFilterWorkers\Everything.cs" />
+    <Compile Include="StaticFlags.cs" />
     <Compile Include="StatMod.cs" />
     <Compile Include="StatPart.cs" />
     <Compile Include="StockGenerator.cs" />

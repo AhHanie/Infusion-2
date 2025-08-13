@@ -41,6 +41,8 @@ namespace Infusion
         public static StrongBox<string> infusionSettingsLabelRef = new StrongBox<string>("Infusion.Settings.Infusions.Title".Translate());
         public static StrongBox<string> infusionDefsControlLabelRef = new StrongBox<string>("Infusion.Settings.Infusions.Defs.Title".Translate());
         public static StrongBox<string> infuseUniqueWeaponsLabelRef = new StrongBox<string>("Infusion.Settings.InfuseUniqueWeapons".Translate());
+        public static StrongBox<string> infusionsFromCraftingLabelRef = new StrongBox<string>("Infusion.Settings.InfusionsFromCrafting".Translate());
+        public static StrongBox<string> restartGameInfoLabelRef = new StrongBox<string>("Infusion.Settings.Label.RestartGameInfo".Translate());
         public static StrongBox<Vector2> scrollPosition = new StrongBox<Vector2>(Vector2.zero);
         public static StrongBox<InfusionDef> selectedInfusionDef = new StrongBox<InfusionDef>(ResourceBank.allInfusionDefs.First());
         public static StrongBox<bool> infusionDefsEnableDisableButtonClicked = new StrongBox<bool>(false);
@@ -51,7 +53,7 @@ namespace Infusion
             stack.WidthMode = SizeMode.Fill;
             stack.VerticalSpacing = 5f;
 
-            int gridRows = 13;
+            int gridRows = 15;
             if (ModsConfig.OdysseyActive)
             {
                 gridRows++;
@@ -62,6 +64,12 @@ namespace Infusion
             };
             grid.HeightMode = SizeMode.Content;
             Text.Font = GameFont.Small;
+
+            Label restartGameInfoLabel = new Label(restartGameInfoLabelRef);
+            restartGameInfoLabel.Alignment = Align.MiddleLeft;
+
+            grid.AddChild(restartGameInfoLabel);
+            grid.AddChild(new Empty());
 
             Label generalSettingsTitleLabel = new Label(generalSettingsTitleLabelRef);
             generalSettingsTitleLabel.Alignment = Align.MiddleLeft;
@@ -90,6 +98,17 @@ namespace Infusion
             bonusToBiocodeCheckbox.Alignment = Align.MiddleLeft;
 
             grid.AddChild(bonusToBiocodeCheckbox);
+
+            Label infusionsFromCraftingLabel = new Label(infusionsFromCraftingLabelRef);
+            infusionsFromCraftingLabel.Alignment = Align.MiddleLeft;
+            infusionsFromCraftingLabel.Tooltip = "Infusion.Settings.InfusionsFromCrafting.Description".Translate();
+
+            grid.AddChild(infusionsFromCraftingLabel);
+
+            Checkbox infusionsFromCraftingCheckbox = new Checkbox(Settings.infusionsFromCrafting);
+            infusionsFromCraftingCheckbox.Alignment = Align.MiddleLeft;
+
+            grid.AddChild(infusionsFromCraftingCheckbox);
 
             if (ModsConfig.OdysseyActive)
             {
