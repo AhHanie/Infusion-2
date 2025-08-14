@@ -50,7 +50,7 @@ namespace Infusion
                 if (_allThingsInfusable == null)
                 {
                     List<Func<ThingDef, bool>> validators = new List<Func<ThingDef, bool>> { ApparelOrWeapon, IsMultiUse, HasQualityNoInfusion };
-                    if (ModsConfig.OdysseyActive)
+                    if (ModsConfig.OdysseyActive && !Settings.infuseUniqueWeapons.Value)
                     {
                         validators.Add(IsNotUniqueWeapon);
                     }
