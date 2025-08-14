@@ -601,5 +601,8 @@
     <tags>
       <li>soothing</li>
     </tags>
+    <extraDescriptions>
+      <li>Soothed by the gentle hum of the magical infusion, adds a permnant mood bonus of 1 point.</li>
+    </extraDescriptions>
   </Infusion.InfusionDef>
 </Defs>

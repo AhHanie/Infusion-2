@@ -930,9 +930,18 @@
           <offset>-0.03</offset>
         </value>
       </li>
+      <li>
+        <key>MarketValue</key>
+        <value>
+          <offset>500</offset>
+        </value>
+      </li>
     </stats>
     <tags>
       <li>soothing</li>
     </tags>
+    <extraDescriptions>
+      <li>Soothed by the gentle hum of the magical infusion, adds a permnant mood bonus of 2 points.</li>
+    </extraDescriptions>
   </Infusion.InfusionDef>
 </Defs>
