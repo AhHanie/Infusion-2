@@ -10,7 +10,7 @@
     
 For example, normal quality biocoded items will get infusions for excellent quality equipments.</Infusion.Settings.BiocodeBonus.Description>
 
-  <Infusion.Settings.InfusionsFromCrafting>Infusions From Crafting</Infusion.Settings.InfusionsFromCrafting>
+  <Infusion.Settings.InfusionsFromCrafting>Infusions from crafting</Infusion.Settings.InfusionsFromCrafting>
   <Infusion.Settings.InfusionsFromCrafting.Description>Crafted equipment will be infused</Infusion.Settings.InfusionsFromCrafting.Description>
 
   <Infusion.Settings.ExtractionChanceFactor>Extraction success chance factor</Infusion.Settings.ExtractionChanceFactor>
