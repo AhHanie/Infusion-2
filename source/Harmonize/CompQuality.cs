@@ -21,6 +21,7 @@ namespace Infusion.Harmonize
                     compInfusion.Quality = __instance.Quality;
                     var newInfusions = compInfusion.PickInfusions(__instance.Quality);
                     compInfusion.SetInfusions(newInfusions, false);
+                    compInfusion.TryUpdateMaxHitpoints();
                 }
             }
         }

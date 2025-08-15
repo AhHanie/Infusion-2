@@ -31,6 +31,7 @@ namespace Infusion.Harmonize
                     compInfusion.Biocoder = compBiocodable;
                     compInfusion.SlotCount = compInfusion.CalculateSlotCountFor(quality);
                     compInfusion.SetInfusions(compInfusion.PickInfusions(quality), false);
+                    compInfusion.TryUpdateMaxHitpoints();
                 }
             }
         }

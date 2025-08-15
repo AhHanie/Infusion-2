@@ -10,12 +10,12 @@ namespace Infusion
         public float offset;
         public float multiplier;
 
-        private float Offset
+        public float Offset
         {
             get => offset * Settings.statsGlobalMultiplier.Value;
         }
 
-        private float Multiplier
+        public float Multiplier
         {
             get => multiplier * Settings.statsGlobalMultiplier.Value;
         }
