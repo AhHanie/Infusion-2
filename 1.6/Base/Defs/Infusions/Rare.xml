@@ -40,6 +40,14 @@
     <matches>
       <li Class="Infusion.Matchers.NotUtility" />
     </matches>
+    <stats>
+      <li>
+        <key>MarketValue</key>
+        <value>
+          <offset>500</offset>
+        </value>
+      </li>
+    </stats>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="RareApparelBase">
