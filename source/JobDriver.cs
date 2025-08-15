@@ -160,7 +160,6 @@ namespace Infusion
                 if (targetComp != null && infuser?.Content != null)
                 {
                     targetComp.AddInfusion(infuser.Content);
-
                     // If reusable infusers are enabled, place a new empty infuser
                     if (Settings.reusableInfusers.Value)
                     {

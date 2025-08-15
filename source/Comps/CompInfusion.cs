@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 using Verse;
 
 namespace Infusion
@@ -412,11 +413,6 @@ namespace Infusion
 
             InvalidateCache();
             FinalizeSetMutations();
-
-            if (!respawningAfterLoad)
-            {
-                this.TryUpdateMaxHitpoints();
-            }
         }
 
         public override void DrawGUIOverlay()
@@ -465,14 +461,34 @@ namespace Infusion
 
         public void TryUpdateMaxHitpoints()
         {
-            StatMod mod = GetModForStat(StatDefOf.MaxHitPoints);
-            if (mod == null)
+            List<StatMod> maxHitpointsStatMods = new List<StatMod>();
+            foreach (InfusionDef infusion in infusions)
             {
+                if (infusion.stats.ContainsKey(StatDefOf.MaxHitPoints))
+                {
+                    maxHitpointsStatMods.Add(infusion.stats[StatDefOf.MaxHitPoints]);
+                }
+            }
+
+            if (maxHitpointsStatMods.Count == 0)
+            {
+                if (parent.HitPoints > parent.def.BaseMaxHitPoints)
+                {
+                    parent.HitPoints = parent.def.BaseMaxHitPoints;
+                }
                 return;
             }
+
             int originalMaxHitPoints = parent.MaxHitPoints;
-            int newMaxHitPoints = (int)mod.ApplyTo(originalMaxHitPoints);
-            parent.HitPoints += newMaxHitPoints - originalMaxHitPoints;
+            int newMaxHitPoints = originalMaxHitPoints;
+
+            foreach (StatMod hpMod in maxHitpointsStatMods) 
+            {
+                newMaxHitPoints = (int)hpMod.ApplyTo(newMaxHitPoints);
+            }
+
+             
+           parent.HitPoints = Mathf.Min(parent.HitPoints + newMaxHitPoints - originalMaxHitPoints, newMaxHitPoints);
         }
 
         public override void PostSpawnSetup(bool respawningAfterLoad)
@@ -605,6 +621,7 @@ namespace Infusion
             var newInfusions = new List<InfusionDef> { infDef };
             newInfusions.AddRange(comp.Infusions);
             comp.SetInfusions(newInfusions, false);
+            comp.TryUpdateMaxHitpoints();
         }
 
         public static List<InfusionDef> PickInfusions(this CompInfusion comp, QualityCategory quality)
@@ -636,6 +653,7 @@ namespace Infusion
         {
             var newInfusions = comp.PickInfusions(comp.Quality);
             comp.SetInfusions(newInfusions, false);
+            comp.TryUpdateMaxHitpoints();
         }
 
         public static void RemoveMarkedInfusions(this CompInfusion comp)
@@ -643,12 +661,14 @@ namespace Infusion
             var newInfusions = comp.InfusionsRaw.Except(comp.RemovalSet);
             comp.SetInfusions(newInfusions, false);
             comp.RemovalSet = new HashSet<InfusionDef>();
+            comp.TryUpdateMaxHitpoints();
         }
 
         public static void RemoveInfusion(this CompInfusion comp, InfusionDef def)
         {
             var newInfusions = comp.InfusionsRaw.Where(inf => inf != def);
             comp.SetInfusions(newInfusions, false);
+            comp.TryUpdateMaxHitpoints();
         }
 
         public static (List<OnHitWorker> OnHits, CompInfusion Comp)? ForOnHitWorkers(ThingWithComps thing)
