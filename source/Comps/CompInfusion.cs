@@ -461,34 +461,19 @@ namespace Infusion
 
         public void TryUpdateMaxHitpoints()
         {
-            List<StatMod> maxHitpointsStatMods = new List<StatMod>();
-            foreach (InfusionDef infusion in infusions)
+            int maxHitpoints = parent.MaxHitPoints;
+            int maxHitpointsAfterStatWorker = (int)parent.GetStatValue(StatDefOf.MaxHitPoints);
+            int diff = maxHitpointsAfterStatWorker - maxHitpoints;
+
+            // Only lose hitpoints if hitpoints is larger than the new max
+            if (diff < 0 && parent.HitPoints > maxHitpointsAfterStatWorker)
             {
-                if (infusion.stats.ContainsKey(StatDefOf.MaxHitPoints))
-                {
-                    maxHitpointsStatMods.Add(infusion.stats[StatDefOf.MaxHitPoints]);
-                }
+                parent.HitPoints += diff;
             }
-
-            if (maxHitpointsStatMods.Count == 0)
+            else if(diff > 0 && parent.HitPoints < maxHitpointsAfterStatWorker)
             {
-                if (parent.HitPoints > parent.def.BaseMaxHitPoints)
-                {
-                    parent.HitPoints = parent.def.BaseMaxHitPoints;
-                }
-                return;
+                parent.HitPoints += diff;
             }
-
-            int originalMaxHitPoints = parent.MaxHitPoints;
-            int newMaxHitPoints = originalMaxHitPoints;
-
-            foreach (StatMod hpMod in maxHitpointsStatMods) 
-            {
-                newMaxHitPoints = (int)hpMod.ApplyTo(newMaxHitPoints);
-            }
-
-             
-           parent.HitPoints = Mathf.Min(parent.HitPoints + newMaxHitPoints - originalMaxHitPoints, newMaxHitPoints);
         }
 
         public override void PostSpawnSetup(bool respawningAfterLoad)
