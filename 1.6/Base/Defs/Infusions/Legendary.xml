@@ -577,6 +577,25 @@
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryRangedBase">
+    <defName>Legendary_Foulblight</defName>
+    <label>foulblight</label>
+    <labelShort>foul</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.SpawnGas">
+        <chance>0.15</chance>
+        <amount>150</amount>
+        <gas>RotStink</gas>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 15% chance to spawn Rot stink gas.</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="LegendaryRangedBase">
     <defName>Homing</defName>
     <label>homing</label>
     <labelShort>hom</labelShort>
@@ -1008,6 +1027,91 @@
       <li>Soothed by the gentle hum of the magical infusion, adds a permnant mood bonus of 3 points.</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
-  <!-- #endregion -->
 
+  <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
+    <defName>Legendary_Savant</defName>
+    <label>savant</label>
+    <labelShort>svnt</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <stats>
+      <li>
+        <key>ResearchSpeed</key>
+        <value>
+          <offset>8</offset>
+        </value>
+      </li>
+    </stats>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.IfBioTargetHit">
+        <value Class="Infusion.OnHitWorkers.AddResearch">
+          <chance>0.1</chance>
+          <amount>20</amount>
+        </value>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 10% chance to add 20 research points to the current project</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
+    <defName>Legendary_Venomspite</defName>
+    <label>venomspite</label>
+    <labelShort>vnom</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.IfBioTargetHit">
+        <value Class="Infusion.OnHitWorkers.IfTargetFaction">
+          <factionDef>Insect</factionDef>
+          <value Class="Infusion.OnHitWorkers.ApplyDamage">
+            <amount>0.20</amount>
+            <sameAsOriginal>true</sameAsOriginal>
+          </value>
+        </value>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Deal 20% additional damage against insects.</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
+    <defName>Legendary_Surge</defName>
+    <label>surge</label>
+    <labelShort>srg</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.IfBioTargetHit">
+        <value Class="Infusion.OnHitWorkers.IfTargetFaction">
+          <factionDef>Mechanoid</factionDef>
+          <value Class="Infusion.OnHitWorkers.ApplyDamage">
+            <amount>0.20</amount>
+            <sameAsOriginal>true</sameAsOriginal>
+          </value>
+        </value>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Deal 20% additional damage against mechanoids.</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+  <!-- #endregion -->
 </Defs>

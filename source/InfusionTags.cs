@@ -5,7 +5,8 @@
         None,
         SMART,
         SOOTHING,
-        AEGIS
+        AEGIS,
+        BARRAGE
     }
 
     public class InfusionTagsHelper
@@ -20,6 +21,8 @@
                     return InfusionTags.SOOTHING;
                 case "aegis":
                     return InfusionTags.AEGIS;
+                case "barrage":
+                    return InfusionTags.BARRAGE;
                 default:
                     return InfusionTags.None;
             }
@@ -35,6 +38,8 @@
                     return "soothing";
                 case InfusionTags.AEGIS:
                     return "aegis";
+                case InfusionTags.BARRAGE:
+                    return "barrage";
             }
             return null;
         }

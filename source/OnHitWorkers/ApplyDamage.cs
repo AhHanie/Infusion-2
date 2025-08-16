@@ -8,11 +8,13 @@ namespace Infusion.OnHitWorkers
     {
         public bool onMeleeCast = true;
         public bool onMeleeImpact = true;
+        public bool sameAsOriginal = false;
 
         public ApplyDamage()
         {
             onMeleeCast = true;
             onMeleeImpact = true;
+            sameAsOriginal = false;
         }
 
         public override void AfterAttack(VerbCastedRecord record)
@@ -49,9 +51,10 @@ namespace Infusion.OnHitWorkers
         {
             var amount = record.baseDamage * this.Amount;
             var direction = (record.target.Position - record.verb.caster.Position).ToVector3();
+            DamageDef damageDef = sameAsOriginal ? Harmonize.ThingPatches.TakeDamage.damageTakenDuringBulletImpact.Value.Def : this.def;
 
             var damageInfo = new DamageInfo(
-                this.def,
+                damageDef,
                 Rand.Range(amount * 0.8f, amount * 1.2f),
                 this.MeleeArmorPen(record.verb),
                 -1.0f,
@@ -71,9 +74,10 @@ namespace Infusion.OnHitWorkers
         private DamageInfo CreateRangedDamageInfo(ProjectileRecord record)
         {
             var amount = record.baseDamage * this.Amount;
+            DamageDef damageDef = sameAsOriginal ? Harmonize.ThingPatches.TakeDamage.damageTakenDuringBulletImpact.Value.Def : this.def;
 
             return new DamageInfo(
-                this.def,
+                damageDef,
                 amount,
                 this.RangedArmorPen(record.projectile),
                 record.projectile.ExactRotation.eulerAngles.y,

@@ -59,4 +59,63 @@
 			</li>
 		</stats>
 	</Infusion.InfusionDef>
+
+	<Infusion.InfusionDef ParentName="RareWeaponsBase">
+		<defName>Rare_Umbra</defName>
+		<label>umbra</label>
+		<labelShort>umbr</labelShort>
+		<matches>
+			<li Class="Infusion.Matchers.EquipmentType">
+				<melee>true</melee>
+				<ranged>true</ranged>
+			</li>
+			<li Class="Infusion.Matchers.ProjectileBullet" />
+		</matches>
+		<onHits>
+			<li Class="Infusion.OnHitWorkers.IfBioTargetHit">
+				<value Class="Infusion.OnHitWorkers.AddResearch">
+					<chance>0.025</chance>
+					<amount>1</amount>
+					<anomaly>true</anomaly>
+					<knowledgeCategory>Advanced</knowledgeCategory>
+				</value>
+			</li>
+		</onHits>
+		<extraDescriptions>
+			<li>Impact: 2.5% chance to add 1 advanced research points to the current Anomaly project</li>
+		</extraDescriptions>
+		<conditions>
+			<li Class="Infusion.Conditions.AnomalyStudyEnabled"/>
+		</conditions>
+	</Infusion.InfusionDef>
+
+	<Infusion.InfusionDef ParentName="RareWeaponsBase">
+		<defName>Rare_Warpbreaker</defName>
+		<label>warpbreaker</label>
+		<labelShort>wrpbrk</labelShort>
+		<matches>
+			<li Class="Infusion.Matchers.EquipmentType">
+				<melee>true</melee>
+				<ranged>true</ranged>
+			</li>
+			<li Class="Infusion.Matchers.ProjectileBullet" />
+		</matches>
+		<onHits>
+			<li Class="Infusion.OnHitWorkers.IfBioTargetHit">
+				<value Class="Infusion.OnHitWorkers.IfTargetFaction">
+					<factionDef>Entities</factionDef>
+					<value Class="Infusion.OnHitWorkers.ApplyDamage">
+						<amount>0.15</amount>
+						<sameAsOriginal>true</sameAsOriginal>
+					</value>
+				</value>
+			</li>
+		</onHits>
+		<extraDescriptions>
+			<li>Deal 15% additional damage against anomaly entities.</li>
+		</extraDescriptions>
+		<conditions>
+			<li Class="Infusion.Conditions.AnomalyStudyEnabled"/>
+		</conditions>
+	</Infusion.InfusionDef>
 </Defs>

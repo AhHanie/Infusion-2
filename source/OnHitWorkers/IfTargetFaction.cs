@@ -1,20 +1,23 @@
-﻿using Verse;
+﻿using RimWorld;
+using Verse;
 
 namespace Infusion.OnHitWorkers
 {
-    public class NotColonistHit : OnHitWorker
+    public class IfTargetFaction : OnHitWorker
     {
-        public OnHitWorker value = null;
+        public FactionDef factionDef;
+        public OnHitWorker value;
 
-        public NotColonistHit()
+        public IfTargetFaction()
         {
+            factionDef = null;
             value = null;
         }
 
         public override void BulletHit(ProjectileRecord record)
         {
             Pawn pawn = VerseTools.TryCast<Pawn>(record.target);
-            if (pawn != null && !pawn.IsColonist && CheckChance(value))
+            if (pawn != null && pawn.Faction?.def == factionDef && CheckChance(value))
             {
                 value?.BulletHit(record);
             }
@@ -23,7 +26,7 @@ namespace Infusion.OnHitWorkers
         public override void MeleeHit(VerbRecordData record)
         {
             Pawn pawn = VerseTools.TryCast<Pawn>(record.target);
-            if (pawn != null && !pawn.IsColonist && CheckChance(value))
+            if (pawn != null && pawn.Faction?.def == factionDef && CheckChance(value))
             {
                 value?.MeleeHit(record);
             }

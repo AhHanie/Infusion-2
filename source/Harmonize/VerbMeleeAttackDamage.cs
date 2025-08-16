@@ -10,6 +10,7 @@ namespace Infusion.Harmonize
     {
         public static void Prefix(LocalTargetInfo target, Verb_MeleeAttackDamage __instance)
         {
+            StaticFlags.DuringApplyMeleeDamageToTarget = true;
             ThingWithComps equipmentSource = __instance.EquipmentSource;
             if (equipmentSource == null || equipmentSource.def?.IsMeleeWeapon != true)
             {
@@ -30,6 +31,7 @@ namespace Infusion.Harmonize
 
         public static void Postfix(LocalTargetInfo target, Verb_MeleeAttackDamage __instance, DamageWorker.DamageResult __result)
         {
+            StaticFlags.DuringApplyMeleeDamageToTarget = false;
             ThingWithComps equipmentSource = __instance.EquipmentSource;
             if (equipmentSource == null || equipmentSource.def?.IsMeleeWeapon != true)
             {

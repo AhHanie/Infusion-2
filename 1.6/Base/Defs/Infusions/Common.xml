@@ -168,6 +168,15 @@
     </stats>
   </Infusion.InfusionDef>
 
+  <Infusion.InfusionDef Abstract="True" Name="CommonWeaponsBase" ParentName="CommonAnyWeaponsBase">
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+    </matches>
+  </Infusion.InfusionDef>
+
   <!-- melee -->
   <Infusion.InfusionDef Abstract="True" Name="CommonMeleeBase" ParentName="CommonAnyWeaponsBase">
     <matches>
@@ -309,5 +318,91 @@
         </value>
       </li>
     </stats>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="CommonWeaponsBase">
+    <defName>Common_Savant</defName>
+    <label>savant</label>
+    <labelShort>svnt</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <stats>
+      <li>
+        <key>ResearchSpeed</key>
+        <value>
+          <offset>2</offset>
+        </value>
+      </li>
+    </stats>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.IfBioTargetHit">
+        <value Class="Infusion.OnHitWorkers.AddResearch">
+          <chance>0.025</chance>
+          <amount>5</amount>
+        </value>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 2.5% chance to add 5 research points to the current project</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="CommonWeaponsBase">
+    <defName>Common_Venomspite</defName>
+    <label>venomspite</label>
+    <labelShort>vnom</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.IfBioTargetHit">
+        <value Class="Infusion.OnHitWorkers.IfTargetFaction">
+          <factionDef>Insect</factionDef>
+          <value Class="Infusion.OnHitWorkers.ApplyDamage">
+            <amount>0.05</amount>
+            <sameAsOriginal>true</sameAsOriginal>
+          </value>
+        </value>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Deal 5% additional damage against insects.</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="CommonWeaponsBase">
+    <defName>Common_Surge</defName>
+    <label>surge</label>
+    <labelShort>srg</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.IfBioTargetHit">
+        <value Class="Infusion.OnHitWorkers.IfTargetFaction">
+          <factionDef>Mechanoid</factionDef>
+          <value Class="Infusion.OnHitWorkers.ApplyDamage">
+            <amount>0.05</amount>
+            <sameAsOriginal>true</sameAsOriginal>
+          </value>
+        </value>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Deal 5% additional damage against mechanoids.</li>
+    </extraDescriptions>
   </Infusion.InfusionDef>
 </Defs>

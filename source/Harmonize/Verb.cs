@@ -48,5 +48,26 @@ namespace Infusion.Harmonize
                 }
             }
         }
+
+        [HarmonyPatch(typeof(Verb), "BurstShotCount", MethodType.Getter)]
+        public static class BurstShotCount
+        {
+            public static void Postfix(Verb __instance, ref int __result)
+            {
+                if (__instance.EquipmentSource == null)
+                {
+                    return;
+                }
+
+                CompInfusion comp = __instance.EquipmentSource.TryGetComp<CompInfusion>();
+
+                InfusionDef barrageInfusion = comp.TryGetInfusionDefWithTag(InfusionTags.BARRAGE);
+                if (barrageInfusion == null)
+                {
+                    return;
+                }
+                __result = (int)(__result * barrageInfusion.keyedFloats[KeyedDataHelper.ConvertToString(KeyedData.BARRAGE_BURSTCOUNT_MULTIPLIER)]);
+            }
+        }
     }
 }

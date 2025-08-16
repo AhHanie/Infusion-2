@@ -426,6 +426,25 @@
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="UncommonRangedBase">
+    <defName>Uncommon_Foulblight</defName>
+    <label>foulblight</label>
+    <labelShort>foul</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.SpawnGas">
+        <chance>0.05</chance>
+        <amount>150</amount>
+        <gas>RotStink</gas>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 5% chance to spawn Rot stink gas.</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="UncommonRangedBase">
     <defName>Blunt</defName>
     <label>blunt</label>
     <labelShort>blunt</labelShort>
@@ -603,6 +622,93 @@
     </tags>
     <extraDescriptions>
       <li>Soothed by the gentle hum of the magical infusion, adds a permnant mood bonus of 1 point.</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+
+  <Infusion.InfusionDef ParentName="UncommonWeaponsBase">
+    <defName>Uncommon_Savant</defName>
+    <label>savant</label>
+    <labelShort>svnt</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <stats>
+      <li>
+        <key>ResearchSpeed</key>
+        <value>
+          <offset>4</offset>
+        </value>
+      </li>
+    </stats>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.IfBioTargetHit">
+        <value Class="Infusion.OnHitWorkers.AddResearch">
+          <chance>0.05</chance>
+          <amount>10</amount>
+        </value>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 5% chance to add 10 research points to the current project</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="UncommonWeaponsBase">
+    <defName>Uncommon_Venomspite</defName>
+    <label>venomspite</label>
+    <labelShort>vnom</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.IfBioTargetHit">
+        <value Class="Infusion.OnHitWorkers.IfTargetFaction">
+          <factionDef>Insect</factionDef>
+          <value Class="Infusion.OnHitWorkers.ApplyDamage">
+            <amount>0.1</amount>
+            <sameAsOriginal>true</sameAsOriginal>
+          </value>
+        </value>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Deal 10% additional damage against insects.</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="UncommonWeaponsBase">
+    <defName>Uncommon_Surge</defName>
+    <label>surge</label>
+    <labelShort>srg</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.IfBioTargetHit">
+        <value Class="Infusion.OnHitWorkers.IfTargetFaction">
+          <factionDef>Mechanoid</factionDef>
+          <value Class="Infusion.OnHitWorkers.ApplyDamage">
+            <amount>0.1</amount>
+            <sameAsOriginal>true</sameAsOriginal>
+          </value>
+        </value>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Deal 10% additional damage against mechanoids.</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 </Defs>

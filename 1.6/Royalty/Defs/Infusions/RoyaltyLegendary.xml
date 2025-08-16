@@ -122,4 +122,31 @@
       <li>Attack: 30% chance for psychic focus. Higher damage and burst count inflicts longer effects.</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
+    <defName>Legendary_Crownslayer</defName>
+    <label>crownslayer</label>
+    <labelShort>crwn</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.IfBioTargetHit">
+        <value Class="Infusion.OnHitWorkers.IfTargetFaction">
+          <factionDef>Empire</factionDef>
+          <value Class="Infusion.OnHitWorkers.ApplyDamage">
+            <amount>0.20</amount>
+            <sameAsOriginal>true</sameAsOriginal>
+          </value>
+        </value>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Deal 20% additional damage against the Empire.</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
 </Defs>

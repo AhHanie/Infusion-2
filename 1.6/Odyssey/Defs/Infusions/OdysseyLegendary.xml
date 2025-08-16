@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Defs>
+    <Infusion.InfusionDef ParentName="LegendaryApparelBase">
+        <defName>Legendary_Aqueous</defName>
+        <label>aqueous</label>
+        <labelShort>aqua</labelShort>
+        <stats>
+            <li>
+                <key>FishingSpeed</key>
+                <value>
+                    <offset>0.08</offset>
+                </value>
+            </li>
+            <li>
+                <key>FishingYield</key>
+                <value>
+                    <offset>0.04</offset>
+                </value>
+            </li>
+        </stats>
+    </Infusion.InfusionDef>
+
+    <Infusion.InfusionDef ParentName="LegendaryApparelBase">
+        <defName>Legendary_Stratos</defName>
+        <label>stratos</label>
+        <labelShort>strat</labelShort>
+        <stats>
+            <li>
+                <key>MoveSpeed</key>
+                <value>
+                    <offset>1</offset>
+                </value>
+            </li>
+            <li>
+                <key>VacuumResistance</key>
+                <value>
+                    <offset>0.08</offset>
+                </value>
+            </li>
+        </stats>
+    </Infusion.InfusionDef>
+
+    <Infusion.InfusionDef ParentName="LegendaryRangedBase">
+        <defName>Legendary_Barrage</defName>
+        <label>barrage</label>
+        <labelShort>barg</labelShort>
+        <matches>
+            <li Class="Infusion.Matchers.ProjectileBullet" />
+        </matches>
+        <stats>
+            <li>
+                <key>RangedWeapon_DamageMultiplier</key>
+                <value>
+                    <multiplier>0.05</multiplier>
+                </value>
+            </li>
+        </stats>
+        <extraDescriptions>
+            <li>Causes the weapon to fire a greater number of projectiles in a single burst, increasing its output by 100%.</li>
+        </extraDescriptions>
+        <keyedFloats>
+            <li>
+                <key>BurstCountMultiplier</key>
+                <value>2</value>
+            </li>
+        </keyedFloats>
+        <tags>
+            <li>barrage</li>
+        </tags>
+    </Infusion.InfusionDef>
+</Defs>

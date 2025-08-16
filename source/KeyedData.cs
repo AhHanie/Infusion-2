@@ -2,9 +2,10 @@
 {
     public enum KeyedData
     {
-        SMART_INFUSION_CHANCE = 1,
+        SMART_INFUSION_CHANCE,
         ENERGY_SHIELD_RECHARGE_RATE,
-        ENERGY_SHIELD_MAX_ENERGY
+        ENERGY_SHIELD_MAX_ENERGY,
+        BARRAGE_BURSTCOUNT_MULTIPLIER
     }
 
     public class KeyedDataHelper
@@ -19,6 +20,8 @@
                     return "EnergyShieldRechargeRate";
                 case KeyedData.ENERGY_SHIELD_MAX_ENERGY:
                     return "EnergyShieldEnergyMax";
+                case KeyedData.BARRAGE_BURSTCOUNT_MULTIPLIER:
+                    return "BurstCountMultiplier";
             }
             return null;
         }

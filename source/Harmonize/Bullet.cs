@@ -2,6 +2,7 @@
 using RimWorld;
 using System.Collections.Generic;
 using Verse;
+using static Infusion.Harmonize.ThingPatches;
 
 namespace Infusion.Harmonize
 {
@@ -17,6 +18,7 @@ namespace Infusion.Harmonize
     {
         public static void Prefix(Thing hitThing, Bullet __instance, out BulletImpactPatchState __state)
         {
+            StaticFlags.DuringBulletImpact = true;
             __state = new BulletImpactPatchState();
             __state.map = __instance.Map;
             if (!(__instance.Launcher is Pawn pawn))
@@ -47,6 +49,7 @@ namespace Infusion.Harmonize
 
         public static void Postfix(Thing hitThing, Bullet __instance, BulletImpactPatchState __state)
         {
+            StaticFlags.DuringBulletImpact = false;
             if (__state == null || !__state.canRunOnHitWorkers)
             {
                 return;

@@ -1,27 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Defs>
-    <Infusion.InfusionDef ParentName="UncommonApparelBase">
-        <defName>Uncommon_Tenebrous</defName>
-        <label>tenebrous</label>
-        <labelShort>tenebr</labelShort>
-        <stats>
-            <li>
-                <key>ActivitySuppressionRate</key>
-                <value>
-                    <offset>0.025</offset>
-                </value>
-            </li>
-            <li>
-                <key>EntityStudyRate</key>
-                <value>
-                    <offset>0.05</offset>
-                </value>
-            </li>
-        </stats>
-    </Infusion.InfusionDef>
-
-    <Infusion.InfusionDef ParentName="UncommonWeaponsBase">
-        <defName>Uncommon_Umbra</defName>
+    <Infusion.InfusionDef ParentName="CommonWeaponsBase">
+        <defName>Common_Umbra</defName>
         <label>umbra</label>
         <labelShort>umbr</labelShort>
         <matches>
@@ -34,23 +14,23 @@
         <onHits>
             <li Class="Infusion.OnHitWorkers.IfBioTargetHit">
                 <value Class="Infusion.OnHitWorkers.AddResearch">
-                    <chance>0.05</chance>
-                    <amount>2</amount>
+                    <chance>0.025</chance>
+                    <amount>1</amount>
                     <anomaly>true</anomaly>
                     <knowledgeCategory>Basic</knowledgeCategory>
                 </value>
             </li>
         </onHits>
         <extraDescriptions>
-            <li>Impact: 5% chance to add 2 basic research points to the current Anomaly project</li>
+            <li>Impact: 2.5% chance to add 1 basic research points to the current Anomaly project</li>
         </extraDescriptions>
         <conditions>
             <li Class="Infusion.Conditions.AnomalyStudyEnabled"/>
         </conditions>
     </Infusion.InfusionDef>
 
-    <Infusion.InfusionDef ParentName="UncommonWeaponsBase">
-        <defName>Uncommon_Warpbreaker</defName>
+    <Infusion.InfusionDef ParentName="CommonWeaponsBase">
+        <defName>Common_Warpbreaker</defName>
         <label>warpbreaker</label>
         <labelShort>wrpbrk</labelShort>
         <matches>
@@ -65,14 +45,14 @@
                 <value Class="Infusion.OnHitWorkers.IfTargetFaction">
                     <factionDef>Entities</factionDef>
                     <value Class="Infusion.OnHitWorkers.ApplyDamage">
-                        <amount>0.1</amount>
+                        <amount>0.05</amount>
                         <sameAsOriginal>true</sameAsOriginal>
                     </value>
                 </value>
             </li>
         </onHits>
         <extraDescriptions>
-            <li>Deal 10% additional damage against anomaly entities.</li>
+            <li>Deal 5% additional damage against anomaly entities.</li>
         </extraDescriptions>
         <conditions>
             <li Class="Infusion.Conditions.AnomalyStudyEnabled"/>

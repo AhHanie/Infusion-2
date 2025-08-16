@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Defs>
-    <Infusion.InfusionDef ParentName="RareApparelBase">
-        <defName>Rare_Aqueous</defName>
-        <label>aqueous</label>
-        <labelShort>aqua</labelShort>
+    <Infusion.InfusionDef ParentName="CommonApparelBase">
+        <defName>Common_Stratos</defName>
+        <label>stratos</label>
+        <labelShort>strat</labelShort>
         <stats>
             <li>
-                <key>FishingSpeed</key>
+                <key>MoveSpeed</key>
                 <value>
-                    <offset>0.04</offset>
+                    <offset>0.25</offset>
                 </value>
             </li>
             <li>
-                <key>FishingYield</key>
+                <key>VacuumResistance</key>
                 <value>
                     <offset>0.02</offset>
                 </value>
