@@ -61,6 +61,11 @@ namespace Infusion.Harmonize
 
                 CompInfusion comp = __instance.EquipmentSource.TryGetComp<CompInfusion>();
 
+                if (comp == null)
+                {
+                    return;
+                }
+
                 InfusionDef barrageInfusion = comp.TryGetInfusionDefWithTag(InfusionTags.BARRAGE);
                 if (barrageInfusion == null)
                 {
