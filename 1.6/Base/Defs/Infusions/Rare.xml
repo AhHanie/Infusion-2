@@ -266,6 +266,9 @@
         <value>2</value>
       </li>
     </keyedFloats>
+    <extraDescriptions>
+      <li>Equip: Generates an energy shield around the target similar to a shieldbelt. Blocks the user from using ranged weapons.</li>
+    </extraDescriptions>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="RareApparelBase">

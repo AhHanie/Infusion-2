@@ -34,8 +34,7 @@
     <onHits>
       <li Class="Infusion.OnHitWorkers.Sequence">
         <chance>0.25</chance>
-        <onMeleeImpact>false</onMeleeImpact>
-        <onRangedImpact>false</onRangedImpact>
+        <onRangedCast>false</onRangedCast>
         <value>
           <li Class="Infusion.OnHitWorkers.ApplyHediff">
             <def>PsychicInvisibility</def>
