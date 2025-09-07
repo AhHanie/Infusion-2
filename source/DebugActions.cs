@@ -127,8 +127,9 @@ namespace Infusion
         public static void RemoveAllInfusions()
         {
             var comp = FirstCompAtPointer<CompInfusion>(PointedThings());
+            int maxHitPoints = comp.parent.MaxHitPoints;
             comp?.SetInfusions(Enumerable.Empty<InfusionDef>(), false);
-            comp.TryUpdateMaxHitpoints();
+            comp.TryUpdateMaxHitpoints(maxHitPoints);
         }
 
         [DebugAction("Infusion", "Reroll infusions", actionType = DebugActionType.ToolMap)]

@@ -476,6 +476,22 @@ namespace Infusion
             }
         }
 
+        public void TryUpdateMaxHitpoints(int previousMaxHitPoints)
+        {
+            int maxHitpointsAfterStatWorker = (int)parent.GetStatValue(StatDefOf.MaxHitPoints);
+            int diff = maxHitpointsAfterStatWorker - previousMaxHitPoints;
+
+            // Only lose hitpoints if hitpoints is larger than the new max
+            if (diff < 0 && parent.HitPoints > maxHitpointsAfterStatWorker)
+            {
+                parent.HitPoints += diff;
+            }
+            else if (diff > 0 && parent.HitPoints < maxHitpointsAfterStatWorker)
+            {
+                parent.HitPoints += diff;
+            }
+        }
+
         public override void PostSpawnSetup(bool respawningAfterLoad)
         {
             if (respawningAfterLoad)
@@ -603,10 +619,11 @@ namespace Infusion
     {
         public static void AddInfusion(this CompInfusion comp, InfusionDef infDef)
         {
+            int maxHitPoints = comp.parent.MaxHitPoints;
             var newInfusions = new List<InfusionDef> { infDef };
             newInfusions.AddRange(comp.Infusions);
             comp.SetInfusions(newInfusions, false);
-            comp.TryUpdateMaxHitpoints();
+            comp.TryUpdateMaxHitpoints(maxHitPoints);
         }
 
         public static List<InfusionDef> PickInfusions(this CompInfusion comp, QualityCategory quality)
@@ -636,24 +653,27 @@ namespace Infusion
 
         public static void RerollInfusions(this CompInfusion comp)
         {
+            int maxHitPoints = comp.parent.MaxHitPoints;
             var newInfusions = comp.PickInfusions(comp.Quality);
             comp.SetInfusions(newInfusions, false);
-            comp.TryUpdateMaxHitpoints();
+            comp.TryUpdateMaxHitpoints(maxHitPoints);
         }
 
         public static void RemoveMarkedInfusions(this CompInfusion comp)
         {
+            int maxHitPoints = comp.parent.MaxHitPoints;
             var newInfusions = comp.InfusionsRaw.Except(comp.RemovalSet);
             comp.SetInfusions(newInfusions, false);
             comp.RemovalSet = new HashSet<InfusionDef>();
-            comp.TryUpdateMaxHitpoints();
+            comp.TryUpdateMaxHitpoints(maxHitPoints);
         }
 
         public static void RemoveInfusion(this CompInfusion comp, InfusionDef def)
         {
+            int maxHitPoints = comp.parent.MaxHitPoints;
             var newInfusions = comp.InfusionsRaw.Where(inf => inf != def);
             comp.SetInfusions(newInfusions, false);
-            comp.TryUpdateMaxHitpoints();
+            comp.TryUpdateMaxHitpoints(maxHitPoints);
         }
 
         public static (List<OnHitWorker> OnHits, CompInfusion Comp)? ForOnHitWorkers(ThingWithComps thing)
