@@ -18,7 +18,8 @@
   <loadAfter>
     <li>brrainz.harmony</li>
     <li>frozensnowfox.betterexplorationloot</li>
+    <li>vamv.maruracemod</li>
   </loadAfter>
   <description>Extra equipment randomization for weapons and apparels.</description>
-  <modVersion>1.6.3</modVersion>
+  <modVersion>1.6.4</modVersion>
 </ModMetaData>

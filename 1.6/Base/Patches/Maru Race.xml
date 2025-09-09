@@ -1,0 +1,34 @@
+<Patch>
+    <Operation Class="PatchOperationFindMod">
+        <mods>
+            <li>Maru Race</li>
+        </mods>
+
+        <match Class="PatchOperationSequence">
+            <operations>
+
+                <!-- For items that already have sharedComps, add Infusion.CompInfusion to existing list -->
+                <li Class="PatchOperationAdd">
+                    <xpath>Defs/ThingDef/comps/li[@Class="ItemFormChange_Maru.CompPropertiesFormChange"]/sharedComps</xpath>
+                    <value>
+                        <li>Infusion.CompInfusion</li>
+                    </value>
+                </li>
+
+                <!-- For items that don't have sharedComps, create sharedComps and add Infusion.CompInfusion -->
+                <li Class="PatchOperationConditional">
+                    <xpath>Defs/ThingDef/comps/li[@Class="ItemFormChange_Maru.CompPropertiesFormChange" and not(sharedComps)]</xpath>
+                    <match Class="PatchOperationAdd">
+                        <xpath>Defs/ThingDef/comps/li[@Class="ItemFormChange_Maru.CompPropertiesFormChange" and not(sharedComps)]</xpath>
+                        <value>
+                            <sharedComps>
+                                <li>Infusion.CompInfusion</li>
+                            </sharedComps>
+                        </value>
+                    </match>
+                </li>
+
+            </operations>
+        </match>
+    </Operation>
+</Patch>
