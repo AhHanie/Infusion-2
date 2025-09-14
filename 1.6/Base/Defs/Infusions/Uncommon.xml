@@ -711,4 +711,292 @@
       <li>Deal 10% additional damage against mechanoids.</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="UncommonWeaponsBase">
+    <defName>Uncommon_Lifebinder</defName>
+    <label>lifebinder</label>
+    <labelShort>life</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.GainSkillExp">
+        <amount>10</amount>
+        <chance>0.05</chance>
+        <skill>Medicine</skill>
+        <selfCast>true</selfCast>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 5% chance to gain 10 exp in Medicine</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="UncommonWeaponsBase">
+    <defName>Uncommon_Guiding</defName>
+    <label>guiding</label>
+    <labelShort>guid</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.GainSkillExp">
+        <amount>10</amount>
+        <chance>0.05</chance>
+        <skill>Shooting</skill>
+        <selfCast>true</selfCast>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 5% chance to gain 10 exp in Shooting</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="UncommonWeaponsBase">
+    <defName>Uncommon_Rending</defName>
+    <label>rending</label>
+    <labelShort>rend</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.GainSkillExp">
+        <amount>10</amount>
+        <chance>0.05</chance>
+        <skill>Melee</skill>
+        <selfCast>true</selfCast>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 5% chance to gain 10 exp in Melee</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="UncommonWeaponsBase">
+    <defName>Uncommon_Shaping</defName>
+    <label>shaping</label>
+    <labelShort>shap</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.GainSkillExp">
+        <amount>10</amount>
+        <chance>0.05</chance>
+        <skill>Construction</skill>
+        <selfCast>true</selfCast>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 5% chance to gain 10 exp in Construction</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="UncommonWeaponsBase">
+    <defName>Uncommon_Delving</defName>
+    <label>delving</label>
+    <labelShort>delv</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.GainSkillExp">
+        <amount>10</amount>
+        <chance>0.05</chance>
+        <skill>Mining</skill>
+        <selfCast>true</selfCast>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 5% chance to gain 10 exp in Mining</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="UncommonWeaponsBase">
+    <defName>Uncommon_Wildheart</defName>
+    <label>wildheart</label>
+    <labelShort>wild</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.GainSkillExp">
+        <amount>10</amount>
+        <chance>0.05</chance>
+        <skill>Animals</skill>
+        <selfCast>true</selfCast>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 5% chance to gain 10 exp in Animals</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="UncommonWeaponsBase">
+    <defName>Uncommon_Forging</defName>
+    <label>forging</label>
+    <labelShort>forg</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.GainSkillExp">
+        <amount>10</amount>
+        <chance>0.05</chance>
+        <skill>Crafting</skill>
+        <selfCast>true</selfCast>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 5% chance to gain 10 exp in Crafting</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="UncommonWeaponsBase">
+    <defName>Uncommon_Artifex</defName>
+    <label>artifex</label>
+    <labelShort>artif</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.GainSkillExp">
+        <amount>10</amount>
+        <chance>0.05</chance>
+        <skill>Artistic</skill>
+        <selfCast>true</selfCast>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 5% chance to gain 10 exp in Artistic</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="UncommonWeaponsBase">
+    <defName>Uncommon_Ambassador</defName>
+    <label>ambassador</label>
+    <labelShort>ambas</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.GainSkillExp">
+        <amount>10</amount>
+        <chance>0.05</chance>
+        <skill>Social</skill>
+        <selfCast>true</selfCast>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 5% chance to gain 10 exp in Social</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="UncommonWeaponsBase">
+    <defName>Uncommon_Savoring</defName>
+    <label>savoring</label>
+    <labelShort>savor</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.GainSkillExp">
+        <amount>10</amount>
+        <chance>0.05</chance>
+        <skill>Cooking</skill>
+        <selfCast>true</selfCast>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 5% chance to gain 10 exp in Cooking</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="UncommonWeaponsBase">
+    <defName>Uncommon_Sprouting</defName>
+    <label>sprouting</label>
+    <labelShort>sprt</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.GainSkillExp">
+        <amount>10</amount>
+        <chance>0.05</chance>
+        <skill>Plants</skill>
+        <selfCast>true</selfCast>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 5% chance to gain 10 exp in Plants</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="UncommonWeaponsBase">
+    <defName>Uncommon_Enlightening</defName>
+    <label>enlightening</label>
+    <labelShort>enli</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.GainSkillExp">
+        <amount>10</amount>
+        <chance>0.05</chance>
+        <skill>Intellectual</skill>
+        <selfCast>true</selfCast>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 5% chance to gain 10 exp in Intellectual</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
 </Defs>

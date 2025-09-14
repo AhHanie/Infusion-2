@@ -39,7 +39,8 @@
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="LessUI">
+    <Reference Include="LessUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\LessUI\1.6\Assemblies\LessUI.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -76,11 +77,13 @@
     <Compile Include="Harmonize\GenRecipe.cs" />
     <Compile Include="Harmonize\CompShield.cs" />
     <Compile Include="Harmonize\Gizmo_EnergyShieldStatus.cs" />
+    <Compile Include="Harmonize\InspectPaneUtility.cs" />
     <Compile Include="Harmonize\MemoryUtility.cs" />
     <Compile Include="Harmonize\PawnGenerator.cs" />
     <Compile Include="Harmonize\Pawn_ApparelTracker.cs" />
     <Compile Include="Harmonize\Pawn_EquipmentTracker.cs" />
     <Compile Include="Harmonize\Pawn_HealthTracker.cs" />
+    <Compile Include="Harmonize\PlayDataLoader.cs" />
     <Compile Include="Harmonize\StatWorker.cs" />
     <Compile Include="Harmonize\Thing.cs" />
     <Compile Include="Harmonize\Verb.cs" />
@@ -117,6 +120,7 @@
     <Compile Include="OnHitWorkers\DamageBase.cs" />
     <Compile Include="OnHitWorkers\DamageWeapon.cs" />
     <Compile Include="OnHitWorkers\DestoryTarget.cs" />
+    <Compile Include="OnHitWorkers\GainSkillExp.cs" />
     <Compile Include="OnHitWorkers\Heal.cs" />
     <Compile Include="OnHitWorkers\IfBioTargetHit.cs" />
     <Compile Include="OnHitWorkers\IfTargetFaction.cs" />

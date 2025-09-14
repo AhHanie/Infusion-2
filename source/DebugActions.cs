@@ -129,7 +129,7 @@ namespace Infusion
             var comp = FirstCompAtPointer<CompInfusion>(PointedThings());
             int maxHitPoints = comp.parent.MaxHitPoints;
             comp?.SetInfusions(Enumerable.Empty<InfusionDef>(), false);
-            comp.TryUpdateMaxHitpoints(maxHitPoints);
+            comp?.TryUpdateMaxHitpoints(maxHitPoints);
         }
 
         [DebugAction("Infusion", "Reroll infusions", actionType = DebugActionType.ToolMap)]

@@ -1060,4 +1060,292 @@
       <li>Deal 15% additional damage against mechanoids.</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="RareWeaponsBase">
+    <defName>Rare_Lifebinder</defName>
+    <label>lifebinder</label>
+    <labelShort>life</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.GainSkillExp">
+        <amount>15</amount>
+        <chance>0.075</chance>
+        <skill>Medicine</skill>
+        <selfCast>true</selfCast>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 7.5% chance to gain 15 exp in Medicine</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="RareWeaponsBase">
+    <defName>Rare_Guiding</defName>
+    <label>guiding</label>
+    <labelShort>guid</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.GainSkillExp">
+        <amount>15</amount>
+        <chance>0.075</chance>
+        <skill>Shooting</skill>
+        <selfCast>true</selfCast>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 7.5% chance to gain 15 exp in Shooting</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="RareWeaponsBase">
+    <defName>Rare_Rending</defName>
+    <label>rending</label>
+    <labelShort>rend</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.GainSkillExp">
+        <amount>15</amount>
+        <chance>0.075</chance>
+        <skill>Melee</skill>
+        <selfCast>true</selfCast>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 7.5% chance to gain 15 exp in Melee</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="RareWeaponsBase">
+    <defName>Rare_Shaping</defName>
+    <label>shaping</label>
+    <labelShort>shap</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.GainSkillExp">
+        <amount>15</amount>
+        <chance>0.075</chance>
+        <skill>Construction</skill>
+        <selfCast>true</selfCast>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 7.5% chance to gain 15 exp in Construction</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="RareWeaponsBase">
+    <defName>Rare_Delving</defName>
+    <label>delving</label>
+    <labelShort>delv</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.GainSkillExp">
+        <amount>15</amount>
+        <chance>0.075</chance>
+        <skill>Mining</skill>
+        <selfCast>true</selfCast>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 7.5% chance to gain 15 exp in Mining</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="RareWeaponsBase">
+    <defName>Rare_Wildheart</defName>
+    <label>wildheart</label>
+    <labelShort>wild</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.GainSkillExp">
+        <amount>15</amount>
+        <chance>0.075</chance>
+        <skill>Animals</skill>
+        <selfCast>true</selfCast>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 7.5% chance to gain 15 exp in Animals</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="RareWeaponsBase">
+    <defName>Rare_Forging</defName>
+    <label>forging</label>
+    <labelShort>forg</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.GainSkillExp">
+        <amount>15</amount>
+        <chance>0.075</chance>
+        <skill>Crafting</skill>
+        <selfCast>true</selfCast>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 7.5% chance to gain 15 exp in Crafting</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="RareWeaponsBase">
+    <defName>Rare_Artifex</defName>
+    <label>artifex</label>
+    <labelShort>artif</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.GainSkillExp">
+        <amount>15</amount>
+        <chance>0.075</chance>
+        <skill>Artistic</skill>
+        <selfCast>true</selfCast>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 7.5% chance to gain 15 exp in Artistic</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="RareWeaponsBase">
+    <defName>Rare_Ambassador</defName>
+    <label>ambassador</label>
+    <labelShort>ambas</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.GainSkillExp">
+        <amount>15</amount>
+        <chance>0.075</chance>
+        <skill>Social</skill>
+        <selfCast>true</selfCast>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 7.5% chance to gain 15 exp in Social</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="RareWeaponsBase">
+    <defName>Rare_Savoring</defName>
+    <label>savoring</label>
+    <labelShort>savor</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.GainSkillExp">
+        <amount>15</amount>
+        <chance>0.075</chance>
+        <skill>Cooking</skill>
+        <selfCast>true</selfCast>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 7.5% chance to gain 15 exp in Cooking</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="RareWeaponsBase">
+    <defName>Rare_Sprouting</defName>
+    <label>sprouting</label>
+    <labelShort>sprt</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.GainSkillExp">
+        <amount>15</amount>
+        <chance>0.075</chance>
+        <skill>Plants</skill>
+        <selfCast>true</selfCast>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 7.5% chance to gain 15 exp in Plants</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="RareWeaponsBase">
+    <defName>Rare_Enlightening</defName>
+    <label>enlightening</label>
+    <labelShort>enli</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.EquipmentType">
+        <melee>true</melee>
+        <ranged>true</ranged>
+      </li>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.GainSkillExp">
+        <amount>15</amount>
+        <chance>0.075</chance>
+        <skill>Intellectual</skill>
+        <selfCast>true</selfCast>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Impact: 7.5% chance to gain 15 exp in Intellectual</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
 </Defs>

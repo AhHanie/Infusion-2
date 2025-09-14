@@ -445,7 +445,9 @@ namespace Infusion
                 : "Infusion.Label.Suffixed";
 
             var infusionLabel = MakeBestInfusionLabel(BestInfusionLabelLength.Long);
-            var sb = new StringBuilder(translationKey.Translate(infusionLabel, baseLabel));
+            var translatedLabel = translationKey.Translate(infusionLabel, baseLabel);
+            var colorizedInfusionLabel = infusionLabel.Colorize(BestInfusion.tier.color);
+            var sb = new StringBuilder(translatedLabel);
 
             // Check if this is an infuser
             var isInfuser = parent.def.tradeTags?.Contains("Infusion_Infuser") == true;
@@ -456,7 +458,7 @@ namespace Infusion
             }
 
             sb.Append(GenLabel.LabelExtras(parent, true, true));
-            return sb.ToString();
+            return sb.ToString().Replace(infusionLabel, colorizedInfusionLabel);
         }
 
         public void TryUpdateMaxHitpoints()
