@@ -62,6 +62,8 @@ Applied after the body part limit, i.e. an apparel which protects arms and torso
 
   <Infusion.Settings.Infusions.Slots.Title>Infusion Slots per Quality</Infusion.Settings.Infusions.Slots.Title>
   <Infusion.Settings.Tiers.Title>Enable/Disable Tiers</Infusion.Settings.Tiers.Title>
+  <Infusion.Settings.Tiers.Color.Title>Edit Tier Color</Infusion.Settings.Tiers.Color.Title>
+  <Infusion.Settings.Tiers.SaveColorButton.Label>Save Color</Infusion.Settings.Tiers.SaveColorButton.Label>
   <Infusion.Settings.General.Title>General Settings</Infusion.Settings.General.Title>
   <Infusion.Settings.Infusions.Title>Infusions Settings</Infusion.Settings.Infusions.Title>
 
@@ -77,4 +79,8 @@ Applied after the body part limit, i.e. an apparel which protects arms and torso
   <Infusion.Settings.StatsGlobalMultiplier.Description>A global multiplier that affects all infusions' stats bonuses. 2x = twice the stats, 0.5x = half the stats.</Infusion.Settings.StatsGlobalMultiplier.Description>
   <Infusion.Settings.ChanceGlobalMultiplier.Description>A global multiplier that affects all the chance for special on hit effects to proc such as explosions or flames. 2x = more procs, 0.5x = less procs</Infusion.Settings.ChanceGlobalMultiplier.Description>
   <Infusion.Settings.AmountGlobalMultiplier.Description>A global multiplier that affects all the magnitude of special on hit effects such as explosions or flames. 2x = more power, 0.5x = less power</Infusion.Settings.AmountGlobalMultiplier.Description>
+
+  <Infusion.Settings.Tiers.ColorResetMessage>{0} color was reset to default</Infusion.Settings.Tiers.ColorResetMessage>
+  <Infusion.Settings.Tiers.ColorAlreadyDefaultMessage>{0} is already using the default color</Infusion.Settings.Tiers.ColorAlreadyDefaultMessage>
+  <Infusion.Settings.Tiers.ColorSavedMessage>{0} color was saved</Infusion.Settings.Tiers.ColorSavedMessage>
 </LanguageData>

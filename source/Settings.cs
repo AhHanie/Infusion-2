@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Verse;
+using UnityEngine;
 
 namespace Infusion
 {
@@ -31,6 +32,7 @@ namespace Infusion
         public static StrongBox<bool> uncommonTierEnabled = new StrongBox<bool>(true);
         public static StrongBox<bool> rareTierEnabled = new StrongBox<bool>(true);
         public static StrongBox<bool> legendaryTierEnabled = new StrongBox<bool>(true);
+        public static Dictionary<TierDef, Color> tierColorOverride = new Dictionary<TierDef, Color>();
         public static StrongBox<bool> infuseUniqueWeapons = new StrongBox<bool>(false);
         public static StrongBox<bool> infusionsFromCrafting = new StrongBox<bool>(true);
         public static Dictionary<InfusionDef, StrongBox<bool>> infusionDefsDisabledMap = new Dictionary<InfusionDef, StrongBox<bool>>();
@@ -65,6 +67,7 @@ namespace Infusion
             Scribe_Values.Look(ref amountGlobalMultiplier.Value, "amountGlobalMultiplier", 1.0f);
             Scribe_Values.Look(ref infuseUniqueWeapons.Value, "infuseUniqueWeapons", false);
             Scribe_Values.Look(ref infusionsFromCrafting.Value, "infusionsFromCrafting", true);
+            Scribe_Collections.Look(ref tierColorOverride, "tierColorOverride");
 
             if (Scribe.mode == LoadSaveMode.Saving)
             {
@@ -85,6 +88,11 @@ namespace Infusion
                     {
                         infusionDefsDisabledMap.Add(pair.key, new StrongBox<bool>(pair.value));
                     }
+                }
+
+                if (tierColorOverride == null)
+                {
+                    tierColorOverride = new Dictionary<TierDef, Color>();
                 }
             }
         }

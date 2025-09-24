@@ -1,11 +1,7 @@
 ﻿using LessUI;
 using RimWorld;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 
@@ -13,367 +9,210 @@ namespace Infusion
 {
     public class ModSettingsWindow
     {
-        public static StrongBox<string> accuracyOvercappingLabelRef = new StrongBox<string>("Infusion.Settings.AccuracyOvercapping".Translate());
-        public static StrongBox<string> bonusToBiocodeLabelRef = new StrongBox<string>("Infusion.Settings.BiocodeBonus".Translate());
-        public static StrongBox<string> extractionSuccessFactorLabelRef = new StrongBox<string>("Infusion.Settings.ExtractionChanceFactor".Translate());
-        public static StrongBox<string> reusableInfusersLabelRef = new StrongBox<string>("Infusion.Settings.ReusableInfusers".Translate());
-        public static StrongBox<string> infusionChanceLabelRef = new StrongBox<string>("Infusion.Settings.ChanceFactor".Translate());
-        public static StrongBox<string> muLabelRef = new StrongBox<string>("Infusion.Settings.Mu".Translate());
-        public static StrongBox<string> sigmaLabelRef = new StrongBox<string>("Infusion.Settings.Sigma".Translate());
-        public static StrongBox<string> bodyPartLimitLabelRef = new StrongBox<string>("Infusion.Settings.BodyPartLimit".Translate());
-        public static StrongBox<string> morePerLayerLabelRef = new StrongBox<string>("Infusion.Settings.LayerBonuses".Translate());
-        public static StrongBox<string> awfulLabelRef = new StrongBox<string>("Awful");
-        public static StrongBox<string> poorLabelRef = new StrongBox<string>("Poor");
-        public static StrongBox<string> normalLabelRef = new StrongBox<string>("Normal");
-        public static StrongBox<string> goodLabelRef = new StrongBox<string>("Good");
-        public static StrongBox<string> excellentLabelRef = new StrongBox<string>("Excellent");
-        public static StrongBox<string> masterworkLabelRef = new StrongBox<string>("Masterwork");
-        public static StrongBox<string> legendaryLabelRef = new StrongBox<string>("Legendary");
-        public static StrongBox<string> infusionSlotsSettingsLabelRef = new StrongBox<string>("Infusion.Settings.Infusions.Slots.Title".Translate());
-        public static StrongBox<string> commonLabelRef = new StrongBox<string>("Common");
-        public static StrongBox<string> uncommonLabelRef = new StrongBox<string>("Uncommon");
-        public static StrongBox<string> rareLabelRef = new StrongBox<string>("Rare");
-        public static StrongBox<string> tiersTitleLabelRef = new StrongBox<string>("Infusion.Settings.Tiers.Title".Translate());
-        public static StrongBox<string> generalSettingsTitleLabelRef = new StrongBox<string>("Infusion.Settings.General.Title".Translate());
-        public static StrongBox<string> statsGlobalMultiplierLabelRef = new StrongBox<string>("Infusion.Settings.StatsGlobalMultiplier".Translate());
-        public static StrongBox<string> chanceGlobalMultiplierLabelRef = new StrongBox<string>("Infusion.Settings.ChanceGlobalMultiplier".Translate());
-        public static StrongBox<string> amountGlobalMultiplierLabelRef = new StrongBox<string>("Infusion.Settings.AmountGlobalMultiplier".Translate());
-        public static StrongBox<string> infusionSettingsLabelRef = new StrongBox<string>("Infusion.Settings.Infusions.Title".Translate());
-        public static StrongBox<string> infusionDefsControlLabelRef = new StrongBox<string>("Infusion.Settings.Infusions.Defs.Title".Translate());
-        public static StrongBox<string> infuseUniqueWeaponsLabelRef = new StrongBox<string>("Infusion.Settings.InfuseUniqueWeapons".Translate());
-        public static StrongBox<string> infusionsFromCraftingLabelRef = new StrongBox<string>("Infusion.Settings.InfusionsFromCrafting".Translate());
-        public static StrongBox<string> restartGameInfoLabelRef = new StrongBox<string>("Infusion.Settings.Label.RestartGameInfo".Translate());
         public static StrongBox<Vector2> scrollPosition = new StrongBox<Vector2>(Vector2.zero);
         public static StrongBox<InfusionDef> selectedInfusionDef = new StrongBox<InfusionDef>(ResourceBank.allInfusionDefs.First());
-        public static StrongBox<bool> infusionDefsEnableDisableButtonClicked = new StrongBox<bool>(false);
+        public static StrongBox<TierDef> selectedTierDef = new StrongBox<TierDef>(ResourceBank.allTierDefs.First());
+        public static StrongBox<Color> selectedColor = new StrongBox<Color>(Settings.tierColorOverride.ContainsKey(ResourceBank.allTierDefs.First()) ? Settings.tierColorOverride[ResourceBank.allTierDefs.First()] : ResourceBank.allTierDefs.First().color);
+        public static TierDef previousSelectedTierDef = selectedTierDef.Value;
         public static void Draw(Rect parent)
         {
-            ScrollCanvas canvas = new ScrollCanvas(parent, () => scrollPosition.Value, (vec2) => scrollPosition.Value = vec2);
-            Stack stack = new Stack();
-            stack.WidthMode = SizeMode.Fill;
-            stack.VerticalSpacing = 5f;
+            ScrollCanvas canvas = new ScrollCanvas(rect: parent, scrollPositionBox: scrollPosition);
+            Stack stack = new Stack(widthMode: SizeMode.Fill, verticalSpacing: 10f, heightMode: SizeMode.Content); 
 
             int gridRows = 15;
             if (ModsConfig.OdysseyActive)
             {
                 gridRows++;
             }
-            FillGrid grid = new FillGrid(2, gridRows)
-            {
-                Padding = 10f
-            };
-            grid.HeightMode = SizeMode.Content;
+            Grid grid = new Grid(2, gridRows, widthMode: SizeMode.Fill, heightMode: SizeMode.Content, padding: 5f);
             Text.Font = GameFont.Small;
 
-            Label restartGameInfoLabel = new Label(restartGameInfoLabelRef);
-            restartGameInfoLabel.Alignment = Align.MiddleLeft;
+            Label restartGameInfoLabel = new Label(text: "Infusion.Settings.Label.RestartGameInfo".Translate(), alignment: Align.MiddleLeft);
+            Label generalSettingsTitleLabel = new Label("Infusion.Settings.General.Title".Translate(), alignment: Align.MiddleLeft);
+            Label accuracyOvercappingLabel = new Label("Infusion.Settings.AccuracyOvercapping".Translate(), alignment: Align.MiddleLeft, tooltip: "Infusion.Settings.AccuracyOvercapping.Description".Translate());
+            Label bonusToBiocodeLabel = new Label("Infusion.Settings.BiocodeBonus".Translate(), alignment: Align.MiddleLeft, tooltip: "Infusion.Settings.BiocodeBonus.Description".Translate());
+            Label infusionsFromCraftingLabel = new Label("Infusion.Settings.InfusionsFromCrafting".Translate(), alignment: Align.MiddleLeft, tooltip: "Infusion.Settings.InfusionsFromCrafting.Description".Translate());
+            Label infuseUniqueWeaponsLabel = new Label("Infusion.Settings.InfuseUniqueWeapons".Translate(), alignment: Align.MiddleLeft);
+            Label extractionSuccessFactorLabel = new Label("Infusion.Settings.ExtractionChanceFactor".Translate(), alignment: Align.MiddleLeft, tooltip: "Infusion.Settings.ExtractionChanceFactor.Description".Translate());
+            Label reusableInfusersLabel = new Label("Infusion.Settings.ReusableInfusers".Translate(), alignment: Align.MiddleLeft, tooltip: "Infusion.Settings.ReusableInfusers.Description".Translate());
+            Label infusionChanceLabel = new Label("Infusion.Settings.ChanceFactor".Translate(), alignment: Align.MiddleLeft, tooltip: "Infusion.Settings.ChanceFactor.Description".Translate());
+            Label muLabel = new Label("Infusion.Settings.Mu".Translate(), alignment: Align.MiddleLeft, tooltip: "Infusion.Settings.Mu.Description".Translate());
+            Label sigmaLabel = new Label("Infusion.Settings.Sigma".Translate(), alignment: Align.MiddleLeft, tooltip: "Infusion.Settings.Sigma.Description".Translate());
+            Label bodyPartLimitLabel = new Label("Infusion.Settings.BodyPartLimit".Translate(), alignment: Align.MiddleLeft, tooltip: "Infusion.Settings.BodyPartLimit.Description".Translate());
+            Label morePerLayerLabel = new Label("Infusion.Settings.LayerBonuses".Translate(), alignment: Align.MiddleLeft, tooltip: "Infusion.Settings.LayerBonuses.Description".Translate());
+            Label statsGlobalMultiplierLabel = new Label("Infusion.Settings.StatsGlobalMultiplier".Translate(), alignment: Align.MiddleLeft, tooltip: "Infusion.Settings.StatsGlobalMultiplier.Description".Translate());
+            Label chanceGlobalMultiplierLabel = new Label("Infusion.Settings.ChanceGlobalMultiplier".Translate(), alignment: Align.MiddleLeft, tooltip: "Infusion.Settings.ChanceGlobalMultiplier.Description".Translate());
+            Label amountGlobalMultiplierLabel = new Label("Infusion.Settings.AmountGlobalMultiplier".Translate(), alignment: Align.MiddleLeft, tooltip: "Infusion.Settings.AmountGlobalMultiplier.Description".Translate());
 
-            grid.AddChild(restartGameInfoLabel);
-            grid.AddChild(new Empty());
+            Checkbox accuracyOvercappingCheckbox = new Checkbox(isChecked: Settings.accuracyOvercap, alignment: Align.MiddleLeft);
+            Checkbox bonusToBiocodeCheckbox = new Checkbox(isChecked: Settings.biocodeBonus, alignment: Align.MiddleLeft);
+            Checkbox infusionsFromCraftingCheckbox = new Checkbox(isChecked: Settings.infusionsFromCrafting, alignment: Align.MiddleLeft);
+            Checkbox infuseUniqueWeaponsCheckbox = new Checkbox(isChecked: Settings.infuseUniqueWeapons, alignment: Align.MiddleLeft);
+            Checkbox reusableInfusersCheckbox = new Checkbox(isChecked: Settings.reusableInfusers, alignment: Align.MiddleLeft);
+            Checkbox bodyPartLimitCheckbox = new Checkbox(isChecked: Settings.bodyPartHandle, alignment: Align.MiddleLeft);
+            Checkbox morePerLayerCheckbox = new Checkbox(isChecked: Settings.layerHandle, alignment: Align.MiddleLeft);
 
-            Label generalSettingsTitleLabel = new Label(generalSettingsTitleLabelRef);
-            generalSettingsTitleLabel.Alignment = Align.MiddleLeft;
+            Slider extractionSuccessFactorSlider = new Slider(label: $"{Settings.extractionChanceFactor.Value.ToString()}x", value: Settings.extractionChanceFactor, min: 1f, max: 100f, roundTo: 0.5f, alignment: Align.UpperLeft, widthMode: SizeMode.Fill);
+            Slider infusionChanceSlider = new Slider(label: Settings.chanceHandle.Value.ToString(), value: Settings.chanceHandle, min: 0f, max: 10f, roundTo: 0.1f, alignment: Align.UpperLeft, widthMode: SizeMode.Fill);
+            Slider muSlider = new Slider(label: Settings.muHandle.Value.ToString(), value: Settings.muHandle, min: 0.5f, max: 10f, roundTo: 0.1f, alignment: Align.UpperLeft, widthMode: SizeMode.Fill);
+            Slider sigmaSlider = new Slider(label: Settings.sigmaHandle.Value.ToString(), value: Settings.sigmaHandle, min: 0.5f, max: 10f, roundTo: 0.1f, alignment: Align.UpperLeft, widthMode: SizeMode.Fill);
+            Slider statsGlobalMultiplierSlider = new Slider(label: Settings.statsGlobalMultiplier.Value.ToString(), value: Settings.statsGlobalMultiplier, min: 0.1f, max: 5f, roundTo: 0.1f, alignment: Align.UpperLeft, widthMode: SizeMode.Fill);
+            Slider chanceGlobalMultiplierSlider = new Slider(label: Settings.chanceGlobalMultiplier.Value.ToString(), value: Settings.chanceGlobalMultiplier, min: 0.1f, max: 5f, roundTo: 0.1f, alignment: Align.UpperLeft, widthMode: SizeMode.Fill);
+            Slider amountGlobalMultiplierSlider = new Slider(label: Settings.amountGlobalMultiplier.Value.ToString(), value: Settings.amountGlobalMultiplier, min: 0.1f, max: 5f, roundTo: 0.1f, alignment: Align.UpperLeft, widthMode: SizeMode.Fill);
 
-            grid.AddChild(generalSettingsTitleLabel);
-            grid.AddChild(new Empty());
-
-            Label accuracyOvercappingLabel = new Label(accuracyOvercappingLabelRef);
-            accuracyOvercappingLabel.Alignment = Align.MiddleLeft;
-            accuracyOvercappingLabel.Tooltip = "Infusion.Settings.AccuracyOvercapping.Description".Translate();
-
-            grid.AddChild(accuracyOvercappingLabel);
-
-            Checkbox accuracyOvercappingCheckbox = new Checkbox(Settings.accuracyOvercap);
-            accuracyOvercappingCheckbox.Alignment = Align.MiddleLeft;
-
-            grid.AddChild(accuracyOvercappingCheckbox);
-
-            Label bonusToBiocodeLabel = new Label(bonusToBiocodeLabelRef);
-            bonusToBiocodeLabel.Alignment = Align.MiddleLeft;
-            bonusToBiocodeLabel.Tooltip = "Infusion.Settings.BiocodeBonus.Description".Translate();
-
-            grid.AddChild(bonusToBiocodeLabel);
-
-            Checkbox bonusToBiocodeCheckbox = new Checkbox(Settings.biocodeBonus);
-            bonusToBiocodeCheckbox.Alignment = Align.MiddleLeft;
-
-            grid.AddChild(bonusToBiocodeCheckbox);
-
-            Label infusionsFromCraftingLabel = new Label(infusionsFromCraftingLabelRef);
-            infusionsFromCraftingLabel.Alignment = Align.MiddleLeft;
-            infusionsFromCraftingLabel.Tooltip = "Infusion.Settings.InfusionsFromCrafting.Description".Translate();
-
-            grid.AddChild(infusionsFromCraftingLabel);
-
-            Checkbox infusionsFromCraftingCheckbox = new Checkbox(Settings.infusionsFromCrafting);
-            infusionsFromCraftingCheckbox.Alignment = Align.MiddleLeft;
-
-            grid.AddChild(infusionsFromCraftingCheckbox);
+            grid.AddChild(restartGameInfoLabel)
+            .AddChild(new Empty())
+            .AddChild(generalSettingsTitleLabel)
+            .AddChild(new Empty())
+            .AddChild(accuracyOvercappingLabel)
+            .AddChild(accuracyOvercappingCheckbox)
+            .AddChild(bonusToBiocodeLabel)
+            .AddChild(bonusToBiocodeCheckbox)
+            .AddChild(infusionsFromCraftingLabel)
+            .AddChild(infusionsFromCraftingCheckbox);
 
             if (ModsConfig.OdysseyActive)
             {
-                Label infuseUniqueWeaponsLabel = new Label(infuseUniqueWeaponsLabelRef);
-                infuseUniqueWeaponsLabel.Alignment = Align.MiddleLeft;
-                grid.AddChild(infuseUniqueWeaponsLabel);
-                Checkbox infuseUniqueWeaponsCheckbox = new Checkbox(Settings.infuseUniqueWeapons);
-                infuseUniqueWeaponsCheckbox.Alignment = Align.MiddleLeft;
-                grid.AddChild(infuseUniqueWeaponsCheckbox);
+                grid.AddChild(infuseUniqueWeaponsLabel)
+                .AddChild(infuseUniqueWeaponsCheckbox);
             }
 
-            Label extractionSuccessFactorLabel = new Label(extractionSuccessFactorLabelRef);
-            extractionSuccessFactorLabel.Alignment = Align.MiddleLeft;
-            extractionSuccessFactorLabel.Tooltip = "Infusion.Settings.ExtractionChanceFactor.Description".Translate();
 
-            grid.AddChild(extractionSuccessFactorLabel);
-
-            LabeledSlider extractionSuccessFactorSlider = new LabeledSlider($"{Settings.extractionChanceFactor.Value.ToString()}x", Settings.extractionChanceFactor.Value, 1f, 100f, (val) => Settings.extractionChanceFactor.Value = val);
-            extractionSuccessFactorSlider.RoundTo = 0.5f;
-            extractionSuccessFactorSlider.Alignment = Align.MiddleLeft;
-            extractionSuccessFactorSlider.WidthMode = SizeMode.Fill;
-
-            grid.AddChild(extractionSuccessFactorSlider);
-
-            Label reusableInfusersLabel = new Label(reusableInfusersLabelRef);
-            reusableInfusersLabel.Alignment = Align.MiddleLeft;
-            reusableInfusersLabel.Tooltip = "Infusion.Settings.ReusableInfusers.Description".Translate();
-
-            grid.AddChild(reusableInfusersLabel);
-
-            Checkbox reusableInfusersCheckbox = new Checkbox(Settings.reusableInfusers);
-            reusableInfusersCheckbox.Alignment = Align.MiddleLeft;
-
-            grid.AddChild(reusableInfusersCheckbox);
-
-            Label infusionChanceLabel = new Label(infusionChanceLabelRef);
-            infusionChanceLabel.Alignment = Align.MiddleLeft;
-            infusionChanceLabel.Tooltip = "Infusion.Settings.ChanceFactor.Description".Translate();
-
-            grid.AddChild(infusionChanceLabel);
-
-            LabeledSlider infusionChanceSlider = new LabeledSlider(Settings.chanceHandle.Value.ToString(), Settings.chanceHandle.Value, 0f, 10f, (val) => Settings.chanceHandle.Value = val);
-            infusionChanceSlider.RoundTo = 0.1f;
-            infusionChanceSlider.Alignment = Align.MiddleLeft;
-            infusionChanceSlider.WidthMode = SizeMode.Fill;
-
-            grid.AddChild(infusionChanceSlider);
-
-            Label muLabel = new Label(muLabelRef);
-            muLabel.Alignment = Align.MiddleLeft;
-            muLabel.Tooltip = "Infusion.Settings.Mu.Description".Translate();
-
-            grid.AddChild(muLabel);
-
-            LabeledSlider muSlider = new LabeledSlider(Settings.muHandle.Value.ToString(), Settings.muHandle.Value, 0.5f, 10f, (val) => Settings.muHandle.Value = val);
-            muSlider.RoundTo = 0.1f;
-            muSlider.Alignment = Align.MiddleLeft;
-            muSlider.WidthMode = SizeMode.Fill;
-
-            grid.AddChild(muSlider);
-
-            Label sigmaLabel = new Label(sigmaLabelRef);
-            sigmaLabel.Alignment = Align.MiddleLeft;
-            sigmaLabel.Tooltip = "Infusion.Settings.Sigma.Description".Translate();
-
-            grid.AddChild(sigmaLabel);
-
-            LabeledSlider sigmaSlider = new LabeledSlider(Settings.sigmaHandle.Value.ToString(), Settings.sigmaHandle.Value, 0.5f, 10f, (val) => Settings.sigmaHandle.Value = val);
-            sigmaSlider.RoundTo = 0.1f;
-            sigmaSlider.Alignment = Align.MiddleLeft;
-            sigmaSlider.WidthMode = SizeMode.Fill;
-
-            grid.AddChild(sigmaSlider);
-
-            Label bodyPartLimitLabel = new Label(bodyPartLimitLabelRef);
-            bodyPartLimitLabel.Alignment = Align.MiddleLeft;
-            bodyPartLimitLabel.Tooltip = "Infusion.Settings.BodyPartLimit.Description".Translate();
-
-            grid.AddChild(bodyPartLimitLabel);
-
-            Checkbox bodyPartLimitCheckbox = new Checkbox(Settings.bodyPartHandle);
-            bodyPartLimitCheckbox.Alignment = Align.MiddleLeft;
-
-            grid.AddChild(bodyPartLimitCheckbox);
-
-            Label morePerLayerLabel = new Label(morePerLayerLabelRef);
-            morePerLayerLabel.Alignment = Align.MiddleLeft;
-            morePerLayerLabel.Tooltip = "Infusion.Settings.LayerBonuses.Description".Translate();
-
-            grid.AddChild(morePerLayerLabel);
-
-            Checkbox morePerLayerCheckbox = new Checkbox(Settings.layerHandle);
-            morePerLayerCheckbox.Alignment = Align.MiddleLeft;
-
-            grid.AddChild(morePerLayerCheckbox);
-
-            Label statsGlobalMultiplierLabel = new Label(statsGlobalMultiplierLabelRef);
-            statsGlobalMultiplierLabel.Alignment = Align.MiddleLeft;
-            statsGlobalMultiplierLabel.Tooltip = "Infusion.Settings.StatsGlobalMultiplier.Description".Translate();
-
-            grid.AddChild(statsGlobalMultiplierLabel);
-
-            LabeledSlider statsGlobalMultiplierSlider = new LabeledSlider(Settings.statsGlobalMultiplier.Value.ToString(), Settings.statsGlobalMultiplier.Value, 0.1f, 5f, (val) => Settings.statsGlobalMultiplier.Value = val);
-            statsGlobalMultiplierSlider.RoundTo = 0.1f;
-            statsGlobalMultiplierSlider.Alignment = Align.MiddleLeft;
-            statsGlobalMultiplierSlider.WidthMode = SizeMode.Fill;
-
-            grid.AddChild(statsGlobalMultiplierSlider);
-
-            Label chanceGlobalMultiplierLabel = new Label(chanceGlobalMultiplierLabelRef);
-            chanceGlobalMultiplierLabel.Alignment = Align.MiddleLeft;
-            chanceGlobalMultiplierLabel.Tooltip = "Infusion.Settings.ChanceGlobalMultiplier.Description".Translate();
-
-            grid.AddChild(chanceGlobalMultiplierLabel);
-
-            LabeledSlider chanceGlobalMultiplierSlider = new LabeledSlider(Settings.chanceGlobalMultiplier.Value.ToString(), Settings.chanceGlobalMultiplier.Value, 0.1f, 5f, (val) => Settings.chanceGlobalMultiplier.Value = val);
-            chanceGlobalMultiplierSlider.RoundTo = 0.1f;
-            chanceGlobalMultiplierSlider.Alignment = Align.MiddleLeft;
-            chanceGlobalMultiplierSlider.WidthMode = SizeMode.Fill;
-
-            grid.AddChild(chanceGlobalMultiplierSlider);
-
-            Label amountGlobalMultiplierLabel = new Label(amountGlobalMultiplierLabelRef);
-            amountGlobalMultiplierLabel.Alignment = Align.MiddleLeft;
-            amountGlobalMultiplierLabel.Tooltip = "Infusion.Settings.AmountGlobalMultiplier.Description".Translate();
-
-            grid.AddChild(amountGlobalMultiplierLabel);
-
-            LabeledSlider amountGlobalMultiplierSlider = new LabeledSlider(Settings.amountGlobalMultiplier.Value.ToString(), Settings.amountGlobalMultiplier.Value, 0.1f, 5f, (val) => Settings.amountGlobalMultiplier.Value = val);
-            amountGlobalMultiplierSlider.RoundTo = 0.1f;
-            amountGlobalMultiplierSlider.Alignment = Align.MiddleLeft;
-            amountGlobalMultiplierSlider.WidthMode = SizeMode.Fill;
-
-            grid.AddChild(amountGlobalMultiplierSlider);
-
-            stack.AddChild(grid);
-
-            Line line = new Line(LineType.Horizontal);
-            line.WidthMode = SizeMode.Fill;
-            stack.AddChild(line);
-
-            FillGrid grid1 = new FillGrid(2, 11)
-            {
-                Padding = 10f
-            };
-            grid1.HeightMode = SizeMode.Content;
-
-            Label infusionSettingsLabel = new Label(infusionSettingsLabelRef);
-            infusionSettingsLabel.Alignment = Align.MiddleLeft;
-
-            grid1.AddChild(infusionSettingsLabel);
-            grid1.AddChild(new Empty());
-
-            Label infusionSlotSettingsLabel = new Label(infusionSlotsSettingsLabelRef);
-            infusionSlotSettingsLabel.Alignment = Align.MiddleLeft;
-
-            grid1.AddChild(infusionSlotSettingsLabel);
-            grid1.AddChild(new Empty());
-
-            Label awfulSlotsLabel = new Label(awfulLabelRef);
-            awfulSlotsLabel.Alignment = Align.MiddleLeft;
-
-            grid1.AddChild(awfulSlotsLabel);
-
-            LabeledSlider awfulSlotsSlider = new LabeledSlider(Settings.slotAwful.Value.ToString(), Settings.slotAwful.Value, 0f, 20f, (val) => Settings.slotAwful.Value = (int)val);
-            awfulSlotsSlider.RoundTo = 1f;
-            awfulSlotsSlider.Alignment = Align.MiddleLeft;
-            awfulSlotsSlider.WidthMode = SizeMode.Fill;
-
-            grid1.AddChild(awfulSlotsSlider);
-
-            Label poorSlotsLabel = new Label(poorLabelRef);
-            poorSlotsLabel.Alignment = Align.MiddleLeft;
-
-            grid1.AddChild(poorSlotsLabel);
-
-            LabeledSlider poorSlotsSlider = new LabeledSlider(Settings.slotPoor.Value.ToString(), Settings.slotPoor.Value, 0f, 20f, (val) => Settings.slotPoor.Value = (int)val);
-            poorSlotsSlider.RoundTo = 1f;
-            poorSlotsSlider.Alignment = Align.MiddleLeft;
-            poorSlotsSlider.WidthMode = SizeMode.Fill;
-
-            grid1.AddChild(poorSlotsSlider);
-
-            Label normalSlotsLabel = new Label(normalLabelRef);
-            normalSlotsLabel.Alignment = Align.MiddleLeft;
-
-            grid1.AddChild(normalSlotsLabel);
-
-            LabeledSlider normalSlotsSlider = new LabeledSlider(Settings.slotNormal.Value.ToString(), Settings.slotNormal.Value, 0f, 20f, (val) => Settings.slotNormal.Value = (int)val);
-            normalSlotsSlider.RoundTo = 1f;
-            normalSlotsSlider.Alignment = Align.MiddleLeft;
-            normalSlotsSlider.WidthMode = SizeMode.Fill;
-
-            grid1.AddChild(normalSlotsSlider);
-
-            Label goodSlotsLabel = new Label(goodLabelRef);
-            goodSlotsLabel.Alignment = Align.MiddleLeft;
-
-            grid1.AddChild(goodSlotsLabel);
-
-            LabeledSlider goodSlotsSlider = new LabeledSlider(Settings.slotGood.Value.ToString(), Settings.slotGood.Value, 0f, 20f, (val) => Settings.slotGood.Value = (int)val);
-            goodSlotsSlider.RoundTo = 1f;
-            goodSlotsSlider.Alignment = Align.MiddleLeft;
-            goodSlotsSlider.WidthMode = SizeMode.Fill;
-
-            grid1.AddChild(goodSlotsSlider);
-
-            Label excellentSlotsLabel = new Label(excellentLabelRef);
-            excellentSlotsLabel.Alignment = Align.MiddleLeft;
-
-            grid1.AddChild(excellentSlotsLabel);
-
-            LabeledSlider excellentSlotsSlider = new LabeledSlider(Settings.slotExcellent.Value.ToString(), Settings.slotExcellent.Value, 0f, 20f, (val) => Settings.slotExcellent.Value = (int)val);
-            excellentSlotsSlider.RoundTo = 1f;
-            excellentSlotsSlider.Alignment = Align.MiddleLeft;
-            excellentSlotsSlider.WidthMode = SizeMode.Fill;
-
-            grid1.AddChild(excellentSlotsSlider);
-
-            Label masterworkSlotsLabel = new Label(masterworkLabelRef);
-            masterworkSlotsLabel.Alignment = Align.MiddleLeft;
-
-            grid1.AddChild(masterworkSlotsLabel);
-
-            LabeledSlider masterworkSlotsSlider = new LabeledSlider(Settings.slotMasterwork.Value.ToString(), Settings.slotMasterwork.Value, 0f, 20f, (val) => Settings.slotMasterwork.Value = (int)val);
-            masterworkSlotsSlider.RoundTo = 1f;
-            masterworkSlotsSlider.Alignment = Align.MiddleLeft;
-            masterworkSlotsSlider.WidthMode = SizeMode.Fill;
-
-            grid1.AddChild(masterworkSlotsSlider);
-
-            Label legendarySlotsLabel = new Label(legendaryLabelRef);
-            legendarySlotsLabel.Alignment = Align.MiddleLeft;
-
-            grid1.AddChild(legendarySlotsLabel);
-
-            LabeledSlider legendarySlotsSlider = new LabeledSlider(Settings.slotLegendary.Value.ToString(), Settings.slotLegendary.Value, 0f, 20f, (val) => Settings.slotLegendary.Value = (int)val);
-            legendarySlotsSlider.RoundTo = 1f;
-            legendarySlotsSlider.Alignment = Align.MiddleLeft;
-            legendarySlotsSlider.WidthMode = SizeMode.Fill;
-
-            grid1.AddChild(legendarySlotsSlider);
-
-            Label infusionDefsControlLabel = new Label(infusionDefsControlLabelRef);
-            infusionDefsControlLabel.Alignment = Align.MiddleLeft;
-
-            grid1.AddChild(infusionDefsControlLabel);
-            grid1.AddChild(new Empty());
-
-            Dropdown<InfusionDef> infusionDefsDropdown = new Dropdown<InfusionDef>(ResourceBank.allInfusionDefs, selectedInfusionDef, (def) => def.defName);
-            infusionDefsDropdown.Alignment = Align.MiddleLeft;
-
-            grid1.AddChild(infusionDefsDropdown);
+            grid.AddChild(extractionSuccessFactorLabel)
+            .AddChild(extractionSuccessFactorSlider)
+            .AddChild(reusableInfusersLabel)
+            .AddChild(reusableInfusersCheckbox)
+            .AddChild(infusionChanceLabel)
+            .AddChild(infusionChanceSlider)
+            .AddChild(muLabel)
+            .AddChild(muSlider)
+            .AddChild(sigmaLabel)
+            .AddChild(sigmaSlider)
+            .AddChild(bodyPartLimitLabel)
+            .AddChild(bodyPartLimitCheckbox)
+            .AddChild(morePerLayerLabel)
+            .AddChild(morePerLayerCheckbox)
+            .AddChild(statsGlobalMultiplierLabel)
+            .AddChild(statsGlobalMultiplierSlider)
+            .AddChild(chanceGlobalMultiplierLabel)
+            .AddChild(chanceGlobalMultiplierSlider)
+            .AddChild(amountGlobalMultiplierLabel)
+            .AddChild(amountGlobalMultiplierSlider);
+
+
+            Grid grid1 = new Grid(2, 11, widthMode: SizeMode.Fill, padding: 5f, heightMode: SizeMode.Content);
+
+            Label infusionSettingsLabel = new Label("Infusion.Settings.Infusions.Title".Translate(), alignment: Align.MiddleLeft);
+            Label infusionSlotSettingsLabel = new Label("Infusion.Settings.Infusions.Slots.Title".Translate(), alignment: Align.MiddleLeft);
+            Label awfulSlotsLabel = new Label("Awful", alignment: Align.MiddleLeft);
+            Label poorSlotsLabel = new Label("Poor", alignment: Align.MiddleLeft);
+            Label normalSlotsLabel = new Label("Normal", alignment: Align.MiddleLeft);
+            Label goodSlotsLabel = new Label("Good", alignment: Align.MiddleLeft);
+            Label excellentSlotsLabel = new Label("Excellent", alignment: Align.MiddleLeft);
+            Label masterworkSlotsLabel = new Label("Masterwork", alignment: Align.MiddleLeft);
+            Label legendarySlotsLabel = new Label("Legendary", alignment: Align.MiddleLeft);
+            Label infusionDefsControlLabel = new Label("Infusion.Settings.Infusions.Defs.Title".Translate(), alignment: Align.MiddleLeft);
+
+            SliderInt awfulSlotsSlider = new SliderInt(label: Settings.slotAwful.Value.ToString(), value: Settings.slotAwful, min: 0, max: 20, alignment: Align.UpperLeft, widthMode: SizeMode.Fill);
+            SliderInt poorSlotsSlider = new SliderInt(label: Settings.slotPoor.Value.ToString(), value: Settings.slotPoor, min: 0, max: 20, alignment: Align.UpperLeft, widthMode: SizeMode.Fill);
+            SliderInt normalSlotsSlider = new SliderInt(label: Settings.slotNormal.Value.ToString(), value: Settings.slotNormal, min: 0, alignment: Align.UpperLeft, widthMode: SizeMode.Fill);
+            SliderInt goodSlotsSlider = new SliderInt(label: Settings.slotGood.Value.ToString(), value: Settings.slotGood, min: 0, max: 20, alignment: Align.UpperLeft, widthMode: SizeMode.Fill);
+            SliderInt excellentSlotsSlider = new SliderInt(label: Settings.slotExcellent.Value.ToString(), value: Settings.slotExcellent, min: 0, max: 20, alignment: Align.UpperLeft, widthMode: SizeMode.Fill);
+            SliderInt masterworkSlotsSlider = new SliderInt(label: Settings.slotMasterwork.Value.ToString(), value: Settings.slotMasterwork, min: 0, max: 20, alignment: Align.UpperLeft, widthMode: SizeMode.Fill);
+            SliderInt legendarySlotsSlider = new SliderInt(label: Settings.slotLegendary.Value.ToString(), value: Settings.slotLegendary, min: 0, max: 20, alignment: Align.UpperLeft, widthMode: SizeMode.Fill);
+
+            Dropdown<InfusionDef> infusionDefsDropdown = new Dropdown<InfusionDef>(ResourceBank.allInfusionDefs, selectedInfusionDef, (def) => def.defName, alignment: Align.MiddleLeft);
 
             Button infusionDefsEnableDisableButton;
             if (Settings.infusionDefsDisabledMap.ContainsKey(selectedInfusionDef.Value) && Settings.infusionDefsDisabledMap[selectedInfusionDef.Value].Value)
             {
-                infusionDefsEnableDisableButton = new Button("Infusion.Settings.Infusions.Defs.EnableButton".Translate(), infusionDefsEnableDisableButtonClicked);
+                infusionDefsEnableDisableButton = new Button("Infusion.Settings.Infusions.Defs.EnableButton".Translate(), alignment: Align.MiddleLeft);
             }
             else
             {
-                infusionDefsEnableDisableButton = new Button("Infusion.Settings.Infusions.Defs.DisableButton".Translate(), infusionDefsEnableDisableButtonClicked);
+                infusionDefsEnableDisableButton = new Button("Infusion.Settings.Infusions.Defs.DisableButton".Translate(), alignment: Align.MiddleLeft);
             }
 
-            if (infusionDefsEnableDisableButtonClicked.Value)
+            grid1.AddChild(infusionSettingsLabel)
+            .AddChild(new Empty())
+            .AddChild(infusionSlotSettingsLabel)
+            .AddChild(new Empty())
+            .AddChild(awfulSlotsLabel)
+            .AddChild(awfulSlotsSlider)
+            .AddChild(poorSlotsLabel)
+            .AddChild(poorSlotsSlider)
+            .AddChild(normalSlotsLabel)
+            .AddChild(normalSlotsSlider)
+            .AddChild(goodSlotsLabel)
+            .AddChild(goodSlotsSlider)
+            .AddChild(excellentSlotsLabel)
+            .AddChild(excellentSlotsSlider)
+            .AddChild(masterworkSlotsLabel)
+            .AddChild(masterworkSlotsSlider)
+            .AddChild(legendarySlotsLabel)
+            .AddChild(legendarySlotsSlider)
+            .AddChild(infusionDefsControlLabel)
+            .AddChild(new Empty())
+            .AddChild(infusionDefsDropdown)
+            .AddChild(infusionDefsEnableDisableButton);
+
+            Grid grid2 = new Grid(3, 7, widthMode: SizeMode.Fill, padding: 5f, heightMode: SizeMode.Content);
+
+            Label tiersTitleLabel = new Label("Infusion.Settings.Tiers.Title".Translate(), alignment: Align.MiddleLeft);
+            Label commonTierLabel = new Label("Common", alignment: Align.MiddleLeft);
+            Label uncommonTierLabel = new Label("Uncommon", alignment: Align.MiddleLeft);
+            Label rareTierLabel = new Label("Rare", alignment: Align.MiddleLeft);
+            Label legendaryTierLabel = new Label("Legendary", alignment: Align.MiddleLeft);
+            Label tierColorLabel = new Label("Infusion.Settings.Tiers.Color.Title".Translate(), alignment: Align.MiddleLeft);
+
+            Checkbox commonTierCheckbox = new Checkbox(isChecked: Settings.commonTierEnabled, alignment: Align.MiddleLeft);
+            Checkbox uncommonTierCheckbox = new Checkbox(isChecked: Settings.uncommonTierEnabled, alignment: Align.MiddleLeft);
+            Checkbox rareTierCheckbox = new Checkbox(isChecked: Settings.rareTierEnabled, alignment: Align.MiddleLeft);
+            Checkbox legendaryTierCheckbox = new Checkbox(isChecked: Settings.legendaryTierEnabled, alignment: Align.MiddleLeft);
+
+            Dropdown<TierDef> tierDefsDropdown = new Dropdown<TierDef>(ResourceBank.allTierDefs, selectedTierDef, (def) => def.defName, alignment: Align.MiddleLeft);
+
+            ColorPicker picker = new ColorPicker(selectedColor.Value, selectedColor, alignment: Align.MiddleLeft);
+
+            Button saveColorButton = new Button("Infusion.Settings.Tiers.SaveColorButton.Label".Translate(), alignment: Align.MiddleLeft);
+
+            grid2.AddChild(tiersTitleLabel)
+            .AddChild(new Empty())
+            .AddChild(new Empty())
+            .AddChild(commonTierLabel)
+            .AddChild(commonTierCheckbox)
+            .AddChild(new Empty())
+            .AddChild(uncommonTierLabel)
+            .AddChild(uncommonTierCheckbox)
+            .AddChild(new Empty())
+            .AddChild(rareTierLabel)
+            .AddChild(rareTierCheckbox)
+            .AddChild(new Empty())
+            .AddChild(legendaryTierLabel)
+            .AddChild(legendaryTierCheckbox)
+            .AddChild(new Empty())
+            .AddChild(tierColorLabel)
+            .AddChild(new Empty())
+            .AddChild(new Empty())
+            .AddChild(tierDefsDropdown)
+            .AddChild(picker)
+            .AddChild(saveColorButton);
+
+            Line line = new Line(LineType.Horizontal, widthMode: SizeMode.Fill);
+            Line line1 = new Line(LineType.Horizontal, widthMode: SizeMode.Fill);
+
+            stack.AddChild(grid)
+            .AddChild(line)
+            .AddChild(grid1)
+            .AddChild(line1)
+            .AddChild(grid2)
+            .AddChild(new Empty());
+
+            canvas.AddChild(stack);
+
+            canvas.Render();
+
+            if (infusionDefsEnableDisableButton.Clicked)
             {
                 if (Settings.infusionDefsDisabledMap.ContainsKey(selectedInfusionDef.Value) && Settings.infusionDefsDisabledMap[selectedInfusionDef.Value].Value)
                 {
@@ -387,71 +226,32 @@ namespace Infusion
                 }
             }
 
-            grid1.AddChild(infusionDefsEnableDisableButton);
-
-            stack.AddChild(grid1);
-
-            Line line1 = new Line(LineType.Horizontal);
-            line1.WidthMode = SizeMode.Fill;
-            stack.AddChild(line1);
-
-            FillGrid grid2 = new FillGrid(2, 5)
+            if (tierDefsDropdown.SelectedItem != previousSelectedTierDef)
             {
-                Padding = 10f
-            };
-            grid2.HeightMode = SizeMode.Content;
+                selectedColor.Value = Settings.tierColorOverride.ContainsKey(tierDefsDropdown.SelectedItem) ? Settings.tierColorOverride[tierDefsDropdown.SelectedItem] : tierDefsDropdown.SelectedItem.color;
+                previousSelectedTierDef = tierDefsDropdown.SelectedItem;
+            }
 
-            Label tiersTitleLabel = new Label(tiersTitleLabelRef);
-            tiersTitleLabel.Alignment = Align.MiddleLeft;
-
-            grid2.AddChild(tiersTitleLabel);
-            grid2.AddChild(new Empty());
-
-            Label commonTierLabel = new Label(commonLabelRef);
-            commonTierLabel.Alignment = Align.MiddleLeft;
-
-            grid2.AddChild(commonTierLabel);
-
-            Checkbox commonTierCheckbox = new Checkbox(Settings.commonTierEnabled);
-            commonTierCheckbox.Alignment = Align.MiddleLeft;
-
-            grid2.AddChild(commonTierCheckbox);
-
-            Label uncommonTierLabel = new Label(uncommonLabelRef);
-            uncommonTierLabel.Alignment = Align.MiddleLeft;
-
-            grid2.AddChild(uncommonTierLabel);
-
-            Checkbox uncommonTierCheckbox = new Checkbox(Settings.uncommonTierEnabled);
-            uncommonTierCheckbox.Alignment = Align.MiddleLeft;
-
-            grid2.AddChild(uncommonTierCheckbox);
-
-            Label rareTierLabel = new Label(rareLabelRef);
-            rareTierLabel.Alignment = Align.MiddleLeft;
-
-            grid2.AddChild(rareTierLabel);
-
-            Checkbox rareTierCheckbox = new Checkbox(Settings.rareTierEnabled);
-            rareTierCheckbox.Alignment = Align.MiddleLeft;
-
-            grid2.AddChild(rareTierCheckbox);
-
-            Label legendaryTierLabel = new Label(legendaryLabelRef);
-            legendaryTierLabel.Alignment = Align.MiddleLeft;
-
-            grid2.AddChild(legendaryTierLabel);
-
-            Checkbox legendaryTierCheckbox = new Checkbox(Settings.legendaryTierEnabled);
-            legendaryTierCheckbox.Alignment = Align.MiddleLeft;
-
-            grid2.AddChild(legendaryTierCheckbox);
-
-            stack.AddChild(grid2);
-
-            canvas.AddChild(stack);
-
-            canvas.Render();
+            if (saveColorButton.Clicked)
+            {
+                if (selectedColor.Value == selectedTierDef.Value.color)
+                {
+                    if (Settings.tierColorOverride.ContainsKey(selectedTierDef.Value))
+                    {
+                        Settings.tierColorOverride.Remove(selectedTierDef.Value);
+                        Messages.Message("Infusion.Settings.Tiers.ColorResetMessage".Translate(selectedTierDef.Value.defName), MessageTypeDefOf.NeutralEvent);
+                    }
+                    else
+                    {
+                        Messages.Message("Infusion.Settings.Tiers.ColorAlreadyDefaultMessage".Translate(selectedTierDef.Value.defName), MessageTypeDefOf.NeutralEvent);
+                    }
+                }
+                else
+                {
+                    Settings.tierColorOverride[selectedTierDef.Value] = selectedColor.Value;
+                    Messages.Message("Infusion.Settings.Tiers.ColorSavedMessage".Translate(selectedTierDef.Value.defName), MessageTypeDefOf.NeutralEvent);
+                }
+            }
         }
     }
 }

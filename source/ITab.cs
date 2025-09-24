@@ -79,7 +79,7 @@ namespace Infusion
 
             Text.Font = GameFont.Medium;
 
-            GUI.color = compInf.BestInfusion?.tier.color ?? gray;
+            GUI.color = compInf.BestInfusion != null ? Utils.GetTierColor(compInf.BestInfusion.tier) : gray;
 
             Widgets.Label(parentRect, label);
 

@@ -177,7 +177,7 @@ namespace Infusion
                 extraDescriptions = extraSB.ToString();
             }
 
-            return new StringBuilder(label.Colorize(infDef.tier.color))
+            return new StringBuilder(label.Colorize(Utils.GetTierColor(infDef.tier)))
                 .Append(statsDescriptions)
                 .Append(extraDescriptions.Colorize(new Color(0.11f, 1.0f, 0.0f)))
                 .ToString();

@@ -427,7 +427,7 @@ namespace Infusion
                 GenMapUI.DrawThingLabel(
                     GenMapUI.LabelDrawPosFor(parent, pos),
                     MakeBestInfusionLabel(BestInfusionLabelLength.Short),
-                    BestInfusion.tier.color
+                    Utils.GetTierColor(BestInfusion.tier)
                 );
             }
         }
@@ -446,7 +446,7 @@ namespace Infusion
 
             var infusionLabel = MakeBestInfusionLabel(BestInfusionLabelLength.Long);
             var translatedLabel = translationKey.Translate(infusionLabel, baseLabel);
-            var colorizedInfusionLabel = infusionLabel.Colorize(BestInfusion.tier.color);
+            var colorizedInfusionLabel = infusionLabel.Colorize(Utils.GetTierColor(BestInfusion.tier));
             var sb = new StringBuilder(translatedLabel);
 
             // Check if this is an infuser

@@ -9,6 +9,7 @@ namespace Infusion
     public static class ResourceBank
     {
         public static List<InfusionDef> allInfusionDefs = DefDatabase<InfusionDef>.AllDefs.ToList();
+        public static List<TierDef> allTierDefs = DefDatabase<TierDef>.AllDefs.ToList();
         [StaticConstructorOnStartup]
         public static class Textures
         {

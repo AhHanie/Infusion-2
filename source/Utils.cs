@@ -1,4 +1,5 @@
 ﻿using Verse;
+using UnityEngine;
 
 namespace Infusion
 {
@@ -38,6 +39,15 @@ namespace Infusion
                 return record.verb.CasterPawn;
             }
             return record.target;
+        }
+
+        public static Color GetTierColor(TierDef def)
+        {
+            if (Settings.tierColorOverride.ContainsKey(def))
+            {
+                return Settings.tierColorOverride[def];
+            }
+            return def.color;
         }
     }
 }
