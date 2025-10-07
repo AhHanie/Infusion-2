@@ -631,10 +631,6 @@
     <label>savant</label>
     <labelShort>svnt</labelShort>
     <matches>
-      <li Class="Infusion.Matchers.EquipmentType">
-        <melee>true</melee>
-        <ranged>true</ranged>
-      </li>
       <li Class="Infusion.Matchers.ProjectileBullet" />
     </matches>
     <stats>
@@ -663,10 +659,6 @@
     <label>venomspite</label>
     <labelShort>vnom</labelShort>
     <matches>
-      <li Class="Infusion.Matchers.EquipmentType">
-        <melee>true</melee>
-        <ranged>true</ranged>
-      </li>
       <li Class="Infusion.Matchers.ProjectileBullet" />
     </matches>
     <onHits>
@@ -690,10 +682,6 @@
     <label>surge</label>
     <labelShort>srg</labelShort>
     <matches>
-      <li Class="Infusion.Matchers.EquipmentType">
-        <melee>true</melee>
-        <ranged>true</ranged>
-      </li>
       <li Class="Infusion.Matchers.ProjectileBullet" />
     </matches>
     <onHits>
@@ -717,10 +705,6 @@
     <label>lifebinder</label>
     <labelShort>life</labelShort>
     <matches>
-      <li Class="Infusion.Matchers.EquipmentType">
-        <melee>true</melee>
-        <ranged>true</ranged>
-      </li>
       <li Class="Infusion.Matchers.ProjectileBullet" />
     </matches>
     <onHits>
@@ -741,10 +725,6 @@
     <label>guiding</label>
     <labelShort>guid</labelShort>
     <matches>
-      <li Class="Infusion.Matchers.EquipmentType">
-        <melee>true</melee>
-        <ranged>true</ranged>
-      </li>
       <li Class="Infusion.Matchers.ProjectileBullet" />
     </matches>
     <onHits>
@@ -765,10 +745,6 @@
     <label>rending</label>
     <labelShort>rend</labelShort>
     <matches>
-      <li Class="Infusion.Matchers.EquipmentType">
-        <melee>true</melee>
-        <ranged>true</ranged>
-      </li>
       <li Class="Infusion.Matchers.ProjectileBullet" />
     </matches>
     <onHits>
@@ -789,10 +765,6 @@
     <label>shaping</label>
     <labelShort>shap</labelShort>
     <matches>
-      <li Class="Infusion.Matchers.EquipmentType">
-        <melee>true</melee>
-        <ranged>true</ranged>
-      </li>
       <li Class="Infusion.Matchers.ProjectileBullet" />
     </matches>
     <onHits>
@@ -813,10 +785,6 @@
     <label>delving</label>
     <labelShort>delv</labelShort>
     <matches>
-      <li Class="Infusion.Matchers.EquipmentType">
-        <melee>true</melee>
-        <ranged>true</ranged>
-      </li>
       <li Class="Infusion.Matchers.ProjectileBullet" />
     </matches>
     <onHits>
@@ -837,10 +805,6 @@
     <label>wildheart</label>
     <labelShort>wild</labelShort>
     <matches>
-      <li Class="Infusion.Matchers.EquipmentType">
-        <melee>true</melee>
-        <ranged>true</ranged>
-      </li>
       <li Class="Infusion.Matchers.ProjectileBullet" />
     </matches>
     <onHits>
@@ -861,10 +825,6 @@
     <label>forging</label>
     <labelShort>forg</labelShort>
     <matches>
-      <li Class="Infusion.Matchers.EquipmentType">
-        <melee>true</melee>
-        <ranged>true</ranged>
-      </li>
       <li Class="Infusion.Matchers.ProjectileBullet" />
     </matches>
     <onHits>
@@ -885,10 +845,6 @@
     <label>artifex</label>
     <labelShort>artif</labelShort>
     <matches>
-      <li Class="Infusion.Matchers.EquipmentType">
-        <melee>true</melee>
-        <ranged>true</ranged>
-      </li>
       <li Class="Infusion.Matchers.ProjectileBullet" />
     </matches>
     <onHits>
@@ -909,10 +865,6 @@
     <label>ambassador</label>
     <labelShort>ambas</labelShort>
     <matches>
-      <li Class="Infusion.Matchers.EquipmentType">
-        <melee>true</melee>
-        <ranged>true</ranged>
-      </li>
       <li Class="Infusion.Matchers.ProjectileBullet" />
     </matches>
     <onHits>
@@ -933,10 +885,6 @@
     <label>savoring</label>
     <labelShort>savor</labelShort>
     <matches>
-      <li Class="Infusion.Matchers.EquipmentType">
-        <melee>true</melee>
-        <ranged>true</ranged>
-      </li>
       <li Class="Infusion.Matchers.ProjectileBullet" />
     </matches>
     <onHits>
@@ -957,10 +905,6 @@
     <label>sprouting</label>
     <labelShort>sprt</labelShort>
     <matches>
-      <li Class="Infusion.Matchers.EquipmentType">
-        <melee>true</melee>
-        <ranged>true</ranged>
-      </li>
       <li Class="Infusion.Matchers.ProjectileBullet" />
     </matches>
     <onHits>
@@ -981,10 +925,6 @@
     <label>enlightening</label>
     <labelShort>enli</labelShort>
     <matches>
-      <li Class="Infusion.Matchers.EquipmentType">
-        <melee>true</melee>
-        <ranged>true</ranged>
-      </li>
       <li Class="Infusion.Matchers.ProjectileBullet" />
     </matches>
     <onHits>

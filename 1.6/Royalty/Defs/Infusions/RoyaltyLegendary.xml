@@ -127,10 +127,6 @@
     <label>crownslayer</label>
     <labelShort>crwn</labelShort>
     <matches>
-      <li Class="Infusion.Matchers.EquipmentType">
-        <melee>true</melee>
-        <ranged>true</ranged>
-      </li>
       <li Class="Infusion.Matchers.ProjectileBullet" />
     </matches>
     <onHits>

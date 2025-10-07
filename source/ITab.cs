@@ -329,8 +329,9 @@ namespace Infusion
 
                 if (Widgets.ButtonText(buttonView, ResourceBank.Strings.ITab.ApplyInfuser))
                 {
-                    var floatMenuOptions = infPairs.Select(infPair =>
-                        new FloatMenuOption(infPair.Key.LabelCap, () => comp.MarkForInfuser(infPair.Key))
+                    var floatMenuOptions = infPairs.OrderBy(infPair => infPair.Key.LabelCap.ToString())
+                        .Select(infPair =>
+                        new FloatMenuOption($"{infPair.Key.LabelCap} ({infPair.Key.tier.LabelCap})", () => comp.MarkForInfuser(infPair.Key))
                     ).ToList();
 
                     Find.WindowStack.Add(new FloatMenu(floatMenuOptions));

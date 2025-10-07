@@ -65,10 +65,6 @@
         <label>umbra</label>
         <labelShort>umbr</labelShort>
         <matches>
-            <li Class="Infusion.Matchers.EquipmentType">
-                <melee>true</melee>
-                <ranged>true</ranged>
-            </li>
             <li Class="Infusion.Matchers.ProjectileBullet" />
         </matches>
         <onHits>
@@ -94,10 +90,6 @@
         <label>warpbreaker</label>
         <labelShort>wrpbrk</labelShort>
         <matches>
-            <li Class="Infusion.Matchers.EquipmentType">
-                <melee>true</melee>
-                <ranged>true</ranged>
-            </li>
             <li Class="Infusion.Matchers.ProjectileBullet" />
         </matches>
         <onHits>
