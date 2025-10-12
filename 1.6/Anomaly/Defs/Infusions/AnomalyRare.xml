@@ -36,7 +36,7 @@
 			</li>
 		</onHits>
 		<extraDescriptions>
-			<li>Impact: 3% chance to spawn a ghoul to fight for you for 10 seconds.</li>
+			<li>Hit: 3% chance to spawn a ghoul to fight for you for 10 seconds.</li>
 		</extraDescriptions>
 	</Infusion.InfusionDef>
 
@@ -78,7 +78,7 @@
 			</li>
 		</onHits>
 		<extraDescriptions>
-			<li>Impact: 2.5% chance to add 1 advanced research points to the current Anomaly project</li>
+			<li>Hit: 2.5% chance to add 1 advanced research points to the current Anomaly project</li>
 		</extraDescriptions>
 		<conditions>
 			<li Class="Infusion.Conditions.AnomalyStudyEnabled"/>

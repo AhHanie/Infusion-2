@@ -22,7 +22,7 @@
             </li>
         </onHits>
         <extraDescriptions>
-            <li>Impact: 2.5% chance to add 1 basic research points to the current Anomaly project</li>
+            <li>Hit: 2.5% chance to add 1 basic research points to the current Anomaly project</li>
         </extraDescriptions>
         <conditions>
             <li Class="Infusion.Conditions.AnomalyStudyEnabled"/>

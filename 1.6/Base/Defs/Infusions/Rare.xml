@@ -638,7 +638,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 10% chance to spawn Rot stink gas.</li>
+      <li>Hit: 10% chance to spawn Rot stink gas.</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -869,7 +869,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: Increases toxic buildup of the target by 7.5% of the damage.</li>
+      <li>Hit: Increases toxic buildup of the target by 7.5% of the damage.</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -895,7 +895,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 10% chance to instantly attack again.</li>
+      <li>Hit: 10% chance to instantly attack again.</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -945,7 +945,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: Damages your enemies, heals your colonists at the cost 10% of the weapon's maximum hitpoints per heal when used for healing. Weapon is automatically destroyed once durability reaches 0.</li>
+      <li>Hit: Damages your enemies, heals your colonists at the cost 10% of the weapon's maximum hitpoints per heal when used for healing. Weapon is automatically destroyed once durability reaches 0.</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -999,7 +999,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 7.5% chance to add 15 research points to the current project</li>
+      <li>Hit: 7.5% chance to add 15 research points to the current project</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1065,7 +1065,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 7.5% chance to gain 15 exp in Medicine</li>
+      <li>Hit: 7.5% chance to gain 15 exp in Medicine</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1085,7 +1085,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 7.5% chance to gain 15 exp in Shooting</li>
+      <li>Hit: 7.5% chance to gain 15 exp in Shooting</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1105,7 +1105,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 7.5% chance to gain 15 exp in Melee</li>
+      <li>Hit: 7.5% chance to gain 15 exp in Melee</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1125,7 +1125,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 7.5% chance to gain 15 exp in Construction</li>
+      <li>Hit: 7.5% chance to gain 15 exp in Construction</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1145,7 +1145,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 7.5% chance to gain 15 exp in Mining</li>
+      <li>Hit: 7.5% chance to gain 15 exp in Mining</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1165,7 +1165,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 7.5% chance to gain 15 exp in Animals</li>
+      <li>Hit: 7.5% chance to gain 15 exp in Animals</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1185,7 +1185,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 7.5% chance to gain 15 exp in Crafting</li>
+      <li>Hit: 7.5% chance to gain 15 exp in Crafting</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1205,7 +1205,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 7.5% chance to gain 15 exp in Artistic</li>
+      <li>Hit: 7.5% chance to gain 15 exp in Artistic</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1225,7 +1225,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 7.5% chance to gain 15 exp in Social</li>
+      <li>Hit: 7.5% chance to gain 15 exp in Social</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1245,7 +1245,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 7.5% chance to gain 15 exp in Cooking</li>
+      <li>Hit: 7.5% chance to gain 15 exp in Cooking</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1265,7 +1265,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 7.5% chance to gain 15 exp in Plants</li>
+      <li>Hit: 7.5% chance to gain 15 exp in Plants</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1285,7 +1285,74 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 7.5% chance to gain 15 exp in Intellectual</li>
+      <li>Hit: 7.5% chance to gain 15 exp in Intellectual</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="RareWeaponsBase">
+    <defName>Rare_Animus</defName>
+    <label>animus</label>
+    <labelShort>anim</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.IfBioTargetHit">
+        <value Class="Infusion.OnHitWorkers.TameTarget">
+          <chance>0.05</chance>
+        </value>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Hit: 5% chance to tame a wild animal</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="RareWeaponsBase">
+    <defName>Rare_Argent</defName>
+    <label>argent</label>
+    <labelShort>arg</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.IfBioTargetHit">
+        <value Class="Infusion.OnHitWorkers.Sequence">
+          <chance>0.05</chance>
+          <value>
+            <li Class="Infusion.OnHitWorkers.PlaySound">
+              <def>Infusion_SilverDrop</def>
+            </li>
+            <li Class="Infusion.OnHitWorkers.SpawnThing">
+              <thingDef>Silver</thingDef>
+              <randomStackCount>true</randomStackCount>
+              <randomStackRange>2~4</randomStackRange>
+            </li>
+          </value>
+        </value>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Hit: 5% chance to generate 2~4 silver</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="RareWeaponsBase">
+    <defName>Rare_Disarming</defName>
+    <label>disarming</label>
+    <labelShort>disarm</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.IfBioTargetHit">
+        <value Class="Infusion.OnHitWorkers.DisarmWeapon">
+          <chance>0.05</chance>
+        </value>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Hit: 5% chance to disarm pawn's primary weapon</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 </Defs>

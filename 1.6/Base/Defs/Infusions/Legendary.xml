@@ -546,7 +546,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 25% chance to explode in EMP explosion. Deals 100% of the damage within a radius of 1.4 cells.</li>
+      <li>Hit: 25% chance to explode in EMP explosion. Deals 100% of the damage within a radius of 1.4 cells.</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -594,7 +594,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 15% chance to spawn Rot stink gas.</li>
+      <li>Hit: 15% chance to spawn Rot stink gas.</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -721,8 +721,8 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 20% chance to explode. Deals 50% of the damage within a radius of 1.4 cells.</li>
-      <li>Impact: 10% chance to explode in flame. Deals 50% of the damage within a radius of 1.4 cells.</li>
+      <li>Hit: 20% chance to explode. Deals 50% of the damage within a radius of 1.4 cells.</li>
+      <li>Hit: 10% chance to explode in flame. Deals 50% of the damage within a radius of 1.4 cells.</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -749,7 +749,7 @@
       </li>
     </stats>
     <extraDescriptions>
-      <li>Impact: 2.5% for lightning to strike on the target</li>
+      <li>Hit: 2.5% for lightning to strike on the target</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
   <!-- #endregion -->
@@ -813,7 +813,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 15% chance to instantly attack again.</li>
+      <li>Hit: 15% chance to instantly attack again.</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -855,7 +855,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 1% chance to convert target into a golden sculpture. Does not work on colonists.</li>
+      <li>Hit: 1% chance to convert target into a golden sculpture. Does not work on colonists.</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -903,7 +903,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 2% chance to convert target into a chicken. Does not work on colonists.</li>
+      <li>Hit: 2% chance to convert target into a chicken. Does not work on colonists.</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -951,7 +951,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 2% chance to convert target into a monkey. Does not work on colonists.</li>
+      <li>Hit: 2% chance to convert target into a monkey. Does not work on colonists.</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1001,7 +1001,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: Damages your enemies, heals your colonists at the cost 5% of the weapon's maximum hitpoints per heal when used for healing. Weapon is automatically destroyed once durability reaches 0.</li>
+      <li>Hit: Damages your enemies, heals your colonists at the cost 5% of the weapon's maximum hitpoints per heal when used for healing. Weapon is automatically destroyed once durability reaches 0.</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1055,7 +1055,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 10% chance to add 20 research points to the current project</li>
+      <li>Hit: 10% chance to add 20 research points to the current project</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1121,7 +1121,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 10% chance to gain 20 exp in Medicine</li>
+      <li>Hit: 10% chance to gain 20 exp in Medicine</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1141,7 +1141,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 10% chance to gain 20 exp in Shooting</li>
+      <li>Hit: 10% chance to gain 20 exp in Shooting</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1161,7 +1161,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 10% chance to gain 20 exp in Melee</li>
+      <li>Hit: 10% chance to gain 20 exp in Melee</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1181,7 +1181,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 10% chance to gain 20 exp in Construction</li>
+      <li>Hit: 10% chance to gain 20 exp in Construction</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1201,7 +1201,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 10% chance to gain 20 exp in Mining</li>
+      <li>Hit: 10% chance to gain 20 exp in Mining</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1221,7 +1221,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 10% chance to gain 20 exp in Animals</li>
+      <li>Hit: 10% chance to gain 20 exp in Animals</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1241,7 +1241,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 10% chance to gain 20 exp in Crafting</li>
+      <li>Hit: 10% chance to gain 20 exp in Crafting</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1261,7 +1261,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 10% chance to gain 20 exp in Artistic</li>
+      <li>Hit: 10% chance to gain 20 exp in Artistic</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1281,7 +1281,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 10% chance to gain 20 exp in Social</li>
+      <li>Hit: 10% chance to gain 20 exp in Social</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1301,7 +1301,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 10% chance to gain 20 exp in Cooking</li>
+      <li>Hit: 10% chance to gain 20 exp in Cooking</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1321,7 +1321,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 10% chance to gain 20 exp in Plants</li>
+      <li>Hit: 10% chance to gain 20 exp in Plants</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1341,7 +1341,74 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 10% chance to gain 20 exp in Intellectual</li>
+      <li>Hit: 10% chance to gain 20 exp in Intellectual</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
+    <defName>Legendary_Animus</defName>
+    <label>animus</label>
+    <labelShort>anim</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.IfBioTargetHit">
+        <value Class="Infusion.OnHitWorkers.TameTarget">
+          <chance>0.1</chance>
+        </value>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Hit: 10% chance to tame a wild animal</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
+    <defName>Legendary_Argent</defName>
+    <label>argent</label>
+    <labelShort>arg</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.IfBioTargetHit">
+        <value Class="Infusion.OnHitWorkers.Sequence">
+          <chance>0.1</chance>
+          <value>
+            <li Class="Infusion.OnHitWorkers.PlaySound">
+              <def>Infusion_SilverDrop</def>
+            </li>
+            <li Class="Infusion.OnHitWorkers.SpawnThing">
+              <thingDef>Silver</thingDef>
+              <randomStackCount>true</randomStackCount>
+              <randomStackRange>3~5</randomStackRange>
+            </li>
+          </value>
+        </value>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Hit: 10% chance to generate 3~5 silver</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
+    <defName>Legendary_Disarming</defName>
+    <label>disarming</label>
+    <labelShort>disarm</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.IfBioTargetHit">
+        <value Class="Infusion.OnHitWorkers.DisarmWeapon">
+          <chance>0.1</chance>
+        </value>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Hit: 10% chance to disarm pawn's primary weapon</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
   <!-- #endregion -->

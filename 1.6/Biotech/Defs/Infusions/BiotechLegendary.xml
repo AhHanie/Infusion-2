@@ -15,7 +15,7 @@
             </li>
         </onHits>
         <extraDescriptions>
-            <li>Impact: 15% chance to spawn tox gas.</li>
+            <li>Hit: 15% chance to spawn tox gas.</li>
         </extraDescriptions>
     </Infusion.InfusionDef>
 </Defs>

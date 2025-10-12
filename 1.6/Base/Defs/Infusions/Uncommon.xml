@@ -440,7 +440,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 5% chance to spawn Rot stink gas.</li>
+      <li>Hit: 5% chance to spawn Rot stink gas.</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -546,7 +546,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 5% chance to instantly attack again.</li>
+      <li>Hit: 5% chance to instantly attack again.</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -650,7 +650,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 5% chance to add 10 research points to the current project</li>
+      <li>Hit: 5% chance to add 10 research points to the current project</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -716,7 +716,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 5% chance to gain 10 exp in Medicine</li>
+      <li>Hit: 5% chance to gain 10 exp in Medicine</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -736,7 +736,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 5% chance to gain 10 exp in Shooting</li>
+      <li>Hit: 5% chance to gain 10 exp in Shooting</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -756,7 +756,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 5% chance to gain 10 exp in Melee</li>
+      <li>Hit: 5% chance to gain 10 exp in Melee</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -776,7 +776,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 5% chance to gain 10 exp in Construction</li>
+      <li>Hit: 5% chance to gain 10 exp in Construction</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -796,7 +796,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 5% chance to gain 10 exp in Mining</li>
+      <li>Hit: 5% chance to gain 10 exp in Mining</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -816,7 +816,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 5% chance to gain 10 exp in Animals</li>
+      <li>Hit: 5% chance to gain 10 exp in Animals</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -836,7 +836,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 5% chance to gain 10 exp in Crafting</li>
+      <li>Hit: 5% chance to gain 10 exp in Crafting</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -856,7 +856,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 5% chance to gain 10 exp in Artistic</li>
+      <li>Hit: 5% chance to gain 10 exp in Artistic</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -876,7 +876,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 5% chance to gain 10 exp in Social</li>
+      <li>Hit: 5% chance to gain 10 exp in Social</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -896,7 +896,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 5% chance to gain 10 exp in Cooking</li>
+      <li>Hit: 5% chance to gain 10 exp in Cooking</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -916,7 +916,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 5% chance to gain 10 exp in Plants</li>
+      <li>Hit: 5% chance to gain 10 exp in Plants</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -936,7 +936,36 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 5% chance to gain 10 exp in Intellectual</li>
+      <li>Hit: 5% chance to gain 10 exp in Intellectual</li>
+    </extraDescriptions>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="UncommonWeaponsBase">
+    <defName>Uncommon_Argent</defName>
+    <label>argent</label>
+    <labelShort>arg</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.IfBioTargetHit">
+        <value Class="Infusion.OnHitWorkers.Sequence">
+          <chance>0.025</chance>
+          <value>
+            <li Class="Infusion.OnHitWorkers.PlaySound">
+              <def>Infusion_SilverDrop</def>
+            </li>
+            <li Class="Infusion.OnHitWorkers.SpawnThing">
+              <thingDef>Silver</thingDef>
+              <randomStackCount>true</randomStackCount>
+              <randomStackRange>1~2</randomStackRange>
+            </li>
+          </value>
+        </value>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Hit: 2.5% chance to generate 1~2 silver</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 </Defs>

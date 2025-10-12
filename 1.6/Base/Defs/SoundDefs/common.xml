@@ -48,4 +48,20 @@
       </li>
     </subSounds>
   </SoundDef>
+
+  <SoundDef>
+    <defName>Infusion_SilverDrop</defName>
+    <context>MapOnly</context>
+    <maxSimultaneous>1</maxSimultaneous>
+    <subSounds>
+      <li>
+        <grains>
+          <li Class="AudioGrain_Clip">
+            <clipPath>Infusion/coins-shake</clipPath>
+          </li>
+        </grains>
+        <volumeRange>90~95</volumeRange>
+      </li>
+    </subSounds>
+  </SoundDef>
 </Defs>

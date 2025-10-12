@@ -348,7 +348,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 2.5% chance to add 5 research points to the current project</li>
+      <li>Hit: 2.5% chance to add 5 research points to the current project</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -414,7 +414,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 2.5% chance to gain 5 exp in Medicine</li>
+      <li>Hit: 2.5% chance to gain 5 exp in Medicine</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -434,7 +434,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 2.5% chance to gain 5 exp in Shooting</li>
+      <li>Hit: 2.5% chance to gain 5 exp in Shooting</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -454,7 +454,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 2.5% chance to gain 5 exp in Melee</li>
+      <li>Hit: 2.5% chance to gain 5 exp in Melee</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -474,7 +474,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 2.5% chance to gain 5 exp in Construction</li>
+      <li>Hit: 2.5% chance to gain 5 exp in Construction</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -494,7 +494,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 2.5% chance to gain 5 exp in Mining</li>
+      <li>Hit: 2.5% chance to gain 5 exp in Mining</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -514,7 +514,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 2.5% chance to gain 5 exp in Animals</li>
+      <li>Hit: 2.5% chance to gain 5 exp in Animals</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -534,7 +534,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 2.5% chance to gain 5 exp in Crafting</li>
+      <li>Hit: 2.5% chance to gain 5 exp in Crafting</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -554,7 +554,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 2.5% chance to gain 5 exp in Artistic</li>
+      <li>Hit: 2.5% chance to gain 5 exp in Artistic</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -574,7 +574,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 2.5% chance to gain 5 exp in Social</li>
+      <li>Hit: 2.5% chance to gain 5 exp in Social</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -594,7 +594,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 2.5% chance to gain 5 exp in Cooking</li>
+      <li>Hit: 2.5% chance to gain 5 exp in Cooking</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -614,7 +614,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 2.5% chance to gain 5 exp in Plants</li>
+      <li>Hit: 2.5% chance to gain 5 exp in Plants</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -634,7 +634,7 @@
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Impact: 2.5% chance to gain 5 exp in Intellectual</li>
+      <li>Hit: 2.5% chance to gain 5 exp in Intellectual</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 </Defs>

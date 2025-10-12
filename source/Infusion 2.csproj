@@ -120,6 +120,7 @@
     <Compile Include="OnHitWorkers\DamageBase.cs" />
     <Compile Include="OnHitWorkers\DamageWeapon.cs" />
     <Compile Include="OnHitWorkers\DestoryTarget.cs" />
+    <Compile Include="OnHitWorkers\DisarmWeapon.cs" />
     <Compile Include="OnHitWorkers\GainSkillExp.cs" />
     <Compile Include="OnHitWorkers\Heal.cs" />
     <Compile Include="OnHitWorkers\IfBioTargetHit.cs" />
@@ -137,6 +138,8 @@
     <Compile Include="OnHitWorkers\SpawnFilth.cs" />
     <Compile Include="OnHitWorkers\SpawnGas.cs" />
     <Compile Include="OnHitWorkers\SpawnLightning.cs" />
+    <Compile Include="OnHitWorkers\SpawnThing.cs" />
+    <Compile Include="OnHitWorkers\TameTarget.cs" />
     <Compile Include="OnHitWorkers\ThrowFleck.cs" />
     <Compile Include="Harmonize\PlayNearestLifestageSound.cs" />
     <Compile Include="PreHitWorker.cs" />
@@ -149,7 +152,7 @@
     <Compile Include="ResourceBank.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="SmartInfusionHelper.cs" />
-    <Compile Include="SpawnPawn.cs" />
+    <Compile Include="OnHitWorkers\SpawnPawn.cs" />
     <Compile Include="SpecialThingFilterWorkers\Everything.cs" />
     <Compile Include="StaticFlags.cs" />
     <Compile Include="StatMod.cs" />
