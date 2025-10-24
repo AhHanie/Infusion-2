@@ -83,4 +83,11 @@ Applied after the body part limit, i.e. an apparel which protects arms and torso
   <Infusion.Settings.Tiers.ColorResetMessage>{0} color was reset to default</Infusion.Settings.Tiers.ColorResetMessage>
   <Infusion.Settings.Tiers.ColorAlreadyDefaultMessage>{0} is already using the default color</Infusion.Settings.Tiers.ColorAlreadyDefaultMessage>
   <Infusion.Settings.Tiers.ColorSavedMessage>{0} color was saved</Infusion.Settings.Tiers.ColorSavedMessage>
+
+  <Infusion.Settings.Label.DisableItemInfusion>Disable Item Infusion</Infusion.Settings.Label.DisableItemInfusion>
+  <Infusion.Settings.Tooltip.DisableItemInfusion>The only way to infuse items with this option is to find infusers them as loot/quest rewards</Infusion.Settings.Tooltip.DisableItemInfusion>
+
+  <Infusion.Settings.Infusions.Defs.EnableDisableAllTiers>Enable/Disable All Tiers</Infusion.Settings.Infusions.Defs.EnableDisableAllTiers>
+  <Infusion.Settings.Infusions.Defs.EnableAllTiersMessage>All tiers of {0} were enabled</Infusion.Settings.Infusions.Defs.EnableAllTiersMessage>
+  <Infusion.Settings.Infusions.Defs.DisableAllTiersMessage>All tiers of {0} were disabled</Infusion.Settings.Infusions.Defs.DisableAllTiersMessage>
 </LanguageData>

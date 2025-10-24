@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using RimWorld;
+using System.Reflection;
 using Verse;
 
 namespace Infusion.Harmonize
@@ -9,6 +10,11 @@ namespace Infusion.Harmonize
         [HarmonyPatch(typeof(CompQuality), "SetQuality")]
         public static class SetQuality
         {
+            public static bool Prepare(MethodBase original)
+            {
+                return !Settings.disableItemInfusion.Value;
+            }
+
             public static void Postfix(CompQuality __instance)
             {
                 var compInfusion = __instance.parent.TryGetComp<CompInfusion>();

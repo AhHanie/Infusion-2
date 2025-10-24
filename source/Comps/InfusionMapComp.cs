@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using Infusion.Comps;
 using RimWorld;
 using Verse;
 
@@ -25,7 +25,7 @@ namespace Infusion
                     allComp.CompTick();
                 }
             }
-            if (Find.TickManager.TicksGame % 18000 == 0)
+            if (Find.TickManager.TicksGame % Constants.ONE_MINUTE_IN_TICKS == 0)
             {
                 Cleanup();
             }
@@ -77,9 +77,14 @@ namespace Infusion
                     tickCompsToRemove.Add(item);
                 }
             }
+            GameComponent_Infusion infusionGameComp = Current.Game.GetComponent<GameComponent_Infusion>();
             foreach (ThingWithComps item2 in tickCompsToRemove)
             {
                 compsToTick.Remove(item2);
+                if (item2.TryGetComp<CompInfusion>(out CompInfusion infusionComp) && infusionComp.ContainsTag(InfusionTags.AEGIS))
+                {
+                    infusionGameComp.RemoveAegisItem(item2);
+                }
             }
             List<TemporaryAlly> temporaryAlliesToRemove = new List<TemporaryAlly>();
             foreach (TemporaryAlly item in temporaryAlliesToRemove)

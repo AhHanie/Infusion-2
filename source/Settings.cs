@@ -38,6 +38,7 @@ namespace Infusion
         public static Dictionary<InfusionDef, StrongBox<bool>> infusionDefsDisabledMap = new Dictionary<InfusionDef, StrongBox<bool>>();
         public static List<InfusionDef> infusionDefsDisabledList = new List<InfusionDef>();
         public static List<bool> infusionDefsDisabledList1 = new List<bool>();
+        public static StrongBox<bool> disableItemInfusion = new StrongBox<bool>(false);
 
         public override void ExposeData()
         {
@@ -68,6 +69,7 @@ namespace Infusion
             Scribe_Values.Look(ref infuseUniqueWeapons.Value, "infuseUniqueWeapons", false);
             Scribe_Values.Look(ref infusionsFromCrafting.Value, "infusionsFromCrafting", true);
             Scribe_Collections.Look(ref tierColorOverride, "tierColorOverride");
+            Scribe_Values.Look(ref disableItemInfusion.Value, "disableItemInfusion", false);
 
             if (Scribe.mode == LoadSaveMode.Saving)
             {

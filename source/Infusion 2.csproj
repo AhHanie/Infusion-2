@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="Compat\ToggleableShields.cs" />
     <Compile Include="Comps\CompInfusion.cs" />
+    <Compile Include="Comps\GameComponent_Infusion.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="DebugActions.cs" />
     <Compile Include="DefFields.cs" />
@@ -93,7 +94,7 @@
     <Compile Include="Infuser.cs" />
     <Compile Include="Conditions\AnomalyStudyEnabled.cs" />
     <Compile Include="InfusionConditon.cs" />
-    <Compile Include="InfusionDef.cs" />
+    <Compile Include="Defs\InfusionDef.cs" />
     <Compile Include="Comps\InfusionMapComp.cs" />
     <Compile Include="InfusionTags.cs" />
     <Compile Include="ITab.cs" />
@@ -151,6 +152,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceBank.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="AegisShieldCompData.cs" />
     <Compile Include="SmartInfusionHelper.cs" />
     <Compile Include="OnHitWorkers\SpawnPawn.cs" />
     <Compile Include="SpecialThingFilterWorkers\Everything.cs" />
@@ -162,7 +164,7 @@
     <Compile Include="Comps\TemporaryAllyComp.cs" />
     <Compile Include="ThingSetMaker.cs" />
     <Compile Include="ThoughtWorker_Soothed.cs" />
-    <Compile Include="TierDef.cs" />
+    <Compile Include="Defs\TierDef.cs" />
     <Compile Include="TierDefOf.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="Harmonize\Verb_LaunchProjectile.cs" />

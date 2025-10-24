@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using Verse;
+using System.Collections.Generic;
 
 namespace Infusion
 {
@@ -14,12 +15,38 @@ namespace Infusion
         public static StrongBox<TierDef> selectedTierDef = new StrongBox<TierDef>(ResourceBank.allTierDefs.First());
         public static StrongBox<Color> selectedColor = new StrongBox<Color>(Settings.tierColorOverride.ContainsKey(ResourceBank.allTierDefs.First()) ? Settings.tierColorOverride[ResourceBank.allTierDefs.First()] : ResourceBank.allTierDefs.First().color);
         public static TierDef previousSelectedTierDef = selectedTierDef.Value;
+        private static List<InfusionDef> allTiers = GetAllTiersOfInfusion(selectedInfusionDef.Value);
+        private static bool hasMultipleTiers = allTiers.Count > 1;
+        private static InfusionDef oldSelectedInfusionDef = selectedInfusionDef.Value;
+        private static bool allTiersDisabled = hasMultipleTiers && allTiers.All(def =>
+                Settings.infusionDefsDisabledMap.ContainsKey(def) &&
+                Settings.infusionDefsDisabledMap[def].Value);
+
+        private static string GetInfusionBaseName(string defName)
+        {
+            string[] tierPrefixes = { "Legendary_", "Rare_", "Uncommon_", "Common_" };
+            foreach (string prefix in tierPrefixes)
+            {
+                if (defName.StartsWith(prefix))
+                {
+                    return defName.Substring(prefix.Length);
+                }
+            }
+            return defName;
+        }
+
+        private static List<InfusionDef> GetAllTiersOfInfusion(InfusionDef infusionDef)
+        {
+            string baseName = GetInfusionBaseName(infusionDef.defName);
+            return ResourceBank.allInfusionDefs.Where(def => def.defName.Contains(baseName)).ToList();
+        }
+
         public static void Draw(Rect parent)
         {
             ScrollCanvas canvas = new ScrollCanvas(rect: parent, scrollPositionBox: scrollPosition);
-            Stack stack = new Stack(widthMode: SizeMode.Fill, verticalSpacing: 10f, heightMode: SizeMode.Content); 
+            Stack stack = new Stack(widthMode: SizeMode.Fill, verticalSpacing: 10f, heightMode: SizeMode.Content);
 
-            int gridRows = 15;
+            int gridRows = 16;
             if (ModsConfig.OdysseyActive)
             {
                 gridRows++;
@@ -43,6 +70,7 @@ namespace Infusion
             Label statsGlobalMultiplierLabel = new Label("Infusion.Settings.StatsGlobalMultiplier".Translate(), alignment: Align.MiddleLeft, tooltip: "Infusion.Settings.StatsGlobalMultiplier.Description".Translate());
             Label chanceGlobalMultiplierLabel = new Label("Infusion.Settings.ChanceGlobalMultiplier".Translate(), alignment: Align.MiddleLeft, tooltip: "Infusion.Settings.ChanceGlobalMultiplier.Description".Translate());
             Label amountGlobalMultiplierLabel = new Label("Infusion.Settings.AmountGlobalMultiplier".Translate(), alignment: Align.MiddleLeft, tooltip: "Infusion.Settings.AmountGlobalMultiplier.Description".Translate());
+            Label disableItemInfusionLabel = new Label("Infusion.Settings.Label.DisableItemInfusion".Translate(), alignment: Align.MiddleLeft, tooltip: "Infusion.Settings.Tooltip.DisableItemInfusion".Translate());
 
             Checkbox accuracyOvercappingCheckbox = new Checkbox(isChecked: Settings.accuracyOvercap, alignment: Align.MiddleLeft);
             Checkbox bonusToBiocodeCheckbox = new Checkbox(isChecked: Settings.biocodeBonus, alignment: Align.MiddleLeft);
@@ -51,6 +79,7 @@ namespace Infusion
             Checkbox reusableInfusersCheckbox = new Checkbox(isChecked: Settings.reusableInfusers, alignment: Align.MiddleLeft);
             Checkbox bodyPartLimitCheckbox = new Checkbox(isChecked: Settings.bodyPartHandle, alignment: Align.MiddleLeft);
             Checkbox morePerLayerCheckbox = new Checkbox(isChecked: Settings.layerHandle, alignment: Align.MiddleLeft);
+            Checkbox disableItemInfusionCheckbox = new Checkbox(isChecked: Settings.disableItemInfusion, alignment: Align.MiddleLeft);
 
             Slider extractionSuccessFactorSlider = new Slider(label: $"{Settings.extractionChanceFactor.Value.ToString()}x", value: Settings.extractionChanceFactor, min: 1f, max: 100f, roundTo: 0.5f, alignment: Align.UpperLeft, widthMode: SizeMode.Fill);
             Slider infusionChanceSlider = new Slider(label: Settings.chanceHandle.Value.ToString(), value: Settings.chanceHandle, min: 0f, max: 10f, roundTo: 0.1f, alignment: Align.UpperLeft, widthMode: SizeMode.Fill);
@@ -64,6 +93,8 @@ namespace Infusion
             .AddChild(new Empty())
             .AddChild(generalSettingsTitleLabel)
             .AddChild(new Empty())
+            .AddChild(disableItemInfusionLabel)
+            .AddChild(disableItemInfusionCheckbox)
             .AddChild(accuracyOvercappingLabel)
             .AddChild(accuracyOvercappingCheckbox)
             .AddChild(bonusToBiocodeLabel)
@@ -100,7 +131,7 @@ namespace Infusion
             .AddChild(amountGlobalMultiplierSlider);
 
 
-            Grid grid1 = new Grid(2, 11, widthMode: SizeMode.Fill, padding: 5f, heightMode: SizeMode.Content);
+            Grid grid1 = new Grid(2, 9, widthMode: SizeMode.Fill, padding: 5f, heightMode: SizeMode.Content);
 
             Label infusionSettingsLabel = new Label("Infusion.Settings.Infusions.Title".Translate(), alignment: Align.MiddleLeft);
             Label infusionSlotSettingsLabel = new Label("Infusion.Settings.Infusions.Slots.Title".Translate(), alignment: Align.MiddleLeft);
@@ -111,7 +142,6 @@ namespace Infusion
             Label excellentSlotsLabel = new Label("Excellent", alignment: Align.MiddleLeft);
             Label masterworkSlotsLabel = new Label("Masterwork", alignment: Align.MiddleLeft);
             Label legendarySlotsLabel = new Label("Legendary", alignment: Align.MiddleLeft);
-            Label infusionDefsControlLabel = new Label("Infusion.Settings.Infusions.Defs.Title".Translate(), alignment: Align.MiddleLeft);
 
             SliderInt awfulSlotsSlider = new SliderInt(label: Settings.slotAwful.Value.ToString(), value: Settings.slotAwful, min: 0, max: 20, alignment: Align.UpperLeft, widthMode: SizeMode.Fill);
             SliderInt poorSlotsSlider = new SliderInt(label: Settings.slotPoor.Value.ToString(), value: Settings.slotPoor, min: 0, max: 20, alignment: Align.UpperLeft, widthMode: SizeMode.Fill);
@@ -120,18 +150,6 @@ namespace Infusion
             SliderInt excellentSlotsSlider = new SliderInt(label: Settings.slotExcellent.Value.ToString(), value: Settings.slotExcellent, min: 0, max: 20, alignment: Align.UpperLeft, widthMode: SizeMode.Fill);
             SliderInt masterworkSlotsSlider = new SliderInt(label: Settings.slotMasterwork.Value.ToString(), value: Settings.slotMasterwork, min: 0, max: 20, alignment: Align.UpperLeft, widthMode: SizeMode.Fill);
             SliderInt legendarySlotsSlider = new SliderInt(label: Settings.slotLegendary.Value.ToString(), value: Settings.slotLegendary, min: 0, max: 20, alignment: Align.UpperLeft, widthMode: SizeMode.Fill);
-
-            Dropdown<InfusionDef> infusionDefsDropdown = new Dropdown<InfusionDef>(ResourceBank.allInfusionDefs, selectedInfusionDef, (def) => def.defName, alignment: Align.MiddleLeft);
-
-            Button infusionDefsEnableDisableButton;
-            if (Settings.infusionDefsDisabledMap.ContainsKey(selectedInfusionDef.Value) && Settings.infusionDefsDisabledMap[selectedInfusionDef.Value].Value)
-            {
-                infusionDefsEnableDisableButton = new Button("Infusion.Settings.Infusions.Defs.EnableButton".Translate(), alignment: Align.MiddleLeft);
-            }
-            else
-            {
-                infusionDefsEnableDisableButton = new Button("Infusion.Settings.Infusions.Defs.DisableButton".Translate(), alignment: Align.MiddleLeft);
-            }
 
             grid1.AddChild(infusionSettingsLabel)
             .AddChild(new Empty())
@@ -150,13 +168,9 @@ namespace Infusion
             .AddChild(masterworkSlotsLabel)
             .AddChild(masterworkSlotsSlider)
             .AddChild(legendarySlotsLabel)
-            .AddChild(legendarySlotsSlider)
-            .AddChild(infusionDefsControlLabel)
-            .AddChild(new Empty())
-            .AddChild(infusionDefsDropdown)
-            .AddChild(infusionDefsEnableDisableButton);
+            .AddChild(legendarySlotsSlider);
 
-            Grid grid2 = new Grid(3, 7, widthMode: SizeMode.Fill, padding: 5f, heightMode: SizeMode.Content);
+            Grid grid2 = new Grid(3, hasMultipleTiers ? 10 : 9, widthMode: SizeMode.Fill, padding: 5f, heightMode: SizeMode.Content);
 
             Label tiersTitleLabel = new Label("Infusion.Settings.Tiers.Title".Translate(), alignment: Align.MiddleLeft);
             Label commonTierLabel = new Label("Common", alignment: Align.MiddleLeft);
@@ -164,6 +178,8 @@ namespace Infusion
             Label rareTierLabel = new Label("Rare", alignment: Align.MiddleLeft);
             Label legendaryTierLabel = new Label("Legendary", alignment: Align.MiddleLeft);
             Label tierColorLabel = new Label("Infusion.Settings.Tiers.Color.Title".Translate(), alignment: Align.MiddleLeft);
+            Label infusionDefsControlLabel = new Label("Infusion.Settings.Infusions.Defs.Title".Translate(), alignment: Align.MiddleLeft);
+            Label enableAllTiersLabel = new Label("Infusion.Settings.Infusions.Defs.EnableDisableAllTiers".Translate(), alignment: Align.MiddleLeft);
 
             Checkbox commonTierCheckbox = new Checkbox(isChecked: Settings.commonTierEnabled, alignment: Align.MiddleLeft);
             Checkbox uncommonTierCheckbox = new Checkbox(isChecked: Settings.uncommonTierEnabled, alignment: Align.MiddleLeft);
@@ -175,6 +191,21 @@ namespace Infusion
             ColorPicker picker = new ColorPicker(selectedColor.Value, selectedColor, alignment: Align.MiddleLeft);
 
             Button saveColorButton = new Button("Infusion.Settings.Tiers.SaveColorButton.Label".Translate(), alignment: Align.MiddleLeft);
+
+            Dropdown<InfusionDef> infusionDefsDropdown = new Dropdown<InfusionDef>(ResourceBank.allInfusionDefs, selectedInfusionDef, (def) => def.defName, alignment: Align.MiddleLeft);
+
+            Button infusionDefsEnableDisableButton;
+            if (Settings.infusionDefsDisabledMap.ContainsKey(selectedInfusionDef.Value))
+            {
+                infusionDefsEnableDisableButton = new Button("Infusion.Settings.Infusions.Defs.EnableButton".Translate(), alignment: Align.MiddleLeft);
+            }
+            else
+            {
+                infusionDefsEnableDisableButton = new Button("Infusion.Settings.Infusions.Defs.DisableButton".Translate(), alignment: Align.MiddleLeft);
+            }
+
+            StrongBox<bool> enableAllTiersChecked = new StrongBox<bool>(!allTiersDisabled);
+            Checkbox enableAllTiersCheckbox = new Checkbox(isChecked: enableAllTiersChecked, alignment: Align.MiddleLeft);
 
             grid2.AddChild(tiersTitleLabel)
             .AddChild(new Empty())
@@ -196,7 +227,20 @@ namespace Infusion
             .AddChild(new Empty())
             .AddChild(tierDefsDropdown)
             .AddChild(picker)
-            .AddChild(saveColorButton);
+            .AddChild(saveColorButton)
+            .AddChild(infusionDefsControlLabel)
+            .AddChild(new Empty())
+            .AddChild(new Empty())
+            .AddChild(infusionDefsDropdown)
+            .AddChild(infusionDefsEnableDisableButton)
+            .AddChild(new Empty());
+
+            if (hasMultipleTiers)
+            {
+                grid2.AddChild(enableAllTiersLabel)
+                .AddChild(enableAllTiersCheckbox)
+                .AddChild(new Empty());
+            }
 
             Line line = new Line(LineType.Horizontal, widthMode: SizeMode.Fill);
             Line line1 = new Line(LineType.Horizontal, widthMode: SizeMode.Fill);
@@ -212,6 +256,20 @@ namespace Infusion
 
             canvas.Render();
 
+            if (oldSelectedInfusionDef != selectedInfusionDef.Value)
+            {
+                allTiers = GetAllTiersOfInfusion(selectedInfusionDef.Value);
+                hasMultipleTiers = allTiers.Count > 1;
+                oldSelectedInfusionDef = selectedInfusionDef.Value;
+                if (hasMultipleTiers)
+                {
+                    allTiersDisabled = allTiers.All(def =>
+                        Settings.infusionDefsDisabledMap.ContainsKey(def) &&
+                        Settings.infusionDefsDisabledMap[def].Value);
+                    enableAllTiersCheckbox.Checked.Value = !allTiersDisabled;
+                }
+            }
+
             if (infusionDefsEnableDisableButton.Clicked)
             {
                 if (Settings.infusionDefsDisabledMap.ContainsKey(selectedInfusionDef.Value) && Settings.infusionDefsDisabledMap[selectedInfusionDef.Value].Value)
@@ -223,6 +281,43 @@ namespace Infusion
                 {
                     Settings.infusionDefsDisabledMap[selectedInfusionDef.Value] = new StrongBox<bool>(true);
                     Messages.Message("Infusion.Settings.Infusions.Defs.DisableMessage".Translate(selectedInfusionDef.Value.defName), MessageTypeDefOf.NeutralEvent);
+                }
+                if (hasMultipleTiers)
+                {
+                    allTiersDisabled = allTiers.All(def =>
+                        Settings.infusionDefsDisabledMap.ContainsKey(def) &&
+                        Settings.infusionDefsDisabledMap[def].Value);
+                    enableAllTiersCheckbox.Checked.Value = !allTiersDisabled;
+                }
+            }
+
+            if (hasMultipleTiers && enableAllTiersCheckbox.Checked.Value != !allTiersDisabled)
+            {
+                bool shouldEnable = enableAllTiersCheckbox.Checked.Value;
+                allTiersDisabled = !shouldEnable;
+                foreach (var tier in allTiers)
+                {
+                    if (shouldEnable)
+                    {
+                        if (Settings.infusionDefsDisabledMap.ContainsKey(tier))
+                        {
+                            Settings.infusionDefsDisabledMap.Remove(tier);
+                        }
+                    }
+                    else
+                    {
+                        Settings.infusionDefsDisabledMap[tier] = new StrongBox<bool>(true);
+                    }
+                }
+
+                string baseName = GetInfusionBaseName(selectedInfusionDef.Value.defName);
+                if (shouldEnable)
+                {
+                    Messages.Message("Infusion.Settings.Infusions.Defs.EnableAllTiersMessage".Translate(baseName), MessageTypeDefOf.NeutralEvent);
+                }
+                else
+                {
+                    Messages.Message("Infusion.Settings.Infusions.Defs.DisableAllTiersMessage".Translate(baseName), MessageTypeDefOf.NeutralEvent);
                 }
             }
 

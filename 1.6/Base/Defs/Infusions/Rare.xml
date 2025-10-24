@@ -1058,14 +1058,14 @@
     </matches>
     <onHits>
       <li Class="Infusion.OnHitWorkers.GainSkillExp">
-        <amount>15</amount>
+        <amount>45</amount>
         <chance>0.075</chance>
         <skill>Medicine</skill>
         <selfCast>true</selfCast>
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Hit: 7.5% chance to gain 15 exp in Medicine</li>
+      <li>Hit: 7.5% chance to gain 45 exp in Medicine</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1078,14 +1078,14 @@
     </matches>
     <onHits>
       <li Class="Infusion.OnHitWorkers.GainSkillExp">
-        <amount>15</amount>
+        <amount>45</amount>
         <chance>0.075</chance>
         <skill>Shooting</skill>
         <selfCast>true</selfCast>
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Hit: 7.5% chance to gain 15 exp in Shooting</li>
+      <li>Hit: 7.5% chance to gain 45 exp in Shooting</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1098,14 +1098,14 @@
     </matches>
     <onHits>
       <li Class="Infusion.OnHitWorkers.GainSkillExp">
-        <amount>15</amount>
+        <amount>45</amount>
         <chance>0.075</chance>
         <skill>Melee</skill>
         <selfCast>true</selfCast>
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Hit: 7.5% chance to gain 15 exp in Melee</li>
+      <li>Hit: 7.5% chance to gain 45 exp in Melee</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1118,14 +1118,14 @@
     </matches>
     <onHits>
       <li Class="Infusion.OnHitWorkers.GainSkillExp">
-        <amount>15</amount>
+        <amount>45</amount>
         <chance>0.075</chance>
         <skill>Construction</skill>
         <selfCast>true</selfCast>
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Hit: 7.5% chance to gain 15 exp in Construction</li>
+      <li>Hit: 7.5% chance to gain 45 exp in Construction</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1138,14 +1138,14 @@
     </matches>
     <onHits>
       <li Class="Infusion.OnHitWorkers.GainSkillExp">
-        <amount>15</amount>
+        <amount>45</amount>
         <chance>0.075</chance>
         <skill>Mining</skill>
         <selfCast>true</selfCast>
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Hit: 7.5% chance to gain 15 exp in Mining</li>
+      <li>Hit: 7.5% chance to gain 45 exp in Mining</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1158,14 +1158,14 @@
     </matches>
     <onHits>
       <li Class="Infusion.OnHitWorkers.GainSkillExp">
-        <amount>15</amount>
+        <amount>45</amount>
         <chance>0.075</chance>
         <skill>Animals</skill>
         <selfCast>true</selfCast>
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Hit: 7.5% chance to gain 15 exp in Animals</li>
+      <li>Hit: 7.5% chance to gain 45 exp in Animals</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1178,14 +1178,14 @@
     </matches>
     <onHits>
       <li Class="Infusion.OnHitWorkers.GainSkillExp">
-        <amount>15</amount>
+        <amount>45</amount>
         <chance>0.075</chance>
         <skill>Crafting</skill>
         <selfCast>true</selfCast>
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Hit: 7.5% chance to gain 15 exp in Crafting</li>
+      <li>Hit: 7.5% chance to gain 45 exp in Crafting</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1198,14 +1198,14 @@
     </matches>
     <onHits>
       <li Class="Infusion.OnHitWorkers.GainSkillExp">
-        <amount>15</amount>
+        <amount>45</amount>
         <chance>0.075</chance>
         <skill>Artistic</skill>
         <selfCast>true</selfCast>
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Hit: 7.5% chance to gain 15 exp in Artistic</li>
+      <li>Hit: 7.5% chance to gain 45 exp in Artistic</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1218,14 +1218,14 @@
     </matches>
     <onHits>
       <li Class="Infusion.OnHitWorkers.GainSkillExp">
-        <amount>15</amount>
+        <amount>45</amount>
         <chance>0.075</chance>
         <skill>Social</skill>
         <selfCast>true</selfCast>
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Hit: 7.5% chance to gain 15 exp in Social</li>
+      <li>Hit: 7.5% chance to gain 45 exp in Social</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1238,14 +1238,14 @@
     </matches>
     <onHits>
       <li Class="Infusion.OnHitWorkers.GainSkillExp">
-        <amount>15</amount>
+        <amount>45</amount>
         <chance>0.075</chance>
         <skill>Cooking</skill>
         <selfCast>true</selfCast>
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Hit: 7.5% chance to gain 15 exp in Cooking</li>
+      <li>Hit: 7.5% chance to gain 45 exp in Cooking</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1258,14 +1258,14 @@
     </matches>
     <onHits>
       <li Class="Infusion.OnHitWorkers.GainSkillExp">
-        <amount>15</amount>
+        <amount>45</amount>
         <chance>0.075</chance>
         <skill>Plants</skill>
         <selfCast>true</selfCast>
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Hit: 7.5% chance to gain 15 exp in Plants</li>
+      <li>Hit: 7.5% chance to gain 45 exp in Plants</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 
@@ -1278,14 +1278,14 @@
     </matches>
     <onHits>
       <li Class="Infusion.OnHitWorkers.GainSkillExp">
-        <amount>15</amount>
+        <amount>45</amount>
         <chance>0.075</chance>
         <skill>Intellectual</skill>
         <selfCast>true</selfCast>
       </li>
     </onHits>
     <extraDescriptions>
-      <li>Hit: 7.5% chance to gain 15 exp in Intellectual</li>
+      <li>Hit: 7.5% chance to gain 45 exp in Intellectual</li>
     </extraDescriptions>
   </Infusion.InfusionDef>
 

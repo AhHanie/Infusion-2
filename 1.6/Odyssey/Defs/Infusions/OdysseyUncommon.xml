@@ -28,7 +28,7 @@
             <li>
                 <key>MoveSpeed</key>
                 <value>
-                    <offset>0.5</offset>
+                    <offset>0.1</offset>
                 </value>
             </li>
             <li>

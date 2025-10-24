@@ -2,10 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Verse;
 using RimWorld;
+using Infusion.Comps;
 
 namespace Infusion.Harmonize
 {
@@ -38,6 +37,8 @@ namespace Infusion.Harmonize
                         }
                         InfusionMapComp component = currentMap.GetComponent<InfusionMapComp>();
                         component.AddThingToTick(apparel);
+                        GameComponent_Infusion gameComp = Current.Game.GetComponent<GameComponent_Infusion>();
+                        gameComp.AddAegisItem(apparel);
                     }
                 }
             }
@@ -56,6 +57,8 @@ namespace Infusion.Harmonize
                         dictionary.Remove(typeof(CompShield));
                         InfusionMapComp component = Find.CurrentMap.GetComponent<InfusionMapComp>();
                         component.RemoveThingToTick(apparel);
+                        GameComponent_Infusion gameComp = Current.Game.GetComponent<GameComponent_Infusion>();
+                        gameComp.RemoveAegisItem(apparel);
                     }
                 }
             }

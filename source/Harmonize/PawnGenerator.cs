@@ -1,6 +1,7 @@
-﻿using System.Linq;
-using HarmonyLib;
+﻿using HarmonyLib;
 using RimWorld;
+using System.Linq;
+using System.Reflection;
 using Verse;
 
 namespace Infusion.Harmonize
@@ -39,6 +40,11 @@ namespace Infusion.Harmonize
         [HarmonyPatch(typeof(PawnGenerator), "GenerateGearFor")]
         public static class GenerateGearFor
         {
+            public static bool Prepare(MethodBase original)
+            {
+                return !Settings.disableItemInfusion.Value;
+            }
+
             public static void Postfix(Pawn pawn, PawnGenerationRequest request)
             {
                 if (Settings.biocodeBonus.Value)
