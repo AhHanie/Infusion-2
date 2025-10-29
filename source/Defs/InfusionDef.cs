@@ -38,6 +38,7 @@ namespace Infusion
 
         public List<InfusionConditon> conditions = null;
 
+        public float weight = 1.0f;
         public InfusionDef()
         {
             disabled = false;
@@ -52,6 +53,7 @@ namespace Infusion
             tags = new List<string>();
             keyedFloats = new Dictionary<string, float>();
             conditions = new List<InfusionConditon>();
+            weight = 1.0f;
         }
 
         public string LabelShort

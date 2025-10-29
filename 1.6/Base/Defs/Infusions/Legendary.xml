@@ -1123,6 +1123,7 @@
     <extraDescriptions>
       <li>Hit: 10% chance to gain 60 exp in Medicine</li>
     </extraDescriptions>
+    <weight>0.25</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
@@ -1143,6 +1144,7 @@
     <extraDescriptions>
       <li>Hit: 10% chance to gain 60 exp in Shooting</li>
     </extraDescriptions>
+    <weight>0.25</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
@@ -1163,6 +1165,7 @@
     <extraDescriptions>
       <li>Hit: 10% chance to gain 60 exp in Melee</li>
     </extraDescriptions>
+    <weight>0.25</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
@@ -1183,6 +1186,7 @@
     <extraDescriptions>
       <li>Hit: 10% chance to gain 60 exp in Construction</li>
     </extraDescriptions>
+    <weight>0.25</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
@@ -1203,6 +1207,7 @@
     <extraDescriptions>
       <li>Hit: 10% chance to gain 60 exp in Mining</li>
     </extraDescriptions>
+    <weight>0.25</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
@@ -1223,6 +1228,7 @@
     <extraDescriptions>
       <li>Hit: 10% chance to gain 60 exp in Animals</li>
     </extraDescriptions>
+    <weight>0.25</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
@@ -1243,6 +1249,7 @@
     <extraDescriptions>
       <li>Hit: 10% chance to gain 60 exp in Crafting</li>
     </extraDescriptions>
+    <weight>0.25</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
@@ -1263,6 +1270,7 @@
     <extraDescriptions>
       <li>Hit: 10% chance to gain 60 exp in Artistic</li>
     </extraDescriptions>
+    <weight>0.25</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
@@ -1283,6 +1291,7 @@
     <extraDescriptions>
       <li>Hit: 10% chance to gain 60 exp in Social</li>
     </extraDescriptions>
+    <weight>0.25</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
@@ -1303,6 +1312,7 @@
     <extraDescriptions>
       <li>Hit: 10% chance to gain 60 exp in Cooking</li>
     </extraDescriptions>
+    <weight>0.25</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
@@ -1323,6 +1333,7 @@
     <extraDescriptions>
       <li>Hit: 10% chance to gain 60 exp in Plants</li>
     </extraDescriptions>
+    <weight>0.25</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
@@ -1343,6 +1354,7 @@
     <extraDescriptions>
       <li>Hit: 10% chance to gain 60 exp in Intellectual</li>
     </extraDescriptions>
+    <weight>0.25</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">

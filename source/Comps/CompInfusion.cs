@@ -642,7 +642,7 @@ namespace Infusion
                 {
                     InfDef = infDef,
                     Weight = Rand.Gaussian(
-                        Settings.muHandle.Value * infDef.WeightFor(quality),
+                        Settings.muHandle.Value * infDef.WeightFor(quality) * infDef.weight,
                         Settings.sigmaHandle.Value)
                 })
                 .OrderByDescending(x => x.Weight)

@@ -1067,6 +1067,7 @@
     <extraDescriptions>
       <li>Hit: 7.5% chance to gain 45 exp in Medicine</li>
     </extraDescriptions>
+    <weight>0.25</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="RareWeaponsBase">
@@ -1087,6 +1088,7 @@
     <extraDescriptions>
       <li>Hit: 7.5% chance to gain 45 exp in Shooting</li>
     </extraDescriptions>
+    <weight>0.25</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="RareWeaponsBase">
@@ -1107,6 +1109,7 @@
     <extraDescriptions>
       <li>Hit: 7.5% chance to gain 45 exp in Melee</li>
     </extraDescriptions>
+    <weight>0.25</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="RareWeaponsBase">
@@ -1127,6 +1130,7 @@
     <extraDescriptions>
       <li>Hit: 7.5% chance to gain 45 exp in Construction</li>
     </extraDescriptions>
+    <weight>0.25</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="RareWeaponsBase">
@@ -1147,6 +1151,7 @@
     <extraDescriptions>
       <li>Hit: 7.5% chance to gain 45 exp in Mining</li>
     </extraDescriptions>
+    <weight>0.25</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="RareWeaponsBase">
@@ -1167,6 +1172,7 @@
     <extraDescriptions>
       <li>Hit: 7.5% chance to gain 45 exp in Animals</li>
     </extraDescriptions>
+    <weight>0.25</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="RareWeaponsBase">
@@ -1187,6 +1193,7 @@
     <extraDescriptions>
       <li>Hit: 7.5% chance to gain 45 exp in Crafting</li>
     </extraDescriptions>
+    <weight>0.25</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="RareWeaponsBase">
@@ -1207,6 +1214,7 @@
     <extraDescriptions>
       <li>Hit: 7.5% chance to gain 45 exp in Artistic</li>
     </extraDescriptions>
+    <weight>0.25</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="RareWeaponsBase">
@@ -1227,6 +1235,7 @@
     <extraDescriptions>
       <li>Hit: 7.5% chance to gain 45 exp in Social</li>
     </extraDescriptions>
+    <weight>0.25</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="RareWeaponsBase">
@@ -1247,6 +1256,7 @@
     <extraDescriptions>
       <li>Hit: 7.5% chance to gain 45 exp in Cooking</li>
     </extraDescriptions>
+    <weight>0.25</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="RareWeaponsBase">
@@ -1267,6 +1277,7 @@
     <extraDescriptions>
       <li>Hit: 7.5% chance to gain 45 exp in Plants</li>
     </extraDescriptions>
+    <weight>0.25</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="RareWeaponsBase">
@@ -1287,6 +1298,7 @@
     <extraDescriptions>
       <li>Hit: 7.5% chance to gain 45 exp in Intellectual</li>
     </extraDescriptions>
+    <weight>0.25</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="RareWeaponsBase">
@@ -1306,6 +1318,7 @@
     <extraDescriptions>
       <li>Hit: 5% chance to tame a wild animal</li>
     </extraDescriptions>
+    <weight>0.25</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="RareWeaponsBase">
