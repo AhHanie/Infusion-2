@@ -32,6 +32,14 @@ public class ModBase : Mod
     public void DefsLoaded()
     {
         GetSettings<Settings>();
+        if (!Settings.update1_11_1Applied.Value)
+        {
+            Settings.update1_11_1Applied.Value = true;
+            Settings.amountGlobalMultiplier.Value = 1.0f;
+            Settings.chanceGlobalMultiplier.Value = 1.0f;
+            Settings.statsGlobalMultiplier.Value = 1.0f;
+            WriteSettings();
+        }
         instance.PatchAll();
         Inject();
         Infusion.Harmonize.StatWorker.populateStatsEligibilityMap();

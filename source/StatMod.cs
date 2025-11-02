@@ -115,7 +115,7 @@ namespace Infusion
             // Add offset
             if (IsNotZero(Offset))
             {
-                string styled = offset.ToStringByStyle(stat.ToStringStyleUnfinalized);
+                string styled = Offset.ToStringByStyle(stat.ToStringStyleUnfinalized);
 
                 // Apply format string if available
                 if (!string.IsNullOrEmpty(stat.formatString))

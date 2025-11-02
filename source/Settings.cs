@@ -9,9 +9,9 @@ namespace Infusion
 {
     public class Settings : ModSettings
     {
-        public static StrongBox<float> statsGlobalMultiplier = new StrongBox<float>(1.5f);
-        public static StrongBox<float> amountGlobalMultiplier = new StrongBox<float>(1.5f);
-        public static StrongBox<float> chanceGlobalMultiplier = new StrongBox<float>(1.5f);
+        public static StrongBox<float> statsGlobalMultiplier = new StrongBox<float>(1.0f);
+        public static StrongBox<float> amountGlobalMultiplier = new StrongBox<float>(1.0f);
+        public static StrongBox<float> chanceGlobalMultiplier = new StrongBox<float>(1.0f);
         public static StrongBox<bool> accuracyOvercap = new StrongBox<bool>(true);
         public static StrongBox<bool> biocodeBonus = new StrongBox<bool>(true);
         public static StrongBox<float> extractionChanceFactor = new StrongBox<float>(1.0f);
@@ -39,6 +39,7 @@ namespace Infusion
         public static List<InfusionDef> infusionDefsDisabledList = new List<InfusionDef>();
         public static List<bool> infusionDefsDisabledList1 = new List<bool>();
         public static StrongBox<bool> disableItemInfusion = new StrongBox<bool>(false);
+        public static StrongBox<bool> update1_11_1Applied = new StrongBox<bool>(false);
 
         public override void ExposeData()
         {
@@ -70,6 +71,7 @@ namespace Infusion
             Scribe_Values.Look(ref infusionsFromCrafting.Value, "infusionsFromCrafting", true);
             Scribe_Collections.Look(ref tierColorOverride, "tierColorOverride");
             Scribe_Values.Look(ref disableItemInfusion.Value, "disableItemInfusion", false);
+            Scribe_Values.Look(ref update1_11_1Applied.Value, "update1_11_1Applied", false);
 
             if (Scribe.mode == LoadSaveMode.Saving)
             {
