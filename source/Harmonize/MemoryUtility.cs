@@ -13,6 +13,7 @@ namespace Infusion.Harmonize
         public static void Postfix()
         {
             CompInfusion.ClearCaches();
+            Infuser.AllInfusers.Clear();
         }
     }
 
@@ -22,6 +23,7 @@ namespace Infusion.Harmonize
         public static void Postfix()
         {
             CompInfusion.ClearCaches();
+            Infuser.AllInfusers.Clear();
         }
     }
 
@@ -37,6 +39,7 @@ namespace Infusion.Harmonize
         public static void Prefix()
         {
             CompInfusion.ClearCaches();
+            Infuser.AllInfusers.Clear();
         }
     }
 }
