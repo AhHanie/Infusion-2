@@ -18,6 +18,7 @@
                 </value>
             </li>
         </stats>
+        <weight>0.33</weight>
     </Infusion.InfusionDef>
 
     <Infusion.InfusionDef ParentName="LegendaryApparelBase">
@@ -38,6 +39,7 @@
                 </value>
             </li>
         </stats>
+        <weight>0.25</weight>
     </Infusion.InfusionDef>
 
     <Infusion.InfusionDef ParentName="LegendaryRangedBase">
@@ -67,5 +69,6 @@
         <tags>
             <li>barrage</li>
         </tags>
+        <weight>0.5</weight>
     </Infusion.InfusionDef>
 </Defs>

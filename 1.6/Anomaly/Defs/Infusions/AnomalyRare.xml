@@ -58,6 +58,7 @@
 				</value>
 			</li>
 		</stats>
+		<weight>0.33</weight>
 	</Infusion.InfusionDef>
 
 	<Infusion.InfusionDef ParentName="RareWeaponsBase">
@@ -83,6 +84,7 @@
 		<conditions>
 			<li Class="Infusion.Conditions.AnomalyStudyEnabled"/>
 		</conditions>
+		<weight>0.25</weight>
 	</Infusion.InfusionDef>
 
 	<Infusion.InfusionDef ParentName="RareWeaponsBase">
@@ -109,5 +111,6 @@
 		<conditions>
 			<li Class="Infusion.Conditions.AnomalyStudyEnabled"/>
 		</conditions>
+		<weight>0.25</weight>
 	</Infusion.InfusionDef>
 </Defs>

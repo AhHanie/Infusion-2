@@ -18,6 +18,7 @@
                 </value>
             </li>
         </stats>
+        <weight>0.33</weight>
     </Infusion.InfusionDef>
 
     <Infusion.InfusionDef ParentName="UncommonApparelBase">
@@ -38,5 +39,6 @@
                 </value>
             </li>
         </stats>
+        <weight>0.25</weight>
     </Infusion.InfusionDef>
 </Defs>

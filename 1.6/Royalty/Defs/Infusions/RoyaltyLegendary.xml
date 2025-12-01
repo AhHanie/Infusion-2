@@ -143,5 +143,6 @@
     <extraDescriptions>
       <li>Deal 20% additional damage against the Empire.</li>
     </extraDescriptions>
+    <weight>0.25</weight>
   </Infusion.InfusionDef>
 </Defs>

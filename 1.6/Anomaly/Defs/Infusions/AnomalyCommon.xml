@@ -27,6 +27,7 @@
         <conditions>
             <li Class="Infusion.Conditions.AnomalyStudyEnabled"/>
         </conditions>
+        <weight>0.25</weight>
     </Infusion.InfusionDef>
 
     <Infusion.InfusionDef ParentName="CommonWeaponsBase">
@@ -53,5 +54,6 @@
         <conditions>
             <li Class="Infusion.Conditions.AnomalyStudyEnabled"/>
         </conditions>
+        <weight>0.25</weight>
     </Infusion.InfusionDef>
 </Defs>

@@ -17,5 +17,6 @@
         <extraDescriptions>
             <li>Hit: 5% chance to spawn tox gas.</li>
         </extraDescriptions>
+        <weight>0.33</weight>
     </Infusion.InfusionDef>
 </Defs>

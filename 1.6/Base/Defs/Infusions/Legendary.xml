@@ -100,6 +100,7 @@
     <extraDescriptions>
       <li>Equip: Generates an energy shield around the target similar to a shieldbelt. Blocks the user from using ranged weapons.</li>
     </extraDescriptions>
+    <weight>0.5</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryApparelBase">
@@ -577,6 +578,7 @@
     <tags>
       <li>smart</li>
     </tags>
+    <weight>0.33</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryRangedBase">
@@ -596,6 +598,7 @@
     <extraDescriptions>
       <li>Hit: 15% chance to spawn Rot stink gas.</li>
     </extraDescriptions>
+    <weight>0.33</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryRangedBase">
@@ -815,6 +818,7 @@
     <extraDescriptions>
       <li>Hit: 15% chance to instantly attack again.</li>
     </extraDescriptions>
+    <weight>0.33</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
@@ -1003,6 +1007,7 @@
     <extraDescriptions>
       <li>Hit: Damages your enemies, heals your colonists at the cost 5% of the weapon's maximum hitpoints per heal when used for healing. Weapon is automatically destroyed once durability reaches 0.</li>
     </extraDescriptions>
+    <weight>0.5</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryDefaultBase">
@@ -1029,6 +1034,7 @@
     <extraDescriptions>
       <li>Soothed by the gentle hum of the magical infusion, adds a permnant mood bonus of 3 points.</li>
     </extraDescriptions>
+    <weight>0.33</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
@@ -1057,6 +1063,7 @@
     <extraDescriptions>
       <li>Hit: 10% chance to add 20 research points to the current project</li>
     </extraDescriptions>
+    <weight>0.25</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
@@ -1080,6 +1087,7 @@
     <extraDescriptions>
       <li>Deal 20% additional damage against insects.</li>
     </extraDescriptions>
+    <weight>0.25</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
@@ -1103,6 +1111,7 @@
     <extraDescriptions>
       <li>Deal 20% additional damage against mechanoids.</li>
     </extraDescriptions>
+    <weight>0.25</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
@@ -1123,7 +1132,7 @@
     <extraDescriptions>
       <li>Hit: 10% chance to gain 60 exp in Medicine</li>
     </extraDescriptions>
-    <weight>0.25</weight>
+    <weight>0.1</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
@@ -1144,7 +1153,7 @@
     <extraDescriptions>
       <li>Hit: 10% chance to gain 60 exp in Shooting</li>
     </extraDescriptions>
-    <weight>0.25</weight>
+    <weight>0.1</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
@@ -1165,7 +1174,7 @@
     <extraDescriptions>
       <li>Hit: 10% chance to gain 60 exp in Melee</li>
     </extraDescriptions>
-    <weight>0.25</weight>
+    <weight>0.1</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
@@ -1186,7 +1195,7 @@
     <extraDescriptions>
       <li>Hit: 10% chance to gain 60 exp in Construction</li>
     </extraDescriptions>
-    <weight>0.25</weight>
+    <weight>0.1</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
@@ -1207,7 +1216,7 @@
     <extraDescriptions>
       <li>Hit: 10% chance to gain 60 exp in Mining</li>
     </extraDescriptions>
-    <weight>0.25</weight>
+    <weight>0.1</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
@@ -1228,7 +1237,7 @@
     <extraDescriptions>
       <li>Hit: 10% chance to gain 60 exp in Animals</li>
     </extraDescriptions>
-    <weight>0.25</weight>
+    <weight>0.1</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
@@ -1249,7 +1258,7 @@
     <extraDescriptions>
       <li>Hit: 10% chance to gain 60 exp in Crafting</li>
     </extraDescriptions>
-    <weight>0.25</weight>
+    <weight>0.1</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
@@ -1270,7 +1279,7 @@
     <extraDescriptions>
       <li>Hit: 10% chance to gain 60 exp in Artistic</li>
     </extraDescriptions>
-    <weight>0.25</weight>
+    <weight>0.1</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
@@ -1291,7 +1300,7 @@
     <extraDescriptions>
       <li>Hit: 10% chance to gain 60 exp in Social</li>
     </extraDescriptions>
-    <weight>0.25</weight>
+    <weight>0.1</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
@@ -1312,7 +1321,7 @@
     <extraDescriptions>
       <li>Hit: 10% chance to gain 60 exp in Cooking</li>
     </extraDescriptions>
-    <weight>0.25</weight>
+    <weight>0.1</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
@@ -1333,7 +1342,7 @@
     <extraDescriptions>
       <li>Hit: 10% chance to gain 60 exp in Plants</li>
     </extraDescriptions>
-    <weight>0.25</weight>
+    <weight>0.1</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
@@ -1354,7 +1363,7 @@
     <extraDescriptions>
       <li>Hit: 10% chance to gain 60 exp in Intellectual</li>
     </extraDescriptions>
-    <weight>0.25</weight>
+    <weight>0.1</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
@@ -1374,6 +1383,7 @@
     <extraDescriptions>
       <li>Hit: 10% chance to tame a wild animal</li>
     </extraDescriptions>
+    <weight>0.5</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
@@ -1403,6 +1413,7 @@
     <extraDescriptions>
       <li>Hit: 10% chance to generate 3~5 silver</li>
     </extraDescriptions>
+    <weight>0.33</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
@@ -1422,6 +1433,7 @@
     <extraDescriptions>
       <li>Hit: 10% chance to disarm pawn's primary weapon</li>
     </extraDescriptions>
+    <weight>0.5</weight>
   </Infusion.InfusionDef>
   <!-- #endregion -->
 </Defs>

@@ -350,6 +350,7 @@
     <extraDescriptions>
       <li>Hit: 2.5% chance to add 5 research points to the current project</li>
     </extraDescriptions>
+    <weight>0.25</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="CommonWeaponsBase">
@@ -373,6 +374,7 @@
     <extraDescriptions>
       <li>Deal 5% additional damage against insects.</li>
     </extraDescriptions>
+    <weight>0.25</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="CommonWeaponsBase">
@@ -396,6 +398,7 @@
     <extraDescriptions>
       <li>Deal 5% additional damage against mechanoids.</li>
     </extraDescriptions>
+    <weight>0.25</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="CommonWeaponsBase">
@@ -416,7 +419,7 @@
     <extraDescriptions>
       <li>Hit: 2.5% chance to gain 15 exp in Medicine</li>
     </extraDescriptions>
-    <weight>0.25</weight>
+    <weight>0.1</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="CommonWeaponsBase">
@@ -437,7 +440,7 @@
     <extraDescriptions>
       <li>Hit: 2.5% chance to gain 15 exp in Shooting</li>
     </extraDescriptions>
-    <weight>0.25</weight>
+    <weight>0.1</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="CommonWeaponsBase">
@@ -458,7 +461,7 @@
     <extraDescriptions>
       <li>Hit: 2.5% chance to gain 15 exp in Melee</li>
     </extraDescriptions>
-    <weight>0.25</weight>
+    <weight>0.1</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="CommonWeaponsBase">
@@ -479,7 +482,7 @@
     <extraDescriptions>
       <li>Hit: 2.5% chance to gain 15 exp in Construction</li>
     </extraDescriptions>
-    <weight>0.25</weight>
+    <weight>0.1</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="CommonWeaponsBase">
@@ -500,7 +503,7 @@
     <extraDescriptions>
       <li>Hit: 2.5% chance to gain 15 exp in Mining</li>
     </extraDescriptions>
-    <weight>0.25</weight>
+    <weight>0.1</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="CommonWeaponsBase">
@@ -521,7 +524,7 @@
     <extraDescriptions>
       <li>Hit: 2.5% chance to gain 15 exp in Animals</li>
     </extraDescriptions>
-    <weight>0.25</weight>
+    <weight>0.1</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="CommonWeaponsBase">
@@ -542,7 +545,7 @@
     <extraDescriptions>
       <li>Hit: 2.5% chance to gain 15 exp in Crafting</li>
     </extraDescriptions>
-    <weight>0.25</weight>
+    <weight>0.1</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="CommonWeaponsBase">
@@ -563,7 +566,7 @@
     <extraDescriptions>
       <li>Hit: 2.5% chance to gain 15 exp in Artistic</li>
     </extraDescriptions>
-    <weight>0.25</weight>
+    <weight>0.1</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="CommonWeaponsBase">
@@ -584,7 +587,7 @@
     <extraDescriptions>
       <li>Hit: 2.5% chance to gain 15 exp in Social</li>
     </extraDescriptions>
-    <weight>0.25</weight>
+    <weight>0.1</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="CommonWeaponsBase">
@@ -605,7 +608,7 @@
     <extraDescriptions>
       <li>Hit: 2.5% chance to gain 15 exp in Cooking</li>
     </extraDescriptions>
-    <weight>0.25</weight>
+    <weight>0.1</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="CommonWeaponsBase">
@@ -626,7 +629,7 @@
     <extraDescriptions>
       <li>Hit: 2.5% chance to gain 15 exp in Plants</li>
     </extraDescriptions>
-    <weight>0.25</weight>
+    <weight>0.1</weight>
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="CommonWeaponsBase">
@@ -647,6 +650,6 @@
     <extraDescriptions>
       <li>Hit: 2.5% chance to gain 15 exp in Intellectual</li>
     </extraDescriptions>
-    <weight>0.25</weight>
+    <weight>0.1</weight>
   </Infusion.InfusionDef>
 </Defs>
