@@ -32,10 +32,7 @@ namespace Infusion
             tier=>tier,
             tier => new StrongBox<bool>(true)
         );
-        /*public static StrongBox<bool> commonTierEnabled = new StrongBox<bool>(true);
-        public static StrongBox<bool> uncommonTierEnabled = new StrongBox<bool>(true);
-        public static StrongBox<bool> rareTierEnabled = new StrongBox<bool>(true);
-        public static StrongBox<bool> legendaryTierEnabled = new StrongBox<bool>(true);*/
+
         public static Dictionary<TierDef, Color> tierColorOverride = new Dictionary<TierDef, Color>();
         public static StrongBox<bool> infuseUniqueWeapons = new StrongBox<bool>(false);
         public static StrongBox<bool> infusionsFromCrafting = new StrongBox<bool>(true);
@@ -67,10 +64,7 @@ namespace Infusion
             foreach (TierDef tier in tiersEnabled.Keys) {
                 Scribe_Values.Look(ref tiersEnabled[tier].Value, tier.defName.ToLower()+"TierEnabled", true);
             }
-            /*Scribe_Values.Look(ref commonTierEnabled.Value, "commonTierEnabled", true);
-            Scribe_Values.Look(ref uncommonTierEnabled.Value, "uncommonTierEnabled", true);
-            Scribe_Values.Look(ref rareTierEnabled.Value, "rareTierEnabled", true);
-            Scribe_Values.Look(ref legendaryTierEnabled.Value, "legendaryTierEnabled", true);*/
+
             Scribe_Values.Look(ref statsGlobalMultiplier.Value, "statsGlobalMultiplier", 1.0f);
             Scribe_Values.Look(ref chanceGlobalMultiplier.Value, "chanceGlobalMultiplier", 1.0f);
             Scribe_Values.Look(ref amountGlobalMultiplier.Value, "amountGlobalMultiplier", 1.0f);
@@ -108,7 +102,10 @@ namespace Infusion
 
                 if (tiersEnabled == null)
                 {
-                    tiersEnabled = new Dictionary<TierDef, StrongBox<bool>>();
+                    tiersEnabled = ResourceBank.allTierDefs.Where(item => item != null).ToDictionary(
+                        tier => tier,
+                        tier => new StrongBox<bool>(true)
+                    );
                 }
             }
         }
