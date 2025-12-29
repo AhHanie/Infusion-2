@@ -51,7 +51,7 @@ namespace Infusion
             {
                 gridRows++;
             }
-            Grid grid = new Grid(2, gridRows, widthMode: SizeMode.Fill, heightMode: SizeMode.Content, padding: 5f);
+            LessUI.Grid grid = new LessUI.Grid(2, gridRows, widthMode: SizeMode.Fill, heightMode: SizeMode.Content, padding: 5f);
             Text.Font = GameFont.Small;
 
             Label restartGameInfoLabel = new Label(text: "Infusion.Settings.Label.RestartGameInfo".Translate(), alignment: Align.MiddleLeft);
@@ -131,7 +131,7 @@ namespace Infusion
             .AddChild(amountGlobalMultiplierSlider);
 
 
-            Grid grid1 = new Grid(2, 9, widthMode: SizeMode.Fill, padding: 5f, heightMode: SizeMode.Content);
+            LessUI.Grid grid1 = new LessUI.Grid(2, 9, widthMode: SizeMode.Fill, padding: 5f, heightMode: SizeMode.Content);
 
             Label infusionSettingsLabel = new Label("Infusion.Settings.Infusions.Title".Translate(), alignment: Align.MiddleLeft);
             Label infusionSlotSettingsLabel = new Label("Infusion.Settings.Infusions.Slots.Title".Translate(), alignment: Align.MiddleLeft);
@@ -170,21 +170,23 @@ namespace Infusion
             .AddChild(legendarySlotsLabel)
             .AddChild(legendarySlotsSlider);
 
-            Grid grid2 = new Grid(3, hasMultipleTiers ? 10 : 9, widthMode: SizeMode.Fill, padding: 5f, heightMode: SizeMode.Content);
+            var tiers=ResourceBank.allTierDefs.Where(item => item != null).ToList();
+            LessUI.Grid grid2 = new LessUI.Grid(3, tiers.Count()+(hasMultipleTiers ? 6 : 5), widthMode: SizeMode.Fill, padding: 5f, heightMode: SizeMode.Content);
 
             Label tiersTitleLabel = new Label("Infusion.Settings.Tiers.Title".Translate(), alignment: Align.MiddleLeft);
-            Label commonTierLabel = new Label("Common", alignment: Align.MiddleLeft);
-            Label uncommonTierLabel = new Label("Uncommon", alignment: Align.MiddleLeft);
-            Label rareTierLabel = new Label("Rare", alignment: Align.MiddleLeft);
-            Label legendaryTierLabel = new Label("Legendary", alignment: Align.MiddleLeft);
+            Dictionary<TierDef, Label> tiersLabel = tiers.ToDictionary(
+                tier => tier,
+                tier => new Label(tier.defName, alignment: Align.MiddleLeft)
+            );
+
             Label tierColorLabel = new Label("Infusion.Settings.Tiers.Color.Title".Translate(), alignment: Align.MiddleLeft);
             Label infusionDefsControlLabel = new Label("Infusion.Settings.Infusions.Defs.Title".Translate(), alignment: Align.MiddleLeft);
             Label enableAllTiersLabel = new Label("Infusion.Settings.Infusions.Defs.EnableDisableAllTiers".Translate(), alignment: Align.MiddleLeft);
 
-            Checkbox commonTierCheckbox = new Checkbox(isChecked: Settings.commonTierEnabled, alignment: Align.MiddleLeft);
-            Checkbox uncommonTierCheckbox = new Checkbox(isChecked: Settings.uncommonTierEnabled, alignment: Align.MiddleLeft);
-            Checkbox rareTierCheckbox = new Checkbox(isChecked: Settings.rareTierEnabled, alignment: Align.MiddleLeft);
-            Checkbox legendaryTierCheckbox = new Checkbox(isChecked: Settings.legendaryTierEnabled, alignment: Align.MiddleLeft);
+            Dictionary<TierDef, Checkbox> tiersCheckbox = tiers.ToDictionary(
+                tier => tier,
+                tier => new Checkbox(isChecked: Settings.tiersEnabled[tier], alignment: Align.MiddleLeft)
+            );
 
             Dropdown<TierDef> tierDefsDropdown = new Dropdown<TierDef>(ResourceBank.allTierDefs, selectedTierDef, (def) => def.defName, alignment: Align.MiddleLeft);
 
@@ -209,20 +211,16 @@ namespace Infusion
 
             grid2.AddChild(tiersTitleLabel)
             .AddChild(new Empty())
-            .AddChild(new Empty())
-            .AddChild(commonTierLabel)
-            .AddChild(commonTierCheckbox)
-            .AddChild(new Empty())
-            .AddChild(uncommonTierLabel)
-            .AddChild(uncommonTierCheckbox)
-            .AddChild(new Empty())
-            .AddChild(rareTierLabel)
-            .AddChild(rareTierCheckbox)
-            .AddChild(new Empty())
-            .AddChild(legendaryTierLabel)
-            .AddChild(legendaryTierCheckbox)
-            .AddChild(new Empty())
-            .AddChild(tierColorLabel)
+            .AddChild(new Empty());
+            foreach(TierDef tier in tiers)
+            {
+                grid2.AddChild(tiersLabel[tier])
+                .AddChild(tiersCheckbox[tier])
+                .AddChild(new Empty());
+
+            }
+
+            grid2.AddChild(tierColorLabel)
             .AddChild(new Empty())
             .AddChild(new Empty())
             .AddChild(tierDefsDropdown)

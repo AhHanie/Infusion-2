@@ -28,10 +28,11 @@ namespace Infusion
         public static StrongBox<int> slotExcellent = new StrongBox<int>(2);
         public static StrongBox<int> slotMasterwork = new StrongBox<int>(2);
         public static StrongBox<int> slotLegendary = new StrongBox<int>(3); // 0 -> 20 Range
-        public static StrongBox<bool> commonTierEnabled = new StrongBox<bool>(true);
-        public static StrongBox<bool> uncommonTierEnabled = new StrongBox<bool>(true);
-        public static StrongBox<bool> rareTierEnabled = new StrongBox<bool>(true);
-        public static StrongBox<bool> legendaryTierEnabled = new StrongBox<bool>(true);
+        public static Dictionary<TierDef, StrongBox<bool>> tiersEnabled = ResourceBank.allTierDefs.Where(item => item != null).ToDictionary(
+            tier=>tier,
+            tier => new StrongBox<bool>(true)
+        );
+
         public static Dictionary<TierDef, Color> tierColorOverride = new Dictionary<TierDef, Color>();
         public static StrongBox<bool> infuseUniqueWeapons = new StrongBox<bool>(false);
         public static StrongBox<bool> infusionsFromCrafting = new StrongBox<bool>(true);
@@ -60,10 +61,10 @@ namespace Infusion
             Scribe_Values.Look(ref slotExcellent.Value, "slotExcellent", 2);
             Scribe_Values.Look(ref slotMasterwork.Value, "slotMasterwork", 2);
             Scribe_Values.Look(ref slotLegendary.Value, "slotLegendary", 3);
-            Scribe_Values.Look(ref commonTierEnabled.Value, "commonTierEnabled", true);
-            Scribe_Values.Look(ref uncommonTierEnabled.Value, "uncommonTierEnabled", true);
-            Scribe_Values.Look(ref rareTierEnabled.Value, "rareTierEnabled", true);
-            Scribe_Values.Look(ref legendaryTierEnabled.Value, "legendaryTierEnabled", true);
+            foreach (TierDef tier in tiersEnabled.Keys) {
+                Scribe_Values.Look(ref tiersEnabled[tier].Value, tier.defName.ToLower()+"TierEnabled", true);
+            }
+
             Scribe_Values.Look(ref statsGlobalMultiplier.Value, "statsGlobalMultiplier", 1.0f);
             Scribe_Values.Look(ref chanceGlobalMultiplier.Value, "chanceGlobalMultiplier", 1.0f);
             Scribe_Values.Look(ref amountGlobalMultiplier.Value, "amountGlobalMultiplier", 1.0f);
@@ -98,6 +99,14 @@ namespace Infusion
                 {
                     tierColorOverride = new Dictionary<TierDef, Color>();
                 }
+
+                if (tiersEnabled == null)
+                {
+                    tiersEnabled = ResourceBank.allTierDefs.Where(item => item != null).ToDictionary(
+                        tier => tier,
+                        tier => new StrongBox<bool>(true)
+                    );
+                }
             }
         }
 
@@ -125,17 +134,8 @@ namespace Infusion
 
         public static bool IsTierEnabled(TierDef tier)
         {
-            switch (tier.defName)
-            {
-                case "Common":
-                    return commonTierEnabled.Value;
-                case "Uncommon":
-                    return uncommonTierEnabled.Value;
-                case "Rare":
-                    return rareTierEnabled.Value;
-                case "Legendary":
-                    return legendaryTierEnabled.Value;
-            }
+            if (tiersEnabled.ContainsKey(tier))
+                return tiersEnabled[tier].Value;
             return false;
         }
     }
