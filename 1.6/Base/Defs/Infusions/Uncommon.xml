@@ -988,4 +988,29 @@
     </extraDescriptions>
     <weight>0.33</weight>
   </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="UncommonApparelBase">
+    <defName>Uncommon_Allure</defName>
+    <label>allure</label>
+    <labelShort>alr</labelShort>
+    <tags>
+      <li>allure</li>
+    </tags>
+    <keyedFloats>
+      <li>
+        <key>chance</key>
+        <value>0.02</value>
+      </li>
+      <li>
+        <key>maxMoney</key>
+        <value>1000</value>
+      </li>
+    </keyedFloats>
+    <extraDescriptions>
+      <li>After a successful trade: 2% chance to charm the trader and steal random goods up to 1000 silver market value.</li>
+      <li>Rolls on every successful trade</li>
+      <li>Multiple Allure apparels do not stack. Only the highest-tier Allure is used.</li>
+    </extraDescriptions>
+    <weight>0.25</weight>
+  </Infusion.InfusionDef>
 </Defs>

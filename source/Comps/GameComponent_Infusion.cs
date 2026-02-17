@@ -10,8 +10,10 @@ namespace Infusion.Comps
     {
         private List<ThingWithComps> aegisItems = new List<ThingWithComps>();
         private Dictionary<ThingWithComps, AegisShieldCompData> aegisShieldData = new Dictionary<ThingWithComps, AegisShieldCompData>();
-        List<ThingWithComps> tempKeys = null;
-        List<AegisShieldCompData> tempValues = null;
+        private List<PendingNecrosis> pendingNecrosis = new List<PendingNecrosis>();
+        private List<PendingHitPointsReset> pendingHitPointsResets = new List<PendingHitPointsReset>();
+        private List<ThingWithComps> tempKeys = null;
+        private List<AegisShieldCompData> tempValues = null;
 
         static GameComponent_Infusion()
         {
@@ -22,6 +24,8 @@ namespace Infusion.Comps
         {
             aegisItems = new List<ThingWithComps>();
             aegisShieldData = new Dictionary<ThingWithComps, AegisShieldCompData>();
+            pendingNecrosis = new List<PendingNecrosis>();
+            pendingHitPointsResets = new List<PendingHitPointsReset>();
         }
 
         public override void ExposeData()
@@ -51,6 +55,8 @@ namespace Infusion.Comps
 
             Scribe_Collections.Look(ref aegisItems, "aegisItems", LookMode.Reference);
             Scribe_Collections.Look(ref aegisShieldData, "aegisShieldData", LookMode.Reference, LookMode.Deep, ref tempKeys, ref tempValues);
+            NecrosisHelper.ExposeData(ref pendingNecrosis);
+            Scribe_Collections.Look(ref pendingHitPointsResets, "pendingHitPointsResets", LookMode.Deep);
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
@@ -103,7 +109,35 @@ namespace Infusion.Comps
 
                     aegisShieldData.Clear();
                 }
+
+                NecrosisHelper.PostLoadInit(ref pendingNecrosis);
+                if (pendingHitPointsResets == null)
+                {
+                    pendingHitPointsResets = new List<PendingHitPointsReset>();
+                }
+                else
+                {
+                    pendingHitPointsResets.RemoveAll(x => x == null || x.thing == null);
+                }
             }
+        }
+
+        public override void GameComponentTick()
+        {
+            NecrosisHelper.Tick(pendingNecrosis);
+            TickHitPointResets();
+        }
+
+        public void QueueNecrosis(Corpse corpse, Apparel apparel, int delayTicks = 600)
+        {
+            NecrosisHelper.Queue(pendingNecrosis, corpse, apparel, delayTicks);
+        }
+
+        public void QueueHitPointReset(ThingWithComps thing, int delayTicks = 10)
+        {
+            int now = Find.TickManager.TicksGame;
+            int triggerTick = now + delayTicks;
+            pendingHitPointsResets.Add(new PendingHitPointsReset(thing, now, triggerTick));
         }
 
         public void AddAegisItem(ThingWithComps item)
@@ -122,6 +156,33 @@ namespace Infusion.Comps
         public bool ContainsAegisItem(ThingWithComps item)
         {
             return aegisItems.Contains(item);
+        }
+
+        private void TickHitPointResets()
+        {
+            if (pendingHitPointsResets.Count == 0)
+            {
+                return;
+            }
+
+            int now = Find.TickManager.TicksGame;
+            for (int i = pendingHitPointsResets.Count - 1; i >= 0; i--)
+            {
+                PendingHitPointsReset pending = pendingHitPointsResets[i];
+                if (pending == null || pending.thing == null || pending.thing.DestroyedOrNull())
+                {
+                    pendingHitPointsResets.RemoveAt(i);
+                    continue;
+                }
+
+                if (now < pending.triggerTick)
+                {
+                    continue;
+                }
+
+                pending.thing.HitPoints = pending.thing.MaxHitPoints;
+                pendingHitPointsResets.RemoveAt(i);
+            }
         }
     }
 }

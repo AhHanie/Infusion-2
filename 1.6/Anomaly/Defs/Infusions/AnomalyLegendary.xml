@@ -61,6 +61,21 @@
         <weight>0.33</weight>
     </Infusion.InfusionDef>
 
+    <Infusion.InfusionDef ParentName="LegendaryApparelBase">
+        <defName>Necrosis</defName>
+        <label>necrosis</label>
+        <labelShort>necro</labelShort>
+        <position>Suffix</position>
+        <tags>
+            <li>necrosis</li>
+        </tags>
+        <extraDescriptions>
+            <li>Death: The wearer resurrects as a ghoul.</li>
+            <li>Only one Necrosis trigger can occur per death, even if multiple infused apparels are worn.</li>
+        </extraDescriptions>
+        <weight>0.2</weight>
+    </Infusion.InfusionDef>
+
     <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
         <defName>Legendary_Umbra</defName>
         <label>umbra</label>

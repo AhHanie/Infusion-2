@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+using HarmonyLib;
+using Infusion.Comps;
 using RimWorld;
 using System.Reflection;
 using Verse;
@@ -27,7 +28,12 @@ namespace Infusion.Harmonize
                     compInfusion.Quality = __instance.Quality;
                     var newInfusions = compInfusion.PickInfusions(__instance.Quality);
                     compInfusion.SetInfusions(newInfusions, false);
-                    compInfusion.TryUpdateMaxHitpoints();
+
+                    // We do this for comaptibility with mods modifying HP
+                    if (newInfusions.Count > 0)
+                    {
+                        Current.Game.GetComponent<GameComponent_Infusion>().QueueHitPointReset(__instance.parent, 10);
+                    }
                 }
             }
         }

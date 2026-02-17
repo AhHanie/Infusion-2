@@ -552,6 +552,28 @@
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="LegendaryRangedBase">
+    <defName>Legendary_Ricochet</defName>
+    <label>ricochet</label>
+    <labelShort>rico</labelShort>
+    <matches>
+      <li Class="Infusion.Matchers.ProjectileBullet" />
+    </matches>
+    <onHits>
+      <li Class="Infusion.OnHitWorkers.IfBioTargetHit">
+        <value Class="Infusion.OnHitWorkers.Ricochet">
+          <chance>0.4</chance>
+          <chanceLossPerHit>0.05</chanceLossPerHit>
+          <radius>8</radius>
+        </value>
+      </li>
+    </onHits>
+    <extraDescriptions>
+      <li>Hit: 40% chance to ricochet to another hostile target. Each successful bounce reduces this chance by 5% for the projectile chain.</li>
+    </extraDescriptions>
+    <weight>0.5</weight>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="LegendaryRangedBase">
     <defName>Legendary_Smart</defName>
     <label>smart</label>
     <labelShort>smrt</labelShort>
@@ -1434,6 +1456,31 @@
       <li>Hit: 10% chance to disarm pawn's primary weapon</li>
     </extraDescriptions>
     <weight>0.5</weight>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="LegendaryApparelBase">
+    <defName>Legendary_Allure</defName>
+    <label>allure</label>
+    <labelShort>alr</labelShort>
+    <tags>
+      <li>allure</li>
+    </tags>
+    <keyedFloats>
+      <li>
+        <key>chance</key>
+        <value>0.04</value>
+      </li>
+      <li>
+        <key>maxMoney</key>
+        <value>2000</value>
+      </li>
+    </keyedFloats>
+    <extraDescriptions>
+      <li>After a successful trade: 4% chance to charm the trader and steal random goods up to 4000 silver market value.</li>
+      <li>Rolls on every successful trade</li>
+      <li>Multiple Allure apparels do not stack. Only the highest-tier Allure is used.</li>
+    </extraDescriptions>
+    <weight>0.25</weight>
   </Infusion.InfusionDef>
   <!-- #endregion -->
 </Defs>

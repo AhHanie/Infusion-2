@@ -6,7 +6,9 @@
         SMART,
         SOOTHING,
         AEGIS,
-        BARRAGE
+        BARRAGE,
+        ALLURE,
+        NECROSIS
     }
 
     public class InfusionTagsHelper
@@ -23,6 +25,10 @@
                     return InfusionTags.AEGIS;
                 case "barrage":
                     return InfusionTags.BARRAGE;
+                case "allure":
+                    return InfusionTags.ALLURE;
+                case "necrosis":
+                    return InfusionTags.NECROSIS;
                 default:
                     return InfusionTags.None;
             }
@@ -40,6 +46,10 @@
                     return "aegis";
                 case InfusionTags.BARRAGE:
                     return "barrage";
+                case InfusionTags.ALLURE:
+                    return "allure";
+                case InfusionTags.NECROSIS:
+                    return "necrosis";
             }
             return null;
         }

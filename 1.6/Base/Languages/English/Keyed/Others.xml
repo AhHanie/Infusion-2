@@ -25,6 +25,7 @@
 
   <Infusion.Job.FailReason.NoExtractor>No reachable, un-reserved empty infuser.</Infusion.Job.FailReason.NoExtractor>
   <Infusion.Job.FailReason.NoMatchingInfuser>No reachable, un-reserved, suitable infuser.</Infusion.Job.FailReason.NoMatchingInfuser>
+  <Infusion.Allure.Success>{0} charmed the trader and stole: {1}</Infusion.Allure.Success>
 
   <!-- gizmo -->
   <Infusion.EffectGizmo>Infusion</Infusion.EffectGizmo>
@@ -58,4 +59,5 @@ One of your colonist with crafting job will remove it.
 
 
 Click again to cancel the removal.</Infusion.ITab.Unmark>
+  <Infusion.LoadingLabel>Infusing equipment, please wait ...</Infusion.LoadingLabel>
 </LanguageData>

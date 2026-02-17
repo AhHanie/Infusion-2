@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\Krafs.Publicizer.2.3.0\build\Krafs.Publicizer.props" Condition="Exists('packages\Krafs.Publicizer.2.3.0\build\Krafs.Publicizer.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -12,6 +13,8 @@
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>false</DebugSymbols>
@@ -23,9 +26,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\1.6\Base\Assemblies\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -66,12 +69,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Compat\ToggleableShields.cs" />
-    <Compile Include="Compat\QualityExpandedCompat.cs" />
     <Compile Include="Comps\CompInfusion.cs" />
     <Compile Include="Comps\GameComponent_Infusion.cs" />
+    <Compile Include="Helpers\AllureHelper.cs" />
+    <Compile Include="Helpers\NecrosisHelper.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="DebugActions.cs" />
     <Compile Include="DefFields.cs" />
+    <Compile Include="DefOfs\ModHediffDefOf.cs" />
+    <Compile Include="DefOfs\ModSoundDefOf.cs" />
     <Compile Include="DefsForReading.cs" />
     <Compile Include="Extractor.cs" />
     <Compile Include="Harmonize\Bullet.cs" />
@@ -81,6 +87,8 @@
     <Compile Include="Harmonize\Gizmo_EnergyShieldStatus.cs" />
     <Compile Include="Harmonize\InspectPaneUtility.cs" />
     <Compile Include="Harmonize\MemoryUtility.cs" />
+    <Compile Include="Harmonize\Pawn.cs" />
+    <Compile Include="Harmonize\TradeDeal.cs" />
     <Compile Include="Harmonize\PawnGenerator.cs" />
     <Compile Include="Harmonize\Pawn_ApparelTracker.cs" />
     <Compile Include="Harmonize\Pawn_EquipmentTracker.cs" />
@@ -111,6 +119,7 @@
     <Compile Include="Matchers\ShieldBelt.cs" />
     <Compile Include="Matchers\WeaponClasses.cs" />
     <Compile Include="Mod.cs" />
+    <Compile Include="DefOfs\ModEffecterDefOf.cs" />
     <Compile Include="ModSettingsWindow.cs" />
     <Compile Include="OnHitWorker.cs" />
     <Compile Include="OnHitWorkers\AddResearch.cs" />
@@ -132,6 +141,7 @@
     <Compile Include="OnHitWorkers\PlaySound.cs" />
     <Compile Include="OnHitWorkers\Preservation.cs" />
     <Compile Include="OnHitWorkers\ReduceSeverity.cs" />
+    <Compile Include="OnHitWorkers\Ricochet.cs" />
     <Compile Include="OnHitWorkers\RemoveHediff.cs" />
     <Compile Include="OnHitWorkers\ResetCooldown.cs" />
     <Compile Include="OnHitWorkers\Sequence.cs" />
@@ -144,6 +154,8 @@
     <Compile Include="OnHitWorkers\TameTarget.cs" />
     <Compile Include="OnHitWorkers\ThrowFleck.cs" />
     <Compile Include="Harmonize\PlayNearestLifestageSound.cs" />
+    <Compile Include="DataClasses\PendingNecrosis.cs" />
+    <Compile Include="DataClasses\PendingHitPointsReset.cs" />
     <Compile Include="PreHitWorker.cs" />
     <Compile Include="PreHitWorkers\ApplyHediff.cs" />
     <Compile Include="PreHitWorkers\AudioLock.cs" />
@@ -153,27 +165,38 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceBank.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="AegisShieldCompData.cs" />
-    <Compile Include="SmartInfusionHelper.cs" />
+    <Compile Include="DataClasses\AegisShieldCompData.cs" />
+    <Compile Include="Helpers\SmartInfusionHelper.cs" />
     <Compile Include="OnHitWorkers\SpawnPawn.cs" />
     <Compile Include="SpecialThingFilterWorkers\Everything.cs" />
     <Compile Include="StaticFlags.cs" />
     <Compile Include="StatMod.cs" />
     <Compile Include="StatPart.cs" />
     <Compile Include="StockGenerator.cs" />
-    <Compile Include="TemporaryAlly.cs" />
+    <Compile Include="DataClasses\TemporaryAlly.cs" />
     <Compile Include="Comps\TemporaryAllyComp.cs" />
     <Compile Include="ThingSetMaker.cs" />
     <Compile Include="ThoughtWorker_Soothed.cs" />
     <Compile Include="Defs\TierDef.cs" />
-    <Compile Include="TierDefOf.cs" />
+    <Compile Include="DefOfs\TierDefOf.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="Harmonize\Verb_LaunchProjectile.cs" />
     <Compile Include="VerseTools.cs" />
     <Compile Include="WorkGiver.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(TargetDir)Infusion 2.dll" "C:\Program Files (x86)\Steam\steamapps\common\RimWorld\Mods\Infusion 2\1.6\Base\Assemblies" /D /Y</PostBuildEvent>
   </PropertyGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\Krafs.Publicizer.2.3.0\build\Krafs.Publicizer.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Krafs.Publicizer.2.3.0\build\Krafs.Publicizer.props'))" />
+    <Error Condition="!Exists('packages\Krafs.Publicizer.2.3.0\build\Krafs.Publicizer.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Krafs.Publicizer.2.3.0\build\Krafs.Publicizer.targets'))" />
+  </Target>
+  <Import Project="packages\Krafs.Publicizer.2.3.0\build\Krafs.Publicizer.targets" Condition="Exists('packages\Krafs.Publicizer.2.3.0\build\Krafs.Publicizer.targets')" />
 </Project>

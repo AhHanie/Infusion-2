@@ -15,7 +15,7 @@ public class ModBase : Mod
         : base(content)
     {
         instance = new Harmony("rimworld.sk.infusion");
-        LongEventHandler.QueueLongEvent(DefsLoaded, "Sk.Infusion.Init", doAsynchronously: true, null);
+        LongEventHandler.QueueLongEvent(DefsLoaded, "Infusion.LoadingLabel", doAsynchronously: true, null);
     }
 
     public override string SettingsCategory()
