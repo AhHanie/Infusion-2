@@ -21,8 +21,7 @@ namespace Infusion.Harmonize
             {
                 return;
             }
-
-            __state = new NecrosisPatchState();
+  
             if (__instance.apparel.WornApparel == null || __instance.Dead)
             {
                 return;
@@ -31,6 +30,7 @@ namespace Infusion.Harmonize
             Apparel necrosisApparel = __instance.apparel.WornApparel.FirstOrDefault(HasNecrosisInfusion);
             if (necrosisApparel != null)
             {
+                __state = new NecrosisPatchState();
                 __state.shouldTrigger = true;
                 __state.triggeringApparel = necrosisApparel;
             }
