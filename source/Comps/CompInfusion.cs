@@ -27,7 +27,6 @@ namespace Infusion
         private CompBiocodable biocoder = null;
         private bool effectsEnabled = true;
         private int slotCount = -1;
-        private QualityCategory quality = QualityCategory.Normal;
 
         private InfusionDef bestInfusionCache = null;
         private List<OnHitWorker> onHitsCache = null;
@@ -100,11 +99,13 @@ namespace Infusion
 
         public QualityCategory Quality
         {
-            get => quality;
-            set
+            get 
             {
-                quality = value;
-                slotCount = CalculateSlotCountFor(value);
+                if (parent.TryGetQuality(out QualityCategory qc))
+                {
+                    return qc;
+                }
+                return QualityCategory.Normal;
             }
         }
 
@@ -500,9 +501,9 @@ namespace Infusion
                 return;
             }
 
-            if (slotCount == -1 && quality >= QualityCategory.Normal)
+            if (slotCount == -1 && Quality >= QualityCategory.Normal)
             {
-                slotCount = CalculateSlotCountFor(quality);
+                slotCount = CalculateSlotCountFor(Quality);
             }
 
             if (removalSet.Count > 0)
@@ -523,9 +524,8 @@ namespace Infusion
 
         public override void PostExposeData()
         {
-            Scribe_Values.Look(ref quality, "quality");
             Scribe_Values.Look(ref effectsEnabled, "effectsEnabled", true);
-            Scribe_Values.Look(ref slotCount, "slotCount", CalculateSlotCountFor(quality));
+            Scribe_Values.Look(ref slotCount, "slotCount", CalculateSlotCountFor(Quality));
             
             var infusionsList = infusions.ToList();
             Scribe_Collections.Look(ref infusionsList, "infusions", LookMode.Def);

@@ -23,17 +23,14 @@ namespace Infusion.Harmonize
                 {
                     return;
                 }
-                if (compInfusion != null)
-                {
-                    compInfusion.Quality = __instance.Quality;
-                    var newInfusions = compInfusion.PickInfusions(__instance.Quality);
-                    compInfusion.SetInfusions(newInfusions, false);
 
-                    // We do this for comaptibility with mods modifying HP
-                    if (newInfusions.Count > 0)
-                    {
-                        Current.Game.GetComponent<GameComponent_Infusion>().QueueHitPointReset(__instance.parent, 10);
-                    }
+                var newInfusions = compInfusion.PickInfusions(__instance.Quality);
+                compInfusion.SetInfusions(newInfusions, false);
+
+                // We do this for comaptibility with mods modifying HP
+                if (newInfusions.Count > 0)
+                {
+                    Current.Game.GetComponent<GameComponent_Infusion>().QueueHitPointReset(__instance.parent, 10);
                 }
             }
         }
