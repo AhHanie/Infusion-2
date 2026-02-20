@@ -24,6 +24,7 @@ namespace Infusion.Harmonize
                     return;
                 }
 
+                compInfusion.SlotCount = compInfusion.CalculateSlotCountFor(__instance.Quality);
                 var newInfusions = compInfusion.PickInfusions(__instance.Quality);
                 compInfusion.SetInfusions(newInfusions, false);
 

@@ -525,7 +525,7 @@ namespace Infusion
         public override void PostExposeData()
         {
             Scribe_Values.Look(ref effectsEnabled, "effectsEnabled", true);
-            Scribe_Values.Look(ref slotCount, "slotCount", CalculateSlotCountFor(Quality));
+            Scribe_Values.Look(ref slotCount, "slotCount");
             
             var infusionsList = infusions.ToList();
             Scribe_Collections.Look(ref infusionsList, "infusions", LookMode.Def);
@@ -554,6 +554,11 @@ namespace Infusion
                 removalSet = new HashSet<InfusionDef>(
                     removalList.Where(inf => !InfusionDef.ShouldRemoveItself(inf))
                 );
+            }
+
+            if (Scribe.mode == LoadSaveMode.PostLoadInit && slotCount == 0)
+            {
+                slotCount = CalculateSlotCountFor(Quality);
             }
         }
 
@@ -623,6 +628,7 @@ namespace Infusion
             int maxHitPoints = comp.parent.MaxHitPoints;
             var newInfusions = new List<InfusionDef> { infDef };
             newInfusions.AddRange(comp.Infusions);
+            comp.SlotCount = comp.CalculateSlotCountFor(comp.Quality);
             comp.SetInfusions(newInfusions, false);
             comp.TryUpdateMaxHitpoints(maxHitPoints);
         }
