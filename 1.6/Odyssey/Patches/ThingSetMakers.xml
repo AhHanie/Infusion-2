@@ -92,6 +92,25 @@
                     </li>
                 </value>
             </li>
+
+            <li Class="PatchOperationAdd">
+                <xpath>/Defs/ThingSetMakerDef[defName="Infusion_MiningBonusLoot"]/root/options</xpath>
+                <value>
+                    <li>
+                        <weight>3</weight>
+                        <thingSetMaker Class="ThingSetMaker_Count">
+                            <fixedParams>
+                                <countRange>8~14</countRange>
+                                <filter>
+                                    <thingDefs>
+                                        <li>Obsidian</li>
+                                    </thingDefs>
+                                </filter>
+                            </fixedParams>
+                        </thingSetMaker>
+                    </li>
+                </value>
+            </li>
         </operations>
     </Operation>
 </Patch>

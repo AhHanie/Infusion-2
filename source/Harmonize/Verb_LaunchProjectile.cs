@@ -5,6 +5,8 @@ using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
 using Verse;
+using RimWorld;
+using Infusion.Comps;
 
 namespace Infusion.Harmonize
 {
@@ -108,6 +110,62 @@ namespace Infusion.Harmonize
             }
 
             return codes;
+        }
+    }
+
+    [HarmonyPatch(typeof(Verb_LaunchProjectile), "WarmupComplete")]
+    public static class WarmupComplete_UnstableInfusion
+    {
+        public static void Prefix(Verb_LaunchProjectile __instance)
+        {
+            ThingWithComps equipmentSource = __instance.EquipmentSource;
+            GameComponent_Infusion gameComp = Current.Game.GetComponent<GameComponent_Infusion>();
+
+            // Ensure no stale projectile remains from a previous burst.
+            gameComp.ClearUnstableBurstProjectile(equipmentSource);
+
+            CompInfusion compInfusion = equipmentSource.TryGetComp<CompInfusion>();
+            if (compInfusion == null)
+            {
+                return;
+            }
+
+            InfusionDef unstableInfusion = compInfusion.TryGetInfusionDefWithTag(InfusionTags.UNSTABLE);
+            if (unstableInfusion == null)
+            {
+                return;
+            }
+
+            ThingDef originalProjectile = __instance.Projectile;
+            if (!typeof(Bullet).IsAssignableFrom(originalProjectile.thingClass))
+            {
+                return;
+            }
+
+            ThingDef randomizedProjectile = Infusion.UnstableProjectileHelper.GetRandomBulletProjectile(originalProjectile);
+            gameComp.SetUnstableBurstProjectile(equipmentSource, randomizedProjectile);
+        }
+    }
+
+    [HarmonyPatch(typeof(Verb_LaunchProjectile), "Projectile", MethodType.Getter)]
+    public static class Projectile_UnstableInfusion
+    {
+        public static void Postfix(Verb_LaunchProjectile __instance, ref ThingDef __result)
+        {
+            ThingWithComps equipmentSource = __instance.EquipmentSource;
+
+            CompInfusion compInfusion = equipmentSource.TryGetComp<CompInfusion>();
+            if (compInfusion?.TryGetInfusionDefWithTag(InfusionTags.UNSTABLE) == null)
+            {
+                return;
+            }
+
+            GameComponent_Infusion gameComp = Current.Game.GetComponent<GameComponent_Infusion>();
+
+            if (gameComp.TryGetUnstableBurstProjectile(equipmentSource, out ThingDef cachedProjectile))
+            {
+                __result = cachedProjectile;
+            }
         }
     }
 }

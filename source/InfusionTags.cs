@@ -8,7 +8,11 @@
         AEGIS,
         BARRAGE,
         ALLURE,
-        NECROSIS
+        NECROSIS,
+        PROSPECTOR,
+        UNSTABLE,
+        CONSTRUCTION_REFUND,
+        CRAFTING_REFUND
     }
 
     public class InfusionTagsHelper
@@ -29,6 +33,14 @@
                     return InfusionTags.ALLURE;
                 case "necrosis":
                     return InfusionTags.NECROSIS;
+                case "prospector":
+                    return InfusionTags.PROSPECTOR;
+                case "unstable":
+                    return InfusionTags.UNSTABLE;
+                case "construction_refund":
+                    return InfusionTags.CONSTRUCTION_REFUND;
+                case "crafting_refund":
+                    return InfusionTags.CRAFTING_REFUND;
                 default:
                     return InfusionTags.None;
             }
@@ -50,6 +62,14 @@
                     return "allure";
                 case InfusionTags.NECROSIS:
                     return "necrosis";
+                case InfusionTags.PROSPECTOR:
+                    return "prospector";
+                case InfusionTags.UNSTABLE:
+                    return "unstable";
+                case InfusionTags.CONSTRUCTION_REFUND:
+                    return "construction_refund";
+                case InfusionTags.CRAFTING_REFUND:
+                    return "crafting_refund";
             }
             return null;
         }

@@ -10,10 +10,13 @@ namespace Infusion.Comps
     {
         private List<ThingWithComps> aegisItems = new List<ThingWithComps>();
         private Dictionary<ThingWithComps, AegisShieldCompData> aegisShieldData = new Dictionary<ThingWithComps, AegisShieldCompData>();
+        private Dictionary<ThingWithComps, ThingDef> unstableBurstProjectiles = new Dictionary<ThingWithComps, ThingDef>();
         private List<PendingNecrosis> pendingNecrosis = new List<PendingNecrosis>();
         private List<PendingHitPointsReset> pendingHitPointsResets = new List<PendingHitPointsReset>();
         private List<ThingWithComps> tempKeys = null;
         private List<AegisShieldCompData> tempValues = null;
+        private List<ThingWithComps> unstableTempKeys = null;
+        private List<ThingDef> unstableTempValues = null;
 
         static GameComponent_Infusion()
         {
@@ -24,6 +27,7 @@ namespace Infusion.Comps
         {
             aegisItems = new List<ThingWithComps>();
             aegisShieldData = new Dictionary<ThingWithComps, AegisShieldCompData>();
+            unstableBurstProjectiles = new Dictionary<ThingWithComps, ThingDef>();
             pendingNecrosis = new List<PendingNecrosis>();
             pendingHitPointsResets = new List<PendingHitPointsReset>();
         }
@@ -51,10 +55,15 @@ namespace Infusion.Comps
                         }
                     }
                 }
+
+                unstableBurstProjectiles = unstableBurstProjectiles
+                    .Where(kvp => kvp.Key != null && !kvp.Key.DestroyedOrNull() && kvp.Value != null)
+                    .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
             }
 
             Scribe_Collections.Look(ref aegisItems, "aegisItems", LookMode.Reference);
             Scribe_Collections.Look(ref aegisShieldData, "aegisShieldData", LookMode.Reference, LookMode.Deep, ref tempKeys, ref tempValues);
+            Scribe_Collections.Look(ref unstableBurstProjectiles, "unstableBurstProjectiles", LookMode.Reference, LookMode.Def, ref unstableTempKeys, ref unstableTempValues);
             NecrosisHelper.ExposeData(ref pendingNecrosis);
             Scribe_Collections.Look(ref pendingHitPointsResets, "pendingHitPointsResets", LookMode.Deep);
 
@@ -110,6 +119,17 @@ namespace Infusion.Comps
                     aegisShieldData.Clear();
                 }
 
+                if (unstableBurstProjectiles == null)
+                {
+                    unstableBurstProjectiles = new Dictionary<ThingWithComps, ThingDef>();
+                }
+                else
+                {
+                    unstableBurstProjectiles = unstableBurstProjectiles
+                        .Where(kvp => kvp.Key != null && !kvp.Key.DestroyedOrNull() && kvp.Value != null)
+                        .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+                }
+
                 NecrosisHelper.PostLoadInit(ref pendingNecrosis);
                 if (pendingHitPointsResets == null)
                 {
@@ -156,6 +176,21 @@ namespace Infusion.Comps
         public bool ContainsAegisItem(ThingWithComps item)
         {
             return aegisItems.Contains(item);
+        }
+
+        public void SetUnstableBurstProjectile(ThingWithComps source, ThingDef projectileDef)
+        {
+            unstableBurstProjectiles[source] = projectileDef;
+        }
+
+        public bool TryGetUnstableBurstProjectile(ThingWithComps source, out ThingDef projectileDef)
+        {
+            return unstableBurstProjectiles.TryGetValue(source, out projectileDef) && projectileDef != null;
+        }
+
+        public void ClearUnstableBurstProjectile(ThingWithComps source)
+        {
+            unstableBurstProjectiles.Remove(source);
         }
 
         private void TickHitPointResets()

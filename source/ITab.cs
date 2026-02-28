@@ -208,7 +208,7 @@ namespace Infusion
             string tooltipStringKey;
             if (markedForExtraction)
             {
-                tooltipStringKey = ResourceBank.Strings.ITab.MarkRemoval(successChance);
+                tooltipStringKey = ResourceBank.Strings.ITab.MarkRemoval(successChancePercent);
             }
             else if (markedForRemoval)
             {
@@ -216,7 +216,7 @@ namespace Infusion
             }
             else
             {
-                tooltipStringKey = ResourceBank.Strings.ITab.MarkExtraction(successChance);
+                tooltipStringKey = ResourceBank.Strings.ITab.MarkExtraction(successChancePercent);
             }
 
             TooltipHandler.TipRegion(container, new TipSignal(tooltipStringKey));

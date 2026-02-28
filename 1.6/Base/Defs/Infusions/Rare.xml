@@ -1403,12 +1403,63 @@
   </Infusion.InfusionDef>
 
   <Infusion.InfusionDef ParentName="RareApparelBase">
+    <defName>Rare_Prospecting</defName>
+    <label>prospecting</label>
+    <labelShort>pros</labelShort>
+    <stats>
+      <li>
+        <key>MiningSpeed</key>
+        <value>
+          <offset>0.2</offset>
+        </value>
+      </li>
+      <li>
+        <key>MiningYield</key>
+        <value>
+          <offset>0.15</offset>
+        </value>
+      </li>
+    </stats>
+    <tags>
+      <li>prospector</li>
+    </tags>
+    <keyedFloats>
+      <li>
+        <key>chanceOres</key>
+        <value>0.06</value>
+      </li>
+      <li>
+        <key>chanceRocks</key>
+        <value>0.0075</value>
+      </li>
+      <li>
+        <key>lootRolls</key>
+        <value>2</value>
+      </li>
+    </keyedFloats>
+    <extraDescriptions>
+      <li>When mining ores: 6% chance to spawn bonus mining loot from a special loot pool.</li>
+      <li>When mining rocks: 0.75% chance to spawn bonus mining loot from a special loot pool.</li>
+      <li>Multiple Prospecting apparels do not stack. Only the highest-tier Prospecting is used.</li>
+    </extraDescriptions>
+    <weight>0.25</weight>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="RareApparelBase">
     <defName>Rare_Allure</defName>
     <label>allure</label>
     <labelShort>alr</labelShort>
     <tags>
       <li>allure</li>
     </tags>
+    <stats>
+      <li>
+        <key>TradePriceImprovement</key>
+        <value>
+          <offset>0.03</offset>
+        </value>
+      </li>
+    </stats>
     <keyedFloats>
       <li>
         <key>chance</key>
@@ -1424,6 +1475,114 @@
       <li>Rolls on every successful trade</li>
       <li>Multiple Allure apparels do not stack. Only the highest-tier Allure is used.</li>
     </extraDescriptions>
+    <weight>0.25</weight>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="RareApparelBase">
+    <defName>Rare_Reclaiming</defName>
+    <label>reclaiming</label>
+    <labelShort>recl</labelShort>
+    <stats>
+      <li>
+        <key>ConstructionSpeed</key>
+        <value>
+          <offset>0.15</offset>
+        </value>
+      </li>
+    </stats>
+    <tags>
+      <li>construction_refund</li>
+    </tags>
+    <keyedFloats>
+      <li>
+        <key>chance</key>
+        <value>0.06</value>
+      </li>
+      <li>
+        <key>refundPercent</key>
+        <value>0.2</value>
+      </li>
+    </keyedFloats>
+    <extraDescriptions>
+      <li>On construction complete: 6% chance to refund up to 20% of materials by returning a random material type.</li>
+      <li>The refund picks one random required material and returns a random amount within the refund cap, regardless of material value.</li>
+      <li>Multiple Reclaiming apparels do not stack. Only the highest-tier Reclaiming is used.</li>
+    </extraDescriptions>
+    <weight>0.25</weight>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="RareApparelBase">
+    <defName>Rare_Reprocessing</defName>
+    <label>reprocessing</label>
+    <labelShort>repro</labelShort>
+    <stats>
+      <li>
+        <key>CarryingCapacity</key>
+        <value>
+          <offset>15</offset>
+        </value>
+      </li>
+    </stats>
+    <tags>
+      <li>crafting_refund</li>
+    </tags>
+    <keyedFloats>
+      <li>
+        <key>chance</key>
+        <value>0.06</value>
+      </li>
+      <li>
+        <key>refundPercent</key>
+        <value>0.2</value>
+      </li>
+    </keyedFloats>
+    <extraDescriptions>
+      <li>On crafting complete: 6% chance to refund up to 20% of consumed ingredients by returning a random ingredient type.</li>
+      <li>The refund picks one random consumed ingredient and returns a random amount within the refund cap, regardless of material value.</li>
+      <li>Multiple Reprocessing apparels do not stack. Only the highest-tier Reprocessing is used.</li>
+    </extraDescriptions>
+    <weight>0.25</weight>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="RareApparelBase">
+    <defName>Rare_Paramedic</defName>
+    <label>paramedic</label>
+    <labelShort>medic</labelShort>
+    <stats>
+      <li>
+        <key>MedicalTendSpeed</key>
+        <value>
+          <offset>0.1</offset>
+        </value>
+      </li>
+      <li>
+        <key>MedicalTendQuality</key>
+        <value>
+          <offset>0.15</offset>
+        </value>
+      </li>
+    </stats>
+    <weight>0.25</weight>
+  </Infusion.InfusionDef>
+
+  <Infusion.InfusionDef ParentName="RareApparelBase">
+    <defName>Rare_Surgeon</defName>
+    <label>surgeon</label>
+    <labelShort>surg</labelShort>
+    <stats>
+      <li>
+        <key>MedicalOperationSpeed</key>
+        <value>
+          <offset>0.1</offset>
+        </value>
+      </li>
+      <li>
+        <key>MedicalSurgerySuccessChance</key>
+        <value>
+          <offset>0.15</offset>
+        </value>
+      </li>
+    </stats>
     <weight>0.25</weight>
   </Infusion.InfusionDef>
 </Defs>

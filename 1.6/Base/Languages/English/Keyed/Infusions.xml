@@ -2,4 +2,6 @@
 <LanguageData>
     <Infusion.Savant.Message>+{0} Research Points</Infusion.Savant.Message>
     <Infusion.Disarming.Message>Disarmed!</Infusion.Disarming.Message>
+    <Infusion.Prospecting.Message>Lucky Find!</Infusion.Prospecting.Message>
+    <Infusion.Refunding.Message>Refunded!</Infusion.Refunding.Message>
 </LanguageData>

@@ -54,12 +54,12 @@ namespace Infusion
                 public static string NoSlot => "Infusion.ITab.NoSlot".Translate();
 
                 // marks
-                public static string MarkExtraction(float extractionChance)
+                public static string MarkExtraction(string extractionChance)
                 {
                     return "Infusion.ITab.MarkForExtraction".Translate(extractionChance);
                 }
 
-                public static string MarkRemoval(float extractionChance)
+                public static string MarkRemoval(string extractionChance)
                 {
                     return "Infusion.ITab.MarkForRemoval".Translate(extractionChance);
                 }

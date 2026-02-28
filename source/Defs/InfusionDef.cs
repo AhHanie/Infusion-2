@@ -80,6 +80,26 @@ namespace Infusion
             return DefFields.ValueFor(quality, tier.weights);
         }
 
+        public float GetKeyedFloatOrDefault(string key, float fallback)
+        {
+            if (string.IsNullOrEmpty(key) || keyedFloats == null)
+            {
+                return fallback;
+            }
+
+            if (keyedFloats.TryGetValue(key, out float value))
+            {
+                return value;
+            }
+
+            return fallback;
+        }
+
+        public float GetKeyedFloatOrDefault(KeyedData key, float fallback)
+        {
+            return GetKeyedFloatOrDefault(KeyedDataHelper.ConvertToString(key), fallback);
+        }
+
         public override IEnumerable<string> ConfigErrors()
         {
             var fromBase = base.ConfigErrors();

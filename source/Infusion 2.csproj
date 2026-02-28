@@ -68,6 +68,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Publicize Include="Assembly-CSharp:Verse.Verb.burstShotsLeft" />
+    <Publicize Include="Assembly-CSharp:Verse.Verb.currentTarget" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Compat\ToggleableShields.cs" />
     <Compile Include="Comps\CompInfusion.cs" />
     <Compile Include="Comps\GameComponent_Infusion.cs" />
@@ -78,15 +82,19 @@
     <Compile Include="DefFields.cs" />
     <Compile Include="DefOfs\ModHediffDefOf.cs" />
     <Compile Include="DefOfs\ModSoundDefOf.cs" />
+    <Compile Include="DefOfs\ThingSetMakerDefOf.cs" />
     <Compile Include="DefsForReading.cs" />
     <Compile Include="Extractor.cs" />
     <Compile Include="Harmonize\Bullet.cs" />
     <Compile Include="Harmonize\CompQuality.cs" />
     <Compile Include="Harmonize\GenRecipe.cs" />
+    <Compile Include="Harmonize\GenRecipe_CraftingRefund.cs" />
+    <Compile Include="Harmonize\Frame.cs" />
     <Compile Include="Harmonize\CompShield.cs" />
     <Compile Include="Harmonize\Gizmo_EnergyShieldStatus.cs" />
     <Compile Include="Harmonize\InspectPaneUtility.cs" />
     <Compile Include="Harmonize\MemoryUtility.cs" />
+    <Compile Include="Harmonize\Mineable.cs" />
     <Compile Include="Harmonize\Pawn.cs" />
     <Compile Include="Harmonize\TradeDeal.cs" />
     <Compile Include="Harmonize\PawnGenerator.cs" />
@@ -100,6 +108,7 @@
     <Compile Include="Harmonize\VerbMeleeAttackDamage.cs" />
     <Compile Include="Harmonize\VerbProperties.cs" />
     <Compile Include="HashEqualDef.cs" />
+    <Compile Include="Helpers\UnstableProjectileHelper.cs" />
     <Compile Include="Infuser.cs" />
     <Compile Include="Conditions\AnomalyStudyEnabled.cs" />
     <Compile Include="InfusionConditon.cs" />
