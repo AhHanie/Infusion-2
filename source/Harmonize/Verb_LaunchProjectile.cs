@@ -119,6 +119,12 @@ namespace Infusion.Harmonize
         public static void Prefix(Verb_LaunchProjectile __instance)
         {
             ThingWithComps equipmentSource = __instance.EquipmentSource;
+
+            if (equipmentSource == null)
+            {
+                return;
+            }
+
             GameComponent_Infusion gameComp = Current.Game.GetComponent<GameComponent_Infusion>();
 
             // Ensure no stale projectile remains from a previous burst.
@@ -153,6 +159,11 @@ namespace Infusion.Harmonize
         public static void Postfix(Verb_LaunchProjectile __instance, ref ThingDef __result)
         {
             ThingWithComps equipmentSource = __instance.EquipmentSource;
+
+            if (equipmentSource == null)
+            {
+                return;
+            }
 
             CompInfusion compInfusion = equipmentSource.TryGetComp<CompInfusion>();
             if (compInfusion?.TryGetInfusionDefWithTag(InfusionTags.UNSTABLE) == null)

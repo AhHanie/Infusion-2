@@ -55,7 +55,12 @@ namespace Infusion.Harmonize
 
                 ThingWithComps equipmentSource = verb.EquipmentSource;
 
-                Current.Game?.GetComponent<GameComponent_Infusion>().ClearUnstableBurstProjectile(equipmentSource);
+                if (equipmentSource == null)
+                {
+                    return;
+                }
+
+                Current.Game.GetComponent<GameComponent_Infusion>().ClearUnstableBurstProjectile(equipmentSource);
             }
         }
 
