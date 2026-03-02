@@ -1,10 +1,10 @@
-﻿using System;
+﻿using HarmonyLib;
+using RimWorld;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
-using HarmonyLib;
-using RimWorld;
 using Verse;
 
 namespace Infusion.Harmonize
@@ -18,8 +18,6 @@ namespace Infusion.Harmonize
 
     public static class StatWorker
     {
-        private static readonly Dictionary<StatDef, StatEligibility> statsEligibilityMap = new Dictionary<StatDef, StatEligibility>();
-
         // These would need to be defined based on your mod's requirements
         private static readonly HashSet<string> pawnStatCategories = new HashSet<string>
         {
@@ -64,31 +62,14 @@ namespace Infusion.Harmonize
             return things;
         }
 
-        public static void populateStatsEligibilityMap()
+        public static void PopulateStatsEligibilityMap()
         {
-            foreach (var stat in DefDatabase<StatDef>.AllDefs)
-            {
-                StatEligibility eligibility;
+            InfusionStatWorkerCache.PopulateStatsEligibilityMap(pawnStatCategories, armorStats);
+        }
 
-                if (stat.category == null)
-                {
-                    eligibility = StatEligibility.Ineligible;
-                }
-                else if (pawnStatCategories.Contains(stat.category.defName))
-                {
-                    eligibility = StatEligibility.PawnStat;
-                }
-                else if (armorStats.Contains(stat.defName))
-                {
-                    eligibility = StatEligibility.ArmorStat;
-                }
-                else
-                {
-                    eligibility = StatEligibility.Ineligible;
-                }
-
-                statsEligibilityMap[stat] = eligibility;
-            }
+        public static void ResetStatRequestCache()
+        {
+            InfusionStatWorkerCache.ResetStatRequestCache();
         }
 
         [HarmonyPatch(typeof(RimWorld.StatWorker), "RelevantGear")]
@@ -156,27 +137,38 @@ namespace Infusion.Harmonize
         {
             public static float Postfix(float __result, Thing gear, StatDef stat)
             {
-                if (!statsEligibilityMap.TryGetValue(stat, out var statType) ||
+                if (!InfusionStatWorkerCache.TryGetStatEligibility(stat, out var statType) ||
                     statType == StatEligibility.Ineligible)
                 {
                     return __result;
                 }
 
-                var compInf = gear.TryGetComp<CompInfusion>();
-                if (compInf == null)
+                if (!InfusionStatWorkerCache.EnsureGearHasInfusions(gear))
                 {
                     return __result;
                 }
 
-                // for general stats, considers both weapons and apparels into account
-                // for armor stats, only checks weapons
-                if (statType == StatEligibility.PawnStat ||
-                    (statType == StatEligibility.ArmorStat && gear.def.IsWeapon))
+                var currentTick = Comps.GameComponent_Infusion.currentGameTick;
+                if (InfusionStatWorkerCache.TryGetStatRequestCache(gear, stat, currentTick, out var cachedInfusionOffset))
                 {
-                    return compInf.GetModForStat(stat).offset + __result;
+                    InfusionStatWorkerCache.RecordStatRequestCacheStats(currentTick, true);
+                    return __result + cachedInfusionOffset;
                 }
 
-                return __result;
+                float infusionOffset = 0.0f;
+                if (statType == StatEligibility.PawnStat ||
+                     (statType == StatEligibility.ArmorStat && gear.def.IsWeapon))
+                {
+                    // for general stats, considers both weapons and apparels into account
+                    // for armor stats, only checks weapons
+                    CompInfusion compInf = gear.TryGetComp<CompInfusion>();
+                    infusionOffset = compInf.GetModForStat(stat).offset;
+                }
+
+                InfusionStatWorkerCache.SetStatRequestCache(gear, stat, currentTick, infusionOffset);
+
+                InfusionStatWorkerCache.RecordStatRequestCacheStats(currentTick, false);
+                return __result + infusionOffset;
             }
         }
 

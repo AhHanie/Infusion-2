@@ -17,6 +17,7 @@ namespace Infusion.Comps
         private List<AegisShieldCompData> tempValues = null;
         private List<ThingWithComps> unstableTempKeys = null;
         private List<ThingDef> unstableTempValues = null;
+        public static int currentGameTick = 0;
 
         static GameComponent_Infusion()
         {
@@ -144,8 +145,14 @@ namespace Infusion.Comps
 
         public override void GameComponentTick()
         {
+            currentGameTick = Find.TickManager.TicksGame;
             NecrosisHelper.Tick(pendingNecrosis);
             TickHitPointResets();
+
+            if (currentGameTick % 36000 == 0)
+            {
+                Harmonize.InfusionStatWorkerCache.ClearGearCache();
+            } 
         }
 
         public void QueueNecrosis(Corpse corpse, Apparel apparel, int delayTicks = 600)
@@ -200,7 +207,6 @@ namespace Infusion.Comps
                 return;
             }
 
-            int now = Find.TickManager.TicksGame;
             for (int i = pendingHitPointsResets.Count - 1; i >= 0; i--)
             {
                 PendingHitPointsReset pending = pendingHitPointsResets[i];
@@ -210,7 +216,7 @@ namespace Infusion.Comps
                     continue;
                 }
 
-                if (now < pending.triggerTick)
+                if (currentGameTick < pending.triggerTick)
                 {
                     continue;
                 }

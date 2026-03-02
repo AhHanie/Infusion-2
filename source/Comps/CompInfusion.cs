@@ -27,6 +27,7 @@ namespace Infusion
         private CompBiocodable biocoder = null;
         private bool effectsEnabled = true;
         private int slotCount = -1;
+        public int infusionsCount = -1;
 
         private InfusionDef bestInfusionCache = null;
         private List<OnHitWorker> onHitsCache = null;
@@ -413,6 +414,7 @@ namespace Infusion
 
             InvalidateCache();
             FinalizeSetMutations();
+            infusionsCount = infusions.Count;
         }
 
         public override void DrawGUIOverlay()
@@ -526,7 +528,8 @@ namespace Infusion
         {
             Scribe_Values.Look(ref effectsEnabled, "effectsEnabled", true);
             Scribe_Values.Look(ref slotCount, "slotCount");
-            
+            Scribe_Values.Look(ref infusionsCount, "infusionsCount", -1);
+
             var infusionsList = infusions.ToList();
             Scribe_Collections.Look(ref infusionsList, "infusions", LookMode.Def);
                 
@@ -556,9 +559,16 @@ namespace Infusion
                 );
             }
 
-            if (Scribe.mode == LoadSaveMode.PostLoadInit && slotCount == 0)
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
-                slotCount = CalculateSlotCountFor(Quality);
+                if (slotCount == 0)
+                {
+                    slotCount = CalculateSlotCountFor(Quality);
+                }
+                if (infusionsCount == -1)
+                {
+                    infusionsCount = InfusionsRaw.Count;
+                }
             }
         }
 

@@ -26,7 +26,6 @@ namespace Infusion.Comps
 
         public static void Tick(List<PendingNecrosis> pendingNecrosis)
         {
-            int now = Find.TickManager.TicksGame;
             for (int i = pendingNecrosis.Count - 1; i >= 0; i--)
             {
                 PendingNecrosis pending = pendingNecrosis[i];
@@ -43,13 +42,13 @@ namespace Infusion.Comps
                     continue;
                 }
 
-                if (now >= pending.nextFxTick)
+                if (GameComponent_Infusion.currentGameTick >= pending.nextFxTick)
                 {
                     Infusion.Harmonize.PawnKill_Necrosis.PlayNecrosisBuildup(pending.corpse, ref pending.riseEffecter);
-                    pending.nextFxTick = now + 8;
+                    pending.nextFxTick = GameComponent_Infusion.currentGameTick + 8;
                 }
 
-                if (now < pending.triggerTick)
+                if (GameComponent_Infusion.currentGameTick < pending.triggerTick)
                 {
                     continue;
                 }

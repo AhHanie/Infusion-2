@@ -91,6 +91,7 @@
     <Compile Include="Harmonize\GenRecipe_CraftingRefund.cs" />
     <Compile Include="Harmonize\Frame.cs" />
     <Compile Include="Harmonize\CompShield.cs" />
+    <Compile Include="Harmonize\InfusionStatWorkerCache.cs" />
     <Compile Include="Harmonize\Gizmo_EnergyShieldStatus.cs" />
     <Compile Include="Harmonize\InspectPaneUtility.cs" />
     <Compile Include="Harmonize\MemoryUtility.cs" />
