@@ -119,7 +119,7 @@ namespace Infusion.Harmonize
     {
         public static void Postfix(ApparelPolicy __instance, Policy other)
         {
-            if (!(other is ApparelPolicy sourcePolicy))
+            if (Current.ProgramState != ProgramState.Playing || !(other is ApparelPolicy sourcePolicy))
             {
                 return;
             }
