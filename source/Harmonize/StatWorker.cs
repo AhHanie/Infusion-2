@@ -28,7 +28,8 @@ namespace Infusion.Harmonize
             "PawnFood",
             "PawnResistances",
             "BasicsPawn",
-            "PawnPsyfocus"
+            "PawnPsyfocus",
+            "Mechanitor"
         };
 
         private static readonly HashSet<string> armorStats = new HashSet<string>

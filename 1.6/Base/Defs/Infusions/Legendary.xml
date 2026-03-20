@@ -1086,7 +1086,7 @@
       <li>
         <key>ResearchSpeed</key>
         <value>
-          <offset>8</offset>
+          <offset>0.4</offset>
         </value>
       </li>
     </stats>

@@ -3,7 +3,7 @@
   <packageId>sk.infusion</packageId>
   <name>Infusion 2 - Continued</name>
   <author>Sk</author>
-  <url>https://github.com/AhHanie/Infusion-2</url>
+  <url>https://steamcommunity.com/sharedfiles/filedetails/?id=3536247747</url>
   <supportedVersions>
     <li>1.6</li>
   </supportedVersions>
@@ -21,5 +21,5 @@
     <li>vamv.maruracemod</li>
   </loadAfter>
   <description>Extra equipment randomization for weapons and apparels.</description>
-  <modVersion>1.13.2</modVersion>
+  <modVersion>1.14</modVersion>
 </ModMetaData>

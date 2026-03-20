@@ -25,7 +25,7 @@ namespace Infusion.OnHitWorkers
             }
         }
 
-        public float RangedArmorPen(Projectile projectile)
+        public float RangedArmorPen(ProjectileInfo projectile)
         {
             if (armorPenetration < 0.0f)
             {

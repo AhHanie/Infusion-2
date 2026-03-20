@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Verse;
+using Infusion.Helpers;
 
 namespace Infusion.Comps
 {
@@ -17,6 +18,7 @@ namespace Infusion.Comps
         private List<AegisShieldCompData> tempValues = null;
         private List<ThingWithComps> unstableTempKeys = null;
         private List<ThingDef> unstableTempValues = null;
+        private ApparelInfusionPolicyStore apparelInfusionPolicies = new ApparelInfusionPolicyStore();
         public static int currentGameTick = 0;
 
         static GameComponent_Infusion()
@@ -31,6 +33,7 @@ namespace Infusion.Comps
             unstableBurstProjectiles = new Dictionary<ThingWithComps, ThingDef>();
             pendingNecrosis = new List<PendingNecrosis>();
             pendingHitPointsResets = new List<PendingHitPointsReset>();
+            apparelInfusionPolicies = new ApparelInfusionPolicyStore();
         }
 
         public override void ExposeData()
@@ -67,6 +70,7 @@ namespace Infusion.Comps
             Scribe_Collections.Look(ref unstableBurstProjectiles, "unstableBurstProjectiles", LookMode.Reference, LookMode.Def, ref unstableTempKeys, ref unstableTempValues);
             NecrosisHelper.ExposeData(ref pendingNecrosis);
             Scribe_Collections.Look(ref pendingHitPointsResets, "pendingHitPointsResets", LookMode.Deep);
+            Scribe_Deep.Look(ref apparelInfusionPolicies, "apparelInfusionPolicies");
 
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
@@ -140,6 +144,15 @@ namespace Infusion.Comps
                 {
                     pendingHitPointsResets.RemoveAll(x => x == null || x.thing == null);
                 }
+
+                if (apparelInfusionPolicies == null)
+                {
+                    apparelInfusionPolicies = new ApparelInfusionPolicyStore();
+                }
+                else
+                {
+                    apparelInfusionPolicies.RemoveMissingPolicies(Current.Game.outfitDatabase.AllOutfits);
+                }
             }
         }
 
@@ -198,6 +211,51 @@ namespace Infusion.Comps
         public void ClearUnstableBurstProjectile(ThingWithComps source)
         {
             unstableBurstProjectiles.Remove(source);
+        }
+
+        public bool AllowsApparelForPolicy(ApparelPolicy policy, Apparel apparel)
+        {
+            return apparelInfusionPolicies.AllowsApparel(policy, apparel);
+        }
+
+        public bool IsApparelInfusionDisallowed(ApparelPolicy policy, InfusionDef infusion)
+        {
+            return apparelInfusionPolicies.IsDisallowed(policy, infusion);
+        }
+
+        public int CountDisallowedApparelInfusions(ApparelPolicy policy)
+        {
+            return apparelInfusionPolicies.CountDisallowedInfusions(policy);
+        }
+
+        public IEnumerable<InfusionDef> GetDisallowedApparelInfusions(ApparelPolicy policy)
+        {
+            return apparelInfusionPolicies.GetDisallowedInfusions(policy);
+        }
+
+        public bool HasCustomApparelInfusionRestrictions(ApparelPolicy policy)
+        {
+            return apparelInfusionPolicies.HasCustomRestrictions(policy);
+        }
+
+        public void SetApparelInfusionAllowed(ApparelPolicy policy, InfusionDef infusion, bool allowed)
+        {
+            apparelInfusionPolicies.SetAllowed(policy, infusion, allowed);
+        }
+
+        public void SetDisallowedApparelInfusions(ApparelPolicy policy, IEnumerable<InfusionDef> infusions)
+        {
+            apparelInfusionPolicies.SetDisallowedInfusions(policy, infusions);
+        }
+
+        public void RemoveApparelInfusionPolicy(ApparelPolicy policy)
+        {
+            apparelInfusionPolicies.RemovePolicy(policy);
+        }
+
+        public void PruneMissingApparelInfusionPolicies()
+        {
+            apparelInfusionPolicies.RemoveMissingPolicies(Current.Game?.outfitDatabase?.AllOutfits);
         }
 
         private void TickHitPointResets()

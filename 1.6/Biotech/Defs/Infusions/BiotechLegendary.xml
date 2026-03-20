@@ -19,4 +19,38 @@
         </extraDescriptions>
         <weight>0.33</weight>
     </Infusion.InfusionDef>
+    <Infusion.InfusionDef ParentName="LegendaryApparelBase">
+        <defName>Legendary_Uplink</defName>
+        <label>uplink</label>
+        <labelShort>up</labelShort>
+        <stats>
+            <li>
+                <key>MechBandwidth</key>
+                <value>
+                    <offset>2</offset>
+                </value>
+            </li>
+        </stats>
+        <weight>0.25</weight>
+    </Infusion.InfusionDef>
+    <Infusion.InfusionDef ParentName="LegendaryApparelBase">
+        <defName>Legendary_Assembler</defName>
+        <label>assembler</label>
+        <labelShort>asm</labelShort>
+        <stats>
+            <li>
+                <key>MechFormingSpeed</key>
+                <value>
+                    <offset>0.125</offset>
+                </value>
+            </li>
+            <li>
+                <key>MechRepairSpeed</key>
+                <value>
+                    <offset>0.125</offset>
+                </value>
+            </li>
+        </stats>
+        <weight>0.25</weight>
+    </Infusion.InfusionDef>
 </Defs>

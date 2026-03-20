@@ -39,7 +39,7 @@ namespace Infusion.Harmonize
             List<PreHitWorker> item = value.Item1;
             CompInfusion item2 = value.Item2;
             float baseDamage = __instance.DamageAmount;
-            ProjectileRecord record = new ProjectileRecord(baseDamage, __state.map, __instance, item2.parent, hitThing);
+            ProjectileRecord record = new ProjectileRecord(baseDamage, __state.map, new VanillaProjectileInfo(__instance), item2.parent, hitThing);
             foreach (PreHitWorker item3 in item)
             {
                 item3.PreBulletHit(record);
@@ -63,7 +63,7 @@ namespace Infusion.Harmonize
             (List<OnHitWorker>, CompInfusion) value = tuple.Value;
             List<OnHitWorker> item = value.Item1;
             CompInfusion item2 = value.Item2;
-            ProjectileRecord record = new ProjectileRecord(baseDamage, __state.map, __instance, item2.parent, hitThing);
+            ProjectileRecord record = new ProjectileRecord(baseDamage, __state.map, new VanillaProjectileInfo(__instance), item2.parent, hitThing);
             foreach (OnHitWorker item3 in item)
             {
                 item3.BulletHit(record);

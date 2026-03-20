@@ -1,5 +1,6 @@
 ﻿using RimWorld;
 using System.Collections.Generic;
+using UnityEngine;
 using Verse;
 
 namespace Infusion
@@ -46,15 +47,78 @@ namespace Infusion
         }
     }
 
+    public abstract class ProjectileInfo
+    {
+        public abstract float ArmorPenetration { get; }
+
+        public abstract Quaternion ExactRotation { get; }
+
+        public abstract Thing Launcher { get; }
+
+        public abstract LocalTargetInfo intendedTarget { get; }
+
+        public abstract IntVec3 Position { get; }
+
+        public abstract Vector3 ExactPosition { get; }
+
+        public abstract ThingDef def { get; }
+
+        public abstract int thingIDNumber { get; }
+
+        public abstract bool TryLaunchRicochet(Map map, ThingWithComps source, Thing nextTarget, out int projectileThingId);
+    }
+
+    public sealed class VanillaProjectileInfo : ProjectileInfo
+    {
+        private readonly Projectile projectile;
+
+        public VanillaProjectileInfo(Projectile projectile)
+        {
+            this.projectile = projectile;
+        }
+
+        public override float ArmorPenetration => projectile.ArmorPenetration;
+
+        public override Quaternion ExactRotation => projectile.ExactRotation;
+
+        public override Thing Launcher => projectile.Launcher;
+
+        public override LocalTargetInfo intendedTarget => projectile.intendedTarget;
+
+        public override IntVec3 Position => projectile.Position;
+
+        public override Vector3 ExactPosition => projectile.ExactPosition;
+
+        public override ThingDef def => projectile.def;
+
+        public override int thingIDNumber => projectile.thingIDNumber;
+
+        public override bool TryLaunchRicochet(Map map, ThingWithComps source, Thing nextTarget, out int projectileThingId)
+        {
+            projectileThingId = -1;
+
+            Thing spawnedThing = GenSpawn.Spawn(def, Position, map);
+            if (!(spawnedThing is Projectile nextProjectile))
+            {
+                return false;
+            }
+
+            LocalTargetInfo targetInfo = new LocalTargetInfo(nextTarget);
+            nextProjectile.Launch(Launcher, ExactPosition, targetInfo, targetInfo, ProjectileHitFlags.IntendedTarget, false, source);
+            projectileThingId = nextProjectile.thingIDNumber;
+            return true;
+        }
+    }
+
     public class ProjectileRecord
     {
         public float baseDamage;
         public Map map;
-        public Bullet projectile;
+        public ProjectileInfo projectile;
         public ThingWithComps source;
         public Thing target;
 
-        public ProjectileRecord(float baseDamage, Map map, Bullet projectile, ThingWithComps source, Thing target = null)
+        public ProjectileRecord(float baseDamage, Map map, ProjectileInfo projectile, ThingWithComps source, Thing target = null)
         {
             this.baseDamage = baseDamage;
             this.map = map;

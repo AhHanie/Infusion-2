@@ -24,6 +24,7 @@ namespace Infusion.Harmonize
         {
             CompInfusion.ClearCaches();
             Infuser.AllInfusers.Clear();
+            StatWorker.ResetStatRequestCache();
         }
     }
 
@@ -40,6 +41,7 @@ namespace Infusion.Harmonize
         {
             CompInfusion.ClearCaches();
             Infuser.AllInfusers.Clear();
+            StatWorker.ResetStatRequestCache();
         }
     }
 }

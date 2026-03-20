@@ -53,17 +53,18 @@ namespace Infusion.OnHitWorkers
                 return;
             }
 
-            Projectile nextProjectile = SpawnRicochetProjectile(record);
+            if (!record.projectile.TryLaunchRicochet(record.map, record.source, nextTarget, out int nextProjectileId))
+            {
+                return;
+            }
 
             float nextChance = Mathf.Max(0f, currentState.remainingChance - chanceLossPerHit);
-            stateByProjectileId[nextProjectile.thingIDNumber] = new RicochetState
+            stateByProjectileId[nextProjectileId] = new RicochetState
             {
                 remainingChance = nextChance,
                 chainCount = currentState.chainCount + 1
             };
-            stateByProjectileId[nextProjectile.thingIDNumber].hitThingIds.UnionWith(currentState.hitThingIds);
-
-            LaunchRicochet(nextProjectile, record, nextTarget);
+            stateByProjectileId[nextProjectileId].hitThingIds.UnionWith(currentState.hitThingIds);
         }
 
         private Thing FindNextTarget(ProjectileRecord record, Thing launcher, HashSet<int> excludedIds)
@@ -100,17 +101,5 @@ namespace Infusion.OnHitWorkers
             return null;
         }
 
-        private static Projectile SpawnRicochetProjectile(ProjectileRecord record)
-        {
-            Thing spawnedThing = GenSpawn.Spawn(record.projectile.def, record.projectile.Position, record.map);
-            return spawnedThing as Projectile;
-        }
-
-        private static void LaunchRicochet(Projectile projectile, ProjectileRecord record, Thing nextTarget)
-        {
-            Vector3 origin = record.projectile.ExactPosition;
-            LocalTargetInfo targetInfo = new LocalTargetInfo(nextTarget);
-            projectile.Launch(record.projectile.Launcher, origin, targetInfo, targetInfo, ProjectileHitFlags.IntendedTarget, false, record.source);
-        }
     }
 }

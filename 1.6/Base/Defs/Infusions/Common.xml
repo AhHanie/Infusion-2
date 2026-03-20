@@ -335,7 +335,7 @@
       <li>
         <key>ResearchSpeed</key>
         <value>
-          <offset>2</offset>
+          <offset>0.1</offset>
         </value>
       </li>
     </stats>

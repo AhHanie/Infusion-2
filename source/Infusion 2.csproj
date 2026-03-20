@@ -72,10 +72,16 @@
     <Publicize Include="Assembly-CSharp:Verse.Verb.currentTarget" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Compat\CombatExtended\ModCompat.cs" />
+    <Compile Include="Compat\CombatExtended\Patches.cs" />
+    <Compile Include="Compat\ModCompat.cs" />
     <Compile Include="Compat\ToggleableShields.cs" />
     <Compile Include="Comps\CompInfusion.cs" />
     <Compile Include="Comps\GameComponent_Infusion.cs" />
+    <Compile Include="Dialog_ManageApparelInfusionPolicies.cs" />
     <Compile Include="Helpers\AllureHelper.cs" />
+    <Compile Include="Helpers\ApparelInfusionPolicyStore.cs" />
+    <Compile Include="Helpers\ApparelInfusionPolicyUtility.cs" />
     <Compile Include="Helpers\NecrosisHelper.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="DebugActions.cs" />
@@ -99,6 +105,7 @@
     <Compile Include="Harmonize\Pawn.cs" />
     <Compile Include="Harmonize\TradeDeal.cs" />
     <Compile Include="Harmonize\PawnGenerator.cs" />
+    <Compile Include="Harmonize\ApparelInfusionPolicyPatches.cs" />
     <Compile Include="Harmonize\Pawn_ApparelTracker.cs" />
     <Compile Include="Harmonize\Pawn_EquipmentTracker.cs" />
     <Compile Include="Harmonize\Pawn_HealthTracker.cs" />

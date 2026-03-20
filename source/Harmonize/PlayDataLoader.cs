@@ -8,7 +8,6 @@ namespace Infusion.Harmonize
         public static void Postfix()
         {
             InspectPaneUtility.infusionLabelCache.Clear();
-            StatWorker.ResetStatRequestCache();
         }
     }
 }

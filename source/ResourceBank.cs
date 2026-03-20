@@ -14,8 +14,12 @@ namespace Infusion
         public static class Textures
         {
             private static readonly Texture2D flame = ContentFinder<Texture2D>.Get("Things/Special/Fire/FireA");
+            private static readonly Texture2D infuser = ContentFinder<Texture2D>.Get("Things/Infuser");
+            private static readonly Texture2D infuserEmpty = ContentFinder<Texture2D>.Get("Things/InfuserEmpty");
 
             public static Texture2D Flame => flame;
+            public static Texture2D Infuser => infuser;
+            public static Texture2D InfuserEmpty => infuserEmpty;
         }
 
         public static class Strings

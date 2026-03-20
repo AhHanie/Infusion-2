@@ -44,6 +44,7 @@ public class ModBase : Mod
         Inject();
         Infusion.Harmonize.StatWorker.PopulateStatsEligibilityMap();
         Constants.Init();
+        InitCompat();
     }
 
     private void Inject()
@@ -82,5 +83,33 @@ public class ModBase : Mod
             item2.parts.Add(item);
         }
         StatDef.SetImmutability();
+    }
+
+    private static void InitCompat()
+    {
+        Type[] types = typeof(ModBase).Assembly.GetTypes();
+        for (int i = 0; i < types.Length; i++)
+        {
+            Type type = types[i];
+            if (type == null || type.IsAbstract || !typeof(ModCompat).IsAssignableFrom(type))
+            {
+                continue;
+            }
+
+            ModCompat compat = Activator.CreateInstance(type) as ModCompat;
+
+            if (compat == null)
+            {
+                continue;
+            }
+
+            if (!compat.IsEnabled())
+            {
+                continue;
+            }
+
+            ModCompat.RegisterCompatMod(compat);
+            compat.Init();
+        }
     }
 }

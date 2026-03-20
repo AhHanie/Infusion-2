@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+  <Operation Class="PatchOperationAdd">
+    <xpath>/Defs/Infusion.InfusionDef[defName="Legendary_Ricochet"]</xpath>
+    <value>
+      <disabled>true</disabled>
+    </value>
+  </Operation>
+
+  <Operation Class="PatchOperationAdd">
+    <xpath>/Defs/Infusion.InfusionDef[defName="Rare_Ricochet"]</xpath>
+    <value>
+      <disabled>true</disabled>
+    </value>
+  </Operation>
+</Patch>
