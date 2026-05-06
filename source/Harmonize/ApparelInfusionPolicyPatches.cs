@@ -10,9 +10,21 @@ using Verse;
 
 namespace Infusion.Harmonize
 {
+    public static class OutfittedApparelPolicyCompat
+    {
+        public const string PackageId = "mitasamodel.outfitted";
+
+        public static bool Active => ModsConfig.IsActive(PackageId);
+    }
+
     [HarmonyPatch]
     public static class Dialog_ManagePolicies_ApparelInfusionButton
     {
+        private static bool Prepare()
+        {
+            return !OutfittedApparelPolicyCompat.Active;
+        }
+
         private static MethodBase TargetMethod()
         {
             return AccessTools.Method(typeof(Dialog_ManageApparelPolicies), nameof(Dialog_ManageApparelPolicies.DoWindowContents));
@@ -88,6 +100,41 @@ namespace Infusion.Harmonize
             rect9.x = rect8.x - rect4.height - 10f;
 
             ApparelInfusionPolicyUtility.DrawManageInfusionsButton(rect9, __instance);
+        }
+    }
+
+    [HarmonyPatch]
+    [HarmonyAfter("rimworld.outfitted")]
+    public static class Dialog_ManagePolicies_OutfittedApparelInfusionButton
+    {
+        private const float OutfittedButtonWidth = 150f;
+        private const float OutfittedSmallGap = 6f;
+        private const float ButtonSize = 28f;
+
+        private static bool Prepare()
+        {
+            return OutfittedApparelPolicyCompat.Active;
+        }
+
+        private static MethodBase TargetMethod()
+        {
+            return AccessTools.Method(typeof(Dialog_ManagePolicies<ApparelPolicy>), nameof(Dialog_ManagePolicies<ApparelPolicy>.DoWindowContents));
+        }
+
+        public static void Postfix(Dialog_ManagePolicies<ApparelPolicy> __instance, UnityEngine.Rect inRect)
+        {
+            if (!(__instance is Dialog_ManageApparelPolicies))
+            {
+                return;
+            }
+
+            UnityEngine.Rect buttonRect = new UnityEngine.Rect(
+                inRect.xMax - OutfittedButtonWidth - OutfittedSmallGap - OutfittedButtonWidth - OutfittedSmallGap - ButtonSize,
+                inRect.y,
+                ButtonSize,
+                ButtonSize);
+
+            ApparelInfusionPolicyUtility.DrawManageInfusionsButtonAt(buttonRect, __instance);
         }
     }
 

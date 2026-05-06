@@ -37,6 +37,12 @@ namespace Infusion.Helpers
 
         public static void DrawManageInfusionsButton(Rect referenceRect, object dialog)
         {
+            Rect buttonRect = new Rect(referenceRect.x - referenceRect.width - 10f, referenceRect.y, referenceRect.width, referenceRect.height);
+            DrawManageInfusionsButtonAt(buttonRect, dialog);
+        }
+
+        public static void DrawManageInfusionsButtonAt(Rect buttonRect, object dialog)
+        {
             if (!IsApparelPolicyDialog(dialog))
             {
                 return;
@@ -47,8 +53,6 @@ namespace Infusion.Helpers
             {
                 return;
             }
-
-            Rect buttonRect = new Rect(referenceRect.x - referenceRect.width - 10f, referenceRect.y, referenceRect.width, referenceRect.height);
 
             TooltipHandler.TipRegion(buttonRect, new TipSignal("Infusion.ApparelPolicy.ManageTip".Translate(policy.label)));
             if (Widgets.ButtonImage(buttonRect, ResourceBank.Textures.Infuser, true, null))
