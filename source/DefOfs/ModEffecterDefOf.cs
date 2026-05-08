@@ -11,7 +11,7 @@ namespace Infusion
 
         static ModEffecterDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(EffecterDef));
+            DefOfHelper.EnsureInitializedInCtor(typeof(ModEffecterDefOf));
         }
     }
 }

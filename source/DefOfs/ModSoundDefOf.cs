@@ -11,7 +11,7 @@ namespace Infusion
 
         static ModSoundDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(SoundDef));
+            DefOfHelper.EnsureInitializedInCtor(typeof(ModSoundDefOf));
         }
     }
 }

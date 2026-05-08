@@ -11,7 +11,7 @@ namespace Infusion
 
         static ModHediffDefOf()
         {
-            DefOfHelper.EnsureInitializedInCtor(typeof(HediffDef));
+            DefOfHelper.EnsureInitializedInCtor(typeof(ModHediffDefOf));
         }
     }
 }
