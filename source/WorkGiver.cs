@@ -20,8 +20,7 @@ namespace Infusion
         {
             return comps
                 .Select(comp => comp.parent)
-                .Where(thing => thing.MapHeld == target.MapHeld)
-                .Cast<Thing>();
+                .Where(thing => thing.MapHeld == target.MapHeld);
         }
     }
 
@@ -96,12 +95,12 @@ namespace Infusion
             var nearestExtractor = GenClosest.ClosestThing_Global_Reachable(
                 pawn.Position,
                 pawn.Map,
-                Extractor.AllExtractors.Cast<Thing>(),
+                Extractor.AllExtractors,
                 PathEndMode.Touch,
                 TraverseParms.For(pawn),
                 validator: extractorThing =>
-                    !extractorThing.IsForbidden(pawn) &&
-                    pawn.CanReserve(new LocalTargetInfo(extractorThing), 10, 1)
+                    !extractorThing.IsForbidden(pawn)
+                    && pawn.CanReserve(new LocalTargetInfo(extractorThing), 10, 1)
             );
 
             if (nearestExtractor == null)
