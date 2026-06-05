@@ -6,7 +6,7 @@ using RimWorld;
 
 namespace Infusion
 {
-    public class Constants
+    public static class Constants
     {
         public static Type temporaryAllyCompType = typeof(TemporaryAllyComp);
         public static FieldInfo thingWithCompsCompsField;
@@ -14,7 +14,7 @@ namespace Infusion
         public static FieldInfo energyField;
         public static FieldInfo ticksToResetField;
         public static FieldInfo lastKeepDisplayTickField;
-        public static int ONE_MINUTE_IN_TICKS = 3600;
+        public const int ONE_MINUTE_IN_TICKS = 3600;
 
         public static void Init()
         {
