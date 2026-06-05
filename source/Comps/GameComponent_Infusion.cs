@@ -111,8 +111,7 @@ namespace Infusion.Comps
                             thingComp.parent = item;
                             compList.Add(thingComp);
                             Dictionary<Type, ThingComp[]> dictionary = (Dictionary<Type, ThingComp[]>)Constants.thingWithCompsCompsByTypeField.GetValue(item);
-                            List<ThingComp> list2 = new List<ThingComp> { thingComp };
-                            dictionary.Add(compProperties_Shield.compClass, list2.ToArray());
+                            dictionary.Add(compProperties_Shield.compClass, new[] { thingComp });
                             thingComp.Initialize(compProperties_Shield);
                             CompShield shieldComp = item.TryGetComp<CompShield>();
                             Constants.energyField.SetValue(shieldComp, data.Energy);
