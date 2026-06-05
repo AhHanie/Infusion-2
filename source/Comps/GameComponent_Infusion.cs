@@ -21,11 +21,6 @@ namespace Infusion.Comps
         private ApparelInfusionPolicyStore apparelInfusionPolicies = new ApparelInfusionPolicyStore();
         public static int currentGameTick = 0;
 
-        static GameComponent_Infusion()
-        {
-            
-        }
-
         public GameComponent_Infusion(Game game)
         {
             aegisItems = new List<ThingWithComps>();
