@@ -11,7 +11,7 @@ namespace Infusion.Harmonize
     [HarmonyPatch(typeof(RimWorld.InspectPaneUtility), "AdjustedLabelFor")]
     public class InspectPaneUtility
     {
-        public static Dictionary<string, string> infusionLabelCache = new Dictionary<string, string>();
+        public static readonly Dictionary<string, string> infusionLabelCache = new Dictionary<string, string>();
         public static bool Prefix(List<object> selected, Rect rect, ref string __result)
         {
             if (selected.Count == 1 && selected[0] is ThingWithComps thing && thing.TryGetComp<CompInfusion>() != null)

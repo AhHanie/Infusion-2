@@ -21,11 +21,6 @@ namespace Infusion.Comps
         private ApparelInfusionPolicyStore apparelInfusionPolicies = new ApparelInfusionPolicyStore();
         public static int currentGameTick = 0;
 
-        static GameComponent_Infusion()
-        {
-            
-        }
-
         public GameComponent_Infusion(Game game)
         {
             aegisItems = new List<ThingWithComps>();
@@ -111,8 +106,7 @@ namespace Infusion.Comps
                             thingComp.parent = item;
                             compList.Add(thingComp);
                             Dictionary<Type, ThingComp[]> dictionary = (Dictionary<Type, ThingComp[]>)Constants.thingWithCompsCompsByTypeField.GetValue(item);
-                            List<ThingComp> list2 = new List<ThingComp> { thingComp };
-                            dictionary.Add(compProperties_Shield.compClass, list2.ToArray());
+                            dictionary.Add(compProperties_Shield.compClass, new[] { thingComp });
                             thingComp.Initialize(compProperties_Shield);
                             CompShield shieldComp = item.TryGetComp<CompShield>();
                             Constants.energyField.SetValue(shieldComp, data.Energy);

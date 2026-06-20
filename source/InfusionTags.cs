@@ -15,7 +15,7 @@
         CRAFTING_REFUND
     }
 
-    public class InfusionTagsHelper
+    public static class InfusionTagsHelper
     {
         public static InfusionTags ConvertToEnum(string tag)
         {
