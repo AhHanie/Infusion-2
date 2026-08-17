@@ -59,7 +59,10 @@ namespace Infusion
 
         public void AddThingToTick(ThingWithComps thing)
         {
-            compsToTick.Add(thing);
+            if (thing != null && !compsToTick.Contains(thing))
+            {
+                compsToTick.Add(thing);
+            }
         }
 
         public void RemoveThingToTick(ThingWithComps thing)

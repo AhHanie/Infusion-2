@@ -46,19 +46,21 @@ namespace Infusion.Harmonize
             [HarmonyPatch(typeof(Pawn_ApparelTracker), "Notify_ApparelRemoved")]
             public static class Notify_ApparelRemoved
             {
-                public static void Postfix(Apparel apparel)
+                public static void Postfix(Pawn_ApparelTracker __instance, Apparel apparel)
                 {
                     CompInfusion compInfusion = apparel.TryGetComp<CompInfusion>();
                     if (compInfusion != null && compInfusion.ContainsTag(InfusionTags.AEGIS))
                     {
                         List<ThingComp> list = (List<ThingComp>)Constants.thingWithCompsCompsField.GetValue(apparel);
-                        list.RemoveWhere((ThingComp thingComp) => thingComp is CompShield);
+                        list?.RemoveWhere((ThingComp thingComp) => thingComp is CompShield);
                         Dictionary<Type, ThingComp[]> dictionary = (Dictionary<Type, ThingComp[]>)Constants.thingWithCompsCompsByTypeField.GetValue(apparel);
-                        dictionary.Remove(typeof(CompShield));
-                        InfusionMapComp component = Find.CurrentMap.GetComponent<InfusionMapComp>();
-                        component.RemoveThingToTick(apparel);
-                        GameComponent_Infusion gameComp = Current.Game.GetComponent<GameComponent_Infusion>();
-                        gameComp.RemoveAegisItem(apparel);
+                        dictionary?.Remove(typeof(CompShield));
+
+                        Map pawnMap = __instance?.pawn?.MapHeld;
+                        pawnMap?.GetComponent<InfusionMapComp>()?.RemoveThingToTick(apparel);
+
+                        GameComponent_Infusion gameComp = Current.Game?.GetComponent<GameComponent_Infusion>();
+                        gameComp?.RemoveAegisItem(apparel);
                     }
                 }
             }
