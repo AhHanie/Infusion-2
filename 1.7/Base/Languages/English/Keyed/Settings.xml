@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <!-- settings -->
+  <Infusion.Settings.Label.RestartGameInfo>Always restart the game after changing any settings</Infusion.Settings.Label.RestartGameInfo>
+  <Infusion.Settings.AccuracyOvercapping>Enable accuracy overcapping</Infusion.Settings.AccuracyOvercapping>
+  <Infusion.Settings.AccuracyOvercapping.Description>Ranged weapon accuracy can go over 100%, with diminishing returns.</Infusion.Settings.AccuracyOvercapping.Description>
+
+  <Infusion.Settings.BiocodeBonus>Enable bonus to biocoded equipments</Infusion.Settings.BiocodeBonus>
+  <Infusion.Settings.BiocodeBonus.Description>Treat biocoded equipments as two quality higher when giving infusing.
+    
+For example, normal quality biocoded items will get infusions for excellent quality equipments.</Infusion.Settings.BiocodeBonus.Description>
+
+  <Infusion.Settings.InfusionsFromCrafting>Infusions from crafting</Infusion.Settings.InfusionsFromCrafting>
+  <Infusion.Settings.InfusionsFromCrafting.Description>Crafted equipment will be infused</Infusion.Settings.InfusionsFromCrafting.Description>
+
+  <Infusion.Settings.ExtractionChanceFactor>Extraction success chance factor</Infusion.Settings.ExtractionChanceFactor>
+  <Infusion.Settings.ExtractionChanceFactor.Description>Multiplies success chance of infusion extraction. Possible values are 0.0 ~ 100.0. Default is 1.0.</Infusion.Settings.ExtractionChanceFactor.Description>
+
+  <Infusion.Settings.ReusableInfusers>Reusable infusers</Infusion.Settings.ReusableInfusers>
+  <Infusion.Settings.ReusableInfusers.Description>Infusing an equipment with an infuser creates a new empty infuser.</Infusion.Settings.ReusableInfusers.Description>
+
+  <Infusion.Settings.Mu>Infusion distribution mu</Infusion.Settings.Mu>
+  <Infusion.Settings.Mu.Description>Specifies multiplier for mu value of normal distribution, to use when selecting infusions from pool. Possible values are 0.5 ~ 10.0. Default is 1.0.
+
+Larger values result in more strictly limited infusions for the equipment's quality.
+
+Note: Infusions must also pass probability test before infusing. Change probability factor to adjust overall number of infusions an equipment may get.
+  </Infusion.Settings.Mu.Description>
+
+  <Infusion.Settings.Sigma>Infusion distribution sigma</Infusion.Settings.Sigma>
+  <Infusion.Settings.Sigma.Description>Specifies sigma value of normal distribution, to use when selecting infusions from pool. Possible values are 0.5 ~ 10.0. Default is 1.5.
+
+Larger values allow more varied infusions, regardless of the equipment's quality.
+
+Note: Infusions must also pass probability test before infusing. Change probability factor to adjust overall number of infusions an equipment may get.
+  </Infusion.Settings.Sigma.Description>
+
+  <Infusion.Settings.ChanceFactor>Infusion probability factor</Infusion.Settings.ChanceFactor>
+  <Infusion.Settings.ChanceFactor.Description>Multiplies probability of infusions. Possible values are 0.0 ~ 10.0. Default is 1.0.
+
+With default infusions, 100 would ensure that every selected infusions will be applied to the equipment. 0 will effectively disable new infusions.
+  </Infusion.Settings.ChanceFactor.Description>
+
+  <Infusion.Settings.BodyPartLimit>Limit infusions by body parts covered</Infusion.Settings.BodyPartLimit>
+  <Infusion.Settings.BodyPartLimit.Description>Maximum infusion slot count will be limited to numbers of body part groups an apparel covers.</Infusion.Settings.BodyPartLimit.Description>
+
+  <Infusion.Settings.LayerBonuses>More infusions for more layers occupied</Infusion.Settings.LayerBonuses>
+  <Infusion.Settings.LayerBonuses.Description>For each extra layer an apparel occupies, grant one infusion slot.
+
+Applied after the body part limit, i.e. an apparel which protects arms and torso will have its slots limited to 2. But if it occupies 3 layers, the limit will become 4 instead.
+  </Infusion.Settings.LayerBonuses.Description>
+
+  <Infusion.Settings.Slots.OpenSettings>Open infusion slot options</Infusion.Settings.Slots.OpenSettings>
+  <Infusion.Settings.Slots.CloseSettings>Close infusion slot options</Infusion.Settings.Slots.CloseSettings>
+
+  <Infusion.Settings.Slot.Description>0 ~ 20, default {0}</Infusion.Settings.Slot.Description>
+
+  <Infusion.Settings.Tiers.OpenSettings>Open tier availabilities</Infusion.Settings.Tiers.OpenSettings>
+  <Infusion.Settings.Tiers.CloseSettings>Close tier availabilities</Infusion.Settings.Tiers.CloseSettings>
+
+  <Infusion.Settings.Tier.Description>{0} infusions found</Infusion.Settings.Tier.Description>
+
+  <Infusion.Settings.Infusions.Slots.Title>Infusion Slots per Quality</Infusion.Settings.Infusions.Slots.Title>
+  <Infusion.Settings.Tiers.Title>Enable/Disable Tiers</Infusion.Settings.Tiers.Title>
+  <Infusion.Settings.Tiers.Color.Title>Edit Tier Color</Infusion.Settings.Tiers.Color.Title>
+  <Infusion.Settings.Tiers.SaveColorButton.Label>Save Color</Infusion.Settings.Tiers.SaveColorButton.Label>
+  <Infusion.Settings.General.Title>General Settings</Infusion.Settings.General.Title>
+  <Infusion.Settings.Infusions.Title>Infusions Settings</Infusion.Settings.Infusions.Title>
+
+  <Infusion.Settings.Infusions.Defs.Title>Enable/Disable Infusions</Infusion.Settings.Infusions.Defs.Title>
+  <Infusion.Settings.Infusions.Defs.EnableButton>Enable</Infusion.Settings.Infusions.Defs.EnableButton>
+  <Infusion.Settings.Infusions.Defs.DisableButton>Disable</Infusion.Settings.Infusions.Defs.DisableButton>
+  <Infusion.Settings.Infusions.Defs.EnableMessage>{0} was enabled</Infusion.Settings.Infusions.Defs.EnableMessage>
+  <Infusion.Settings.Infusions.Defs.DisableMessage>{0} was disabled</Infusion.Settings.Infusions.Defs.DisableMessage>
+
+  <Infusion.Settings.StatsGlobalMultiplier>Stats global multiplier</Infusion.Settings.StatsGlobalMultiplier>
+  <Infusion.Settings.ChanceGlobalMultiplier>Chance global multiplier</Infusion.Settings.ChanceGlobalMultiplier>
+  <Infusion.Settings.AmountGlobalMultiplier>Amount global multiplier</Infusion.Settings.AmountGlobalMultiplier>
+  <Infusion.Settings.StatsGlobalMultiplier.Description>A global multiplier that affects all infusions' stats bonuses. 2x = twice the stats, 0.5x = half the stats.</Infusion.Settings.StatsGlobalMultiplier.Description>
+  <Infusion.Settings.ChanceGlobalMultiplier.Description>A global multiplier that affects all the chance for special on hit effects to proc such as explosions or flames. 2x = more procs, 0.5x = less procs</Infusion.Settings.ChanceGlobalMultiplier.Description>
+  <Infusion.Settings.AmountGlobalMultiplier.Description>A global multiplier that affects all the magnitude of special on hit effects such as explosions or flames. 2x = more power, 0.5x = less power</Infusion.Settings.AmountGlobalMultiplier.Description>
+
+  <Infusion.Settings.Tiers.ColorResetMessage>{0} color was reset to default</Infusion.Settings.Tiers.ColorResetMessage>
+  <Infusion.Settings.Tiers.ColorAlreadyDefaultMessage>{0} is already using the default color</Infusion.Settings.Tiers.ColorAlreadyDefaultMessage>
+  <Infusion.Settings.Tiers.ColorSavedMessage>{0} color was saved</Infusion.Settings.Tiers.ColorSavedMessage>
+
+  <Infusion.Settings.Label.DisableItemInfusion>Disable Item Infusion</Infusion.Settings.Label.DisableItemInfusion>
+  <Infusion.Settings.Tooltip.DisableItemInfusion>The only way to infuse items with this option is to find infusers them as loot/quest rewards</Infusion.Settings.Tooltip.DisableItemInfusion>
+
+  <Infusion.Settings.Infusions.Defs.EnableDisableAllTiers>Enable/Disable All Tiers</Infusion.Settings.Infusions.Defs.EnableDisableAllTiers>
+  <Infusion.Settings.Infusions.Defs.EnableAllTiersMessage>All tiers of {0} were enabled</Infusion.Settings.Infusions.Defs.EnableAllTiersMessage>
+  <Infusion.Settings.Infusions.Defs.DisableAllTiersMessage>All tiers of {0} were disabled</Infusion.Settings.Infusions.Defs.DisableAllTiersMessage>
+
+  <Infusion.Settings.Debug.Title>Debug (developer mode only)</Infusion.Settings.Debug.Title>
+  <Infusion.Settings.Debug.ForceChances>Force all chances to 100%</Infusion.Settings.Debug.ForceChances>
+  <Infusion.Settings.Debug.ForceChances.Description>Every infusion roll and effect trigger always succeeds: infusions are applied to every available slot of newly generated or rerolled items, and on-hit, pre-hit, crafting, construction, mining, trade and Smart effects always fire. Does nothing unless developer mode is on. Existing items keep the infusions they already have.</Infusion.Settings.Debug.ForceChances.Description>
+</LanguageData>

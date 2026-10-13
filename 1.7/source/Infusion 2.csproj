@@ -1,0 +1,64 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <AssemblyName>Infusion 2</AssemblyName>
+    <RootNamespace>Infusion</RootNamespace>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <Deterministic>true</Deterministic>
+    <LangVersion>latest</LangVersion>
+    <OutputPath>..\Base\Assemblies\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+    <RimWorldDir Condition="'$(RimWorldDir)' == ''">C:\Program Files (x86)\Steam\steamapps\common\RimWorld</RimWorldDir>
+    <HarmonyDll Condition="'$(HarmonyDll)' == ''">C:\Me\Games\Rimworld\Harmony\1.7\0Harmony.dll</HarmonyDll>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <DebugType>embedded</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <DefineConstants>TRACE</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Legacy build leftovers and editable art sources are not part of the assembly. -->
+    <Compile Remove="packages\**" />
+    <Compile Remove="assets\**" />
+    <None Remove="packages\**" />
+    <None Remove="assets\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Krafs.Publicizer" Version="2.3.2" PrivateAssets="all" />
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(RimWorldDir)\Assembly-CSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityStubs">
+      <HintPath>$(RimWorldDir)\UnityStubs.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <!-- Texture2D / rendering types referenced by the settings and inspect UI live in Waylith. -->
+    <Reference Include="Waylith">
+      <HintPath>$(RimWorldDir)\Waylith.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(HarmonyDll)</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Publicize Include="Assembly-CSharp:Verse.Verb.burstShotsLeft" />
+    <Publicize Include="Assembly-CSharp:Verse.Verb.currentTarget" />
+  </ItemGroup>
+  <Target Name="CheckGameReferences" BeforeTargets="ResolveAssemblyReferences;CoreCompile">
+    <Error Condition="!Exists('$(RimWorldDir)\Assembly-CSharp.dll')" Text="RimWorldDir ($(RimWorldDir)) does not contain Assembly-CSharp.dll. Pass /p:RimWorldDir=... to override." />
+    <Error Condition="!Exists('$(RimWorldDir)\UnityStubs.dll')" Text="RimWorldDir ($(RimWorldDir)) does not contain UnityStubs.dll. Pass /p:RimWorldDir=... to override." />
+    <Error Condition="!Exists('$(RimWorldDir)\Waylith.dll')" Text="RimWorldDir ($(RimWorldDir)) does not contain Waylith.dll. Pass /p:RimWorldDir=... to override." />
+    <Error Condition="!Exists('$(HarmonyDll)')" Text="HarmonyDll ($(HarmonyDll)) not found. Pass /p:HarmonyDll=... pointing to a 1.7 (Harmony 3) 0Harmony.dll." />
+  </Target>
+</Project>

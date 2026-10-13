@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Defs>
+    <Infusion.InfusionDef ParentName="UncommonRangedBase">
+        <defName>Uncommon_Toxigen</defName>
+        <label>toxigen</label>
+        <labelShort>tox</labelShort>
+        <matches>
+            <li Class="Infusion.Matchers.ProjectileBullet" />
+        </matches>
+        <onHits>
+            <li Class="Infusion.OnHitWorkers.SpawnGas">
+                <chance>0.05</chance>
+                <amount>150</amount>
+                <gas>ToxGas</gas>
+            </li>
+        </onHits>
+        <extraDescriptions>
+            <li>Hit: 5% chance to spawn tox gas.</li>
+        </extraDescriptions>
+        <weight>0.33</weight>
+    </Infusion.InfusionDef>
+    <Infusion.InfusionDef ParentName="UncommonApparelBase">
+        <defName>Uncommon_Assembler</defName>
+        <label>assembler</label>
+        <labelShort>asm</labelShort>
+        <stats>
+            <li>
+                <key>MechFormingSpeed</key>
+                <value>
+                    <offset>0.075</offset>
+                </value>
+            </li>
+            <li>
+                <key>MechRepairSpeed</key>
+                <value>
+                    <offset>0.075</offset>
+                </value>
+            </li>
+        </stats>
+        <weight>0.25</weight>
+    </Infusion.InfusionDef>
+</Defs>

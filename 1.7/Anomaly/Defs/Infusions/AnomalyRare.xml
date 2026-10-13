@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Defs>
+	<Infusion.InfusionDef ParentName="RareWeaponsBase">
+		<defName>Rare_Mortis</defName>
+		<label>mortis</label>
+		<labelShort>mort</labelShort>
+		<stats>
+			<li>
+				<key>ActivitySuppressionRate</key>
+				<value>
+					<offset>0.01</offset>
+				</value>
+			</li>
+			<li>
+				<key>EntityStudyRate</key>
+				<value>
+					<offset>0.02</offset>
+				</value>
+			</li>
+		</stats>
+		<matches>
+			<li Class="Infusion.Matchers.ProjectileBullet" />
+		</matches>
+		<onHits>
+			<li Class="Infusion.OnHitWorkers.Sequence">
+				<value>
+					<li Class="Infusion.OnHitWorkers.SpawnAlly">
+						<ally>Ghoul</ally>
+						<totalTicksToLive>600</totalTicksToLive>
+					</li>
+					<li Class="Infusion.OnHitWorkers.PlaySound">
+						<def>Pawn_Ghoul_Call</def>
+					</li>
+				</value>
+				<chance>0.03</chance>
+			</li>
+		</onHits>
+		<extraDescriptions>
+			<li>Hit: 3% chance to spawn a ghoul to fight for you for 10 seconds.</li>
+		</extraDescriptions>
+	</Infusion.InfusionDef>
+
+	<Infusion.InfusionDef ParentName="RareApparelBase">
+		<defName>Rare_Tenebrous</defName>
+		<label>tenebrous</label>
+		<labelShort>tenebr</labelShort>
+		<stats>
+			<li>
+				<key>ActivitySuppressionRate</key>
+				<value>
+					<offset>0.05</offset>
+				</value>
+			</li>
+			<li>
+				<key>EntityStudyRate</key>
+				<value>
+					<offset>0.75</offset>
+				</value>
+			</li>
+		</stats>
+		<weight>0.33</weight>
+	</Infusion.InfusionDef>
+
+	<Infusion.InfusionDef ParentName="RareWeaponsBase">
+		<defName>Rare_Umbra</defName>
+		<label>umbra</label>
+		<labelShort>umbr</labelShort>
+		<matches>
+			<li Class="Infusion.Matchers.ProjectileBullet" />
+		</matches>
+		<onHits>
+			<li Class="Infusion.OnHitWorkers.IfBioTargetHit">
+				<value Class="Infusion.OnHitWorkers.AddResearch">
+					<chance>0.025</chance>
+					<amount>1</amount>
+					<anomaly>true</anomaly>
+					<knowledgeCategory>Advanced</knowledgeCategory>
+				</value>
+			</li>
+		</onHits>
+		<extraDescriptions>
+			<li>Hit: 2.5% chance to add 1 advanced research points to the current Anomaly project</li>
+		</extraDescriptions>
+		<conditions>
+			<li Class="Infusion.Conditions.AnomalyStudyEnabled"/>
+		</conditions>
+		<weight>0.25</weight>
+	</Infusion.InfusionDef>
+
+	<Infusion.InfusionDef ParentName="RareWeaponsBase">
+		<defName>Rare_Warpbreaker</defName>
+		<label>warpbreaker</label>
+		<labelShort>wrpbrk</labelShort>
+		<matches>
+			<li Class="Infusion.Matchers.ProjectileBullet" />
+		</matches>
+		<onHits>
+			<li Class="Infusion.OnHitWorkers.IfBioTargetHit">
+				<value Class="Infusion.OnHitWorkers.IfTargetFaction">
+					<factionDef>Entities</factionDef>
+					<value Class="Infusion.OnHitWorkers.ApplyDamage">
+						<amount>0.15</amount>
+						<sameAsOriginal>true</sameAsOriginal>
+					</value>
+				</value>
+			</li>
+		</onHits>
+		<extraDescriptions>
+			<li>Deal 15% additional damage against anomaly entities.</li>
+		</extraDescriptions>
+		<conditions>
+			<li Class="Infusion.Conditions.AnomalyStudyEnabled"/>
+		</conditions>
+		<weight>0.25</weight>
+	</Infusion.InfusionDef>
+</Defs>

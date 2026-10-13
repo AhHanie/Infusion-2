@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Defs>
+    <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
+        <defName>Legendary_Mortis</defName>
+        <label>mortis</label>
+        <labelShort>mort</labelShort>
+        <stats>
+            <li>
+                <key>ActivitySuppressionRate</key>
+                <value>
+                    <offset>0.02</offset>
+                </value>
+            </li>
+            <li>
+                <key>EntityStudyRate</key>
+                <value>
+                    <offset>0.04</offset>
+                </value>
+            </li>
+        </stats>
+        <matches>
+            <li Class="Infusion.Matchers.ProjectileBullet" />
+        </matches>
+        <onHits>
+            <li Class="Infusion.OnHitWorkers.Sequence">
+                <value>
+                    <li Class="Infusion.OnHitWorkers.SpawnAlly">
+                        <ally>Ghoul</ally>
+                        <totalTicksToLive>1200</totalTicksToLive>
+                    </li>
+                    <li Class="Infusion.OnHitWorkers.PlaySound">
+                        <def>Pawn_Ghoul_Call</def>
+                    </li>
+                </value>
+                <chance>0.05</chance>
+            </li>
+        </onHits>
+        <extraDescriptions>
+            <li>Hit: 5% chance to spawn a ghoul to fight for you for 20 seconds.</li>
+        </extraDescriptions>
+    </Infusion.InfusionDef>
+
+    <Infusion.InfusionDef ParentName="LegendaryApparelBase">
+        <defName>Legendary_Tenebrous</defName>
+        <label>tenebrous</label>
+        <labelShort>tenebr</labelShort>
+        <stats>
+            <li>
+                <key>ActivitySuppressionRate</key>
+                <value>
+                    <offset>0.075</offset>
+                </value>
+            </li>
+            <li>
+                <key>EntityStudyRate</key>
+                <value>
+                    <offset>0.1</offset>
+                </value>
+            </li>
+        </stats>
+        <weight>0.33</weight>
+    </Infusion.InfusionDef>
+
+    <Infusion.InfusionDef ParentName="LegendaryApparelBase">
+        <defName>Necrosis</defName>
+        <label>necrosis</label>
+        <labelShort>necro</labelShort>
+        <position>Suffix</position>
+        <tags>
+            <li>necrosis</li>
+        </tags>
+        <extraDescriptions>
+            <li>Death: The wearer resurrects as a ghoul.</li>
+            <li>Only one Necrosis trigger can occur per death, even if multiple infused apparels are worn.</li>
+        </extraDescriptions>
+        <weight>0.2</weight>
+    </Infusion.InfusionDef>
+
+    <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
+        <defName>Legendary_Umbra</defName>
+        <label>umbra</label>
+        <labelShort>umbr</labelShort>
+        <matches>
+            <li Class="Infusion.Matchers.ProjectileBullet" />
+        </matches>
+        <onHits>
+            <li Class="Infusion.OnHitWorkers.IfBioTargetHit">
+                <value Class="Infusion.OnHitWorkers.AddResearch">
+                    <chance>0.05</chance>
+                    <amount>2</amount>
+                    <anomaly>true</anomaly>
+                    <knowledgeCategory>Advanced</knowledgeCategory>
+                </value>
+            </li>
+        </onHits>
+        <extraDescriptions>
+            <li>Hit: 5% chance to add 2 advanced research points to the current Anomaly project</li>
+        </extraDescriptions>
+        <conditions>
+            <li Class="Infusion.Conditions.AnomalyStudyEnabled"/>
+        </conditions>
+        <weight>0.25</weight>
+    </Infusion.InfusionDef>
+
+    <Infusion.InfusionDef ParentName="LegendaryWeaponsBase">
+        <defName>Legendary_Warpbreaker</defName>
+        <label>warpbreaker</label>
+        <labelShort>wrpbrk</labelShort>
+        <matches>
+            <li Class="Infusion.Matchers.ProjectileBullet" />
+        </matches>
+        <onHits>
+            <li Class="Infusion.OnHitWorkers.IfBioTargetHit">
+                <value Class="Infusion.OnHitWorkers.IfTargetFaction">
+                    <factionDef>Entities</factionDef>
+                    <value Class="Infusion.OnHitWorkers.ApplyDamage">
+                        <amount>0.2</amount>
+                        <sameAsOriginal>true</sameAsOriginal>
+                    </value>
+                </value>
+            </li>
+        </onHits>
+        <extraDescriptions>
+            <li>Deal 20% additional damage against anomaly entities.</li>
+        </extraDescriptions>
+        <conditions>
+            <li Class="Infusion.Conditions.AnomalyStudyEnabled"/>
+        </conditions>
+        <weight>0.25</weight>
+    </Infusion.InfusionDef>
+</Defs>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <Infusion.ApparelPolicy.ManageWindowTitle>Manage infusion policy: {0}</Infusion.ApparelPolicy.ManageWindowTitle>
+  <Infusion.ApparelPolicy.ManageDescription>Choose which apparel infusions are allowed for this apparel policy. By default, all apparel infusions are allowed.</Infusion.ApparelPolicy.ManageDescription>
+  <Infusion.ApparelPolicy.ManageTip>Manage which apparel infusions are allowed for policy "{0}".</Infusion.ApparelPolicy.ManageTip>
+  <Infusion.ApparelPolicy.AllowAll>Allow all</Infusion.ApparelPolicy.AllowAll>
+  <Infusion.ApparelPolicy.DisallowAll>Disallow all</Infusion.ApparelPolicy.DisallowAll>
+  <Infusion.ApparelPolicy.Allowed>Allowed</Infusion.ApparelPolicy.Allowed>
+  <Infusion.ApparelPolicy.Disallowed>Disallowed</Infusion.ApparelPolicy.Disallowed>
+  <Infusion.ApparelPolicy.DisallowedCount>{0} disallowed</Infusion.ApparelPolicy.DisallowedCount>
+  <Infusion.ApparelPolicy.NoInfusions>No apparel infusions match the current search.</Infusion.ApparelPolicy.NoInfusions>
+</LanguageData>

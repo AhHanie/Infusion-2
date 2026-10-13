@@ -1,0 +1,93 @@
+﻿using HarmonyLib;
+using RimWorld;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using UnityEngine.Profiling;
+using Verse;
+using Infusion.Comps;
+
+namespace Infusion.Harmonize
+{
+    public static class VerbPatches
+    {
+        [HarmonyPatch(typeof(Verb), "TryCastNextBurstShot")]
+        public static class TryCastNextBurstShot
+        {
+            public static void Postfix(Verb __instance)
+            {
+                if (__instance.burstShotsLeft != 0)
+                {
+                    return;
+                }
+
+                ClearUnstableBurstProjectileCache(__instance);
+
+                LocalTargetInfo localTargetInfo = __instance.currentTarget;
+                CompEquippable equipmentCompSource = __instance.EquipmentCompSource;
+                if (equipmentCompSource?.parent == null)
+                {
+                    return;
+                }
+                (List<OnHitWorker>, CompInfusion)? tuple = CompInfusionExtensions.ForOnHitWorkers(equipmentCompSource.parent);
+                if (!tuple.HasValue)
+                {
+                    return;
+                }
+                var (list, compInfusion) = tuple.Value;
+                foreach (OnHitWorker item in list)
+                {
+                    bool flag = __instance.GetType().IsSubclassOf(typeof(Verb_MeleeAttack));
+                    VerbRecordData data = new VerbRecordData(0f, compInfusion.parent, localTargetInfo.Thing, __instance);
+                    VerbCastedRecord verbCastedRecord = null;
+                    verbCastedRecord = ((!flag) ? ((VerbCastedRecord)new VerbCastedRecordRanged(data)) : ((VerbCastedRecord)new VerbCastedRecordMelee(data)));
+                    item.AfterAttack(verbCastedRecord);
+                }
+            }
+
+            private static void ClearUnstableBurstProjectileCache(Verb verb)
+            {
+                if (!(verb is Verb_LaunchProjectile))
+                {
+                    return;
+                }
+
+                ThingWithComps equipmentSource = verb.EquipmentSource;
+
+                if (equipmentSource == null)
+                {
+                    return;
+                }
+
+                Current.Game.GetComponent<GameComponent_Infusion>().ClearUnstableBurstProjectile(equipmentSource);
+            }
+        }
+
+        [HarmonyPatch(typeof(Verb), "BurstShotCount", MethodType.Getter)]
+        public static class BurstShotCount
+        {
+            public static void Postfix(Verb __instance, ref int __result)
+            {
+                if (__instance.EquipmentSource == null)
+                {
+                    return;
+                }
+
+                CompInfusion comp = __instance.EquipmentSource.TryGetComp<CompInfusion>();
+
+                if (comp == null)
+                {
+                    return;
+                }
+
+                InfusionDef barrageInfusion = comp.TryGetInfusionDefWithTag(InfusionTags.BARRAGE);
+                if (barrageInfusion == null)
+                {
+                    return;
+                }
+                __result = (int)(__result * barrageInfusion.keyedFloats[KeyedDataHelper.ConvertToString(KeyedData.BARRAGE_BURSTCOUNT_MULTIPLIER)]);
+            }
+        }
+    }
+}

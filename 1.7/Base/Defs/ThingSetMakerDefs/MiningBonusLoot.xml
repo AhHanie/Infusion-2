@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Defs>
+  <ThingSetMakerDef>
+    <defName>Infusion_MiningBonusLoot</defName>
+    <root Class="ThingSetMaker_RandomOption">
+      <options>
+        <li>
+          <weight>8</weight>
+          <thingSetMaker Class="ThingSetMaker_Count">
+            <fixedParams>
+              <countRange>25~45</countRange>
+              <filter>
+                <thingDefs>
+                  <li>Silver</li>
+                </thingDefs>
+              </filter>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+        <li>
+          <weight>6</weight>
+          <thingSetMaker Class="ThingSetMaker_Count">
+            <fixedParams>
+              <countRange>18~30</countRange>
+              <filter>
+                <thingDefs>
+                  <li>Steel</li>
+                </thingDefs>
+              </filter>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+        <li>
+          <weight>3</weight>
+          <thingSetMaker Class="ThingSetMaker_Count">
+            <fixedParams>
+              <countRange>8~14</countRange>
+              <filter>
+                <thingDefs>
+                  <li>Jade</li>
+                </thingDefs>
+              </filter>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+        <li>
+          <weight>2.5</weight>
+          <thingSetMaker Class="ThingSetMaker_Count">
+            <fixedParams>
+              <countRange>7~12</countRange>
+              <filter>
+                <thingDefs>
+                  <li>Uranium</li>
+                </thingDefs>
+              </filter>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+        <li>
+          <weight>2</weight>
+          <thingSetMaker Class="ThingSetMaker_Count">
+            <fixedParams>
+              <countRange>6~10</countRange>
+              <filter>
+                <thingDefs>
+                  <li>Plasteel</li>
+                </thingDefs>
+              </filter>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+        <li>
+          <weight>1.8</weight>
+          <thingSetMaker Class="ThingSetMaker_Count">
+            <fixedParams>
+              <countRange>5~8</countRange>
+              <filter>
+                <thingDefs>
+                  <li>Gold</li>
+                </thingDefs>
+              </filter>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+        <li>
+          <weight>0.6</weight>
+          <thingSetMaker Class="ThingSetMaker_Count">
+            <fixedParams>
+              <countRange>2~3</countRange>
+              <filter>
+                <thingDefs>
+                  <li>ComponentIndustrial</li>
+                </thingDefs>
+              </filter>
+            </fixedParams>
+          </thingSetMaker>
+        </li>
+      </options>
+    </root>
+  </ThingSetMakerDef>
+</Defs>

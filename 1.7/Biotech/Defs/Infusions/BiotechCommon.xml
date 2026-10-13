@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Defs>
+    <Infusion.InfusionDef ParentName="CommonApparelBase">
+        <defName>Common_Assembler</defName>
+        <label>assembler</label>
+        <labelShort>asm</labelShort>
+        <stats>
+            <li>
+                <key>MechFormingSpeed</key>
+                <value>
+                    <offset>0.05</offset>
+                </value>
+            </li>
+            <li>
+                <key>MechRepairSpeed</key>
+                <value>
+                    <offset>0.05</offset>
+                </value>
+            </li>
+        </stats>
+        <weight>0.25</weight>
+    </Infusion.InfusionDef>
+</Defs>

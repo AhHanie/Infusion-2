@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Defs>
+    <Infusion.InfusionDef ParentName="UncommonApparelBase">
+        <defName>Uncommon_Aqueous</defName>
+        <label>aqueous</label>
+        <labelShort>aqua</labelShort>
+        <stats>
+            <li>
+                <key>FishingSpeed</key>
+                <value>
+                    <offset>0.02</offset>
+                </value>
+            </li>
+            <li>
+                <key>FishingYield</key>
+                <value>
+                    <offset>0.01</offset>
+                </value>
+            </li>
+        </stats>
+        <weight>0.33</weight>
+    </Infusion.InfusionDef>
+
+    <Infusion.InfusionDef ParentName="UncommonApparelBase">
+        <defName>Uncommon_Stratos</defName>
+        <label>stratos</label>
+        <labelShort>strat</labelShort>
+        <stats>
+            <li>
+                <key>MoveSpeed</key>
+                <value>
+                    <offset>0.1</offset>
+                </value>
+            </li>
+            <li>
+                <key>VacuumResistance</key>
+                <value>
+                    <offset>0.04</offset>
+                </value>
+            </li>
+        </stats>
+        <weight>0.25</weight>
+    </Infusion.InfusionDef>
+</Defs>

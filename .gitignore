@@ -398,3 +398,6 @@ FodyWeavers.xsd
 *.sln.iml
 
 .vscode
+# Baked asset packs (1.7 asset baker) and their build cache
+Assets.zip
+Assets.zip.fingerprint
