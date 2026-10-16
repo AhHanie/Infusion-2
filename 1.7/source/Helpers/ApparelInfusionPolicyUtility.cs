@@ -12,8 +12,13 @@ namespace Infusion.Helpers
 {
     public static class ApparelInfusionPolicyUtility
     {
+        // Mirrors the header geometry of vanilla Dialog_ManagePolicies<T>.DoWindowContents.
+        private const float HeaderButtonSize = 32f;
+        private const float HeaderButtonPitch = 42f; // button width + 10px gap
+        private const float HeaderRowGap = 4f;
+
         private static List<InfusionDef> managedInfusions;
-        private static string lastOpenedTitleKey;
+        private static readonly Func<Dialog_ManagePolicies<ApparelPolicy>, ApparelPolicy> selectedPolicyGetter = BindSelectedPolicyGetter();
 
         public static List<InfusionDef> GetManagedInfusions()
         {
@@ -30,31 +35,37 @@ namespace Infusion.Helpers
             return managedInfusions;
         }
 
-        public static float GetHeaderButtonReserve(float currentReserve, object dialog)
+        // Draws the "manage infusions" icon button in the dialog's header row, next to the vanilla rename / duplicate /
+        // delete (and make-default) icons. contentsRect is the rect vanilla passes to DoContentsRect, which sits directly under
+        // that row: DoWindowContents builds it as rect3.yMax + OffsetHeaderY + 4f, where rect3 is the 32px header row.
+        // OffsetHeaderY is a protected virtual that Dialog_ManageApparelPolicies does not override, so it is 0 here.
+        public static void DrawManageInfusionsButton(UnityEngine.Rect contentsRect, Dialog_ManageApparelPolicies dialog)
         {
-            return IsApparelPolicyDialog(dialog) ? currentReserve + 42f : currentReserve;
-        }
-
-        public static void DrawManageInfusionsButton(Rect referenceRect, object dialog)
-        {
-            Rect buttonRect = new Rect(referenceRect.x - referenceRect.width - 10f, referenceRect.y, referenceRect.width, referenceRect.height);
-            DrawManageInfusionsButtonAt(buttonRect, dialog);
-        }
-
-        public static void DrawManageInfusionsButtonAt(Rect buttonRect, object dialog)
-        {
-            if (!IsApparelPolicyDialog(dialog))
-            {
-                return;
-            }
-
             ApparelPolicy policy = GetSelectedPolicy(dialog);
             if (policy == null)
             {
                 return;
             }
 
-            TooltipHandler.TipRegion(buttonRect, new TipSignal("Infusion.ApparelPolicy.ManageTip".Translate(policy.label)));
+            // Vanilla header buttons, right to left: delete, duplicate, rename, then make-default (hidden for the default policy).
+            // Ours takes the next free slot.
+            bool isDefault = Current.Game.outfitDatabase.DefaultOutfit() == policy;
+            int slot = isDefault ? 3 : 4;
+
+            UnityEngine.Rect buttonRect = new UnityEngine.Rect(
+                contentsRect.xMax - HeaderButtonSize - slot * HeaderButtonPitch,
+                contentsRect.y - HeaderButtonSize - HeaderRowGap,
+                HeaderButtonSize,
+                HeaderButtonSize);
+
+            // Only build the tooltip text while hovered; this runs every frame.
+            if (Mouse.IsOver(buttonRect))
+            {
+                TooltipHandler.TipRegion(buttonRect, new TipSignal(
+                    "Infusion.ApparelPolicy.ManageTip".Translate(policy.label) + "\n\n" +
+                    "Infusion.ApparelPolicy.DisallowedCount".Translate(CountDisallowedInfusions(policy))));
+            }
+
             if (Widgets.ButtonImage(buttonRect, ResourceBank.Textures.Infuser, true, null))
             {
                 Find.WindowStack.Add(new Dialog_ManageApparelInfusionPolicies(policy));
@@ -63,9 +74,9 @@ namespace Infusion.Helpers
 
         public static bool FilterAllowsThingForPolicy(bool filterAllows, ApparelPolicy policy, Thing thing)
         {
-            if (!filterAllows)
+            if (!filterAllows || policy == null)
             {
-                return false;
+                return filterAllows;
             }
 
             if (!(thing is Apparel apparel))
@@ -103,26 +114,24 @@ namespace Infusion.Helpers
             Current.Game.GetComponent<GameComponent_Infusion>().SetDisallowedApparelInfusions(policy, GetManagedInfusions());
         }
 
-        public static bool IsApparelPolicyDialog(object dialog)
+        // SelectedPolicy is a protected property of the generic base Dialog_ManagePolicies<ApparelPolicy>; read it through
+        // a delegate bound once instead of reflecting on the private field every frame.
+        public static ApparelPolicy GetSelectedPolicy(Dialog_ManageApparelPolicies dialog)
         {
-            return string.Equals(lastOpenedTitleKey, "ApparelPolicyTitle", StringComparison.Ordinal);
+            return selectedPolicyGetter?.Invoke(dialog);
         }
 
-        public static void CacheDialogTitleKey(object dialog)
+        private static Func<Dialog_ManagePolicies<ApparelPolicy>, ApparelPolicy> BindSelectedPolicyGetter()
         {
-            PropertyInfo titleKeyProperty = AccessTools.Property(dialog.GetType(), "TitleKey");
-            lastOpenedTitleKey = titleKeyProperty?.GetValue(dialog, null) as string;
-        }
-
-        public static ApparelPolicy GetSelectedPolicy(object dialog)
-        {
-            FieldInfo policyField = AccessTools.Field(dialog.GetType(), "policyInt");
-            if (policyField == null)
+            MethodInfo getter = AccessTools.PropertyGetter(typeof(Dialog_ManagePolicies<ApparelPolicy>), "SelectedPolicy");
+            if (getter == null)
             {
-                Log.ErrorOnce("[Infusion 2] Dialog_ManagePolicies.policyInt not found - apparel infusion policy button disabled.", 74810293);
+                Log.Error("[Infusion 2] Dialog_ManagePolicies.SelectedPolicy not found - apparel infusion policy button disabled.");
                 return null;
             }
-            return policyField.GetValue(dialog) as ApparelPolicy;
+
+            return (Func<Dialog_ManagePolicies<ApparelPolicy>, ApparelPolicy>)Delegate.CreateDelegate(
+                typeof(Func<Dialog_ManagePolicies<ApparelPolicy>, ApparelPolicy>), getter);
         }
     }
 }
