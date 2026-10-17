@@ -5,12 +5,22 @@ namespace Infusion.OnHitWorkers
 {
     public class TameTarget : OnHitWorker
     {
+        // Manhunting animals (raids, ambushes, Scaria packs) must not be tamed: SetFaction wipes the mental
+        // state, and Scaria then forces the new colony animal straight back into BerserkPermanent.
+        private static bool CanTame(Pawn pawn)
+        {
+            return pawn.AnimalOrWildMan()
+                && pawn.Faction != Faction.OfPlayer
+                && !pawn.InAggroMentalState
+                && !pawn.health.hediffSet.HasHediff(HediffDefOf.Scaria);
+        }
+
         public override void BulletHit(ProjectileRecord record)
         {
             if (record.target != null)
             {
                 Thing thing = Utils.SelectTarget(record, selfCast);
-                if (thing is Pawn pawn && pawn.AnimalOrWildMan() && pawn.Faction != Faction.OfPlayer)
+                if (thing is Pawn pawn && CanTame(pawn))
                 {
                     InteractionWorker_RecruitAttempt.DoRecruit(record.projectile.Launcher as Pawn, pawn);
                     DebugActionsUtility.DustPuffFrom(pawn);
@@ -23,7 +33,7 @@ namespace Infusion.OnHitWorkers
             if (record.target != null)
             {
                 Thing thing = Utils.SelectTarget(record, selfCast);
-                if (thing is Pawn pawn && pawn.AnimalOrWildMan() && pawn.Faction != Faction.OfPlayer)
+                if (thing is Pawn pawn && CanTame(pawn))
                 {
                     InteractionWorker_RecruitAttempt.DoRecruit(record.verb.CasterPawn, pawn);
                     DebugActionsUtility.DustPuffFrom(pawn);
