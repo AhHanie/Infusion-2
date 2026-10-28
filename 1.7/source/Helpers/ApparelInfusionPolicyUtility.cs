@@ -10,6 +10,19 @@ using Verse;
 
 namespace Infusion.Helpers
 {
+    // Optional integration with 1trickPwnyta's Defaults, which adds a "save as default" icon to the header row of the
+    // in-game policy editors. Detected by package id only; there is no reference to its assembly.
+    // Provisional: the Defaults release available when this was written has no RimWorld 1.7 build, so its 1.7 icon position
+    // is assumed to match its 1.6 one (the slot right where vanilla's make-default icon is, or the one left of it).
+    public static class DefaultsPolicyCompat
+    {
+        public const string PackageId = "defaults.1trickPwnyta";
+
+        private static bool? active;
+
+        public static bool Active => active ?? (active = ModsConfig.IsActive(PackageId)).Value;
+    }
+
     public static class ApparelInfusionPolicyUtility
     {
         // Mirrors the header geometry of vanilla Dialog_ManagePolicies<T>.DoWindowContents.
@@ -41,16 +54,16 @@ namespace Infusion.Helpers
         // OffsetHeaderY is a protected virtual that Dialog_ManageApparelPolicies does not override, so it is 0 here.
         public static void DrawManageInfusionsButton(UnityEngine.Rect contentsRect, Dialog_ManageApparelPolicies dialog)
         {
-            ApparelPolicy policy = GetSelectedPolicy(dialog);
-            if (policy == null)
+            if (!TryGetGamePolicy(dialog, out ApparelPolicy policy))
             {
                 return;
             }
 
             // Vanilla header buttons, right to left: delete, duplicate, rename, then make-default (hidden for the default policy).
-            // Ours takes the next free slot.
+            // Ours takes the next free slot. Defaults' "save as default" icon sits in the make-default slot for the default
+            // policy and in the slot left of it otherwise, so with Defaults active ours moves one slot further left.
             bool isDefault = Current.Game.outfitDatabase.DefaultOutfit() == policy;
-            int slot = isDefault ? 3 : 4;
+            int slot = (isDefault ? 3 : 4) + (DefaultsPolicyCompat.Active ? 1 : 0);
 
             UnityEngine.Rect buttonRect = new UnityEngine.Rect(
                 contentsRect.xMax - HeaderButtonSize - slot * HeaderButtonPitch,
@@ -112,6 +125,28 @@ namespace Infusion.Helpers
         public static void DisallowAllInfusions(ApparelPolicy policy)
         {
             Current.Game.GetComponent<GameComponent_Infusion>().SetDisallowedApparelInfusions(policy, GetManagedInfusions());
+        }
+
+        // Only a policy editor opened by the game itself manages policies of the current game. Defaults also embeds a
+        // Dialog_ManageApparelPolicies subclass in its settings window and draws it by hand; that one is not in the window
+        // stack and edits templates that do not belong to the game, so it gets no infusion button.
+        public static bool TryGetGamePolicy(Dialog_ManageApparelPolicies dialog, out ApparelPolicy policy)
+        {
+            policy = null;
+
+            if (dialog == null || Current.Game == null || !Find.WindowStack.Windows.Contains(dialog))
+            {
+                return false;
+            }
+
+            policy = GetSelectedPolicy(dialog);
+            if (policy == null || !Current.Game.outfitDatabase.AllOutfits.Contains(policy))
+            {
+                policy = null;
+                return false;
+            }
+
+            return true;
         }
 
         // SelectedPolicy is a protected property of the generic base Dialog_ManagePolicies<ApparelPolicy>; read it through
